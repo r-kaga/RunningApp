@@ -45,25 +45,25 @@
 		E380AB371F23735F0034EA8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E380AB3A1F23735F0034EA8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E380AB3C1F23735F0034EA8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E380AB421F2373C50034EA8F /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
-		E380AB431F2373C50034EA8F /* Home.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Home.xib; sourceTree = "<group>"; };
-		E380AB451F2373C50034EA8F /* MyPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPage.swift; sourceTree = "<group>"; };
-		E380AB461F2373C50034EA8F /* MyPage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPage.xib; sourceTree = "<group>"; };
-		E380AB481F2373C50034EA8F /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAPSPageMenu.swift; sourceTree = "<group>"; };
-		E380AB4A1F2373C50034EA8F /* UIPanGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPanGestureRecognizer.swift; sourceTree = "<group>"; };
-		E380AB4C1F2373C50034EA8F /* 0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 0.jpg; sourceTree = "<group>"; };
-		E380AB4D1F2373C50034EA8F /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
-		E380AB4E1F2373C50034EA8F /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
-		E380AB4F1F2373C50034EA8F /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
-		E380AB501F2373C50034EA8F /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
-		E380AB511F2373C50034EA8F /* 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5.jpg; sourceTree = "<group>"; };
-		E380AB521F2373C50034EA8F /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.jpg; sourceTree = "<group>"; };
-		E380AB531F2373C50034EA8F /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
-		E380AB541F2373C50034EA8F /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.jpg; sourceTree = "<group>"; };
-		E380AB551F2373C50034EA8F /* 9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9.jpg; sourceTree = "<group>"; };
-		E380AB561F2373C50034EA8F /* 10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10.jpg; sourceTree = "<group>"; };
-		E380AB571F2373C50034EA8F /* nick-west.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "nick-west.jpg"; sourceTree = "<group>"; };
-		E380AB581F2373C50034EA8F /* file.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = file.png; sourceTree = "<group>"; };
+		E380AB421F2373C50034EA8F /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ../../../../SampleUIViewApp/sampleUIViewApp/Home.swift; sourceTree = "<group>"; };
+		E380AB431F2373C50034EA8F /* Home.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ../../../../SampleUIViewApp/sampleUIViewApp/Home.xib; sourceTree = "<group>"; };
+		E380AB451F2373C50034EA8F /* MyPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ../../../../SampleUIViewApp/sampleUIViewApp/MyPage.swift; sourceTree = "<group>"; };
+		E380AB461F2373C50034EA8F /* MyPage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ../../../../SampleUIViewApp/sampleUIViewApp/MyPage.xib; sourceTree = "<group>"; };
+		E380AB481F2373C50034EA8F /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ../../../SampleUIViewApp/sampleUIViewApp/CAPSPageMenu.swift; sourceTree = "<group>"; };
+		E380AB4A1F2373C50034EA8F /* UIPanGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ../../../SampleUIViewApp/sampleUIViewApp/UIPanGestureRecognizer/UIPanGestureRecognizer.swift; sourceTree = "<group>"; };
+		E380AB4C1F2373C50034EA8F /* 0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ../../../SampleUIViewApp/sampleUIViewApp/images/0.jpg; sourceTree = "<group>"; };
+		E380AB4D1F2373C50034EA8F /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ../../../SampleUIViewApp/sampleUIViewApp/images/1.jpg; sourceTree = "<group>"; };
+		E380AB4E1F2373C50034EA8F /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ../../../SampleUIViewApp/sampleUIViewApp/images/2.jpg; sourceTree = "<group>"; };
+		E380AB4F1F2373C50034EA8F /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ../../../SampleUIViewApp/sampleUIViewApp/images/3.jpg; sourceTree = "<group>"; };
+		E380AB501F2373C50034EA8F /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ../../../SampleUIViewApp/sampleUIViewApp/images/4.jpg; sourceTree = "<group>"; };
+		E380AB511F2373C50034EA8F /* 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ../../../SampleUIViewApp/sampleUIViewApp/images/5.jpg; sourceTree = "<group>"; };
+		E380AB521F2373C50034EA8F /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ../../../SampleUIViewApp/sampleUIViewApp/images/6.jpg; sourceTree = "<group>"; };
+		E380AB531F2373C50034EA8F /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ../../../SampleUIViewApp/sampleUIViewApp/images/7.jpg; sourceTree = "<group>"; };
+		E380AB541F2373C50034EA8F /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ../../../SampleUIViewApp/sampleUIViewApp/images/8.jpg; sourceTree = "<group>"; };
+		E380AB551F2373C50034EA8F /* 9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ../../../SampleUIViewApp/sampleUIViewApp/images/9.jpg; sourceTree = "<group>"; };
+		E380AB561F2373C50034EA8F /* 10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ../../../SampleUIViewApp/sampleUIViewApp/images/10.jpg; sourceTree = "<group>"; };
+		E380AB571F2373C50034EA8F /* nick-west.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "../../../SampleUIViewApp/sampleUIViewApp/images/nick-west.jpg"; sourceTree = "<group>"; };
+		E380AB581F2373C50034EA8F /* file.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ../../../SampleUIViewApp/sampleUIViewApp/images/file.png; sourceTree = "<group>"; };
 		E380AB6D1F2373E70034EA8F /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E380AB6E1F2373E70034EA8F /* MaterialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,10 +100,10 @@
 		E380AB241F23735E0034EA8F = {
 			isa = PBXGroup;
 			children = (
-				E380AB2F1F23735F0034EA8F /* RunningApp */,
-				E380AB2E1F23735F0034EA8F /* Products */,
-				0798D57CB21707C1F6EF7146 /* Pods */,
 				64628182FCE8393FCA94B6B0 /* Frameworks */,
+				0798D57CB21707C1F6EF7146 /* Pods */,
+				E380AB2E1F23735F0034EA8F /* Products */,
+				E380AB2F1F23735F0034EA8F /* RunningApp */,
 			);
 			sourceTree = "<group>";
 		};
@@ -122,12 +122,12 @@
 				E380AB4B1F2373C50034EA8F /* UIPanGestureRecognizer */,
 				E380AB591F2373C50034EA8F /* images */,
 				E380AB301F23735F0034EA8F /* AppDelegate.swift */,
-				E380AB6D1F2373E70034EA8F /* MainViewController.swift */,
-				E380AB6E1F2373E70034EA8F /* MaterialViewController.swift */,
-				E380AB341F23735F0034EA8F /* Main.storyboard */,
-				E380AB391F23735F0034EA8F /* LaunchScreen.storyboard */,
 				E380AB371F23735F0034EA8F /* Assets.xcassets */,
 				E380AB3C1F23735F0034EA8F /* Info.plist */,
+				E380AB391F23735F0034EA8F /* LaunchScreen.storyboard */,
+				E380AB341F23735F0034EA8F /* Main.storyboard */,
+				E380AB6D1F2373E70034EA8F /* MainViewController.swift */,
+				E380AB6E1F2373E70034EA8F /* MaterialViewController.swift */,
 			);
 			path = RunningApp;
 			sourceTree = "<group>";
@@ -139,6 +139,7 @@
 				E380AB431F2373C50034EA8F /* Home.xib */,
 			);
 			name = Home;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		E380AB471F2373C50034EA8F /* MyPage */ = {
@@ -148,6 +149,7 @@
 				E380AB461F2373C50034EA8F /* MyPage.xib */,
 			);
 			name = MyPage;
+			path = MyPage;
 			sourceTree = "<group>";
 		};
 		E380AB491F2373C50034EA8F /* PageMenu */ = {
@@ -158,7 +160,7 @@
 				E380AB481F2373C50034EA8F /* CAPSPageMenu.swift */,
 			);
 			name = PageMenu;
-			path = ../../SampleUIViewApp/sampleUIViewApp;
+			path = PageMenu;
 			sourceTree = "<group>";
 		};
 		E380AB4B1F2373C50034EA8F /* UIPanGestureRecognizer */ = {
@@ -167,7 +169,7 @@
 				E380AB4A1F2373C50034EA8F /* UIPanGestureRecognizer.swift */,
 			);
 			name = UIPanGestureRecognizer;
-			path = ../../SampleUIViewApp/sampleUIViewApp/UIPanGestureRecognizer;
+			path = UIPanGestureRecognizer;
 			sourceTree = "<group>";
 		};
 		E380AB591F2373C50034EA8F /* images */ = {
@@ -175,6 +177,7 @@
 			children = (
 				E380AB4C1F2373C50034EA8F /* 0.jpg */,
 				E380AB4D1F2373C50034EA8F /* 1.jpg */,
+				E380AB561F2373C50034EA8F /* 10.jpg */,
 				E380AB4E1F2373C50034EA8F /* 2.jpg */,
 				E380AB4F1F2373C50034EA8F /* 3.jpg */,
 				E380AB501F2373C50034EA8F /* 4.jpg */,
@@ -183,12 +186,11 @@
 				E380AB531F2373C50034EA8F /* 7.jpg */,
 				E380AB541F2373C50034EA8F /* 8.jpg */,
 				E380AB551F2373C50034EA8F /* 9.jpg */,
-				E380AB561F2373C50034EA8F /* 10.jpg */,
-				E380AB571F2373C50034EA8F /* nick-west.jpg */,
 				E380AB581F2373C50034EA8F /* file.png */,
+				E380AB571F2373C50034EA8F /* nick-west.jpg */,
 			);
 			name = images;
-			path = ../../SampleUIViewApp/sampleUIViewApp/images;
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -349,6 +351,7 @@
 				E380AB351F23735F0034EA8F /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		E380AB391F23735F0034EA8F /* LaunchScreen.storyboard */ = {
@@ -357,6 +360,7 @@
 				E380AB3A1F23735F0034EA8F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
