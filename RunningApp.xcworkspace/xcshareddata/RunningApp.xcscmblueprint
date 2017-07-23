@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "31C64C1EEF1C004D9534D2FA64394C86217442B2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "31C64C1EEF1C004D9534D2FA64394C86217442B2" : 9223372036854775807,
+    "BFAD7B111E80DDACDCF64FDAF1AE87D71A5CD9DB" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "AF4118DD-D649-4D2A-AD04-C62E0D38BD6F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "31C64C1EEF1C004D9534D2FA64394C86217442B2" : "RunningApp\/",
+    "BFAD7B111E80DDACDCF64FDAF1AE87D71A5CD9DB" : "SampleUIViewApp\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "RunningApp",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "RunningApp.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github:ryo-k0426\/RunningApp",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "31C64C1EEF1C004D9534D2FA64394C86217442B2"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:ryo-k0426\/sampleUIViewApp.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BFAD7B111E80DDACDCF64FDAF1AE87D71A5CD9DB"
+    }
+  ]
+}

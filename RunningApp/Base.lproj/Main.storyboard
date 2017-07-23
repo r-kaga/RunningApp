@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mie-1D-ypQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mie-1D-ypQ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -207,39 +207,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jiz-hm-Mc8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1069.5999999999999" y="-393.55322338830587"/>
-        </scene>
-        <!--Pan Gesture Recognizer-->
-        <scene sceneID="CGN-3H-xKW">
-            <objects>
-                <viewController storyboardIdentifier="UIPanGestureRecognizer" id="1hX-C7-FiA" customClass="UIPanGestureRecognizer" customModule="RunningApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Eaf-Pr-8d7"/>
-                        <viewControllerLayoutGuide type="bottom" id="R7s-7v-aVp"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="hg3-r2-HvM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shake Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bwq-eO-Dd2">
-                                <rect key="frame" x="149.5" y="586" width="76" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Bwq-eO-Dd2" firstAttribute="centerX" secondItem="hg3-r2-HvM" secondAttribute="centerX" id="JJW-xL-iGk"/>
-                            <constraint firstItem="R7s-7v-aVp" firstAttribute="top" secondItem="Bwq-eO-Dd2" secondAttribute="bottom" constant="60" id="xFc-Aq-AzG"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="shakeLabel" destination="Bwq-eO-Dd2" id="ItQ-D2-QQ7"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6fU-WZ-ZsJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="980" y="291"/>
         </scene>
     </scenes>
     <resources>

@@ -8,29 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		E1633205A450704EC5F7B81C /* Pods_RunningApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB4A23F43657309C31FDA106 /* Pods_RunningApp.framework */; };
+		E36106161F243225004F56EC /* CAPSPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E361060D1F243225004F56EC /* CAPSPageMenu.swift */; };
+		E36106171F243225004F56EC /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = E361060F1F243225004F56EC /* Home.swift */; };
+		E36106181F243225004F56EC /* Home.xib in Resources */ = {isa = PBXBuildFile; fileRef = E36106101F243225004F56EC /* Home.xib */; };
+		E36106191F243225004F56EC /* MyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36106121F243225004F56EC /* MyPage.swift */; };
+		E361061A1F243225004F56EC /* MyPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = E36106131F243225004F56EC /* MyPage.xib */; };
+		E361061B1F243225004F56EC /* UIPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36106151F243225004F56EC /* UIPanGestureRecognizer.swift */; };
+		E361062A1F24322C004F56EC /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E361061D1F24322C004F56EC /* 0.jpg */; };
+		E361062B1F24322C004F56EC /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E361061E1F24322C004F56EC /* 1.jpg */; };
+		E361062C1F24322C004F56EC /* 10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E361061F1F24322C004F56EC /* 10.jpg */; };
+		E361062D1F24322C004F56EC /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E36106201F24322C004F56EC /* 2.jpg */; };
+		E361062E1F24322C004F56EC /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E36106211F24322C004F56EC /* 3.jpg */; };
+		E361062F1F24322C004F56EC /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E36106221F24322C004F56EC /* 4.jpg */; };
+		E36106301F24322C004F56EC /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E36106231F24322C004F56EC /* 5.jpg */; };
+		E36106311F24322C004F56EC /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E36106241F24322C004F56EC /* 6.jpg */; };
+		E36106321F24322C004F56EC /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E36106251F24322C004F56EC /* 7.jpg */; };
+		E36106331F24322C004F56EC /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E36106261F24322C004F56EC /* 8.jpg */; };
+		E36106341F24322C004F56EC /* 9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E36106271F24322C004F56EC /* 9.jpg */; };
+		E36106351F24322C004F56EC /* file.png in Resources */ = {isa = PBXBuildFile; fileRef = E36106281F24322C004F56EC /* file.png */; };
+		E36106361F24322C004F56EC /* nick-west.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E36106291F24322C004F56EC /* nick-west.jpg */; };
 		E380AB311F23735F0034EA8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E380AB301F23735F0034EA8F /* AppDelegate.swift */; };
 		E380AB361F23735F0034EA8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E380AB341F23735F0034EA8F /* Main.storyboard */; };
 		E380AB381F23735F0034EA8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E380AB371F23735F0034EA8F /* Assets.xcassets */; };
 		E380AB3B1F23735F0034EA8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E380AB391F23735F0034EA8F /* LaunchScreen.storyboard */; };
-		E380AB5A1F2373C50034EA8F /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = E380AB421F2373C50034EA8F /* Home.swift */; };
-		E380AB5B1F2373C50034EA8F /* Home.xib in Resources */ = {isa = PBXBuildFile; fileRef = E380AB431F2373C50034EA8F /* Home.xib */; };
-		E380AB5C1F2373C50034EA8F /* MyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E380AB451F2373C50034EA8F /* MyPage.swift */; };
-		E380AB5D1F2373C50034EA8F /* MyPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = E380AB461F2373C50034EA8F /* MyPage.xib */; };
-		E380AB5E1F2373C50034EA8F /* CAPSPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E380AB481F2373C50034EA8F /* CAPSPageMenu.swift */; };
-		E380AB5F1F2373C50034EA8F /* UIPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E380AB4A1F2373C50034EA8F /* UIPanGestureRecognizer.swift */; };
-		E380AB601F2373C50034EA8F /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E380AB4C1F2373C50034EA8F /* 0.jpg */; };
-		E380AB611F2373C50034EA8F /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E380AB4D1F2373C50034EA8F /* 1.jpg */; };
-		E380AB621F2373C50034EA8F /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E380AB4E1F2373C50034EA8F /* 2.jpg */; };
-		E380AB631F2373C50034EA8F /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E380AB4F1F2373C50034EA8F /* 3.jpg */; };
-		E380AB641F2373C50034EA8F /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E380AB501F2373C50034EA8F /* 4.jpg */; };
-		E380AB651F2373C50034EA8F /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E380AB511F2373C50034EA8F /* 5.jpg */; };
-		E380AB661F2373C50034EA8F /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E380AB521F2373C50034EA8F /* 6.jpg */; };
-		E380AB671F2373C50034EA8F /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E380AB531F2373C50034EA8F /* 7.jpg */; };
-		E380AB681F2373C50034EA8F /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E380AB541F2373C50034EA8F /* 8.jpg */; };
-		E380AB691F2373C50034EA8F /* 9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E380AB551F2373C50034EA8F /* 9.jpg */; };
-		E380AB6A1F2373C50034EA8F /* 10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E380AB561F2373C50034EA8F /* 10.jpg */; };
-		E380AB6B1F2373C50034EA8F /* nick-west.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E380AB571F2373C50034EA8F /* nick-west.jpg */; };
-		E380AB6C1F2373C50034EA8F /* file.png in Resources */ = {isa = PBXBuildFile; fileRef = E380AB581F2373C50034EA8F /* file.png */; };
 		E380AB6F1F2373E70034EA8F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E380AB6D1F2373E70034EA8F /* MainViewController.swift */; };
 		E380AB701F2373E70034EA8F /* MaterialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E380AB6E1F2373E70034EA8F /* MaterialViewController.swift */; };
 /* End PBXBuildFile section */
@@ -39,31 +39,31 @@
 		58F06D7142BEEE9F74DD4C7B /* Pods-RunningApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunningApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RunningApp/Pods-RunningApp.debug.xcconfig"; sourceTree = "<group>"; };
 		AB4A23F43657309C31FDA106 /* Pods_RunningApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunningApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B52ED86E09986E423E72B09E /* Pods-RunningApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunningApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-RunningApp/Pods-RunningApp.release.xcconfig"; sourceTree = "<group>"; };
+		E361060D1F243225004F56EC /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAPSPageMenu.swift; sourceTree = "<group>"; };
+		E361060F1F243225004F56EC /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		E36106101F243225004F56EC /* Home.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Home.xib; sourceTree = "<group>"; };
+		E36106121F243225004F56EC /* MyPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPage.swift; sourceTree = "<group>"; };
+		E36106131F243225004F56EC /* MyPage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPage.xib; sourceTree = "<group>"; };
+		E36106151F243225004F56EC /* UIPanGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPanGestureRecognizer.swift; sourceTree = "<group>"; };
+		E361061D1F24322C004F56EC /* 0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 0.jpg; sourceTree = "<group>"; };
+		E361061E1F24322C004F56EC /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		E361061F1F24322C004F56EC /* 10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10.jpg; sourceTree = "<group>"; };
+		E36106201F24322C004F56EC /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
+		E36106211F24322C004F56EC /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
+		E36106221F24322C004F56EC /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
+		E36106231F24322C004F56EC /* 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5.jpg; sourceTree = "<group>"; };
+		E36106241F24322C004F56EC /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.jpg; sourceTree = "<group>"; };
+		E36106251F24322C004F56EC /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
+		E36106261F24322C004F56EC /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.jpg; sourceTree = "<group>"; };
+		E36106271F24322C004F56EC /* 9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9.jpg; sourceTree = "<group>"; };
+		E36106281F24322C004F56EC /* file.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = file.png; sourceTree = "<group>"; };
+		E36106291F24322C004F56EC /* nick-west.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "nick-west.jpg"; sourceTree = "<group>"; };
 		E380AB2D1F23735F0034EA8F /* RunningApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunningApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E380AB301F23735F0034EA8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E380AB351F23735F0034EA8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E380AB371F23735F0034EA8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E380AB3A1F23735F0034EA8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E380AB3C1F23735F0034EA8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E380AB421F2373C50034EA8F /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ../../../../SampleUIViewApp/sampleUIViewApp/Home.swift; sourceTree = "<group>"; };
-		E380AB431F2373C50034EA8F /* Home.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ../../../../SampleUIViewApp/sampleUIViewApp/Home.xib; sourceTree = "<group>"; };
-		E380AB451F2373C50034EA8F /* MyPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ../../../../SampleUIViewApp/sampleUIViewApp/MyPage.swift; sourceTree = "<group>"; };
-		E380AB461F2373C50034EA8F /* MyPage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ../../../../SampleUIViewApp/sampleUIViewApp/MyPage.xib; sourceTree = "<group>"; };
-		E380AB481F2373C50034EA8F /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ../../../SampleUIViewApp/sampleUIViewApp/CAPSPageMenu.swift; sourceTree = "<group>"; };
-		E380AB4A1F2373C50034EA8F /* UIPanGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ../../../SampleUIViewApp/sampleUIViewApp/UIPanGestureRecognizer/UIPanGestureRecognizer.swift; sourceTree = "<group>"; };
-		E380AB4C1F2373C50034EA8F /* 0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ../../../SampleUIViewApp/sampleUIViewApp/images/0.jpg; sourceTree = "<group>"; };
-		E380AB4D1F2373C50034EA8F /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ../../../SampleUIViewApp/sampleUIViewApp/images/1.jpg; sourceTree = "<group>"; };
-		E380AB4E1F2373C50034EA8F /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ../../../SampleUIViewApp/sampleUIViewApp/images/2.jpg; sourceTree = "<group>"; };
-		E380AB4F1F2373C50034EA8F /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ../../../SampleUIViewApp/sampleUIViewApp/images/3.jpg; sourceTree = "<group>"; };
-		E380AB501F2373C50034EA8F /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ../../../SampleUIViewApp/sampleUIViewApp/images/4.jpg; sourceTree = "<group>"; };
-		E380AB511F2373C50034EA8F /* 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ../../../SampleUIViewApp/sampleUIViewApp/images/5.jpg; sourceTree = "<group>"; };
-		E380AB521F2373C50034EA8F /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ../../../SampleUIViewApp/sampleUIViewApp/images/6.jpg; sourceTree = "<group>"; };
-		E380AB531F2373C50034EA8F /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ../../../SampleUIViewApp/sampleUIViewApp/images/7.jpg; sourceTree = "<group>"; };
-		E380AB541F2373C50034EA8F /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ../../../SampleUIViewApp/sampleUIViewApp/images/8.jpg; sourceTree = "<group>"; };
-		E380AB551F2373C50034EA8F /* 9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ../../../SampleUIViewApp/sampleUIViewApp/images/9.jpg; sourceTree = "<group>"; };
-		E380AB561F2373C50034EA8F /* 10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ../../../SampleUIViewApp/sampleUIViewApp/images/10.jpg; sourceTree = "<group>"; };
-		E380AB571F2373C50034EA8F /* nick-west.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "../../../SampleUIViewApp/sampleUIViewApp/images/nick-west.jpg"; sourceTree = "<group>"; };
-		E380AB581F2373C50034EA8F /* file.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ../../../SampleUIViewApp/sampleUIViewApp/images/file.png; sourceTree = "<group>"; };
 		E380AB6D1F2373E70034EA8F /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E380AB6E1F2373E70034EA8F /* MaterialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,6 +97,62 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E361060C1F243225004F56EC /* PageMenu */ = {
+			isa = PBXGroup;
+			children = (
+				E361060D1F243225004F56EC /* CAPSPageMenu.swift */,
+				E361060E1F243225004F56EC /* Home */,
+				E36106111F243225004F56EC /* MyPage */,
+			);
+			path = PageMenu;
+			sourceTree = "<group>";
+		};
+		E361060E1F243225004F56EC /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				E361060F1F243225004F56EC /* Home.swift */,
+				E36106101F243225004F56EC /* Home.xib */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		E36106111F243225004F56EC /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				E36106121F243225004F56EC /* MyPage.swift */,
+				E36106131F243225004F56EC /* MyPage.xib */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		E36106141F243225004F56EC /* UIPanGestureRecognizer */ = {
+			isa = PBXGroup;
+			children = (
+				E36106151F243225004F56EC /* UIPanGestureRecognizer.swift */,
+			);
+			path = UIPanGestureRecognizer;
+			sourceTree = "<group>";
+		};
+		E361061C1F24322C004F56EC /* images */ = {
+			isa = PBXGroup;
+			children = (
+				E361061D1F24322C004F56EC /* 0.jpg */,
+				E361061E1F24322C004F56EC /* 1.jpg */,
+				E361061F1F24322C004F56EC /* 10.jpg */,
+				E36106201F24322C004F56EC /* 2.jpg */,
+				E36106211F24322C004F56EC /* 3.jpg */,
+				E36106221F24322C004F56EC /* 4.jpg */,
+				E36106231F24322C004F56EC /* 5.jpg */,
+				E36106241F24322C004F56EC /* 6.jpg */,
+				E36106251F24322C004F56EC /* 7.jpg */,
+				E36106261F24322C004F56EC /* 8.jpg */,
+				E36106271F24322C004F56EC /* 9.jpg */,
+				E36106281F24322C004F56EC /* file.png */,
+				E36106291F24322C004F56EC /* nick-west.jpg */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		E380AB241F23735E0034EA8F = {
 			isa = PBXGroup;
 			children = (
@@ -118,9 +174,9 @@
 		E380AB2F1F23735F0034EA8F /* RunningApp */ = {
 			isa = PBXGroup;
 			children = (
-				E380AB491F2373C50034EA8F /* PageMenu */,
-				E380AB4B1F2373C50034EA8F /* UIPanGestureRecognizer */,
-				E380AB591F2373C50034EA8F /* images */,
+				E361060C1F243225004F56EC /* PageMenu */,
+				E36106141F243225004F56EC /* UIPanGestureRecognizer */,
+				E361061C1F24322C004F56EC /* images */,
 				E380AB301F23735F0034EA8F /* AppDelegate.swift */,
 				E380AB371F23735F0034EA8F /* Assets.xcassets */,
 				E380AB3C1F23735F0034EA8F /* Info.plist */,
@@ -130,67 +186,6 @@
 				E380AB6E1F2373E70034EA8F /* MaterialViewController.swift */,
 			);
 			path = RunningApp;
-			sourceTree = "<group>";
-		};
-		E380AB441F2373C50034EA8F /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				E380AB421F2373C50034EA8F /* Home.swift */,
-				E380AB431F2373C50034EA8F /* Home.xib */,
-			);
-			name = Home;
-			path = Home;
-			sourceTree = "<group>";
-		};
-		E380AB471F2373C50034EA8F /* MyPage */ = {
-			isa = PBXGroup;
-			children = (
-				E380AB451F2373C50034EA8F /* MyPage.swift */,
-				E380AB461F2373C50034EA8F /* MyPage.xib */,
-			);
-			name = MyPage;
-			path = MyPage;
-			sourceTree = "<group>";
-		};
-		E380AB491F2373C50034EA8F /* PageMenu */ = {
-			isa = PBXGroup;
-			children = (
-				E380AB441F2373C50034EA8F /* Home */,
-				E380AB471F2373C50034EA8F /* MyPage */,
-				E380AB481F2373C50034EA8F /* CAPSPageMenu.swift */,
-			);
-			name = PageMenu;
-			path = PageMenu;
-			sourceTree = "<group>";
-		};
-		E380AB4B1F2373C50034EA8F /* UIPanGestureRecognizer */ = {
-			isa = PBXGroup;
-			children = (
-				E380AB4A1F2373C50034EA8F /* UIPanGestureRecognizer.swift */,
-			);
-			name = UIPanGestureRecognizer;
-			path = UIPanGestureRecognizer;
-			sourceTree = "<group>";
-		};
-		E380AB591F2373C50034EA8F /* images */ = {
-			isa = PBXGroup;
-			children = (
-				E380AB4C1F2373C50034EA8F /* 0.jpg */,
-				E380AB4D1F2373C50034EA8F /* 1.jpg */,
-				E380AB561F2373C50034EA8F /* 10.jpg */,
-				E380AB4E1F2373C50034EA8F /* 2.jpg */,
-				E380AB4F1F2373C50034EA8F /* 3.jpg */,
-				E380AB501F2373C50034EA8F /* 4.jpg */,
-				E380AB511F2373C50034EA8F /* 5.jpg */,
-				E380AB521F2373C50034EA8F /* 6.jpg */,
-				E380AB531F2373C50034EA8F /* 7.jpg */,
-				E380AB541F2373C50034EA8F /* 8.jpg */,
-				E380AB551F2373C50034EA8F /* 9.jpg */,
-				E380AB581F2373C50034EA8F /* file.png */,
-				E380AB571F2373C50034EA8F /* nick-west.jpg */,
-			);
-			name = images;
-			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,24 +251,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E380AB651F2373C50034EA8F /* 5.jpg in Resources */,
-				E380AB631F2373C50034EA8F /* 3.jpg in Resources */,
-				E380AB601F2373C50034EA8F /* 0.jpg in Resources */,
-				E380AB691F2373C50034EA8F /* 9.jpg in Resources */,
+				E36106331F24322C004F56EC /* 8.jpg in Resources */,
+				E361062F1F24322C004F56EC /* 4.jpg in Resources */,
+				E361062A1F24322C004F56EC /* 0.jpg in Resources */,
+				E36106361F24322C004F56EC /* nick-west.jpg in Resources */,
+				E36106311F24322C004F56EC /* 6.jpg in Resources */,
+				E36106351F24322C004F56EC /* file.png in Resources */,
+				E36106321F24322C004F56EC /* 7.jpg in Resources */,
 				E380AB3B1F23735F0034EA8F /* LaunchScreen.storyboard in Resources */,
 				E380AB381F23735F0034EA8F /* Assets.xcassets in Resources */,
-				E380AB6A1F2373C50034EA8F /* 10.jpg in Resources */,
-				E380AB5B1F2373C50034EA8F /* Home.xib in Resources */,
-				E380AB681F2373C50034EA8F /* 8.jpg in Resources */,
-				E380AB661F2373C50034EA8F /* 6.jpg in Resources */,
+				E361062D1F24322C004F56EC /* 2.jpg in Resources */,
+				E36106181F243225004F56EC /* Home.xib in Resources */,
+				E361062E1F24322C004F56EC /* 3.jpg in Resources */,
 				E380AB361F23735F0034EA8F /* Main.storyboard in Resources */,
-				E380AB6C1F2373C50034EA8F /* file.png in Resources */,
-				E380AB5D1F2373C50034EA8F /* MyPage.xib in Resources */,
-				E380AB621F2373C50034EA8F /* 2.jpg in Resources */,
-				E380AB6B1F2373C50034EA8F /* nick-west.jpg in Resources */,
-				E380AB671F2373C50034EA8F /* 7.jpg in Resources */,
-				E380AB641F2373C50034EA8F /* 4.jpg in Resources */,
-				E380AB611F2373C50034EA8F /* 1.jpg in Resources */,
+				E361061A1F243225004F56EC /* MyPage.xib in Resources */,
+				E36106301F24322C004F56EC /* 5.jpg in Resources */,
+				E36106341F24322C004F56EC /* 9.jpg in Resources */,
+				E361062C1F24322C004F56EC /* 10.jpg in Resources */,
+				E361062B1F24322C004F56EC /* 1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,11 +328,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E380AB6F1F2373E70034EA8F /* MainViewController.swift in Sources */,
-				E380AB5F1F2373C50034EA8F /* UIPanGestureRecognizer.swift in Sources */,
-				E380AB5A1F2373C50034EA8F /* Home.swift in Sources */,
-				E380AB5E1F2373C50034EA8F /* CAPSPageMenu.swift in Sources */,
 				E380AB701F2373E70034EA8F /* MaterialViewController.swift in Sources */,
-				E380AB5C1F2373C50034EA8F /* MyPage.swift in Sources */,
+				E36106191F243225004F56EC /* MyPage.swift in Sources */,
+				E361061B1F243225004F56EC /* UIPanGestureRecognizer.swift in Sources */,
+				E36106171F243225004F56EC /* Home.swift in Sources */,
+				E36106161F243225004F56EC /* CAPSPageMenu.swift in Sources */,
 				E380AB311F23735F0034EA8F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
