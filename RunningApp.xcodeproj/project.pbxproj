@@ -13,7 +13,6 @@
 		E36106181F243225004F56EC /* Home.xib in Resources */ = {isa = PBXBuildFile; fileRef = E36106101F243225004F56EC /* Home.xib */; };
 		E36106191F243225004F56EC /* MyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36106121F243225004F56EC /* MyPage.swift */; };
 		E361061A1F243225004F56EC /* MyPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = E36106131F243225004F56EC /* MyPage.xib */; };
-		E361061B1F243225004F56EC /* UIPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36106151F243225004F56EC /* UIPanGestureRecognizer.swift */; };
 		E361062A1F24322C004F56EC /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E361061D1F24322C004F56EC /* 0.jpg */; };
 		E361062B1F24322C004F56EC /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E361061E1F24322C004F56EC /* 1.jpg */; };
 		E361062C1F24322C004F56EC /* 10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E361061F1F24322C004F56EC /* 10.jpg */; };
@@ -44,7 +43,6 @@
 		E36106101F243225004F56EC /* Home.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Home.xib; sourceTree = "<group>"; };
 		E36106121F243225004F56EC /* MyPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPage.swift; sourceTree = "<group>"; };
 		E36106131F243225004F56EC /* MyPage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPage.xib; sourceTree = "<group>"; };
-		E36106151F243225004F56EC /* UIPanGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPanGestureRecognizer.swift; sourceTree = "<group>"; };
 		E361061D1F24322C004F56EC /* 0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 0.jpg; sourceTree = "<group>"; };
 		E361061E1F24322C004F56EC /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		E361061F1F24322C004F56EC /* 10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10.jpg; sourceTree = "<group>"; };
@@ -125,14 +123,6 @@
 			path = MyPage;
 			sourceTree = "<group>";
 		};
-		E36106141F243225004F56EC /* UIPanGestureRecognizer */ = {
-			isa = PBXGroup;
-			children = (
-				E36106151F243225004F56EC /* UIPanGestureRecognizer.swift */,
-			);
-			path = UIPanGestureRecognizer;
-			sourceTree = "<group>";
-		};
 		E361061C1F24322C004F56EC /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,7 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				E361060C1F243225004F56EC /* PageMenu */,
-				E36106141F243225004F56EC /* UIPanGestureRecognizer */,
 				E361061C1F24322C004F56EC /* images */,
 				E380AB301F23735F0034EA8F /* AppDelegate.swift */,
 				E380AB371F23735F0034EA8F /* Assets.xcassets */,
@@ -330,7 +319,6 @@
 				E380AB6F1F2373E70034EA8F /* MainViewController.swift in Sources */,
 				E380AB701F2373E70034EA8F /* MaterialViewController.swift in Sources */,
 				E36106191F243225004F56EC /* MyPage.swift in Sources */,
-				E361061B1F243225004F56EC /* UIPanGestureRecognizer.swift in Sources */,
 				E36106171F243225004F56EC /* Home.swift in Sources */,
 				E36106161F243225004F56EC /* CAPSPageMenu.swift in Sources */,
 				E380AB311F23735F0034EA8F /* AppDelegate.swift in Sources */,
