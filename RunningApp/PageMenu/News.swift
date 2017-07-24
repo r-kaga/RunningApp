@@ -50,7 +50,6 @@ class News: UIViewController, UITableViewDelegate, UITableViewDataSource {
             json.forEach{(_, data) in
                 self.items.append(data)
             }
-            print(self.items)
             tableView.reloadData()
         }
 
@@ -58,8 +57,6 @@ class News: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(items)
         
     }
     
@@ -80,14 +77,12 @@ class News: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let contentBody = items[indexPath.row]["body"].stringValue
-        print(contentBody)
-        
+        let contentText = items[indexPath.row]["body"].stringValue
         let ContentRC = ContentReaderController()
-        ContentRC.contentBody = contentBody
-        let view = ContentRC.loadNib()
-//        present(ContentRC, animated: true, completion: nil)
-        self.view.addSubview(view!)
+        ContentRC.contentBody = contentText
+//        let view = ContentRC.add()
+        present(ContentRC, animated: true, completion: nil)
+//        self.view.addSubview(view!)
         
     }
     

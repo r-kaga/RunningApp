@@ -11,9 +11,8 @@ import UIKit
 class ContentReaderController: UIViewController {
 
     @IBOutlet weak var textReaderView: UITextView!
-    var contentBody: String = ""
-    
-    
+    var contentBody: String?
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -28,18 +27,32 @@ class ContentReaderController: UIViewController {
         let view = Bundle.main.loadNibNamed("ContentReaderController", owner: self, options: nil)?.first as! UIView
         view.frame = self.view.frame
         return view
-        
     }
-
+    
+    
+    /** Viewインスタンス作成
+     * @return View
+     */
+    func add() -> UIView? {
+        let view = UINib(nibName: "ContentReaderController", bundle: nil).instantiate(withOwner: self, options: nil)[0] as! UIView
+        view.frame = self.view.frame
+        self.setText()
+        return view
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("viewDidLoad")
         
-        print(contentBody)
-        
-        textReaderView.attributedText = self.parseText2HTML(sourceText: contentBody)
-        self.view.addSubview(textReaderView)
-        
+        self.setText()
+    }
+    
+    func setText() {
+        if let text = contentBody {
+            self.textReaderView.text = text
+            self.view.addSubview(textReaderView)
+        }
     }
 
     /// HTML形式で記述された文字列をNSAttributedStringに変換する
@@ -74,12 +87,8 @@ class ContentReaderController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
-        
-        
     }
     
-
 
 
 }
