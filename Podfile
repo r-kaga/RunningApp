@@ -10,6 +10,8 @@ target 'RunningApp' do
   pod 'MaterialComponents/Palettes'
   pod 'MaterialComponents/NavigationBar'
   pod 'PageMenu'
+  pod 'Alamofire'
+  pod 'SwiftyJSON'
   # Pods for RunningApp
 
 end

@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     let tabMenuItem = [
         "Home",
         "MyPage",
+        "News"
     ]
     
     override func viewDidLoad() {
@@ -37,6 +38,11 @@ class ViewController: UIViewController {
         let myPage: UIViewController = MyPage(nibName: "MyPage", bundle: nil)
         myPage.title = "MyPage"
         controllerArray.append(myPage)
+        
+        let news: UIViewController = News(nibName: "News", bundle: nil)
+        news.title = "News"
+        controllerArray.append(news)
+        
         
         // Customize menu (Optional)
         let parameters: [CAPSPageMenuOption] = [
