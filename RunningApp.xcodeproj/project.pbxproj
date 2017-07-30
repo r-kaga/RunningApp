@@ -111,15 +111,16 @@
 				E35377691F2597D100A5D6FB /* News.xib */,
 			);
 			name = News;
+			path = News;
 			sourceTree = "<group>";
 		};
 		E361060C1F243225004F56EC /* PageMenu */ = {
 			isa = PBXGroup;
 			children = (
-				E361060D1F243225004F56EC /* CAPSPageMenu.swift */,
 				E361060E1F243225004F56EC /* Home */,
 				E36106111F243225004F56EC /* MyPage */,
 				E35377631F25975A00A5D6FB /* News */,
+				E361060D1F243225004F56EC /* CAPSPageMenu.swift */,
 			);
 			path = PageMenu;
 			sourceTree = "<group>";
@@ -169,6 +170,7 @@
 				E3637D341F25DF5700C615D4 /* ContentReaderController.xib */,
 			);
 			name = ContntReader;
+			path = ContntReader;
 			sourceTree = "<group>";
 		};
 		E380AB241F23735E0034EA8F = {
