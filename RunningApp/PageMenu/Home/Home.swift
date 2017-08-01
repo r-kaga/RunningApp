@@ -13,7 +13,8 @@ import MaterialComponents
 class Home:
     UIViewController ,
     UICollectionViewDataSource,
-    UICollectionViewDelegate
+    UICollectionViewDelegate,
+    UIViewControllerTransitioningDelegate
     
 {
     
@@ -28,6 +29,8 @@ class Home:
     
     var myCollectionView : UICollectionView!
     
+    let interactor = Interactor()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,6 +61,8 @@ class Home:
         
     }
     
+    
+    
     /*
      Cellが選択時
      */
@@ -66,12 +71,16 @@ class Home:
         onSender(indexPath.row)
     }
     
+    
+    
     /*
      Cellの総数
      */
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
     }
+    
+    
     
     /*
      Cellに値を設定
@@ -109,6 +118,7 @@ class Home:
     }
     
     
+    
     func onSender(_ path: Int) {
         if path == 1 {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -116,10 +126,33 @@ class Home:
             present(viewController, animated: true, completion: nil)
         } else {
 
-            
+            self.onPullModalShow()
         }
 
     }
+    
+    
+    
+    func onPullModalShow() {
+        let sb = UIStoryboard(name: "ModalViewController", bundle: nil)
+        let nc = sb.instantiateInitialViewController() as! ModalNavigationController
+        nc.interactor = interactor
+        nc.transitioningDelegate = self
+        present(nc, animated: true, completion: nil)
+    }
+    
+    
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissAnimator()
+    }
+    
+    
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
+    }
+    
     
     
 }

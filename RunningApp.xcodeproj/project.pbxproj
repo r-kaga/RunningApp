@@ -36,6 +36,11 @@
 		E380AB3B1F23735F0034EA8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E380AB391F23735F0034EA8F /* LaunchScreen.storyboard */; };
 		E380AB6F1F2373E70034EA8F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E380AB6D1F2373E70034EA8F /* MainViewController.swift */; };
 		E380AB701F2373E70034EA8F /* MaterialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E380AB6E1F2373E70034EA8F /* MaterialViewController.swift */; };
+		E39594061F30C574004AEB27 /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39594011F30C574004AEB27 /* DismissAnimator.swift */; };
+		E39594071F30C574004AEB27 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39594021F30C574004AEB27 /* Interactor.swift */; };
+		E39594081F30C574004AEB27 /* ModalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39594031F30C574004AEB27 /* ModalNavigationController.swift */; };
+		E39594091F30C574004AEB27 /* ModalViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E39594041F30C574004AEB27 /* ModalViewController.storyboard */; };
+		E395940A1F30C574004AEB27 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39594051F30C574004AEB27 /* ModalViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +77,11 @@
 		E380AB3C1F23735F0034EA8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E380AB6D1F2373E70034EA8F /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E380AB6E1F2373E70034EA8F /* MaterialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialViewController.swift; sourceTree = "<group>"; };
+		E39594011F30C574004AEB27 /* DismissAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift; sourceTree = "<group>"; };
+		E39594021F30C574004AEB27 /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
+		E39594031F30C574004AEB27 /* ModalNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalNavigationController.swift; sourceTree = "<group>"; };
+		E39594041F30C574004AEB27 /* ModalViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ModalViewController.storyboard; sourceTree = "<group>"; };
+		E39594051F30C574004AEB27 /* ModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +120,6 @@
 				E35377681F2597D100A5D6FB /* News.swift */,
 				E35377691F2597D100A5D6FB /* News.xib */,
 			);
-			name = News;
 			path = News;
 			sourceTree = "<group>";
 		};
@@ -169,7 +178,6 @@
 				E3637D331F25DF5700C615D4 /* ContentReaderController.swift */,
 				E3637D341F25DF5700C615D4 /* ContentReaderController.xib */,
 			);
-			name = ContntReader;
 			path = ContntReader;
 			sourceTree = "<group>";
 		};
@@ -196,6 +204,7 @@
 			children = (
 				E361060C1F243225004F56EC /* PageMenu */,
 				E361061C1F24322C004F56EC /* images */,
+				E39594001F30C574004AEB27 /* PullNavigation */,
 				E380AB301F23735F0034EA8F /* AppDelegate.swift */,
 				E380AB371F23735F0034EA8F /* Assets.xcassets */,
 				E380AB3C1F23735F0034EA8F /* Info.plist */,
@@ -205,6 +214,19 @@
 				E380AB6E1F2373E70034EA8F /* MaterialViewController.swift */,
 			);
 			path = RunningApp;
+			sourceTree = "<group>";
+		};
+		E39594001F30C574004AEB27 /* PullNavigation */ = {
+			isa = PBXGroup;
+			children = (
+				E39594011F30C574004AEB27 /* DismissAnimator.swift */,
+				E39594021F30C574004AEB27 /* Interactor.swift */,
+				E39594031F30C574004AEB27 /* ModalNavigationController.swift */,
+				E39594041F30C574004AEB27 /* ModalViewController.storyboard */,
+				E39594051F30C574004AEB27 /* ModalViewController.swift */,
+			);
+			name = PullNavigation;
+			path = images/PullNavigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +300,7 @@
 				E36106351F24322C004F56EC /* file.png in Resources */,
 				E36106321F24322C004F56EC /* 7.jpg in Resources */,
 				E380AB3B1F23735F0034EA8F /* LaunchScreen.storyboard in Resources */,
+				E39594091F30C574004AEB27 /* ModalViewController.storyboard in Resources */,
 				E380AB381F23735F0034EA8F /* Assets.xcassets in Resources */,
 				E361062D1F24322C004F56EC /* 2.jpg in Resources */,
 				E36106181F243225004F56EC /* Home.xib in Resources */,
@@ -349,12 +372,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				E380AB6F1F2373E70034EA8F /* MainViewController.swift in Sources */,
+				E39594081F30C574004AEB27 /* ModalNavigationController.swift in Sources */,
 				E380AB701F2373E70034EA8F /* MaterialViewController.swift in Sources */,
+				E39594071F30C574004AEB27 /* Interactor.swift in Sources */,
+				E395940A1F30C574004AEB27 /* ModalViewController.swift in Sources */,
 				E3637D351F25DF5700C615D4 /* ContentReaderController.swift in Sources */,
 				E36106191F243225004F56EC /* MyPage.swift in Sources */,
 				E36106171F243225004F56EC /* Home.swift in Sources */,
 				E353776A1F2597D100A5D6FB /* News.swift in Sources */,
 				E36106161F243225004F56EC /* CAPSPageMenu.swift in Sources */,
+				E39594061F30C574004AEB27 /* DismissAnimator.swift in Sources */,
 				E380AB311F23735F0034EA8F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
