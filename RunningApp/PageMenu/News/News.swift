@@ -14,10 +14,9 @@ class News: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var label: UILabel!
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    init() {
+        super.init(nibName: nil, bundle: nil)
     }
-    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -40,7 +39,6 @@ class News: UIViewController, UITableViewDelegate, UITableViewDataSource {
         label.center = self.view.center
         label.text = "fweafwef"
         self.view.addSubview(label)
-        
         
         // QiitaのAPIからデータを取得
         let listUrl = "https://qiita.com/api/v1/items"

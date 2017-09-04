@@ -9,12 +9,9 @@
 /* Begin PBXBuildFile section */
 		E1633205A450704EC5F7B81C /* Pods_RunningApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB4A23F43657309C31FDA106 /* Pods_RunningApp.framework */; };
 		E353776A1F2597D100A5D6FB /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35377681F2597D100A5D6FB /* News.swift */; };
-		E353776B1F2597D100A5D6FB /* News.xib in Resources */ = {isa = PBXBuildFile; fileRef = E35377691F2597D100A5D6FB /* News.xib */; };
 		E36106161F243225004F56EC /* CAPSPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E361060D1F243225004F56EC /* CAPSPageMenu.swift */; };
 		E36106171F243225004F56EC /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = E361060F1F243225004F56EC /* Home.swift */; };
-		E36106181F243225004F56EC /* Home.xib in Resources */ = {isa = PBXBuildFile; fileRef = E36106101F243225004F56EC /* Home.xib */; };
 		E36106191F243225004F56EC /* MyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36106121F243225004F56EC /* MyPage.swift */; };
-		E361061A1F243225004F56EC /* MyPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = E36106131F243225004F56EC /* MyPage.xib */; };
 		E361062A1F24322C004F56EC /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E361061D1F24322C004F56EC /* 0.jpg */; };
 		E361062B1F24322C004F56EC /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E361061E1F24322C004F56EC /* 1.jpg */; };
 		E361062C1F24322C004F56EC /* 10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E361061F1F24322C004F56EC /* 10.jpg */; };
@@ -41,6 +38,9 @@
 		E39594081F30C574004AEB27 /* ModalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39594031F30C574004AEB27 /* ModalNavigationController.swift */; };
 		E39594091F30C574004AEB27 /* ModalViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E39594041F30C574004AEB27 /* ModalViewController.storyboard */; };
 		E395940A1F30C574004AEB27 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39594051F30C574004AEB27 /* ModalViewController.swift */; };
+		E3CA14E81F5D91B00053468D /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14E71F5D91B00053468D /* HomeModel.swift */; };
+		E3CA14EA1F5D963E0053468D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14E91F5D963D0053468D /* HomeView.swift */; };
+		E3CA14EC1F5D98C90053468D /* HomeCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,12 +48,9 @@
 		AB4A23F43657309C31FDA106 /* Pods_RunningApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunningApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B52ED86E09986E423E72B09E /* Pods-RunningApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunningApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-RunningApp/Pods-RunningApp.release.xcconfig"; sourceTree = "<group>"; };
 		E35377681F2597D100A5D6FB /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
-		E35377691F2597D100A5D6FB /* News.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = News.xib; sourceTree = "<group>"; };
 		E361060D1F243225004F56EC /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAPSPageMenu.swift; sourceTree = "<group>"; };
 		E361060F1F243225004F56EC /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
-		E36106101F243225004F56EC /* Home.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Home.xib; sourceTree = "<group>"; };
 		E36106121F243225004F56EC /* MyPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPage.swift; sourceTree = "<group>"; };
-		E36106131F243225004F56EC /* MyPage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPage.xib; sourceTree = "<group>"; };
 		E361061D1F24322C004F56EC /* 0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 0.jpg; sourceTree = "<group>"; };
 		E361061E1F24322C004F56EC /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		E361061F1F24322C004F56EC /* 10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10.jpg; sourceTree = "<group>"; };
@@ -82,6 +79,9 @@
 		E39594031F30C574004AEB27 /* ModalNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalNavigationController.swift; sourceTree = "<group>"; };
 		E39594041F30C574004AEB27 /* ModalViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ModalViewController.storyboard; sourceTree = "<group>"; };
 		E39594051F30C574004AEB27 /* ModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
+		E3CA14E71F5D91B00053468D /* HomeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		E3CA14E91F5D963D0053468D /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCustomCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +118,6 @@
 			children = (
 				E3637D371F25E60200C615D4 /* ContntReader */,
 				E35377681F2597D100A5D6FB /* News.swift */,
-				E35377691F2597D100A5D6FB /* News.xib */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -138,7 +137,9 @@
 			isa = PBXGroup;
 			children = (
 				E361060F1F243225004F56EC /* Home.swift */,
-				E36106101F243225004F56EC /* Home.xib */,
+				E3CA14E71F5D91B00053468D /* HomeModel.swift */,
+				E3CA14E91F5D963D0053468D /* HomeView.swift */,
+				E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -147,7 +148,6 @@
 			isa = PBXGroup;
 			children = (
 				E36106121F243225004F56EC /* MyPage.swift */,
-				E36106131F243225004F56EC /* MyPage.xib */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -303,11 +303,8 @@
 				E39594091F30C574004AEB27 /* ModalViewController.storyboard in Resources */,
 				E380AB381F23735F0034EA8F /* Assets.xcassets in Resources */,
 				E361062D1F24322C004F56EC /* 2.jpg in Resources */,
-				E36106181F243225004F56EC /* Home.xib in Resources */,
 				E361062E1F24322C004F56EC /* 3.jpg in Resources */,
-				E353776B1F2597D100A5D6FB /* News.xib in Resources */,
 				E380AB361F23735F0034EA8F /* Main.storyboard in Resources */,
-				E361061A1F243225004F56EC /* MyPage.xib in Resources */,
 				E36106301F24322C004F56EC /* 5.jpg in Resources */,
 				E36106341F24322C004F56EC /* 9.jpg in Resources */,
 				E361062C1F24322C004F56EC /* 10.jpg in Resources */,
@@ -372,6 +369,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E380AB6F1F2373E70034EA8F /* MainViewController.swift in Sources */,
+				E3CA14EC1F5D98C90053468D /* HomeCustomCell.swift in Sources */,
+				E3CA14EA1F5D963E0053468D /* HomeView.swift in Sources */,
 				E39594081F30C574004AEB27 /* ModalNavigationController.swift in Sources */,
 				E380AB701F2373E70034EA8F /* MaterialViewController.swift in Sources */,
 				E39594071F30C574004AEB27 /* Interactor.swift in Sources */,
@@ -380,6 +379,7 @@
 				E36106191F243225004F56EC /* MyPage.swift in Sources */,
 				E36106171F243225004F56EC /* Home.swift in Sources */,
 				E353776A1F2597D100A5D6FB /* News.swift in Sources */,
+				E3CA14E81F5D91B00053468D /* HomeModel.swift in Sources */,
 				E36106161F243225004F56EC /* CAPSPageMenu.swift in Sources */,
 				E39594061F30C574004AEB27 /* DismissAnimator.swift in Sources */,
 				E380AB311F23735F0034EA8F /* AppDelegate.swift in Sources */,

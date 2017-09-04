@@ -10,8 +10,8 @@ import UIKit
 
 class MyPage: UIViewController {
 
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    init() {
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -23,6 +23,8 @@ class MyPage: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
+        
         // Do any additional setup after loading the view.
     }
 
@@ -32,14 +34,6 @@ class MyPage: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
