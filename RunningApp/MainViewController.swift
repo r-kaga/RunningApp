@@ -29,15 +29,15 @@ class ViewController: UIViewController {
 //            controllerArray.append(controller)
 //        }
         
-        let home: UIViewController = Home(nibName: "Home", bundle: nil)
+        let home: UIViewController = Home()
         home.title = "Home"
         controllerArray.append(home)
         
-        let myPage: UIViewController = MyPage(nibName: "MyPage", bundle: nil)
+        let myPage: UIViewController = MyPage()
         myPage.title = "MyPage"
         controllerArray.append(myPage)
         
-        let news: UIViewController = News(nibName: "News", bundle: nil)
+        let news: UIViewController = News()
         news.title = "News"
         controllerArray.append(news)
         
