@@ -14,8 +14,8 @@ class Home:
     UIViewController
     
 {
-    let model =  HomeModel()
-//    let homeView =  HomeView()
+    let homeModel =  HomeModel()
+    let homeView =  HomeView()
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -29,9 +29,24 @@ class Home:
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.addSubview(model.layout())
+        self.view.addSubview(self.homeView.layout())
         
     }
+    
+    
+    
+    
+    // model -> view　modalShowの伝達
+    func onPullModalShow() {
+        homeView.onPullModalShow()
+    }
+    
+    // view -> model　onSenderの伝達
+    func onSender(_ path: Int) {
+        homeModel.onSender(path)
+    }
+    
+    
     
     
     
