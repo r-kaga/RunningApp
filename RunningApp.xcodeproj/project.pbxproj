@@ -126,6 +126,7 @@
 				E380AB371F23735F0034EA8F /* Assets.xcassets */,
 			);
 			name = Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		E35377631F25975A00A5D6FB /* News */ = {
@@ -135,19 +136,19 @@
 				E35377681F2597D100A5D6FB /* News.swift */,
 			);
 			name = News;
-			path = PageMenu/News;
+			path = News;
 			sourceTree = "<group>";
 		};
 		E361060E1F243225004F56EC /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				E361060F1F243225004F56EC /* Home.swift */,
-				E3CA14E91F5D963D0053468D /* HomeView.swift */,
-				E3CA14E71F5D91B00053468D /* HomeModel.swift */,
 				E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */,
+				E3CA14E71F5D91B00053468D /* HomeModel.swift */,
+				E3CA14E91F5D963D0053468D /* HomeView.swift */,
 			);
 			name = Home;
-			path = PageMenu/Home;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		E36106111F243225004F56EC /* MyPage */ = {
@@ -156,7 +157,7 @@
 				E36106121F243225004F56EC /* MyPage.swift */,
 			);
 			name = MyPage;
-			path = PageMenu/MyPage;
+			path = MyPage;
 			sourceTree = "<group>";
 		};
 		E361061C1F24322C004F56EC /* images */ = {
@@ -209,21 +210,21 @@
 		E380AB2F1F23735F0034EA8F /* RunningApp */ = {
 			isa = PBXGroup;
 			children = (
-				E341882B1F793D5E000AB961 /* Resources */,
 				E361060E1F243225004F56EC /* Home */,
 				E36106111F243225004F56EC /* MyPage */,
 				E35377631F25975A00A5D6FB /* News */,
 				E39594001F30C574004AEB27 /* PullNavigation */,
-				E34188351F794AE6000AB961 /* AppSize.swift */,
+				E341882B1F793D5E000AB961 /* Resources */,
 				E380AB301F23735F0034EA8F /* AppDelegate.swift */,
-				E380AB6E1F2373E70034EA8F /* MaterialViewController.swift */,
-				E341882D1F794073000AB961 /* MainTabBarController.swift */,
-				E34188311F7944FF000AB961 /* SecondViewController.swift */,
+				E34188351F794AE6000AB961 /* AppSize.swift */,
 				E380AB3C1F23735F0034EA8F /* Info.plist */,
 				E380AB391F23735F0034EA8F /* LaunchScreen.storyboard */,
 				E380AB341F23735F0034EA8F /* Main.storyboard */,
-				E34188371F794E5B000AB961 /* WorkController.swift */,
+				E341882D1F794073000AB961 /* MainTabBarController.swift */,
+				E380AB6E1F2373E70034EA8F /* MaterialViewController.swift */,
+				E34188311F7944FF000AB961 /* SecondViewController.swift */,
 				E341883A1F795520000AB961 /* WorkController.storyboard */,
+				E34188371F794E5B000AB961 /* WorkController.swift */,
 			);
 			path = RunningApp;
 			sourceTree = "<group>";
@@ -238,7 +239,7 @@
 				E39594051F30C574004AEB27 /* ModalViewController.swift */,
 			);
 			name = PullNavigation;
-			path = images/PullNavigation;
+			path = PullNavigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
