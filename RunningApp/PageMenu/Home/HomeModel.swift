@@ -10,25 +10,17 @@ import Foundation
 import UIKit
 
 class HomeModel:
-    UIViewController
+    NSObject
+
 
 {
 
-    let controller = Home()
     
 //    init(_ controller: UIViewController) {
 //        self.vc = controller
 //    }
     
-    func onSender(_ path: Int) {
-        if path == 1 {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let viewController = storyboard.instantiateViewController(withIdentifier: "MaterialViewController") as! MaterialViewController
-            AppDelegate.getTopMostViewController().present(viewController, animated: true, completion: nil)
-        } else {
-            controller.onPullModalShow()
-        }
-    }
+
     
     
 

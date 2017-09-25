@@ -8,47 +8,130 @@
 
 
 import UIKit
-import MaterialComponents
 
 class Home:
     UIViewController
     
 {
-    let homeModel =  HomeModel()
-    let homeView =  HomeView()
+    
+//    let homeModel =  HomeModel()
+    var homeView: HomeView!
 
-    init() {
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
+    let interactor = Interactor()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.addSubview(self.homeView.layout())
+        navigationItem.title = "Home"
+        
+        homeView = HomeView(controller: self)
+        self.view = self.homeView
+    }
+    
+
+    func onSender(_ path: Int) {
+        
+//        let vc = WorkController(type: .run)
+//        self.present(vc, animated: true, completion: nil)
+        
+        let viewController = UIStoryboard(name: "WorkController", bundle: nil).instantiateInitialViewController() as! WorkController
+        self.present(viewController, animated: true, completion: nil)
+        
+//        if path == 1 {
+////            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MaterialViewController") as! MaterialViewController
+////            AppDelegate.getTopMostViewController().present(viewController, animated: true, completion: nil)
+//
+//        } else {
+//            self.onPullModalShow()
+//        }
         
     }
     
+
+}
+
+
+extension Home: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    /*
+     Cellが選択時
+     */
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Num: \(indexPath.row)")
+        self.onSender(indexPath.row)
+    }
     
     
+    /*
+     Cellに値を設定
+     */
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell : HomeCustomCell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: "MyCell",
+            for: indexPath) as! HomeCustomCell
+        
+        
+        let path = indexPath[1]
+        let info = [
+            "Walking",
+            "Running",
+            "Training",
+            "Work Out"
+        ]
+        
+        let cellImage = UIImage(named: String(path) + ".jpg" )!
+        cell.imageView?.image = cellImage
+        cell.textLabel?.text = info[path]
+        
+        return cell
+    }
     
-    // model -> view　modalShowの伝達
+    
+    /*
+     Cellの総数
+     */
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 4
+    }
+    
+
+}
+
+
+
+
+extension Home: UIViewControllerTransitioningDelegate {
+    
     func onPullModalShow() {
-        homeView.onPullModalShow()
+        let sb = UIStoryboard(name: "ModalViewController", bundle: nil).instantiateInitialViewController() as! ModalNavigationController
+        sb.interactor = interactor
+        sb.transitioningDelegate = self
+        AppDelegate.getTopMostViewController().present(sb, animated: true, completion: nil)
     }
     
-    // view -> model　onSenderの伝達
-    func onSender(_ path: Int) {
-        homeModel.onSender(path)
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissAnimator()
     }
     
     
-    
-    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
+    }
+
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
