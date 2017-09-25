@@ -28,6 +28,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        UINavigationBar.appearance().tintColor = .white  // アイテムの色
+        
+        // 文字の色を変更
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        UINavigationBar.appearance().barTintColor = .black
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = MainTabBarViewController()
+        window?.makeKeyAndVisible()
+        
         return true
     }
 
