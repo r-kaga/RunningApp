@@ -14,14 +14,6 @@ class News: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var label: UILabel!
     
-    init() {
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
     
     // itemsをJSONの配列と定義
     var items: [JSON] = []
@@ -55,7 +47,6 @@ class News: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     // tableのcellにAPIから受け取ったデータを入れる
