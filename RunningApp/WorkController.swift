@@ -70,19 +70,20 @@ class WorkController: UIViewController {
         
         count = count + 1
         
-        UIView.animate(withDuration: 0.3, delay: 0.3, options: .curveEaseOut, animations: { _ in
+        UIView.animate(withDuration: 0.5, delay: 0.1, options: .curveEaseOut, animations: { _ in
             self.countImageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
         }, completion: nil)
 
-        UIView.animate(withDuration: 0.2, delay: 0.5, options: .curveEaseOut, animations: { _ in
+        UIView.animate(withDuration: 0.5, delay: 0.3, options: .curveEaseOut, animations: { _ in
             self.countImageView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             self.countImageView.alpha = 0
         }, completion: { _ in
             self.countImageView.image = UIImage(named: "\(self.count).jpg")!
             self.countImageView.alpha = 1
             
-            if self.count == 3 {
+            if self.count == 4 {
                 self.countImageView.removeFromSuperview()
+                self.timer.invalidate()
             }
         })
 
