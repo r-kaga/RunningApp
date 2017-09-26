@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 
 
 enum WorkType {
@@ -21,6 +22,8 @@ class WorkController: UIViewController {
     var countImageView: UIImageView!
     var count = 0
     
+    var locationManager: CLLocationManager!
+
 //    let type: WorkType!
     
 //    init(type: WorkType) {
@@ -54,6 +57,25 @@ class WorkController: UIViewController {
         countImageView.center = self.view.center
         countImageView.image = UIImage(named: "0.jpg")!
         self.view.addSubview(countImageView)
+        
+        locationManager = CLLocationManager() // インスタンスの生成
+        locationManager.delegate = self // CLLocationManagerDelegateプロトコルを実装するクラスを指定する
+        
+//        // セキュリティ認証のステータスを取得.
+//        let status = CLLocationManager.authorizationStatus()
+//        print("authorizationStatus:\(status.rawValue)");
+//
+//        // まだ認証が得られていない場合は、認証ダイアログを表示
+//        // (このAppの使用中のみ許可の設定) 説明を共通の項目を参照
+//        if(status == .notDetermined) {
+//            self.myLocationManager.requestWhenInUseAuthorization()
+//        }
+//
+//        // 取得精度の設定.
+//        myLocationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        // 取得頻度の設定.
+//        myLocationManager.distanceFilter = 100
+        
         
     }
 
@@ -96,3 +118,79 @@ class WorkController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 }
+
+
+
+extension WorkController: CLLocationManagerDelegate {
+    
+    /*
+     認証に変化があった際に呼ばれる
+     */
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .notDetermined:
+            print("ユーザーはこのアプリケーションに関してまだ選択を行っていません")
+            locationManager.requestWhenInUseAuthorization() // 起動中のみの取得許可を求める
+
+        case .denied:
+            print("ローケーションサービスの設定が「無効」になっています (ユーザーによって、明示的に拒否されています）")
+            // 「設定 > プライバシー > 位置情報サービス で、位置情報サービスの利用を許可して下さい」を表示する
+            break
+        case .restricted:
+            print("このアプリケーションは位置情報サービスを使用できません(ユーザによって拒否されたわけではありません)")
+            // 「このアプリは、位置情報を取得できないために、正常に動作できません」を表示する
+            break
+        case .authorizedAlways:
+            print("常時、位置情報の取得が許可されています。")
+            locationManager.startUpdatingLocation()
+            
+            /*
+             other その他（デフォルト値）
+             automotiveNavigation 自動車ナビゲーション用
+             fitness 歩行者
+             otherNavigation その他のナビゲーションケース（ボート、電車、飛行機)
+             */
+            locationManager.activityType = .fitness
+
+        case .authorizedWhenInUse:
+            print("起動時のみ、位置情報の取得が許可されています。")
+            // 位置情報取得の開始処理
+            break
+        }
+    }
+    
+    
+    /*
+     位置情報取得に成功したときに呼び出されるデリゲート.
+     */
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        for location in locations {
+            print("緯度:\(location.coordinate.latitude) 経度:\(location.coordinate.longitude) 取得時刻:\(location.timestamp.description)")
+        }
+    }
+    
+    /*
+     位置情報取得に失敗した時に呼び出されるデリゲート.
+     */
+    func locationManager(_ manager: CLLocationManager,didFailWithError error: Error){
+        print(error)
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
