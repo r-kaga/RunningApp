@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import CoreLocation
+import MapKit
 
 
 enum WorkType {
@@ -23,6 +24,12 @@ class WorkController: UIViewController {
     var count = 0
     
     var locationManager: CLLocationManager!
+
+    
+    var cnt:Double = 0
+    var mapView : MKMapView!
+    var coordinate: CLLocationCoordinate2D!
+    
 
 //    let type: WorkType!
     
@@ -77,6 +84,32 @@ class WorkController: UIViewController {
 //        myLocationManager.distanceFilter = 100
         
         
+        
+        // MapViewの生成
+        mapView = MKMapView()
+        mapView.frame = self.view.bounds
+        // Delegateを設定
+        mapView.delegate = self
+        self.view.addSubview(mapView)
+        
+        // 中心点の緯度経度
+        let lat: CLLocationDegrees = 35.681298
+        let lon: CLLocationDegrees = 139.766247
+        coordinate = CLLocationCoordinate2DMake(lat, lon)
+        
+        // 縮尺
+        let latDist : CLLocationDistance = 10000
+        let lonDist : CLLocationDistance = 10000
+        
+        // 表示領域を作成
+        let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate, latDist, lonDist);
+        
+        // MapViewに反映
+        mapView.setRegion(region, animated: true)
+        
+        // タイマーを作る
+        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.onUpdate(_:)), userInfo: nil, repeats: true)
+ 
     }
 
     
@@ -85,6 +118,31 @@ class WorkController: UIViewController {
         self.countImageAnimation()
         timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.countImageAnimation), userInfo: nil, repeats: true)
     }
+    
+    
+    // scheduledTimerで指定された秒数毎に呼び出されるメソッド.
+    func onUpdate(_ timer : Timer){
+        
+        cnt += 100.0
+        
+        //桁数を指定して文字列を作る.
+        let str = "Time:".appendingFormat("%.1f",cnt)
+        print(str)
+        
+        
+        // 縮尺
+        let latDist: CLLocationDistance = 1000 + cnt
+        let lonDist: CLLocationDistance = 1000 + cnt
+        
+        
+        // 表示領域を作成
+        let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate, latDist, lonDist);
+        
+        // MapViewに反映
+        mapView.setRegion(region, animated: true)
+        
+    }
+    
 
     /** countImageViewのアニメーション
       */
@@ -182,7 +240,14 @@ extension WorkController: CLLocationManagerDelegate {
 
 
 
-
+extension WorkController: MKMapViewDelegate {
+    
+    // Regionが変更された時に呼び出されるメソッド
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        print("regionDidChangeAnimated")
+    }
+    
+}
 
 
 
