@@ -74,7 +74,7 @@ class WorkController: UIViewController {
             self.countImageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
         }, completion: nil)
 
-        UIView.animate(withDuration: 0.5, delay: 0.3, options: .curveEaseOut, animations: { _ in
+        UIView.animate(withDuration: 0.3, delay: 0.3, options: .curveEaseOut, animations: { _ in
             self.countImageView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             self.countImageView.alpha = 0
         }, completion: { _ in
@@ -87,48 +87,6 @@ class WorkController: UIViewController {
             }
         })
 
-        
-//        UIView.animate(withDuration: 0.3, delay: 0.5, options: .curveEaseOut, animations: { _ in
-//            self.countImageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-//        }, completion: nil)
-//
-//        UIView.animate(withDuration: 0.2, delay: 0.8, options: .curveEaseOut, animations: { _ in
-//            self.countImageView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-//            self.countImageView.alpha = 0
-//        }, completion: { _ in
-//            self.countImageView.image = UIImage(named: "\(2).jpg")!
-//            self.countImageView.alpha = 1
-//        })
-//
-
-//        UIView.animate(withDuration: 0.3, delay: 0.5, options: .curveEaseOut, animations: { _ in
-//            self.countImageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-//        }, completion: nil)
-//
-//        UIView.animate(withDuration: 0.2, delay: 0.8, options: .curveEaseOut, animations: { _ in
-//            self.countImageView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-//            self.countImageView.alpha = 0
-//        }, completion: { _ in
-//            self.countImageView.image = UIImage(named: "\(1).jpg")!
-//            self.countImageView.alpha = 1
-//        })
-//
-//
-//        UIView.animate(withDuration: 0.3, delay: 0.5, options: .curveEaseOut, animations: { _ in
-//            self.countImageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-//        }, completion: nil)
-//
-//        UIView.animate(withDuration: 0.2, delay: 0.8, options: .curveEaseOut, animations: { _ in
-//            self.countImageView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-//            self.countImageView.alpha = 0
-//        }, completion: { _ in
-//            self.countImageView.image = UIImage(named: "\(0).jpg")!
-//            self.countImageView.alpha = 1
-//            self.countImageView.removeFromSuperview()
-//        })
-        
-        
-        
     }
     
     /** Endボタン押し時
