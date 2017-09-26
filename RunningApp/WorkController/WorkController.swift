@@ -98,8 +98,8 @@ class WorkController: UIViewController {
         coordinate = CLLocationCoordinate2DMake(lat, lon)
         
         // 縮尺
-        let latDist : CLLocationDistance = 10000
-        let lonDist : CLLocationDistance = 10000
+        let latDist : CLLocationDistance = 1000 // 000
+        let lonDist : CLLocationDistance = 1000 // 000
         
         // 表示領域を作成
         let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate, latDist, lonDist);
@@ -115,7 +115,6 @@ class WorkController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.countImageAnimation()
         timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.countImageAnimation), userInfo: nil, repeats: true)
     }
     
