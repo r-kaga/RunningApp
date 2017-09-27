@@ -95,13 +95,29 @@ class WorkController: UIViewController {
         mapView.delegate = self
         self.map.addSubview(mapView)
         
-    
         let coordinate = locationManager.location?.coordinate
+        
         // 表示領域を作成
         let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate!, self.latDist, self.lonDist);
         
-        // MapViewに反映
-        mapView.setRegion(region, animated: true)
+        mapView.setRegion(region, animated: true)  // MapViewに反映
+        
+        let pin: MKPointAnnotation = MKPointAnnotation() // ピンを生成.
+        
+        // 経度、緯度.
+        let myLatitude: CLLocationDegrees = 37.331741
+        let myLongitude: CLLocationDegrees = -122.030333
+        
+        // 中心点.
+        let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(myLatitude, myLongitude)
+
+        
+        pin.coordinate = center // 座標を設定.
+        
+        pin.title = "タイトル" // タイトルを設定.
+        pin.subtitle = "サブタイトル"  // サブタイトルを設定.
+
+        mapView.addAnnotation(pin)  // MapViewにピンを追加.
     }
 
     
