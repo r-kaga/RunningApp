@@ -25,10 +25,15 @@ class WorkController: UIViewController {
     
     var locationManager: CLLocationManager!
 
+    @IBOutlet weak var map: UIView!
     
     var cnt:Double = 0
     var mapView : MKMapView!
-    var coordinate: CLLocationCoordinate2D!
+//    var coordinate: CLLocationCoordinate2D!
+    
+    // 縮尺
+    var latDist : CLLocationDistance = 1000
+    var lonDist : CLLocationDistance = 1000
     
 
 //    let type: WorkType!
@@ -84,63 +89,26 @@ class WorkController: UIViewController {
 //        myLocationManager.distanceFilter = 100
         
         
-        
         // MapViewの生成
         mapView = MKMapView()
         mapView.frame = self.view.bounds
-        // Delegateを設定
         mapView.delegate = self
-        self.view.addSubview(mapView)
+        self.map.addSubview(mapView)
         
-        // 中心点の緯度経度
-        let lat: CLLocationDegrees = 35.681298
-        let lon: CLLocationDegrees = 139.766247
-        coordinate = CLLocationCoordinate2DMake(lat, lon)
-        
-        // 縮尺
-        let latDist : CLLocationDistance = 10000
-        let lonDist : CLLocationDistance = 10000
-        
+    
+        let coordinate = locationManager.location?.coordinate
         // 表示領域を作成
-        let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate, latDist, lonDist);
+        let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate!, self.latDist, self.lonDist);
         
         // MapViewに反映
         mapView.setRegion(region, animated: true)
-        
-        // タイマーを作る
-        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.onUpdate(_:)), userInfo: nil, repeats: true)
- 
     }
 
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.countImageAnimation()
-        timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.countImageAnimation), userInfo: nil, repeats: true)
-    }
-    
-    
-    // scheduledTimerで指定された秒数毎に呼び出されるメソッド.
-    func onUpdate(_ timer : Timer){
-        
-        cnt += 100.0
-        
-        //桁数を指定して文字列を作る.
-        let str = "Time:".appendingFormat("%.1f",cnt)
-        print(str)
-        
-        
-        // 縮尺
-        let latDist: CLLocationDistance = 1000 + cnt
-        let lonDist: CLLocationDistance = 1000 + cnt
-        
-        
-        // 表示領域を作成
-        let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate, latDist, lonDist);
-        
-        // MapViewに反映
-        mapView.setRegion(region, animated: true)
-        
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.countImageAnimation), userInfo: nil, repeats: true)
     }
     
 
@@ -150,11 +118,11 @@ class WorkController: UIViewController {
         
         count = count + 1
         
-        UIView.animate(withDuration: 0.5, delay: 0.1, options: .curveEaseOut, animations: { _ in
+        UIView.animate(withDuration: 0.3, delay: 0.2, options: .curveEaseOut, animations: { _ in
             self.countImageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
         }, completion: nil)
 
-        UIView.animate(withDuration: 0.3, delay: 0.3, options: .curveEaseOut, animations: { _ in
+        UIView.animate(withDuration: 0.2, delay: 0.3, options: .curveEaseOut, animations: { _ in
             self.countImageView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             self.countImageView.alpha = 0
         }, completion: { _ in
@@ -225,7 +193,18 @@ extension WorkController: CLLocationManagerDelegate {
         
         for location in locations {
             print("緯度:\(location.coordinate.latitude) 経度:\(location.coordinate.longitude) 取得時刻:\(location.timestamp.description)")
+            
+            // 縮尺.
+            let latDist : CLLocationDistance = 100000
+            let lonDist : CLLocationDistance = 100000
+            
+            // Regionを作成.
+            let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, latDist, lonDist);
+            
+            // MapViewに反映.
+            mapView.setRegion(region, animated: true)
         }
+
     }
     
     /*
