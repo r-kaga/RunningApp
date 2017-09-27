@@ -125,6 +125,7 @@
 				E361061C1F24322C004F56EC /* images */,
 				E380AB371F23735F0034EA8F /* Assets.xcassets */,
 			);
+			name = Resources;
 			path = Resources;
 			sourceTree = "<group>";
 		};
@@ -134,6 +135,7 @@
 				E3637D371F25E60200C615D4 /* ContntReader */,
 				E35377681F2597D100A5D6FB /* News.swift */,
 			);
+			name = News;
 			path = News;
 			sourceTree = "<group>";
 		};
@@ -145,6 +147,7 @@
 				E3CA14E71F5D91B00053468D /* HomeModel.swift */,
 				E3CA14E91F5D963D0053468D /* HomeView.swift */,
 			);
+			name = Home;
 			path = Home;
 			sourceTree = "<group>";
 		};
@@ -153,6 +156,7 @@
 			children = (
 				E36106121F243225004F56EC /* MyPage.swift */,
 			);
+			name = MyPage;
 			path = MyPage;
 			sourceTree = "<group>";
 		};
@@ -206,18 +210,21 @@
 		E380AB2F1F23735F0034EA8F /* RunningApp */ = {
 			isa = PBXGroup;
 			children = (
-				E3FFF0A61F7A734C006EF431 /* AppBasicSetting */,
 				E361060E1F243225004F56EC /* Home */,
-				E3FFF0A51F7A7334006EF431 /* MainTabBar */,
 				E36106111F243225004F56EC /* MyPage */,
 				E35377631F25975A00A5D6FB /* News */,
 				E39594001F30C574004AEB27 /* PullNavigation */,
 				E341882B1F793D5E000AB961 /* Resources */,
-				E3FFF0A71F7A736B006EF431 /* Service */,
-				E3FFF0A41F7A7322006EF431 /* WorkController */,
 				E380AB301F23735F0034EA8F /* AppDelegate.swift */,
+				E34188351F794AE6000AB961 /* AppSize.swift */,
+				E380AB3C1F23735F0034EA8F /* Info.plist */,
+				E380AB391F23735F0034EA8F /* LaunchScreen.storyboard */,
+				E380AB341F23735F0034EA8F /* Main.storyboard */,
+				E341882D1F794073000AB961 /* MainTabBarController.swift */,
 				E380AB6E1F2373E70034EA8F /* MaterialViewController.swift */,
 				E34188311F7944FF000AB961 /* SecondViewController.swift */,
+				E341883A1F795520000AB961 /* WorkController.storyboard */,
+				E34188371F794E5B000AB961 /* WorkController.swift */,
 			);
 			path = RunningApp;
 			sourceTree = "<group>";
@@ -231,42 +238,8 @@
 				E39594041F30C574004AEB27 /* ModalViewController.storyboard */,
 				E39594051F30C574004AEB27 /* ModalViewController.swift */,
 			);
+			name = PullNavigation;
 			path = PullNavigation;
-			sourceTree = "<group>";
-		};
-		E3FFF0A41F7A7322006EF431 /* WorkController */ = {
-			isa = PBXGroup;
-			children = (
-				E341883A1F795520000AB961 /* WorkController.storyboard */,
-				E34188371F794E5B000AB961 /* WorkController.swift */,
-			);
-			path = WorkController;
-			sourceTree = "<group>";
-		};
-		E3FFF0A51F7A7334006EF431 /* MainTabBar */ = {
-			isa = PBXGroup;
-			children = (
-				E341882D1F794073000AB961 /* MainTabBarController.swift */,
-			);
-			path = MainTabBar;
-			sourceTree = "<group>";
-		};
-		E3FFF0A61F7A734C006EF431 /* AppBasicSetting */ = {
-			isa = PBXGroup;
-			children = (
-				E380AB3C1F23735F0034EA8F /* Info.plist */,
-				E380AB391F23735F0034EA8F /* LaunchScreen.storyboard */,
-				E380AB341F23735F0034EA8F /* Main.storyboard */,
-			);
-			path = AppBasicSetting;
-			sourceTree = "<group>";
-		};
-		E3FFF0A71F7A736B006EF431 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				E34188351F794AE6000AB961 /* AppSize.swift */,
-			);
-			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
