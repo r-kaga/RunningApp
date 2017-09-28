@@ -21,6 +21,8 @@ class HomeView:
     
     var collectionView : UICollectionView!
     
+    var launchView: UIImageView!
+    
     static let height = UIScreen.main.bounds.size.height
     static let width = UIScreen.main.bounds.size.width
     static let AppFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
@@ -57,12 +59,15 @@ class HomeView:
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
 
         self.addSubview(self.layout())
+        
+        self.launchView = UIImageView(frame: self.frame)
+        self.launchView.image = UIImage(named: "nick-west.jpg")!
+        self.addSubview(self.launchView)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
     }
-    
     
     func layout() -> UICollectionView {
         let height = UIScreen.main.bounds.size.height
