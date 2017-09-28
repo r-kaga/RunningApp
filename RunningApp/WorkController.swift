@@ -32,6 +32,7 @@ class WorkController: UIViewController {
     @IBOutlet weak var stopWatchLabel: UILabel!
     
     var mapView : MKMapView!
+    var pin: MKPointAnnotation?
     
     // 縮尺
     var latDist : CLLocationDistance = 500
@@ -255,10 +256,14 @@ extension WorkController: CLLocationManagerDelegate {
             let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, self.latDist, self.lonDist);
             mapView.setRegion(region, animated: true) // MapViewに反映.
             
-            let pin: MKPointAnnotation = MKPointAnnotation() // ピンを生成.
-            pin.coordinate = location.coordinate // 座標を設定.
-            pin.title = "開始現在" // タイトルを設定.
-            mapView.addAnnotation(pin)  // MapViewにピンを追加.
+            if self.pin != nil {
+                mapView.removeAnnotation(self.pin!)
+            }
+
+            self.pin = MKPointAnnotation() // ピンを生成.
+            self.pin?.coordinate = location.coordinate // 座標を設定.
+            self.pin?.title = "開始現在" // タイトルを設定.
+            mapView.addAnnotation(self.pin!)  // MapViewにピンを追加.
         }
 
     }
