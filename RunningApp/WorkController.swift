@@ -38,7 +38,10 @@ class WorkController: UIViewController {
     var latDist : CLLocationDistance = 500
     var lonDist : CLLocationDistance = 500
     
-
+    var firstPoint: CLLocation!
+    
+    @IBOutlet weak var distanceLabel: UILabel!
+    
 //    let type: WorkType!
 //    init(type: WorkType) {
 //        self.type = type
@@ -73,6 +76,8 @@ class WorkController: UIViewController {
         
         locationManager = CLLocationManager() // インスタンスの生成
         locationManager.delegate = self // CLLocationManagerDelegateプロトコルを実装するクラスを指定する
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest // 取得精度の設定
+        locationManager.distanceFilter = 50  // 取得頻度の設定.
         
         // セキュリティ認証のステータスを取得.
         let status = CLLocationManager.authorizationStatus()
@@ -81,15 +86,11 @@ class WorkController: UIViewController {
         // まだ認証が得られていない場合は、認証ダイアログを表示
         // (このAppの使用中のみ許可の設定) 説明を共通の項目を参照
         if (status == .notDetermined) {
+            
             self.locationManager.requestWhenInUseAuthorization()
+            
         } else {
-            //
-            //        // 取得精度の設定.
-            //        myLocationManager.desiredAccuracy = kCLLocationAccuracyBest
-            //        // 取得頻度の設定.
-            //        myLocationManager.distanceFilter = 100
-            
-            
+
             // MapViewの生成
             mapView = MKMapView()
             mapView.frame = self.view.bounds
@@ -111,6 +112,10 @@ class WorkController: UIViewController {
             pin.title = "開始位置" // タイトルを設定.
 //            pin.subtitle = "サブタイトル"  // サブタイトルを設定.
             mapView.addAnnotation(pin)  // MapViewにピンを追加.
+            
+            
+            firstPoint = CLLocation(latitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!)
+            
         }
 
     }
@@ -252,6 +257,15 @@ extension WorkController: CLLocationManagerDelegate {
         for location in locations {
             print("緯度:\(location.coordinate.latitude) 経度:\(location.coordinate.longitude) 取得時刻:\(location.timestamp.description)")
 
+            
+            let currentPoint: CLLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            let distance = self.firstPoint.distance(from: currentPoint)
+            print("distance = \(distance)")
+
+            print((round( (distance) * 100) / 100) * 0.01 )
+            self.distanceLabel.text = String( (round(distance * 100) / 100) * 0.01 )
+            
+            
             // Regionを作成.
             let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, self.latDist, self.lonDist);
             mapView.setRegion(region, animated: true) // MapViewに反映.
