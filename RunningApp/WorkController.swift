@@ -260,12 +260,10 @@ extension WorkController: CLLocationManagerDelegate {
             
             let currentPoint: CLLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             let distance = self.firstPoint.distance(from: currentPoint)
-            print("distance = \(distance)")
 
-            print((round( (distance) * 100) / 100) * 0.01 )
-            self.distanceLabel.text = String( (round(distance * 100) / 100) * 0.01 )
-            
-            
+            let caledDistance = distance / 1000.0 > 1.0 ? floor(distance / 1000.0) : floor(distance)
+            self.distanceLabel.text = String(caledDistance)
+
             // Regionを作成.
             let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, self.latDist, self.lonDist);
             mapView.setRegion(region, animated: true) // MapViewに反映.
