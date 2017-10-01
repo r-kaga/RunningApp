@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = MainTabBarViewController()
         window?.makeKeyAndVisible()
-        
+
         return true
     }
 
