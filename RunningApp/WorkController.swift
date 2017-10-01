@@ -41,6 +41,11 @@ class WorkController: UIViewController {
     
     var firstPoint: CLLocation!
     
+    var currentPoint: CLLocation?
+    var previousPoint: CLLocation?
+    
+    var totalDistance: Double = 0.0
+    
     @IBOutlet weak var distanceLabel: UILabel!
     
 //    let type: WorkType!
@@ -260,12 +265,23 @@ extension WorkController: CLLocationManagerDelegate {
         for location in locations {
 //            print("緯度:\(location.coordinate.latitude) 経度:\(location.coordinate.longitude) 取得時刻:\(location.timestamp.description)")
 
-            
             let currentPoint: CLLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            let distance = self.firstPoint.distance(from: currentPoint)
+            
+            if let _ = self.previousPoint {
+                let distance = self.previousPoint!.distance(from: currentPoint)
 
-            let calucedDistance = floor(distance / 1000.0)
-            self.distanceLabel.text = String(calucedDistance)
+                self.previousPoint = currentPoint
+                totalDistance += floor(distance / 1000.0)
+                self.distanceLabel.text = String(totalDistance)
+
+            } else {
+                let distance = self.firstPoint.distance(from: currentPoint)
+
+                self.previousPoint = currentPoint
+                self.totalDistance += floor(distance / 1000.0)
+                self.distanceLabel.text = String(self.totalDistance)
+            }
+
 
             // Regionを作成.
             let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, self.latDist, self.lonDist);
@@ -287,19 +303,14 @@ extension WorkController: CLLocationManagerDelegate {
             // currentTime/60 の余り
             let second = (Int)(fmod(time, 60))
         
-            print(minute)
-            print(second)
-            
             let elapsedTime = Double((minute * 60) + second)
+            
             print(elapsedTime)
+            print(totalDistance)
             
-            print(calucedDistance)
-            guard calucedDistance != 0.0  else {
-                print("ddfwefwefweafewafaew")
-                return
-            }
+            guard totalDistance != 0.0  else { return }
             
-            let spped =  calucedDistance / 1000 + elapsedTime * 60 * 60
+            let spped =  totalDistance / 1000 + elapsedTime * 60 * 60
             self.speedLabel.text = String(spped)
             
         }
