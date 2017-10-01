@@ -48,6 +48,22 @@ class Home:
             view.launchView.removeFromSuperview()
         })
 
+        
+        if let _ = UserDefaults.standard.object(forKey: "isInitialLogin") {
+  
+            let alert = UIAlertController(title: "初めまして", message: "初回設定を行って下さい", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { action in
+                print("OK")
+                UserDefaults.standard.set(true, forKey: "isInitialLogin")
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+                print("cancel")
+            }))
+            
+            present(alert, animated: true, completion: nil)
+        }
+        
+        
     }
     
 
