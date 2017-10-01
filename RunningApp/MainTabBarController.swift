@@ -16,8 +16,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         vc.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 1)
         let nv = UINavigationController(rootViewController: vc)
         
-        let vc3 = MyPage()
-//        let vc3 = SettingController()
+        let vc3 = SettingController()
         vc3.tabBarItem = UITabBarItem(title: "Setting", image: UIImage(named: "file.png")!, selectedImage: UIImage(named: "0.jpg")!)
         let nv3 = UINavigationController(rootViewController: vc3)
         
