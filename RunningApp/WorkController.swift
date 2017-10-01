@@ -31,6 +31,7 @@ class WorkController: UIViewController {
     @IBOutlet weak var map: UIView!
     @IBOutlet weak var stopWatchLabel: UILabel!
     
+    @IBOutlet weak var speedLabel: UILabel!
     var mapView : MKMapView!
     var pin: MKPointAnnotation?
     
@@ -184,7 +185,6 @@ class WorkController: UIViewController {
         let minute = (Int)(fmod((currentTime/60), 60))
         // currentTime/60 の余り
         let second = (Int)(fmod(currentTime, 60))
-        
         // %02d： ２桁表示、0で埋める
         stopWatchLabel.text = "\(String(format:"%02d", minute)):\(String(format:"%02", second))"
     }
@@ -200,7 +200,10 @@ class WorkController: UIViewController {
       *
       */
     @IBAction func endAction(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: {
+            self.mapView.removeAnnotation(self.pin!)
+            self.mapView.removeFromSuperview()
+        })
     }
 }
 
@@ -255,14 +258,14 @@ extension WorkController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         for location in locations {
-            print("緯度:\(location.coordinate.latitude) 経度:\(location.coordinate.longitude) 取得時刻:\(location.timestamp.description)")
+//            print("緯度:\(location.coordinate.latitude) 経度:\(location.coordinate.longitude) 取得時刻:\(location.timestamp.description)")
 
             
             let currentPoint: CLLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             let distance = self.firstPoint.distance(from: currentPoint)
 
-            let caledDistance = distance / 1000.0 > 1.0 ? floor(distance / 1000.0) : floor(distance)
-            self.distanceLabel.text = String(caledDistance)
+            let calucedDistance = floor(distance / 1000.0)
+            self.distanceLabel.text = String(calucedDistance)
 
             // Regionを作成.
             let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, self.latDist, self.lonDist);
@@ -276,6 +279,29 @@ extension WorkController: CLLocationManagerDelegate {
             self.pin?.coordinate = location.coordinate // 座標を設定.
             self.pin?.title = "開始現在" // タイトルを設定.
             mapView.addAnnotation(self.pin!)  // MapViewにピンを追加.
+            
+
+            let time = Date().timeIntervalSince(self.startTime)
+            // fmod() 余りを計算
+            let minute = (Int)(fmod((time/60), 60))
+            // currentTime/60 の余り
+            let second = (Int)(fmod(time, 60))
+        
+            print(minute)
+            print(second)
+            
+            let elapsedTime = Double((minute * 60) + second)
+            print(elapsedTime)
+            
+            print(calucedDistance)
+            guard calucedDistance != 0.0  else {
+                print("ddfwefwefweafewafaew")
+                return
+            }
+            
+            let spped =  calucedDistance / 1000 + elapsedTime * 60 * 60
+            self.speedLabel.text = String(spped)
+            
         }
 
     }
