@@ -120,7 +120,9 @@ class WorkController: UIViewController {
             let dis = hanedaLocation.distance(from: peakLocation)
             
             // 1000mを超える場合はキロメートで表示
-            let distanceText = dis / 1000.0 > 1.0 ? "\(round( (dis / 1000.0) * 100 / 100 ) ) キロメートル" : "\(round( (dis / 100.0) * 100 ) / 100) メートル"
+//            2887.0 キロメートル
+//            2886.97583628919
+            let distanceText = dis / 1000.0 > 1.0 ? "\(round( (dis / 1000.0) * 100) / 100 ) キロメートル" : "\(round( (dis / 100.0) * 100 ) / 100) メートル"
             print(distanceText)
             print(dis / 1000.0)
             
@@ -299,7 +301,7 @@ extension WorkController: CLLocationManagerDelegate {
         "\(floor(distance)) メートル"
         print(floor(distance / 1000.0))
         
-        let dis = distance / 1000.0 > 1.0 ? round( (distance / 1000.0) * 100 / 100 ) : round( (distance / 100.0) * 100 ) / 100
+        let dis = distance / 1000.0 > 1.0 ? round( (distance / 1000.0) * 100) / 100 : round( (distance / 100.0) * 100 ) / 100
         self.distanceLabel.text = String(dis)
  
         // Regionを作成.
