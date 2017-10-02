@@ -17,7 +17,8 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         let nv = UINavigationController(rootViewController: vc)
         
         let vc3 = SettingController()
-        vc3.tabBarItem = UITabBarItem(title: "Setting", image: UIImage(named: "file.png")!, selectedImage: UIImage(named: "0.jpg")!)
+//        vc3.tabBarItem = UITabBarItem(title: "Setting", image: UIImage(named: "file.png")!, selectedImage: UIImage(named: "0.jpg")!)
+        vc3.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 1)
         let nv3 = UINavigationController(rootViewController: vc3)
         
         let vc2 = News()

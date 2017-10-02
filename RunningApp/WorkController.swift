@@ -81,20 +81,27 @@ class WorkController: UIViewController {
         self.view.addSubview(countImageView)
         
         locationManager = CLLocationManager() // インスタンスの生成
-        locationManager.delegate = self // CLLocationManagerDelegateプロトコルを実装するクラスを指定する
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest // 取得精度の設定
-        locationManager.distanceFilter = 50  // 取得頻度の設定.
         
+        locationManager.requestWhenInUseAuthorization()
+
         // セキュリティ認証のステータスを取得.
         let status = CLLocationManager.authorizationStatus()
-        print("authorizationStatus:\(status.rawValue)");
-
-        // まだ認証が得られていない場合は、認証ダイアログを表示
-        // (このAppの使用中のみ許可の設定) 説明を共通の項目を参照
+        if status == .authorizedWhenInUse {
+            locationManager.distanceFilter = 10
+            locationManager.startUpdatingLocation()
+        }
+        
+        locationManager.delegate = self // CLLocationManagerDelegateプロトコルを実装するクラスを指定する
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest // 取得精度の設定
+        locationManager.distanceFilter = 30  // 取得頻度の設定.
+        locationManager.activityType = .fitness
+        
+//        // まだ認証が得られていない場合は、認証ダイアログを表示
+//        // (このAppの使用中のみ許可の設定) 説明を共通の項目を参照
         if (status == .notDetermined) {
-            
+
             self.locationManager.requestWhenInUseAuthorization()
-            
+
         } else {
 
             // MapViewの生成
@@ -111,14 +118,12 @@ class WorkController: UIViewController {
             
             mapView.setRegion(region, animated: true)  // MapViewに反映
             
-            let pin: MKPointAnnotation = MKPointAnnotation() // ピンを生成.
-            
+            let firstPin: MKPointAnnotation = MKPointAnnotation() // ピンを生成.
 //            let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(myLatitude, myLongitude)
-            pin.coordinate =  coordinate! // 座標を設定.
-            pin.title = "開始位置" // タイトルを設定.
+            firstPin.coordinate =  coordinate! // 座標を設定.
+            firstPin.title = "開始位置" // タイトルを設定.
 //            pin.subtitle = "サブタイトル"  // サブタイトルを設定.
-            mapView.addAnnotation(pin)  // MapViewにピンを追加.
-            
+            mapView.addAnnotation(firstPin)  // MapViewにピンを追加.
             
             firstPoint = CLLocation(latitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!)
             
@@ -206,8 +211,11 @@ class WorkController: UIViewController {
       */
     @IBAction func endAction(_ sender: Any) {
         self.dismiss(animated: true, completion: {
-            self.mapView.removeAnnotation(self.pin!)
+            if self.pin != nil {
+                self.mapView.removeAnnotation(self.pin!)
+            }
             self.mapView.removeFromSuperview()
+            self.mapView = nil
         })
     }
 }
@@ -223,7 +231,7 @@ extension WorkController: CLLocationManagerDelegate {
         switch status {
             case .notDetermined:
                 print("ユーザーはこのアプリケーションに関してまだ選択を行っていません")
-                locationManager.requestWhenInUseAuthorization() // 起動中のみの取得許可を求める
+//                locationManager.requestWhenInUseAuthorization() // 起動中のみの取得許可を求める
 
             case .denied:
                 print("ローケーションサービスの設定が「無効」になっています (ユーザーによって、明示的に拒否されています）")
@@ -261,60 +269,90 @@ extension WorkController: CLLocationManagerDelegate {
      位置情報取得に成功したときに呼び出されるデリゲート.
      */
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    
+        // 配列から現在座標を取得.
+        guard let location: CLLocation = locations.last else { return }
         
-        for location in locations {
-//            print("緯度:\(location.coordinate.latitude) 経度:\(location.coordinate.longitude) 取得時刻:\(location.timestamp.description)")
-
-            let currentPoint: CLLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            
-            if let _ = self.previousPoint {
-                let distance = self.previousPoint!.distance(from: currentPoint)
-
-                self.previousPoint = currentPoint
-                totalDistance += floor(distance / 1000.0)
-                self.distanceLabel.text = String(totalDistance)
-
-            } else {
-                let distance = self.firstPoint.distance(from: currentPoint)
-
-                self.previousPoint = currentPoint
-                self.totalDistance += floor(distance / 1000.0)
-                self.distanceLabel.text = String(self.totalDistance)
-            }
-
-
-            // Regionを作成.
-            let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, self.latDist, self.lonDist);
-            mapView.setRegion(region, animated: true) // MapViewに反映.
-            
-            if self.pin != nil {
-                mapView.removeAnnotation(self.pin!)
-            }
-
-            self.pin = MKPointAnnotation() // ピンを生成.
-            self.pin?.coordinate = location.coordinate // 座標を設定.
-            self.pin?.title = "開始現在" // タイトルを設定.
-            mapView.addAnnotation(self.pin!)  // MapViewにピンを追加.
-            
-
-            let time = Date().timeIntervalSince(self.startTime)
-            // fmod() 余りを計算
-            let minute = (Int)(fmod((time/60), 60))
-            // currentTime/60 の余り
-            let second = (Int)(fmod(time, 60))
+//       guard self.previousPoint != nil {
+        guard let previous = self.previousPoint else {
+            let distance = self.firstPoint.distance(from: location)
+            self.totalDistance += floor(distance)
+            self.previousPoint = location
+            return
+        }
         
-            let elapsedTime = Double((minute * 60) + second)
-            
-            print(elapsedTime)
-            print(totalDistance)
-            
-            guard totalDistance != 0.0  else { return }
-            
-            let spped =  totalDistance / 1000 + elapsedTime * 60 * 60
-            self.speedLabel.text = String(spped)
-            
+        guard !previous.isEqual(location) else {
+            print("ddergergregre")
+            return
+        }
+        
+        let distance = self.firstPoint.distance(from: location)
+        
+//        let distance = previous.distance(from: location)
+        print(distance)
+        guard distance > 10.0 else { return }
+        print(distance)
+//        totalDistance += floor(distance)
+        totalDistance = distance
+        self.distanceLabel.text = String(self.totalDistance)
+        self.previousPoint = location
+
+        
+        // 羽田空港のCLLocation
+        let hanedaLocation = CLLocation(latitude: 35.549393, longitude: 139.779839)
+        
+        // 香港ビクトリアピークのCLLocation
+        let peakLocation = CLLocation(latitude: 22.2760448, longitude: 114.1455266)
+        
+        // 羽田空港から香港ビクトリアピークまでの距離
+        let dis = hanedaLocation.distance(from: peakLocation)
+        
+        // 1000mを超える場合はキロメートで表示
+        let distanceText = dis / 1000.0 > 1.0 ?
+            "\(floor(dis / 1000.0)) キロメートル"
+            :
+        "\(floor(dis)) メートル"
+        self.distanceLabel.text = distanceText
+        
+        
+        // Regionを作成.
+        let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, self.latDist, self.lonDist);
+        mapView.setRegion(region, animated: true) // MapViewに反映.
+        
+        if self.pin != nil {
+            mapView.removeAnnotation(self.pin!)
         }
 
+        self.pin = MKPointAnnotation() // ピンを生成.
+        self.pin?.coordinate = location.coordinate // 座標を設定.
+        self.pin?.title = "現在地" // タイトルを設定.
+        mapView.addAnnotation(self.pin!)  // MapViewにピンを追加.
+        
+        // 直線を引く座標を作成.
+        let currentCorrdinate = location.coordinate
+        guard let priviousCoordinate = self.previousPoint?.coordinate else { return }
+        
+        // 座標を配列に格納.
+        var line = [CLLocationCoordinate2D]()
+        line.append(self.firstPoint.coordinate)
+        line.append(priviousCoordinate)
+        let polyLine: MKPolyline = MKPolyline(coordinates: &line, count: line.count)
+        self.mapView.add(polyLine)  // mapViewにcircleを追加.
+
+
+        let time = Date().timeIntervalSince(self.startTime)
+        // fmod() 余りを計算
+        let minute = (Int)(fmod((time/60), 60))
+        // currentTime/60 の余り
+        let second = (Int)(fmod(time, 60))
+    
+        let elapsedTime = Double((minute * 60) + second)
+        
+        guard totalDistance != 0.0  else { return }
+        
+        let spped =  totalDistance / 1000 + elapsedTime * 60 * 60
+        self.speedLabel.text = String(spped)
+        
     }
     
     /*
@@ -333,8 +371,27 @@ extension WorkController: MKMapViewDelegate {
     
     // Regionが変更された時に呼び出されるメソッド
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        print("regionDidChangeAnimated")
+//        print("regionDidChangeAnimated")
     }
+    
+    
+    /*
+     addOverlayした際に呼ばれるデリゲートメソッド.
+     */
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        
+        // rendererを生成.
+        let myPolyLineRendere: MKPolylineRenderer = MKPolylineRenderer(overlay: overlay)
+        
+        // 線の太さを指定.
+        myPolyLineRendere.lineWidth = 5
+        
+        // 線の色を指定.
+        myPolyLineRendere.strokeColor = UIColor.red
+        
+        return myPolyLineRendere
+    }
+    
     
 }
 

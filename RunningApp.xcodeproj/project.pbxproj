@@ -43,7 +43,6 @@
 		E39594091F30C574004AEB27 /* ModalViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E39594041F30C574004AEB27 /* ModalViewController.storyboard */; };
 		E395940A1F30C574004AEB27 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39594051F30C574004AEB27 /* ModalViewController.swift */; };
 		E3B15B5E1F7BEEE200E17A84 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3B15B5D1F7BEEE200E17A84 /* CoreLocation.framework */; };
-		E3B15B601F7BEEFE00E17A84 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3B15B5F1F7BEEFE00E17A84 /* MapKit.framework */; };
 		E3CA14E81F5D91B00053468D /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14E71F5D91B00053468D /* HomeModel.swift */; };
 		E3CA14EA1F5D963E0053468D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14E91F5D963D0053468D /* HomeView.swift */; };
 		E3CA14EC1F5D98C90053468D /* HomeCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */; };
@@ -90,7 +89,6 @@
 		E39594041F30C574004AEB27 /* ModalViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ModalViewController.storyboard; sourceTree = "<group>"; };
 		E39594051F30C574004AEB27 /* ModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		E3B15B5D1F7BEEE200E17A84 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		E3B15B5F1F7BEEFE00E17A84 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E3CA14E71F5D91B00053468D /* HomeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		E3CA14E91F5D963D0053468D /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCustomCell.swift; sourceTree = "<group>"; };
@@ -101,7 +99,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3B15B601F7BEEFE00E17A84 /* MapKit.framework in Frameworks */,
 				E3B15B5E1F7BEEE200E17A84 /* CoreLocation.framework in Frameworks */,
 				E1633205A450704EC5F7B81C /* Pods_RunningApp.framework in Frameworks */,
 			);
@@ -122,7 +119,6 @@
 		64628182FCE8393FCA94B6B0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E3B15B5F1F7BEEFE00E17A84 /* MapKit.framework */,
 				E3B15B5D1F7BEEE200E17A84 /* CoreLocation.framework */,
 				AB4A23F43657309C31FDA106 /* Pods_RunningApp.framework */,
 			);
@@ -293,6 +289,11 @@
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = 8S39MY764C;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
