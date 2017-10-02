@@ -108,6 +108,22 @@ class WorkController: UIViewController {
             mapView.addAnnotation(firstPin)  // MapViewにピンを追加.
             
             firstPoint = CLLocation(latitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!)
+            
+            
+            // 羽田空港のCLLocation
+            let hanedaLocation = CLLocation(latitude: 35.549393, longitude: 139.779839)
+            // 香港ビクトリアピークのCLLocation
+            let peakLocation = CLLocation(latitude: 22.2760448, longitude: 114.1466866)
+//            let peakLocation = CLLocation(latitude: 35.549393, longitude: 139.779339)
+
+            // 羽田空港から香港ビクトリアピークまでの距離
+            let dis = hanedaLocation.distance(from: peakLocation)
+            
+            // 1000mを超える場合はキロメートで表示
+            let distanceText = dis / 1000.0 > 1.0 ? "\(round( (dis / 1000.0) * 100 / 100 ) ) キロメートル" : "\(round( (dis / 100.0) * 100 ) / 100) メートル"
+            print(distanceText)
+            print(dis / 1000.0)
+            
         }
 
     }
@@ -281,18 +297,11 @@ extension WorkController: CLLocationManagerDelegate {
             "\(floor(distance / 1000.0)) キロメートル"
             :
         "\(floor(distance)) メートル"
-        self.distanceLabel.text = String(floor(distance / 1000.0))
+        print(floor(distance / 1000.0))
         
-        
-        // 羽田空港のCLLocation
-        let hanedaLocation = CLLocation(latitude: 35.549393, longitude: 139.779839)
-        // 香港ビクトリアピークのCLLocation
-        let peakLocation = CLLocation(latitude: 22.2760448, longitude: 114.1455266)
-        // 羽田空港から香港ビクトリアピークまでの距離
-        let dis = hanedaLocation.distance(from: peakLocation)
-        print(dis)
-
-        
+        let dis = distance / 1000.0 > 1.0 ? round( (distance / 1000.0) * 100 / 100 ) : round( (distance / 100.0) * 100 ) / 100
+        self.distanceLabel.text = String(dis)
+ 
         // Regionを作成.
         let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, self.latDist, self.lonDist)
         self.mapView.setRegion(region, animated: true) // MapViewに反映.
