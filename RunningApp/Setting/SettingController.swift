@@ -33,6 +33,7 @@ class SettingController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         
         let tableView = UITableView(frame: self.view.frame, style: .grouped)
+		tableView.backgroundColor = .black
         tableView.delegate = self
         tableView.dataSource = self
         self.view.addSubview(tableView)
