@@ -93,7 +93,6 @@ class WorkController: UIViewController {
             self.map.addSubview(mapView)
             
             let coordinate = locationManager.location?.coordinate
-            mapView.centerCoordinate = coordinate! // mapViewのcenterを現在地に
 
             // 表示領域を作成
             let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate!, self.latDist, self.lonDist);
@@ -108,24 +107,8 @@ class WorkController: UIViewController {
             mapView.addAnnotation(firstPin)  // MapViewにピンを追加.
             
             firstPoint = CLLocation(latitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!)
-            
-            
-            // 羽田空港のCLLocation
-            let hanedaLocation = CLLocation(latitude: 35.549393, longitude: 139.779839)
-            // 香港ビクトリアピークのCLLocation
-            let peakLocation = CLLocation(latitude: 22.2760448, longitude: 114.1466866)
-//            let peakLocation = CLLocation(latitude: 35.549393, longitude: 139.779339)
 
-            // 羽田空港から香港ビクトリアピークまでの距離
-            let dis = hanedaLocation.distance(from: peakLocation)
-            
-            // 1000mを超える場合はキロメートで表示
-//            2887.0 キロメートル
-//            2886.97583628919
-            let distanceText = dis / 1000.0 > 1.0 ? "\(round( (dis / 1000.0) * 100) / 100 ) キロメートル" : "\(round( (dis / 100.0) * 100 ) / 100) メートル"
-            print(distanceText)
-            print(dis / 1000.0)
-            
+            self.mapView.centerCoordinate = firstPin.coordinate // mapViewのcenterを現在地に
         }
 
     }
@@ -141,15 +124,15 @@ class WorkController: UIViewController {
 
     /** countImageViewのアニメーション
       */
-    func countImageAnimation() {
+    @objc func countImageAnimation() {
         
         count = count + 1
         
-        UIView.animate(withDuration: 0.3, delay: 0.2, options: .curveEaseOut, animations: { _ in
+        UIView.animate(withDuration: 0.3, delay: 0.2, options: .curveEaseOut, animations: { 
             self.countImageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
         }, completion: nil)
 
-        UIView.animate(withDuration: 0.2, delay: 0.3, options: .curveEaseOut, animations: { _ in
+        UIView.animate(withDuration: 0.2, delay: 0.3, options: .curveEaseOut, animations: { 
             self.countImageView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             self.countImageView.alpha = 0
         }, completion: { _ in
@@ -186,7 +169,7 @@ class WorkController: UIViewController {
         startTime = Date()
     }
     
-    func timerCounter() {
+    @objc func timerCounter() {
         // タイマー開始からのインターバル時間
         let currentTime = Date().timeIntervalSince(startTime)
         
@@ -291,17 +274,10 @@ extension WorkController: CLLocationManagerDelegate {
         guard distance > 10.0 else { return }
         //        totalDistance += floor(distance)
         totalDistance = distance
-        self.distanceLabel.text = String(self.totalDistance)
         self.previousPoint = location
 
-        // 1000mを超える場合はキロメートで表示
-        let distanceText = distance / 1000.0 > 1.0 ?
-            "\(floor(distance / 1000.0)) キロメートル"
-            :
-        "\(floor(distance)) メートル"
-        print(floor(distance / 1000.0))
-        
-        let dis = distance / 1000.0 > 1.0 ? round( (distance / 1000.0) * 100) / 100 : round( (distance / 100.0) * 100 ) / 100
+//        let dis = distance / 1000.0 > 1.0 ? round( (distance / 1000.0) * 100) / 100 : round( (distance / 100.0) * 100 ) / 100
+        let dis = round( (distance / 1000.0) * 100) / 100
         self.distanceLabel.text = String(dis)
  
         // Regionを作成.
