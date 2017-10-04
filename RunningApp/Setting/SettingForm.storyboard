@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fuU-Cc-gWk">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Setting Form-->
+        <scene sceneID="iMs-fp-v2w">
+            <objects>
+                <viewController modalPresentationStyle="formSheet" id="fuU-Cc-gWk" customClass="SettingForm" customModule="RunningApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ROS-pC-ulv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p3I-5q-neS">
+                                <rect key="frame" x="40" y="313.5" width="295" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="UEe-O3-Zzi"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yM0-MB-cNu">
+                                <rect key="frame" x="0.0" y="453.5" width="375" height="213.5"/>
+                                <subviews>
+                                    <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKz-Wk-BoO">
+                                        <rect key="frame" x="50" y="82" width="275" height="50"/>
+                                        <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="BEW-mg-ShU"/>
+                                        </constraints>
+                                        <state key="normal" title="Setting">
+                                            <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <constraints>
+                                    <constraint firstItem="pKz-Wk-BoO" firstAttribute="centerY" secondItem="yM0-MB-cNu" secondAttribute="centerY" id="JEk-Pl-Ne1"/>
+                                    <constraint firstItem="pKz-Wk-BoO" firstAttribute="leading" secondItem="yM0-MB-cNu" secondAttribute="leading" constant="50" id="Jxx-eG-FMp"/>
+                                    <constraint firstItem="pKz-Wk-BoO" firstAttribute="centerX" secondItem="yM0-MB-cNu" secondAttribute="centerX" id="TzG-a4-Yef"/>
+                                    <constraint firstAttribute="trailing" secondItem="pKz-Wk-BoO" secondAttribute="trailing" constant="50" id="baR-lw-jbL"/>
+                                    <constraint firstItem="pKz-Wk-BoO" firstAttribute="centerY" secondItem="yM0-MB-cNu" secondAttribute="centerY" id="rYe-LZ-gyK"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Setting" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygp-Eh-ZRa">
+                                <rect key="frame" x="15" y="373" width="345" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weight" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UIF-39-7Kn">
+                                <rect key="frame" x="15" y="268.5" width="345" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                                <color key="textColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="file.png" translatesAutoresizingMaskIntoConstraints="NO" id="4B2-A0-roY">
+                                <rect key="frame" x="147" y="148.5" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="vim-M7-NgI"/>
+                                    <constraint firstAttribute="width" constant="80" id="wQY-71-zX1"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="p3I-5q-neS" firstAttribute="top" secondItem="UIF-39-7Kn" secondAttribute="bottom" constant="15" id="60V-zB-9PV"/>
+                            <constraint firstItem="yM0-MB-cNu" firstAttribute="leading" secondItem="mEU-RM-bP1" secondAttribute="leading" id="6ic-lZ-T6c"/>
+                            <constraint firstItem="p3I-5q-neS" firstAttribute="centerX" secondItem="ROS-pC-ulv" secondAttribute="centerX" id="Aq9-OX-d9f"/>
+                            <constraint firstItem="UIF-39-7Kn" firstAttribute="top" secondItem="4B2-A0-roY" secondAttribute="bottom" constant="40" id="ChI-6E-3oi"/>
+                            <constraint firstItem="mEU-RM-bP1" firstAttribute="bottom" secondItem="yM0-MB-cNu" secondAttribute="bottom" id="NBR-Gx-849"/>
+                            <constraint firstItem="UIF-39-7Kn" firstAttribute="leading" secondItem="mEU-RM-bP1" secondAttribute="leading" constant="15" id="NDE-Nf-htW"/>
+                            <constraint firstItem="p3I-5q-neS" firstAttribute="centerY" secondItem="ROS-pC-ulv" secondAttribute="centerY" id="Wdm-Zi-NJp"/>
+                            <constraint firstItem="mEU-RM-bP1" firstAttribute="trailing" secondItem="yM0-MB-cNu" secondAttribute="trailing" id="gHV-up-mrp"/>
+                            <constraint firstItem="ygp-Eh-ZRa" firstAttribute="top" secondItem="p3I-5q-neS" secondAttribute="bottom" constant="20" id="hWq-YW-5RT"/>
+                            <constraint firstItem="yM0-MB-cNu" firstAttribute="top" secondItem="p3I-5q-neS" secondAttribute="bottom" constant="100" id="kNR-82-2Zd"/>
+                            <constraint firstItem="mEU-RM-bP1" firstAttribute="trailing" secondItem="UIF-39-7Kn" secondAttribute="trailing" constant="15" id="mPa-zO-ey0"/>
+                            <constraint firstItem="mEU-RM-bP1" firstAttribute="trailing" secondItem="p3I-5q-neS" secondAttribute="trailing" constant="40" id="oNm-oH-zJJ"/>
+                            <constraint firstItem="mEU-RM-bP1" firstAttribute="trailing" secondItem="ygp-Eh-ZRa" secondAttribute="trailing" constant="15" id="opJ-yc-hK9"/>
+                            <constraint firstItem="4B2-A0-roY" firstAttribute="centerX" secondItem="ROS-pC-ulv" secondAttribute="centerX" id="q5n-Ok-L3S"/>
+                            <constraint firstItem="p3I-5q-neS" firstAttribute="leading" secondItem="mEU-RM-bP1" secondAttribute="leading" constant="40" id="xJO-9b-Wk6"/>
+                            <constraint firstItem="ygp-Eh-ZRa" firstAttribute="leading" secondItem="mEU-RM-bP1" secondAttribute="leading" constant="15" id="ycK-gV-scz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mEU-RM-bP1"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yCb-LQ-LKN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-303" y="72"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="file.png" width="128" height="128"/>
+    </resources>
+</document>
