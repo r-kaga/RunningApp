@@ -87,18 +87,15 @@ class News: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         // 表示データのオプションを設定する
         let attributedOptions : [String: AnyObject] = [
-            NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType as AnyObject,
-            NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue as AnyObject
+            NSAttributedString.DocumentAttributeKey.documentType.rawValue: NSAttributedString.DocumentType.html as AnyObject,
+            NSAttributedString.DocumentAttributeKey.characterEncoding.rawValue: String.Encoding.utf8.rawValue as AnyObject
         ]
         
         // 文字列の変換処理
         var attributedString:NSAttributedString?
         do {
-            attributedString = try NSAttributedString(
-                data: encodeData!,
-                options: attributedOptions,
-                documentAttributes: nil
-            )
+//            attributedString = try NSAttributedString(data: encodeData!, options: attributedOptions, documentAttributes: nil)
+            
         } catch let e {
             // 変換でエラーが出た場合
         }
