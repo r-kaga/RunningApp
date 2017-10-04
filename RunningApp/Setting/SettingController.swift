@@ -45,7 +45,8 @@ class SettingController: UIViewController, UITableViewDelegate {
     func changeSetting(path: Int) {
         guard let type = SettingType(rawValue: path) else { return }
 
-        let form = SettingForm()
+//        let form = SettingForm()
+        let form = UIStoryboard(name: "SettingForm", bundle: nil).instantiateInitialViewController() as! SettingForm
         present(form, animated: true, completion: nil)
         
     }
