@@ -46,9 +46,10 @@ class SettingController: UIViewController, UITableViewDelegate {
         guard let type = SettingType(rawValue: path) else { return }
 
 //        let form = SettingForm()
+        tabBarController?.tabBar.isHidden = true
         let form = UIStoryboard(name: "SettingForm", bundle: nil).instantiateInitialViewController() as! SettingForm
+        form.modalPresentationStyle = .overCurrentContext
         present(form, animated: true, completion: nil)
-        
     }
     
 
