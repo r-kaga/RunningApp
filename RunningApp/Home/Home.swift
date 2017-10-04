@@ -34,14 +34,14 @@ class Home:
         
         let view = self.view as! HomeView
         //少し縮小するアニメーション
-        UIView.animate(withDuration: 0.3, delay: 1.0, options: .curveEaseOut, animations: { _ in
+        UIView.animate(withDuration: 0.3, delay: 1.0, options: .curveEaseOut, animations: { 
             view.launchView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         }, completion: { _ in
             
         })
         
         //拡大させて、消えるアニメーション
-        UIView.animate(withDuration: 0.2, delay: 1.3, options: .curveEaseOut, animations: { _ in
+        UIView.animate(withDuration: 0.2, delay: 1.3, options: .curveEaseOut, animations: { 
             view.launchView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
             view.launchView.alpha = 0
         }, completion: { _ in
