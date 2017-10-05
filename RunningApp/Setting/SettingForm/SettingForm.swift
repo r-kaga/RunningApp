@@ -55,6 +55,11 @@ class SettingForm: UIViewController {
         
     }
 
+    @IBAction func closeButton(_ sender: Any) {
+        dismiss(animated: true) {
+            
+        }
+    }
     
 }
 
