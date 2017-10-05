@@ -13,15 +13,19 @@
         <!--Setting Form-->
         <scene sceneID="iMs-fp-v2w">
             <objects>
-                <viewController modalPresentationStyle="currentContext" id="fuU-Cc-gWk" customClass="SettingForm" customModule="RunningApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overCurrentContext" id="fuU-Cc-gWk" customClass="SettingForm" customModule="RunningApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ROS-pC-ulv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7jt-lg-4wn">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="44t-LX-dj8">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="GYt-oS-pBw">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6U-3S-e20">
                                 <rect key="frame" x="30" y="70" width="315" height="527"/>
                                 <subviews>
@@ -37,6 +41,9 @@
                                                 <state key="normal" title="Setting">
                                                     <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="settingButton:" destination="fuU-Cc-gWk" eventType="touchUpInside" id="IyQ-Sv-T8T"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
@@ -99,19 +106,24 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="mEU-RM-bP1" firstAttribute="bottom" secondItem="7jt-lg-4wn" secondAttribute="bottom" id="MqA-oi-l04"/>
-                            <constraint firstItem="7jt-lg-4wn" firstAttribute="top" secondItem="mEU-RM-bP1" secondAttribute="top" id="O1W-q8-2aJ"/>
                             <constraint firstItem="W6U-3S-e20" firstAttribute="top" secondItem="mEU-RM-bP1" secondAttribute="top" constant="50" id="QTX-hk-s0Z"/>
                             <constraint firstItem="mEU-RM-bP1" firstAttribute="bottom" secondItem="W6U-3S-e20" secondAttribute="bottom" constant="70" id="Rjq-R6-EwJ"/>
-                            <constraint firstItem="mEU-RM-bP1" firstAttribute="trailing" secondItem="7jt-lg-4wn" secondAttribute="trailing" id="UMf-bx-3M0"/>
                             <constraint firstItem="mEU-RM-bP1" firstAttribute="trailing" secondItem="W6U-3S-e20" secondAttribute="trailing" constant="30" id="V3N-O5-aaZ"/>
+                            <constraint firstItem="mEU-RM-bP1" firstAttribute="bottom" secondItem="44t-LX-dj8" secondAttribute="bottom" id="Yoq-yg-ALd"/>
                             <constraint firstItem="W6U-3S-e20" firstAttribute="leading" secondItem="mEU-RM-bP1" secondAttribute="leading" constant="30" id="cyy-b0-IQv"/>
-                            <constraint firstItem="7jt-lg-4wn" firstAttribute="leading" secondItem="mEU-RM-bP1" secondAttribute="leading" id="hKb-pw-FQ1"/>
+                            <constraint firstItem="44t-LX-dj8" firstAttribute="leading" secondItem="mEU-RM-bP1" secondAttribute="leading" id="lPi-Gt-dHt"/>
+                            <constraint firstItem="44t-LX-dj8" firstAttribute="top" secondItem="ROS-pC-ulv" secondAttribute="top" id="w3N-7c-Ro5"/>
+                            <constraint firstItem="mEU-RM-bP1" firstAttribute="trailing" secondItem="44t-LX-dj8" secondAttribute="trailing" id="xq0-MT-FNc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mEU-RM-bP1"/>
                     </view>
+                    <connections>
+                        <outlet property="SettingCategoryLabel" destination="UIF-39-7Kn" id="NCE-MH-hC0"/>
+                        <outlet property="logoImageView" destination="4B2-A0-roY" id="BcY-fR-Aqa"/>
+                        <outlet property="textField" destination="p3I-5q-neS" id="6bx-0Y-qI7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yCb-LQ-LKN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
