@@ -132,11 +132,19 @@
 		E3031D011F80E041002C5739 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				E328FB801F866FEC00E1D4BC /* SettingForm */,
 				E3031D021F80E05A002C5739 /* SettingController.swift */,
-				E33802931F852A76007EB199 /* SettingForm.swift */,
-				E33802951F852AD1007EB199 /* SettingForm.storyboard */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		E328FB801F866FEC00E1D4BC /* SettingForm */ = {
+			isa = PBXGroup;
+			children = (
+				E33802951F852AD1007EB199 /* SettingForm.storyboard */,
+				E33802931F852A76007EB199 /* SettingForm.swift */,
+			);
+			path = SettingForm;
 			sourceTree = "<group>";
 		};
 		E341882B1F793D5E000AB961 /* Resources */ = {

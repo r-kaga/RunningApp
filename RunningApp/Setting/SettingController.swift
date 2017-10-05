@@ -13,20 +13,18 @@ import UIKit
 class SettingController: UIViewController, UITableViewDelegate {
     
     
-    var TableTitle = [ ["menuTitle01", "title01", "title02"],
-                       ["menuTitle02", "title03", "title04"],
+    var TableTitle = [ ["self information", "weight", "height"],
+//                       ["menuTitle02", "title03", "title04"],
     ]
     
-    var TableSubtitle = [ ["", "subtitle02", "subtitle03"],
-                          ["","subtitle05", "subtitle06"],
-
-    ]
+//    var TableSubtitle = [ ["","体重を入力して下さい", "身長を入力して下さい"],
+//                          ["","subtitle05", "subtitle06"],
+//    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = "Setting"
-        
         
         let tableView = UITableView(frame: self.view.frame, style: .grouped)
 		tableView.backgroundColor = .black
@@ -46,9 +44,9 @@ class SettingController: UIViewController, UITableViewDelegate {
         guard let type = SettingType(rawValue: path) else { return }
 
 //        let form = SettingForm()
-        tabBarController?.tabBar.isHidden = true
+//        tabBarController?.tabBar.isHidden = true
         let form = UIStoryboard(name: "SettingForm", bundle: nil).instantiateInitialViewController() as! SettingForm
-        form.modalPresentationStyle = .overCurrentContext
+//        form.modalPresentationStyle = .overCurrentContext
         present(form, animated: true, completion: nil)
     }
     
@@ -73,10 +71,13 @@ extension SettingController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
         cell.textLabel?.text = self.TableTitle[indexPath.section][indexPath.row + 1]
-        cell.detailTextLabel?.text = self.TableSubtitle[indexPath.section][indexPath.row + 1]
-        cell.backgroundColor = .black
-        cell.textLabel?.textColor = . white
-        cell.detailTextLabel?.textColor = .white
+        if let value = UserDefaults.standard.string(forKey: self.TableTitle[indexPath.section][indexPath.row + 1]) {
+            cell.detailTextLabel?.text = value
+            cell.detailTextLabel?.textColor = .black
+        }
+//        cell.detailTextLabel?.text = self.TableSubtitle[indexPath.section][indexPath.row + 1]
+        cell.backgroundColor = .white
+        cell.textLabel?.textColor = .black
         
         return cell
     }
