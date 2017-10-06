@@ -7,3 +7,20 @@
 //
 
 import Foundation
+
+struct Const {
+    
+    /* 設定項目
+     */
+    enum SettingType: Int {
+        case weight = 0
+        case height = 1
+    }
+    
+    enum ErrorType: Error {
+        case notInteger
+        case empty
+    }
+    
+    
+}
