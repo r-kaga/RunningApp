@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E1633205A450704EC5F7B81C /* Pods_RunningApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB4A23F43657309C31FDA106 /* Pods_RunningApp.framework */; };
 		E3031D031F80E05A002C5739 /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3031D021F80E05A002C5739 /* SettingController.swift */; };
+		E3034EA41F87BFBF00FCB026 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3034EA31F87BFBF00FCB026 /* Const.swift */; };
 		E33802941F852A76007EB199 /* SettingForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33802931F852A76007EB199 /* SettingForm.swift */; };
 		E33802961F852AD1007EB199 /* SettingForm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E33802951F852AD1007EB199 /* SettingForm.storyboard */; };
 		E341882E1F794073000AB961 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E341882D1F794073000AB961 /* MainTabBarController.swift */; };
@@ -55,6 +56,7 @@
 		AB4A23F43657309C31FDA106 /* Pods_RunningApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunningApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B52ED86E09986E423E72B09E /* Pods-RunningApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunningApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-RunningApp/Pods-RunningApp.release.xcconfig"; sourceTree = "<group>"; };
 		E3031D021F80E05A002C5739 /* SettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
+		E3034EA31F87BFBF00FCB026 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		E33802931F852A76007EB199 /* SettingForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingForm.swift; sourceTree = "<group>"; };
 		E33802951F852AD1007EB199 /* SettingForm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingForm.storyboard; sourceTree = "<group>"; };
 		E341882D1F794073000AB961 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				E3031D011F80E041002C5739 /* Setting */,
 				E380AB301F23735F0034EA8F /* AppDelegate.swift */,
 				E34188351F794AE6000AB961 /* AppSize.swift */,
+				E3034EA31F87BFBF00FCB026 /* Const.swift */,
 				E380AB3C1F23735F0034EA8F /* Info.plist */,
 				E380AB391F23735F0034EA8F /* LaunchScreen.storyboard */,
 				E380AB341F23735F0034EA8F /* Main.storyboard */,
@@ -422,6 +425,7 @@
 				E380AB701F2373E70034EA8F /* MaterialViewController.swift in Sources */,
 				E39594071F30C574004AEB27 /* Interactor.swift in Sources */,
 				E395940A1F30C574004AEB27 /* ModalViewController.swift in Sources */,
+				E3034EA41F87BFBF00FCB026 /* Const.swift in Sources */,
 				E34188381F794E5B000AB961 /* WorkController.swift in Sources */,
 				E3637D351F25DF5700C615D4 /* ContentReaderController.swift in Sources */,
 				E36106191F243225004F56EC /* MyPage.swift in Sources */,

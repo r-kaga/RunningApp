@@ -10,10 +10,14 @@ import Foundation
 import UIKit
 
 
+protocol SettingDelegate: class {
+    func reload()
+}
+
 class SettingController: UIViewController, UITableViewDelegate {
     
     
-    var TableTitle = [ ["self information", "weight", "height"],
+    private var TableTitle = [ ["self information", "weight", "height"],
 //                       ["menuTitle02", "title03", "title04"],
     ]
     
@@ -21,37 +25,42 @@ class SettingController: UIViewController, UITableViewDelegate {
 //                          ["","subtitle05", "subtitle06"],
 //    ]
 
+    private var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = "Setting"
         
-        let tableView = UITableView(frame: self.view.frame, style: .grouped)
+        tableView = UITableView(frame: self.view.frame, style: .grouped)
 		tableView.backgroundColor = .black
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorColor = .black
+        tableView.separatorColor = .gray
         self.view.addSubview(tableView)
     }
     
-    
-    enum SettingType: Int {
-        case weight = 0
-    }
-    
-    
-    func changeSetting(path: Int) {
-        guard let type = SettingType(rawValue: path) else { return }
 
-//        let form = SettingForm()
+    
+    private func changeSetting(path: Int) {
+        guard let type = Const.SettingType(rawValue: path) else { return }
+
 //        tabBarController?.tabBar.isHidden = true
         let form = UIStoryboard(name: "SettingForm", bundle: nil).instantiateInitialViewController() as! SettingForm
+        form.type = type
+        form.delegate = self
 //        form.modalPresentationStyle = .overCurrentContext
         present(form, animated: true, completion: nil)
     }
     
+}
 
-    
+
+extension SettingController: SettingDelegate {
+    func reload() {
+        tabBarController?.tabBar.isHidden = false
+        self.tableView.reloadData()
+    }
 }
 
 
@@ -72,6 +81,7 @@ extension SettingController: UITableViewDataSource {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
         cell.textLabel?.text = self.TableTitle[indexPath.section][indexPath.row + 1]
         if let value = UserDefaults.standard.string(forKey: self.TableTitle[indexPath.section][indexPath.row + 1]) {
+            print(value)
             cell.detailTextLabel?.text = value
             cell.detailTextLabel?.textColor = .black
         }
