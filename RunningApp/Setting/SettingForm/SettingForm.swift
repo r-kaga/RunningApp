@@ -46,27 +46,22 @@ class SettingForm: UIViewController {
                 UserDefaults.standard.set(String(value), forKey: self.categoryName)
                 self.delegate?.reload()
             })
+        } catch Const.ErrorType.empty {
+            let alert = UIAlertController(title: "からです", message: "からです", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+                print("OK")
+            }))
+            self.present(alert, animated: true, completion: nil)
+
+        } catch Const.ErrorType.notInteger {
+            let alert = UIAlertController(title: "数値を入れて下さい", message: "数値です", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+                print("OK")
+            }))
+            self.present(alert, animated: true, completion: nil)
         } catch {
-            
+            print("unexpected")
         }
-//        }
-//        catch Const.ErrorType.empty {
-//
-//            let alert = UIAlertController(title: "からです", message: "からです", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-//                print("OK")
-//            }))
-//            self.present(alert, animated: true, completion: nil)
-//
-//        } catch Const.ErrorType.notInteger {
-//            let alert = UIAlertController(title: "数値を入れて下さい", message: "数値です", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-//                print("OK")
-//            }))
-//            self.present(alert, animated: true, completion: nil)
-//        } catch {
-//            print("unexpected")
-//        }
         
     }
 
