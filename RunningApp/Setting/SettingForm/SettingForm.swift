@@ -12,6 +12,8 @@ import UIKit
 
 class SettingForm: UIViewController {
     
+    @IBOutlet weak var formView: UIView!
+    
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var SettingCategoryLabel: UILabel!
     @IBOutlet weak var textField: UITextField!
@@ -33,21 +35,19 @@ class SettingForm: UIViewController {
         }
         SettingCategoryLabel.text = categoryName
         
+        formView.layer.cornerRadius = 15.0
+        formView.clipsToBounds = true
+        
         textField.delegate = self
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        tabBarController?.tabBar.isHidden = true
-        MainTabBarViewController.tabBar.isHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        tabBarController?.tabBar.isHidden = false
-        MainTabBarViewController.tabBar.isHidden = false
-
     }
     
     
