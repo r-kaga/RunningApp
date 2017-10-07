@@ -37,11 +37,25 @@ class SettingForm: UIViewController {
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        tabBarController?.tabBar.isHidden = true
+        MainTabBarViewController.tabBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+//        tabBarController?.tabBar.isHidden = false
+        MainTabBarViewController.tabBar.isHidden = false
+
+    }
+    
+    
     @IBAction func settingButton(_ sender: Any) {
 
         do {
             let value = try self.validateSetting(value: textField.text!)
-        
+
             self.dismiss(animated: true, completion: {
                 UserDefaults.standard.set(String(value), forKey: self.categoryName)
                 self.delegate?.reload()
@@ -67,7 +81,6 @@ class SettingForm: UIViewController {
 
     @IBAction func closeButton(_ sender: Any) {
         dismiss(animated: true) {
-            
         }
     }
     
@@ -113,3 +126,17 @@ extension SettingForm: UITextFieldDelegate {
     }
     
 }
+
+
+class SettingButton: UIButton {
+    
+    @IBInspectable var cornerRadius: CGFloat = 10.0
+    
+    override func draw(_ rect: CGRect) {
+        layer.cornerRadius = cornerRadius
+        clipsToBounds = true
+    }
+    
+}
+
+

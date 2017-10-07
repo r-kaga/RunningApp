@@ -32,7 +32,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yM0-MB-cNu">
                                         <rect key="frame" x="0.0" y="364" width="335" height="183"/>
                                         <subviews>
-                                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKz-Wk-BoO">
+                                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKz-Wk-BoO" customClass="SettingButton" customModule="RunningApp" customModuleProvider="target">
                                                 <rect key="frame" x="50" y="67" width="235" height="50"/>
                                                 <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -127,7 +127,7 @@
                             <constraint firstItem="W6U-3S-e20" firstAttribute="top" secondItem="mEU-RM-bP1" secondAttribute="top" constant="30" id="QTX-hk-s0Z"/>
                             <constraint firstItem="mEU-RM-bP1" firstAttribute="bottom" secondItem="W6U-3S-e20" secondAttribute="bottom" constant="70" id="Rjq-R6-EwJ"/>
                             <constraint firstItem="mEU-RM-bP1" firstAttribute="trailing" secondItem="W6U-3S-e20" secondAttribute="trailing" constant="20" id="V3N-O5-aaZ"/>
-                            <constraint firstItem="mEU-RM-bP1" firstAttribute="bottom" secondItem="44t-LX-dj8" secondAttribute="bottom" id="Yoq-yg-ALd"/>
+                            <constraint firstAttribute="bottom" secondItem="44t-LX-dj8" secondAttribute="bottom" id="Yoq-yg-ALd"/>
                             <constraint firstItem="W6U-3S-e20" firstAttribute="leading" secondItem="mEU-RM-bP1" secondAttribute="leading" constant="20" id="cyy-b0-IQv"/>
                             <constraint firstItem="44t-LX-dj8" firstAttribute="leading" secondItem="mEU-RM-bP1" secondAttribute="leading" id="lPi-Gt-dHt"/>
                             <constraint firstItem="44t-LX-dj8" firstAttribute="top" secondItem="ROS-pC-ulv" secondAttribute="top" id="w3N-7c-Ro5"/>
