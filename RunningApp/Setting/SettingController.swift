@@ -45,7 +45,6 @@ class SettingController: UIViewController, UITableViewDelegate {
     private func changeSetting(path: Int) {
         guard let type = Const.SettingType(rawValue: path) else { return }
 
-//        tabBarController?.tabBar.isHidden = true
         let form = UIStoryboard(name: "SettingForm", bundle: nil).instantiateInitialViewController() as! SettingForm
         form.type = type
         form.delegate = self
@@ -58,7 +57,6 @@ class SettingController: UIViewController, UITableViewDelegate {
 
 extension SettingController: SettingDelegate {
     func reload() {
-        tabBarController?.tabBar.isHidden = false
         self.tableView.reloadData()
     }
 }
