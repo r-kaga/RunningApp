@@ -50,9 +50,15 @@ class WorkController: UIViewController {
 
     
     @IBAction func handleGesture(_ sender: Any) {
-        print("fwafweafewa")
-        weak var nc = navigationController as? ModalNavigationController
-        nc?.handleGesture(sender as! UIPanGestureRecognizer)
+        self.dismiss(animated: true, completion: {
+            if self.pin != nil {
+                self.mapView.removeAnnotation(self.pin!)
+            }
+            self.mapView.removeFromSuperview()
+            self.mapView = nil
+        })
+//        weak var nc = navigationController as? ModalNavigationController
+//        nc?.handleGesture(sender as! UIPanGestureRecognizer)
     }
     
     override func viewDidLoad() {
@@ -71,12 +77,7 @@ class WorkController: UIViewController {
 //        workResultSpace.addSubview(mainResultLabel)
 //        
 //        self.view.addSubview(workResultSpace)
-        
-        countImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: AppSize.width / 2, height: AppSize.height / 2))
-        countImageView.center = self.view.center
-        countImageView.image = UIImage(named: "0.jpg")!
-        self.view.addSubview(countImageView)
-        
+
         self.locationManager = CLLocationManager() // インスタンスの生成
         self.locationManager.delegate = self // CLLocationManagerDelegateプロトコルを実装するクラスを指定する
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest // 取得精度の設定
@@ -117,6 +118,16 @@ class WorkController: UIViewController {
             self.mapView.centerCoordinate = firstPin.coordinate // mapViewのcenterを現在地に
         }
 
+        
+        
+        countImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: AppSize.width / 3, height: AppSize.height / 3))
+        countImageView.center = self.view.center
+        countImageView.image = UIImage(named: "num3")!
+        countImageView.alpha = 0
+        countImageView.contentMode = .scaleAspectFit
+        self.view.addSubview(countImageView)
+        
+        
     }
 
     
@@ -124,34 +135,54 @@ class WorkController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.countImageAnimation()
-        startCountTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.countImageAnimation), userInfo: nil, repeats: true)
+//        startCountTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countImageAnimation), userInfo: nil, repeats: true)
     }
     
 
     /** countImageViewのアニメーション
       */
     @objc func countImageAnimation() {
-        
-        count = count + 1
-        
-        UIView.animate(withDuration: 0.3, delay: 0.2, options: .curveEaseOut, animations: { 
-            self.countImageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-        }, completion: nil)
 
-        UIView.animate(withDuration: 0.2, delay: 0.3, options: .curveEaseOut, animations: { 
-            self.countImageView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-            self.countImageView.alpha = 0
-        }, completion: { _ in
-            self.countImageView.image = UIImage(named: "\(self.count).jpg")!
-            self.countImageView.alpha = 1
+        countImageView.alpha = 1
+
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
             
-            if self.count == 4 {
-                self.countImageView.removeFromSuperview()
-                self.startCountTimer.invalidate()
-                self.startTimer()
-            }
+            self.countImageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+            
+        }, completion: { _ in
+
+            self.countImageView.alpha = 0
+            self.countImageView.image = UIImage(named: "num2")!
+            
+            UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
+                
+                self.countImageView.alpha = 1
+                self.countImageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+                
+            }, completion: { _ in
+                
+                self.countImageView.alpha = 0
+                self.countImageView.image = UIImage(named: "num1")!
+                
+                UIView.animate(withDuration: 1.0, animations: {
+                    
+                    self.countImageView.alpha = 1
+                    self.countImageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+                    
+                }, completion: { _ in
+                    
+                    self.countImageView.alpha = 0
+                    self.countImageView.removeFromSuperview()
+//                    self.startCountTimer.invalidate()
+                    self.startTimer()
+                    
+                })
+                
+            })
+            
         })
 
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
