@@ -49,6 +49,12 @@ class WorkController: UIViewController {
     @IBOutlet weak var distanceLabel: UILabel!
 
     
+    @IBAction func handleGesture(_ sender: Any) {
+        print("fwafweafewa")
+        weak var nc = navigationController as? ModalNavigationController
+        nc?.handleGesture(sender as! UIPanGestureRecognizer)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        navigationItem.title = "Ranrastic"

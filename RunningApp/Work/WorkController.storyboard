@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="oKm-Fp-TRq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="c60-Xw-p1P">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -172,6 +172,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="HD7-th-7cq" firstAttribute="top" secondItem="Qfc-PE-sWL" secondAttribute="bottom" multiplier="2" id="1RH-Sa-J1N"/>
                             <constraint firstAttribute="trailing" secondItem="mKk-6T-gT8" secondAttribute="trailing" id="3B7-K0-YvJ"/>
@@ -183,6 +184,7 @@
                             <constraint firstItem="Qfc-PE-sWL" firstAttribute="leading" secondItem="eSa-b6-X0J" secondAttribute="leading" id="zJj-S9-omX"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="K8w-sw-osh"/>
                     <connections>
                         <outlet property="distanceLabel" destination="ci1-3T-eoQ" id="BGg-in-nGM"/>
                         <outlet property="map" destination="mKk-6T-gT8" id="cqC-Wv-C95"/>
@@ -191,8 +193,31 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YeP-lk-TIS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="6En-l1-hpI">
+                    <connections>
+                        <action selector="handleGesture:" destination="oKm-Fp-TRq" id="6SA-eb-h7q"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="170" y="83"/>
+            <point key="canvasLocation" x="847.20000000000005" y="82.3088455772114"/>
+        </scene>
+        <!--Modal Navigation Controller-->
+        <scene sceneID="5pJ-Sw-j7A">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="c60-Xw-p1P" customClass="ModalNavigationController" customModule="RunningApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qn2-LY-OM5">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="oKm-Fp-TRq" kind="relationship" relationship="rootViewController" id="Cza-HW-Cvc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lNY-Le-E60" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="76" y="82"/>
         </scene>
     </scenes>
 </document>

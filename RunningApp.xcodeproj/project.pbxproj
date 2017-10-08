@@ -10,6 +10,7 @@
 		E1633205A450704EC5F7B81C /* Pods_RunningApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB4A23F43657309C31FDA106 /* Pods_RunningApp.framework */; };
 		E3031D031F80E05A002C5739 /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3031D021F80E05A002C5739 /* SettingController.swift */; };
 		E3034EA41F87BFBF00FCB026 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3034EA31F87BFBF00FCB026 /* Const.swift */; };
+		E30AE0481F8A4FF7002FEFAA /* ModalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30AE0471F8A4FF7002FEFAA /* ModalNavigationController.swift */; };
 		E33802941F852A76007EB199 /* SettingForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33802931F852A76007EB199 /* SettingForm.swift */; };
 		E33802961F852AD1007EB199 /* SettingForm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E33802951F852AD1007EB199 /* SettingForm.storyboard */; };
 		E341882E1F794073000AB961 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E341882D1F794073000AB961 /* MainTabBarController.swift */; };
@@ -40,15 +41,12 @@
 		E380AB381F23735F0034EA8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E380AB371F23735F0034EA8F /* Assets.xcassets */; };
 		E380AB3B1F23735F0034EA8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E380AB391F23735F0034EA8F /* LaunchScreen.storyboard */; };
 		E380AB701F2373E70034EA8F /* MaterialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E380AB6E1F2373E70034EA8F /* MaterialViewController.swift */; };
-		E39594061F30C574004AEB27 /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39594011F30C574004AEB27 /* DismissAnimator.swift */; };
 		E39594071F30C574004AEB27 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39594021F30C574004AEB27 /* Interactor.swift */; };
-		E39594081F30C574004AEB27 /* ModalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39594031F30C574004AEB27 /* ModalNavigationController.swift */; };
-		E39594091F30C574004AEB27 /* ModalViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E39594041F30C574004AEB27 /* ModalViewController.storyboard */; };
-		E395940A1F30C574004AEB27 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39594051F30C574004AEB27 /* ModalViewController.swift */; };
 		E3B15B5E1F7BEEE200E17A84 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3B15B5D1F7BEEE200E17A84 /* CoreLocation.framework */; };
 		E3CA14E81F5D91B00053468D /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14E71F5D91B00053468D /* HomeModel.swift */; };
 		E3CA14EA1F5D963E0053468D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14E91F5D963D0053468D /* HomeView.swift */; };
 		E3CA14EC1F5D98C90053468D /* HomeCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */; };
+		E3F4032E1F88C6EC0073DC45 /* DismissAnimator.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F4032D1F88C6EC0073DC45 /* DismissAnimator.swift.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +55,7 @@
 		B52ED86E09986E423E72B09E /* Pods-RunningApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunningApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-RunningApp/Pods-RunningApp.release.xcconfig"; sourceTree = "<group>"; };
 		E3031D021F80E05A002C5739 /* SettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		E3034EA31F87BFBF00FCB026 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		E30AE0471F8A4FF7002FEFAA /* ModalNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalNavigationController.swift; sourceTree = "<group>"; };
 		E33802931F852A76007EB199 /* SettingForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingForm.swift; sourceTree = "<group>"; };
 		E33802951F852AD1007EB199 /* SettingForm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingForm.storyboard; sourceTree = "<group>"; };
 		E341882D1F794073000AB961 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -89,15 +88,12 @@
 		E380AB3A1F23735F0034EA8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E380AB3C1F23735F0034EA8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E380AB6E1F2373E70034EA8F /* MaterialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialViewController.swift; sourceTree = "<group>"; };
-		E39594011F30C574004AEB27 /* DismissAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift; sourceTree = "<group>"; };
 		E39594021F30C574004AEB27 /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
-		E39594031F30C574004AEB27 /* ModalNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalNavigationController.swift; sourceTree = "<group>"; };
-		E39594041F30C574004AEB27 /* ModalViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ModalViewController.storyboard; sourceTree = "<group>"; };
-		E39594051F30C574004AEB27 /* ModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		E3B15B5D1F7BEEE200E17A84 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E3CA14E71F5D91B00053468D /* HomeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		E3CA14E91F5D963D0053468D /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCustomCell.swift; sourceTree = "<group>"; };
+		E3F4032D1F88C6EC0073DC45 /* DismissAnimator.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,9 +235,9 @@
 				E361060E1F243225004F56EC /* Home */,
 				E36106111F243225004F56EC /* MyPage */,
 				E35377631F25975A00A5D6FB /* News */,
-				E39594001F30C574004AEB27 /* PullNavigation */,
 				E341882B1F793D5E000AB961 /* Resources */,
 				E3031D011F80E041002C5739 /* Setting */,
+				E3F4032C1F88C6CF0073DC45 /* Work */,
 				E380AB301F23735F0034EA8F /* AppDelegate.swift */,
 				E34188351F794AE6000AB961 /* AppSize.swift */,
 				E3034EA31F87BFBF00FCB026 /* Const.swift */,
@@ -251,22 +247,20 @@
 				E341882D1F794073000AB961 /* MainTabBarController.swift */,
 				E380AB6E1F2373E70034EA8F /* MaterialViewController.swift */,
 				E34188311F7944FF000AB961 /* SecondViewController.swift */,
-				E341883A1F795520000AB961 /* WorkController.storyboard */,
-				E34188371F794E5B000AB961 /* WorkController.swift */,
 			);
 			path = RunningApp;
 			sourceTree = "<group>";
 		};
-		E39594001F30C574004AEB27 /* PullNavigation */ = {
+		E3F4032C1F88C6CF0073DC45 /* Work */ = {
 			isa = PBXGroup;
 			children = (
-				E39594011F30C574004AEB27 /* DismissAnimator.swift */,
+				E34188371F794E5B000AB961 /* WorkController.swift */,
+				E341883A1F795520000AB961 /* WorkController.storyboard */,
+				E3F4032D1F88C6EC0073DC45 /* DismissAnimator.swift.swift */,
 				E39594021F30C574004AEB27 /* Interactor.swift */,
-				E39594031F30C574004AEB27 /* ModalNavigationController.swift */,
-				E39594041F30C574004AEB27 /* ModalViewController.storyboard */,
-				E39594051F30C574004AEB27 /* ModalViewController.swift */,
+				E30AE0471F8A4FF7002FEFAA /* ModalNavigationController.swift */,
 			);
-			path = PullNavigation;
+			path = Work;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,7 +340,6 @@
 				E36106351F24322C004F56EC /* file.png in Resources */,
 				E36106321F24322C004F56EC /* 7.jpg in Resources */,
 				E380AB3B1F23735F0034EA8F /* LaunchScreen.storyboard in Resources */,
-				E39594091F30C574004AEB27 /* ModalViewController.storyboard in Resources */,
 				E380AB381F23735F0034EA8F /* Assets.xcassets in Resources */,
 				E361062D1F24322C004F56EC /* 2.jpg in Resources */,
 				E361062E1F24322C004F56EC /* 3.jpg in Resources */,
@@ -420,11 +413,10 @@
 				E34188321F7944FF000AB961 /* SecondViewController.swift in Sources */,
 				E3CA14EC1F5D98C90053468D /* HomeCustomCell.swift in Sources */,
 				E3CA14EA1F5D963E0053468D /* HomeView.swift in Sources */,
-				E39594081F30C574004AEB27 /* ModalNavigationController.swift in Sources */,
 				E34188361F794AE6000AB961 /* AppSize.swift in Sources */,
 				E380AB701F2373E70034EA8F /* MaterialViewController.swift in Sources */,
 				E39594071F30C574004AEB27 /* Interactor.swift in Sources */,
-				E395940A1F30C574004AEB27 /* ModalViewController.swift in Sources */,
+				E30AE0481F8A4FF7002FEFAA /* ModalNavigationController.swift in Sources */,
 				E3034EA41F87BFBF00FCB026 /* Const.swift in Sources */,
 				E34188381F794E5B000AB961 /* WorkController.swift in Sources */,
 				E3637D351F25DF5700C615D4 /* ContentReaderController.swift in Sources */,
@@ -434,8 +426,8 @@
 				E3CA14E81F5D91B00053468D /* HomeModel.swift in Sources */,
 				E341882E1F794073000AB961 /* MainTabBarController.swift in Sources */,
 				E33802941F852A76007EB199 /* SettingForm.swift in Sources */,
-				E39594061F30C574004AEB27 /* DismissAnimator.swift in Sources */,
 				E380AB311F23735F0034EA8F /* AppDelegate.swift in Sources */,
+				E3F4032E1F88C6EC0073DC45 /* DismissAnimator.swift.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
