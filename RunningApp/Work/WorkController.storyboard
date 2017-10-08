@@ -183,6 +183,9 @@
                             <constraint firstItem="HD7-th-7cq" firstAttribute="top" secondItem="mKk-6T-gT8" secondAttribute="bottom" id="wst-uh-nqN"/>
                             <constraint firstItem="Qfc-PE-sWL" firstAttribute="leading" secondItem="eSa-b6-X0J" secondAttribute="leading" id="zJj-S9-omX"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="6En-l1-hpI" appends="YES" id="Nxq-WL-VqL"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="K8w-sw-osh"/>
                     <connections>
