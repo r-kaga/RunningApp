@@ -119,23 +119,18 @@ class WorkController: UIViewController {
     
     private func setupCurrentLocation() {
         let coordinate = locationManager.location?.coordinate
-        // 表示領域を作成
-        let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate!, self.latDist, self.lonDist);
-        
-        self.mapView.setRegion(region, animated: true)  // MapViewに反映
+        self.setRegion(coordinate: coordinate!)
         
         let firstPin: MKPointAnnotation = MKPointAnnotation() // ピンを生成.
-        //            let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(myLatitude, myLongitude)
         firstPin.coordinate =  coordinate! // 座標を設定.
         firstPin.title = "開始位置" // タイトルを設定.
-        //            pin.subtitle = "サブタイトル"  // サブタイトルを設定.
-        mapView.addAnnotation(firstPin)  // MapViewにピンを追加.
-        
+        mapView.addAnnotation(firstPin)
+
         firstPoint = CLLocation(latitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!)
-        
-        self.mapView.centerCoordinate = firstPin.coordinate // mapViewのcenterを現在地に
+        self.mapView.centerCoordinate = firstPoint.coordinate // mapViewのcenterを現在地に
     }
     
+
     /** countImageViewのアニメーション
       */
     @objc func countImageAnimation() {
@@ -291,48 +286,29 @@ extension WorkController: CLLocationManagerDelegate {
             self.previousPoint = location
             return
         }
-        
-        guard !previous.isEqual(location) else {
-            print("ddergergregre")
-            return
-        }
-        
+
         let distance = self.firstPoint.distance(from: location)
-        
 //        let distance = previous.distance(from: location)
         guard distance > 10.0 else { return }
         //        totalDistance += floor(distance)
         totalDistance = distance
         self.previousPoint = location
 
-//        let dis = distance / 1000.0 > 1.0 ? round( (distance / 1000.0) * 100) / 100 : round( (distance / 100.0) * 100 ) / 100
         let dis = round( (distance / 1000.0) * 100) / 100
         self.distanceLabel.text = String(dis)
  
         // Regionを作成.
-        let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, self.latDist, self.lonDist)
-        self.mapView.setRegion(region, animated: true) // MapViewに反映.
-        
-        if self.pin != nil {
-            self.mapView.removeAnnotation(self.pin!)
-        }
+        self.setRegion(coordinate: location.coordinate)
 
-        self.pin = MKPointAnnotation() // ピンを生成.
-        self.pin?.coordinate = location.coordinate // 座標を設定.
-        self.pin?.title = "現在地" // タイトルを設定.
-        self.mapView.addAnnotation(self.pin!)  // MapViewにピンを追加.
-        
+        // pinをセット
+        self.setPin(title: "現在地", coordinate: location.coordinate)
+
+
         // 直線を引く座標を作成.
-//        let currentCorrdinate = location.coordinate
-        let currentCorrdinate = self.firstPoint.coordinate
+        let currentCoordinate = location.coordinate
+//        let currentCorrdinate = self.firstPoint.coordinate
         guard let priviousCoordinate = self.previousPoint?.coordinate else { return }
-        
-        // 座標を配列に格納.
-        var line = [CLLocationCoordinate2D]()
-        line.append(currentCorrdinate)
-        line.append(priviousCoordinate)
-        let polyLine: MKPolyline = MKPolyline(coordinates: &line, count: line.count)
-        self.mapView.add(polyLine)  // mapViewにcircleを追加.
+        self.drawLineToMap(from: priviousCoordinate, to: currentCoordinate)
 
 
         let time = Date().timeIntervalSince(self.startTime)
@@ -358,7 +334,9 @@ extension WorkController: CLLocationManagerDelegate {
     }
 
 
+
 }
+
 
 
 
@@ -386,6 +364,39 @@ extension WorkController: MKMapViewDelegate {
         
         return myPolyLineRendere
     }
+    
+    
+    private func setRegion(coordinate: CLLocationCoordinate2D) {
+        // 表示領域を作成
+        let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate, self.latDist, self.lonDist);
+        self.mapView.setRegion(region, animated: true)  // MapViewに反映
+    }
+    
+    
+    
+    
+    private func setPin(title: String, coordinate: CLLocationCoordinate2D) {
+        if self.pin != nil {
+            self.mapView.removeAnnotation(self.pin!)
+        }
+        
+        self.pin = MKPointAnnotation() // ピンを生成.
+        self.pin?.coordinate = coordinate // 座標を設定.
+        self.pin?.title = title // タイトルを設定.
+        self.mapView.addAnnotation(self.pin!)  // MapViewにピンを追加.
+    }
+    
+    
+    private func drawLineToMap(from: CLLocationCoordinate2D, to: CLLocationCoordinate2D) {
+
+        // 座標を配列に格納.
+        var line = [CLLocationCoordinate2D]()
+        line.append(from)
+        line.append(to)
+        let polyLine: MKPolyline = MKPolyline(coordinates: &line, count: line.count)
+        self.mapView.add(polyLine)  // mapViewにcircleを追加.
+    }
+    
     
     
 }
