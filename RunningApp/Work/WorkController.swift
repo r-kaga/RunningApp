@@ -49,13 +49,7 @@ class WorkController: UIViewController {
 
     
     @IBAction func handleGesture(_ sender: Any) {
-        self.dismiss(animated: true, completion: {
-            if self.pin != nil {
-                self.mapView.removeAnnotation(self.pin!)
-            }
-            self.mapView.removeFromSuperview()
-//            self.mapView = nil
-        })
+        dismissModal()
 //        weak var nc = navigationController as? ModalNavigationController
 //        nc?.handleGesture(sender as! UIPanGestureRecognizer)
     }
@@ -106,7 +100,7 @@ class WorkController: UIViewController {
       */
     @objc func countImageAnimation() {
 
-        UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.8, delay: 0.0, options: .curveEaseOut, animations: {
             
             self.countImageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
             
@@ -115,7 +109,7 @@ class WorkController: UIViewController {
             self.countImageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             self.countImageView.image = UIImage(named: "num2")!
 
-            UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: 0.8, delay: 0.0, options: .curveEaseOut, animations: {
                 
                 self.countImageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
 
@@ -124,7 +118,7 @@ class WorkController: UIViewController {
                 self.countImageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
                 self.countImageView.image = UIImage(named: "num1")!
 
-                UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
+                UIView.animate(withDuration: 0.8, delay: 0.0, options: .curveEaseOut, animations: {
 
                     self.countImageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
 
@@ -179,17 +173,21 @@ class WorkController: UIViewController {
         }
     }
     
-    /** Endボタン押し時
-      *
-      */
-    @IBAction func endAction(_ sender: Any) {
+    private func dismissModal() {
         self.dismiss(animated: true, completion: {
             if self.pin != nil {
                 self.mapView.removeAnnotation(self.pin!)
             }
             self.mapView.removeFromSuperview()
-//            self.mapView = nil
+            //            self.mapView = nil
         })
+    }
+    
+    /** Endボタン押し時
+      *
+      */
+    @IBAction func endAction(_ sender: Any) {
+        dismissModal()
     }
     
     
