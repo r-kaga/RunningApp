@@ -95,40 +95,11 @@ class WorkController: UIViewController {
     
 
     
-    private func setupLocationManager() {
-        self.locationManager = CLLocationManager() // インスタンスの生成
-        self.locationManager.delegate = self // CLLocationManagerDelegateプロトコルを実装するクラスを指定する
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest // 取得精度の設定
-        self.locationManager.distanceFilter = 10  // 取得頻度の設定.
-        self.locationManager.activityType = .fitness
-        
-        // セキュリティ認証のステータスを取得.
-        let status = CLLocationManager.authorizationStatus()
-        switch status {
-            // まだ認証が得られていない場合は、認証ダイアログを表示
-            // (このAppの使用中のみ許可の設定) 説明を共通の項目を参照
-            case .notDetermined:
-                locationManager.requestWhenInUseAuthorization()
-            case .denied, .restricted:
-                print("設定から許可して下さい")
-            case .authorizedAlways, .authorizedWhenInUse:
-                self.setupCurrentLocation()
-        }
-        
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.stopTimer()
     }
     
-    private func setupCurrentLocation() {
-        let coordinate = locationManager.location?.coordinate
-        self.setRegion(coordinate: coordinate!)
-        
-        let firstPin: MKPointAnnotation = MKPointAnnotation() // ピンを生成.
-        firstPin.coordinate =  coordinate! // 座標を設定.
-        firstPin.title = "開始位置" // タイトルを設定.
-        mapView.addAnnotation(firstPin)
-
-        firstPoint = CLLocation(latitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!)
-        self.mapView.centerCoordinate = firstPoint.coordinate // mapViewのcenterを現在地に
-    }
     
 
     /** countImageViewのアニメーション
@@ -170,13 +141,8 @@ class WorkController: UIViewController {
             
         })
 
-        
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.stopTimer()
-    }
+
     
     func startTimer() {
         if timer != nil{
@@ -263,6 +229,48 @@ class WorkController: UIViewController {
 
 extension WorkController: CLLocationManagerDelegate {
     
+    
+    
+    private func setupLocationManager() {
+        self.locationManager = CLLocationManager() // インスタンスの生成
+        self.locationManager.delegate = self // CLLocationManagerDelegateプロトコルを実装するクラスを指定する
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest // 取得精度の設定
+        self.locationManager.distanceFilter = 10  // 取得頻度の設定.
+        self.locationManager.activityType = .fitness
+        
+        // セキュリティ認証のステータスを取得.
+        let status = CLLocationManager.authorizationStatus()
+        switch status {
+            // まだ認証が得られていない場合は、認証ダイアログを表示
+        // (このAppの使用中のみ許可の設定) 説明を共通の項目を参照
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .denied, .restricted:
+            print("設定から許可して下さい")
+        case .authorizedAlways, .authorizedWhenInUse:
+            self.markCurrentLocation()
+        }
+        
+    }
+    
+    
+    
+    private func markCurrentLocation() {
+        let coordinate = locationManager.location?.coordinate
+        self.setRegion(coordinate: coordinate!)
+        
+        let firstPin: MKPointAnnotation = MKPointAnnotation() // ピンを生成.
+        firstPin.coordinate =  coordinate! // 座標を設定.
+        firstPin.title = "開始位置" // タイトルを設定.
+        mapView.addAnnotation(firstPin)
+        
+        firstPoint = CLLocation(latitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!)
+        self.mapView.centerCoordinate = firstPoint.coordinate // mapViewのcenterを現在地に
+    }
+    
+
+    
+    
     /*
      認証に変化があった際に呼ばれる
      */
@@ -296,7 +304,7 @@ extension WorkController: CLLocationManagerDelegate {
                 print("起動時のみ、位置情報の取得が許可されています。")
                 locationManager.startUpdatingLocation()
                 locationManager.activityType = .fitness
-                self.setupCurrentLocation()
+                self.markCurrentLocation()
                 // 位置情報取得の開始処理
 
         }
@@ -386,7 +394,6 @@ extension WorkController: MKMapViewDelegate {
     
     
     
-    
     private func setPin(title: String, coordinate: CLLocationCoordinate2D) {
         if self.pin != nil {
             self.mapView.removeAnnotation(self.pin!)
@@ -400,7 +407,6 @@ extension WorkController: MKMapViewDelegate {
     
     
     private func drawLineToMap(from: CLLocationCoordinate2D, to: CLLocationCoordinate2D) {
-
         // 座標を配列に格納.
         var line = [CLLocationCoordinate2D]()
         line.append(from)
