@@ -22,11 +22,13 @@ extension SettingController: SettingDelegate {
 }
 
 
+
+
 class SettingController: UIViewController, UITableViewDelegate {
     
     
-    private var TableTitle = [ ["self information", "weight", "height"],
-                              ["Monitoring", Const.PUSH_TIME, ],
+    private var TableTitle = [ ["self information", "weight", "height", Const.PUSH_TIME],
+//                              ["Monitoring", , ],
     ]
     
     private var tableView: UITableView!
