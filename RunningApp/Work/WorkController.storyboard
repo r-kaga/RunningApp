@@ -156,6 +156,7 @@
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="iKC-1Z-z8G" firstAttribute="leading" secondItem="Qfc-PE-sWL" secondAttribute="leading" constant="15" id="Qzu-ru-9kH"/>
                                     <constraint firstItem="zhv-TQ-wBO" firstAttribute="centerX" secondItem="Qfc-PE-sWL" secondAttribute="centerX" id="Rpa-7M-1Ei"/>
@@ -165,6 +166,9 @@
                                     <constraint firstItem="iKC-1Z-z8G" firstAttribute="centerX" secondItem="Qfc-PE-sWL" secondAttribute="centerX" id="pjB-08-QVC"/>
                                     <constraint firstAttribute="bottom" secondItem="iKC-1Z-z8G" secondAttribute="bottom" constant="25" id="zBa-7d-ts4"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="6En-l1-hpI" appends="YES" id="3uJ-3g-od8"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mKk-6T-gT8">
                                 <rect key="frame" x="0.0" y="333.5" width="375" height="333.5"/>
@@ -183,9 +187,6 @@
                             <constraint firstItem="HD7-th-7cq" firstAttribute="top" secondItem="mKk-6T-gT8" secondAttribute="bottom" id="wst-uh-nqN"/>
                             <constraint firstItem="Qfc-PE-sWL" firstAttribute="leading" secondItem="eSa-b6-X0J" secondAttribute="leading" id="zJj-S9-omX"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="6En-l1-hpI" appends="YES" id="Nxq-WL-VqL"/>
-                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="K8w-sw-osh"/>
                     <connections>
