@@ -32,7 +32,6 @@ class WorkController: UIViewController {
     @IBOutlet weak var stopWatchLabel: UILabel!
     
     @IBOutlet weak var speedLabel: UILabel!
-    var mapView : MKMapView!
     var pin: MKPointAnnotation?
     
     // 縮尺
@@ -55,71 +54,26 @@ class WorkController: UIViewController {
                 self.mapView.removeAnnotation(self.pin!)
             }
             self.mapView.removeFromSuperview()
-            self.mapView = nil
+//            self.mapView = nil
         })
 //        weak var nc = navigationController as? ModalNavigationController
 //        nc?.handleGesture(sender as! UIPanGestureRecognizer)
     }
     
+    
+    lazy var mapView: MKMapView = {
+        // MapViewの生成
+        let mapView = MKMapView()
+        mapView.frame = self.view.bounds
+        mapView.delegate = self
+        return mapView
+    }()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        navigationItem.title = "Ranrastic"
-//        
-//        let workResultSpace = UIView(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.height / 2))
-//        workResultSpace.backgroundColor = .white
-//        
-//        let mainResultLabel = UILabel(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: workResultSpace.frame.height / 2))
-//        mainResultLabel.text = "00:00:00"
-//        mainResultLabel.backgroundColor = .white
-//        mainResultLabel.textColor = .black
-//        mainResultLabel.textAlignment = .center
-//        mainResultLabel.font = UIFont.systemFont(ofSize: 25)
-//        workResultSpace.addSubview(mainResultLabel)
-//        
-//        self.view.addSubview(workResultSpace)
 
-        self.locationManager = CLLocationManager() // インスタンスの生成
-        self.locationManager.delegate = self // CLLocationManagerDelegateプロトコルを実装するクラスを指定する
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest // 取得精度の設定
-        self.locationManager.distanceFilter = 10  // 取得頻度の設定.
-        self.locationManager.activityType = .fitness
-        
-        // セキュリティ認証のステータスを取得.
-        let status = CLLocationManager.authorizationStatus()
-
-//        // まだ認証が得られていない場合は、認証ダイアログを表示
-//        // (このAppの使用中のみ許可の設定) 説明を共通の項目を参照
-        if (status == .notDetermined) {
-            self.locationManager.requestWhenInUseAuthorization()
-        } else {
-
-            // MapViewの生成
-            mapView = MKMapView()
-            mapView.frame = self.view.bounds
-            mapView.delegate = self
-            self.map.addSubview(mapView)
-            
-            let coordinate = locationManager.location?.coordinate
-
-            // 表示領域を作成
-            let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate!, self.latDist, self.lonDist);
-            
-            mapView.setRegion(region, animated: true)  // MapViewに反映
-            
-            let firstPin: MKPointAnnotation = MKPointAnnotation() // ピンを生成.
-//            let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(myLatitude, myLongitude)
-            firstPin.coordinate =  coordinate! // 座標を設定.
-            firstPin.title = "開始位置" // タイトルを設定.
-//            pin.subtitle = "サブタイトル"  // サブタイトルを設定.
-            mapView.addAnnotation(firstPin)  // MapViewにピンを追加.
-            
-            firstPoint = CLLocation(latitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!)
-
-            self.mapView.centerCoordinate = firstPin.coordinate // mapViewのcenterを現在地に
-        }
-
-        
-        
         countImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: AppSize.width / 3, height: AppSize.height / 3))
         countImageView.center = self.view.center
         countImageView.image = UIImage(named: "num3")!
@@ -127,6 +81,7 @@ class WorkController: UIViewController {
         countImageView.contentMode = .scaleAspectFit
         self.view.addSubview(countImageView)
         
+        self.map.addSubview(self.mapView)
         
     }
 
@@ -135,10 +90,51 @@ class WorkController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.countImageAnimation()
-//        startCountTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countImageAnimation), userInfo: nil, repeats: true)
     }
     
 
+    
+    private func setupLocationManager() {
+        self.locationManager = CLLocationManager() // インスタンスの生成
+        self.locationManager.delegate = self // CLLocationManagerDelegateプロトコルを実装するクラスを指定する
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest // 取得精度の設定
+        self.locationManager.distanceFilter = 10  // 取得頻度の設定.
+        self.locationManager.activityType = .fitness
+        
+        // セキュリティ認証のステータスを取得.
+        let status = CLLocationManager.authorizationStatus()
+        switch status {
+            // まだ認証が得られていない場合は、認証ダイアログを表示
+            // (このAppの使用中のみ許可の設定) 説明を共通の項目を参照
+            case .notDetermined:
+                locationManager.requestWhenInUseAuthorization()
+            case .denied, .restricted:
+                print("設定から許可して下さい")
+            case .authorizedAlways, .authorizedWhenInUse:
+                self.setupCurrentLocation()
+        }
+        
+    }
+    
+    private func setupCurrentLocation() {
+        let coordinate = locationManager.location?.coordinate
+        // 表示領域を作成
+        let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate!, self.latDist, self.lonDist);
+        
+        self.mapView.setRegion(region, animated: true)  // MapViewに反映
+        
+        let firstPin: MKPointAnnotation = MKPointAnnotation() // ピンを生成.
+        //            let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(myLatitude, myLongitude)
+        firstPin.coordinate =  coordinate! // 座標を設定.
+        firstPin.title = "開始位置" // タイトルを設定.
+        //            pin.subtitle = "サブタイトル"  // サブタイトルを設定.
+        mapView.addAnnotation(firstPin)  // MapViewにピンを追加.
+        
+        firstPoint = CLLocation(latitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!)
+        
+        self.mapView.centerCoordinate = firstPin.coordinate // mapViewのcenterを現在地に
+    }
+    
     /** countImageViewのアニメーション
       */
     @objc func countImageAnimation() {
@@ -173,8 +169,8 @@ class WorkController: UIViewController {
                     
                     self.countImageView.alpha = 0
                     self.countImageView.removeFromSuperview()
-//                    self.startCountTimer.invalidate()
                     self.startTimer()
+                    self.setupLocationManager()
                     
                 })
                 
@@ -234,7 +230,7 @@ class WorkController: UIViewController {
                 self.mapView.removeAnnotation(self.pin!)
             }
             self.mapView.removeFromSuperview()
-            self.mapView = nil
+//            self.mapView = nil
         })
     }
 }
@@ -255,12 +251,10 @@ extension WorkController: CLLocationManagerDelegate {
             case .denied:
                 print("ローケーションサービスの設定が「無効」になっています (ユーザーによって、明示的に拒否されています）")
                 // 「設定 > プライバシー > 位置情報サービス で、位置情報サービスの利用を許可して下さい」を表示する
-                break
             
             case .restricted:
                 print("このアプリケーションは位置情報サービスを使用できません(ユーザによって拒否されたわけではありません)")
                 // 「このアプリは、位置情報を取得できないために、正常に動作できません」を表示する
-                break
             
             case .authorizedAlways:
                 print("常時、位置情報の取得が許可されています。")
@@ -277,9 +271,10 @@ extension WorkController: CLLocationManagerDelegate {
             case .authorizedWhenInUse:
                 print("起動時のみ、位置情報の取得が許可されています。")
                 locationManager.startUpdatingLocation()
-
+                locationManager.activityType = .fitness
+                self.setupCurrentLocation()
                 // 位置情報取得の開始処理
-                break
+
         }
     }
     
