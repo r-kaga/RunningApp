@@ -77,8 +77,8 @@ class WorkController: UIViewController {
         countImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: AppSize.width / 3, height: AppSize.height / 3))
         countImageView.center = self.view.center
         countImageView.image = UIImage(named: "num3")!
-        countImageView.alpha = 0
         countImageView.contentMode = .scaleAspectFit
+        countImageView.isHidden = true
         self.view.addSubview(countImageView)
         
         self.map.addSubview(self.mapView)
@@ -89,6 +89,7 @@ class WorkController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        countImageView.isHidden = false
         self.countImageAnimation()
     }
     
@@ -139,41 +140,41 @@ class WorkController: UIViewController {
       */
     @objc func countImageAnimation() {
 
-        countImageView.alpha = 1
-
         UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
             
             self.countImageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
             
         }, completion: { _ in
 
-            self.countImageView.alpha = 0
-            self.countImageView.image = UIImage(named: "num2")!
-            
+            self.countImageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            DispatchQueue.main.async {
+                self.countImageView.image = UIImage(named: "num2")!
+            }
+
             UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
                 
-                self.countImageView.alpha = 1
                 self.countImageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-                
+
             }, completion: { _ in
-                
-                self.countImageView.alpha = 0
-                self.countImageView.image = UIImage(named: "num1")!
-                
-                UIView.animate(withDuration: 1.0, animations: {
-                    
-                    self.countImageView.alpha = 1
+
+                self.countImageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                DispatchQueue.main.async {
+                    self.countImageView.image = UIImage(named: "num1")!
+                }
+
+                UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
+
                     self.countImageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-                    
+
                 }, completion: { _ in
-                    
-                    self.countImageView.alpha = 0
+
+                    self.countImageView.isHidden = true
                     self.countImageView.removeFromSuperview()
                     self.startTimer()
                     self.setupLocationManager()
-                    
+
                 })
-                
+
             })
             
         })
