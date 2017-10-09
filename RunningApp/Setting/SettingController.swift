@@ -14,17 +14,21 @@ protocol SettingDelegate: class {
     func reload()
 }
 
+
+extension SettingController: SettingDelegate {
+    func reload() {
+        self.tableView.reloadData()
+    }
+}
+
+
 class SettingController: UIViewController, UITableViewDelegate {
     
     
-    private var TableTitle = [ ["self information", "weight", "height", Const.PUSH_TIME],
-//                       ["menuTitle02", "title03", "title04"],
+    private var TableTitle = [ ["self information", "weight", "height"],
+                              ["Monitoring", Const.PUSH_TIME, ],
     ]
     
-//    var TableSubtitle = [ ["","体重を入力して下さい", "身長を入力して下さい"],
-//                          ["","subtitle05", "subtitle06"],
-//    ]
-
     private var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -40,9 +44,8 @@ class SettingController: UIViewController, UITableViewDelegate {
         self.view.addSubview(tableView)
     }
     
-
     
-    private func changeSetting(path: Int) {
+    private func presentSettingForm(path: Int) {
         guard let type = Const.SettingType(rawValue: path) else { return }
 
         let form = UIStoryboard(name: "SettingForm", bundle: nil).instantiateInitialViewController() as! SettingForm
@@ -52,13 +55,6 @@ class SettingController: UIViewController, UITableViewDelegate {
         present(form, animated: true, completion: nil)
     }
     
-}
-
-
-extension SettingController: SettingDelegate {
-    func reload() {
-        self.tableView.reloadData()
-    }
 }
 
 
@@ -99,7 +95,7 @@ extension SettingController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        self.changeSetting(path: indexPath.row)
+        self.presentSettingForm(path: indexPath.row)
     }
 
     
