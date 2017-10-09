@@ -225,6 +225,38 @@ class WorkController: UIViewController {
 //            self.mapView = nil
         })
     }
+    
+    
+    /* 時速の計算結果
+     */
+    private func getCalculateSpeed() -> Double {
+        let time = Date().timeIntervalSince(self.startTime)
+        // fmod() 余りを計算
+        let minute = (Int)(fmod((time/60), 60))
+        // currentTime/60 の余り
+        let second = (Int)(fmod(time, 60))
+        
+        let elapsedTime = Double((minute * 60) + second)
+        
+        guard totalDistance != 0.0  else {
+            return 0.0
+        }
+        
+        let spped =  totalDistance / 1000 + elapsedTime * 60 * 60
+        return spped
+    }
+    
+    
+    private func getDistance(location: CLLocation) -> String {
+        let distance = self.firstPoint.distance(from: location)
+    //        let distance = previous.distance(from: location)
+        totalDistance = distance
+        self.previousPoint = location
+
+        let dis = round( (distance / 1000.0) * 100) / 100
+        return String(dis)
+    }
+    
 }
 
 
@@ -287,15 +319,8 @@ extension WorkController: CLLocationManagerDelegate {
             return
         }
 
-        let distance = self.firstPoint.distance(from: location)
-//        let distance = previous.distance(from: location)
-        guard distance > 10.0 else { return }
-        //        totalDistance += floor(distance)
-        totalDistance = distance
-        self.previousPoint = location
-
-        let dis = round( (distance / 1000.0) * 100) / 100
-        self.distanceLabel.text = String(dis)
+        // 現在地と開始位置の距離を取得
+        self.distanceLabel.text = self.getDistance(location: location)
  
         // Regionを作成.
         self.setRegion(coordinate: location.coordinate)
@@ -303,27 +328,14 @@ extension WorkController: CLLocationManagerDelegate {
         // pinをセット
         self.setPin(title: "現在地", coordinate: location.coordinate)
 
-
         // 直線を引く座標を作成.
         let currentCoordinate = location.coordinate
 //        let currentCorrdinate = self.firstPoint.coordinate
         guard let priviousCoordinate = self.previousPoint?.coordinate else { return }
         self.drawLineToMap(from: priviousCoordinate, to: currentCoordinate)
 
-
-        let time = Date().timeIntervalSince(self.startTime)
-        // fmod() 余りを計算
-        let minute = (Int)(fmod((time/60), 60))
-        // currentTime/60 の余り
-        let second = (Int)(fmod(time, 60))
-    
-        let elapsedTime = Double((minute * 60) + second)
-        
-        guard totalDistance != 0.0  else { return }
-        
-        let spped =  totalDistance / 1000 + elapsedTime * 60 * 60
-        self.speedLabel.text = String(spped)
-        
+        // 時速の計算結果をlabelに反映
+        self.speedLabel.text = String(self.getCalculateSpeed())
     }
     
     /*
