@@ -147,9 +147,7 @@ class WorkController: UIViewController {
         }, completion: { _ in
 
             self.countImageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-            DispatchQueue.main.async {
-                self.countImageView.image = UIImage(named: "num2")!
-            }
+            self.countImageView.image = UIImage(named: "num2")!
 
             UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
                 
@@ -158,9 +156,7 @@ class WorkController: UIViewController {
             }, completion: { _ in
 
                 self.countImageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                DispatchQueue.main.async {
-                    self.countImageView.image = UIImage(named: "num1")!
-                }
+                self.countImageView.image = UIImage(named: "num1")!
 
                 UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
 
