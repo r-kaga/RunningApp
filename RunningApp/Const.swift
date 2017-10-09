@@ -13,8 +13,9 @@ struct Const {
     /* 設定項目
      */
     enum SettingType: Int {
-        case weight = 0
-        case height = 1
+        case weight     = 0
+        case height     = 1
+        case pushTime   = 2
     }
     
     enum ErrorType: Error {
@@ -22,5 +23,7 @@ struct Const {
         case empty
     }
     
+    
+    static let PUSH_TIME = "pushTime"
     
 }

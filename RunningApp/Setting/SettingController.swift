@@ -17,7 +17,7 @@ protocol SettingDelegate: class {
 class SettingController: UIViewController, UITableViewDelegate {
     
     
-    private var TableTitle = [ ["self information", "weight", "height"],
+    private var TableTitle = [ ["self information", "weight", "height", Const.PUSH_TIME],
 //                       ["menuTitle02", "title03", "title04"],
     ]
     
@@ -79,11 +79,12 @@ extension SettingController: UITableViewDataSource {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
         cell.textLabel?.text = self.TableTitle[indexPath.section][indexPath.row + 1]
         if let value = UserDefaults.standard.string(forKey: self.TableTitle[indexPath.section][indexPath.row + 1]) {
-            print(value)
             cell.detailTextLabel?.text = value
             cell.detailTextLabel?.textColor = .black
+            if Const.PUSH_TIME == self.TableTitle[indexPath.section][indexPath.row + 1] {
+                Utility.setLocalPushTime(setTime: Int(value)!)
+            }
         }
-//        cell.detailTextLabel?.text = self.TableSubtitle[indexPath.section][indexPath.row + 1]
         cell.backgroundColor = .white
         cell.textLabel?.textColor = .black
         

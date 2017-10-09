@@ -32,6 +32,8 @@ class SettingForm: UIViewController {
                 categoryName = "weight"
             case .height:
                 categoryName = "height"
+            case .pushTime:
+                categoryName = Const.PUSH_TIME
         }
         SettingCategoryLabel.text = categoryName
         
@@ -60,6 +62,7 @@ class SettingForm: UIViewController {
                 UserDefaults.standard.set(String(value), forKey: self.categoryName)
                 self.delegate?.reload()
             })
+            
         } catch Const.ErrorType.empty {
             let alert = UIAlertController(title: "からです", message: "からです", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
