@@ -29,7 +29,7 @@ class WorkController: UIViewController {
     lazy var mapView: MKMapView = {
         // MapViewの生成
         let mapView = MKMapView()
-        mapView.frame = self.view.bounds
+        mapView.frame = CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.height / 2)
         mapView.delegate = self
         return mapView
     }()
