@@ -1,10 +1,3 @@
-//
-//  WorkOutController.swift
-//  RunningApp
-//
-//  Created by 加賀谷諒 on 2017/09/25.
-//  Copyright © 2017年 ryo kagaya. All rights reserved.
-//
 
 import Foundation
 import UIKit
@@ -12,49 +5,27 @@ import CoreLocation
 import MapKit
 
 
-enum WorkType {
-    case run
-    case wallk
-}
-
 class WorkController: UIViewController {
     
-    var startCountTimer: Timer!
-    var countImageView: UIImageView!
-    var count = 0
-    
     weak var timer: Timer!
-    var startTime = Date()
+    var startTimeDate: Date!
     
-    var locationManager: CLLocationManager!
-
     @IBOutlet weak var map: UIView!
     @IBOutlet weak var stopWatchLabel: UILabel!
-    
     @IBOutlet weak var speedLabel: UILabel!
-    var pin: MKPointAnnotation?
-    
-    // 縮尺
-    var latDist : CLLocationDistance = 500
-    var lonDist : CLLocationDistance = 500
-    
-    var firstPoint: CLLocation!
-    
-    var currentPoint: CLLocation?
-    var previousPoint: CLLocation?
-    
-    var totalDistance: Double = 0.0
-    
     @IBOutlet weak var distanceLabel: UILabel!
-
     
-    @IBAction func handleGesture(_ sender: Any) {
-        dismissModal()
-//        weak var nc = navigationController as? ModalNavigationController
-//        nc?.handleGesture(sender as! UIPanGestureRecognizer)
-    }
+    /* カウントダウンのImageViewを生成 */
+    lazy var countImageView: UIImageView = {
+        let countImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: AppSize.width / 3, height: AppSize.height / 3))
+        countImageView.center = CGPoint(x: AppSize.width / 2, y: AppSize.height / 2)
+        countImageView.image = UIImage(named: "num3")!
+        countImageView.contentMode = .scaleAspectFit
+        countImageView.isHidden = true
+        return countImageView
+    }()
     
-    
+    /* 現在地を表示するMapKitを生成 */
     lazy var mapView: MKMapView = {
         // MapViewの生成
         let mapView = MKMapView()
@@ -62,31 +33,43 @@ class WorkController: UIViewController {
         mapView.delegate = self
         return mapView
     }()
-
     
+    var locationManager: CLLocationManager!
+    var pin: MKPointAnnotation?
+    
+    // 縮尺
+    var latDist : CLLocationDistance = 500
+    var lonDist : CLLocationDistance = 500
+    
+    var firstPoint: CLLocation!
+    var currentPoint: CLLocation?
+    var previousPoint: CLLocation?
+    
+    var totalDistance: Double = 0.0
+    
+    
+    @IBAction func handleGesture(_ sender: Any) {
+        dismissModal()
+//        weak var nc = navigationController as? ModalNavigationController
+//        nc?.handleGesture(sender as! UIPanGestureRecognizer)
+    }
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
 //        navigationItem.title = "Ranrastic"
-
-        countImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: AppSize.width / 3, height: AppSize.height / 3))
-        countImageView.center = self.view.center
-        countImageView.image = UIImage(named: "num3")!
-        countImageView.contentMode = .scaleAspectFit
-        countImageView.isHidden = true
         self.view.addSubview(countImageView)
-        
-        self.map.addSubview(self.mapView)
-        
+        self.map.addSubview(mapView)
     }
 
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         countImageView.isHidden = false
         self.countImageAnimation()
     }
-    
 
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -94,10 +77,8 @@ class WorkController: UIViewController {
         self.stopTimer()
     }
     
-    
 
-    /** countImageViewのアニメーション
-      */
+    /** countImageViewのアニメーション */
     @objc func countImageAnimation() {
 
         UIView.animate(withDuration: 0.8, delay: 0.0, options: .curveEaseOut, animations: {
@@ -126,7 +107,6 @@ class WorkController: UIViewController {
 
                     self.countImageView.isHidden = true
                     self.countImageView.removeFromSuperview()
-                    self.startTimer()
                     self.setupLocationManager()
 
                 })
@@ -138,7 +118,8 @@ class WorkController: UIViewController {
     }
 
     
-    func startTimer() {
+    /* ストップウォッチ */
+    private func startTimer() {
         if timer != nil{
             // timerが起動中なら一旦破棄する
             timer.invalidate()
@@ -151,12 +132,13 @@ class WorkController: UIViewController {
             userInfo: nil,
             repeats: true)
         
-        startTime = Date()
+        startTimeDate = Date()
     }
     
+    /* labelに経過時間を表示 */
     @objc func timerCounter() {
         // タイマー開始からのインターバル時間
-        let currentTime = Date().timeIntervalSince(startTime)
+        let currentTime = Date().timeIntervalSince(startTimeDate)
         
         // fmod() 余りを計算
         let minute = (Int)(fmod((currentTime/60), 60))
@@ -166,13 +148,15 @@ class WorkController: UIViewController {
         stopWatchLabel.text = "\(String(format:"%02d", minute)):\(String(format:"%02", second))"
     }
     
-    func stopTimer() {
+    /* タイマーの終了時処理 */
+    private func stopTimer() {
         if timer != nil{
             timer.invalidate()
             stopWatchLabel.text = "00::00:00"
         }
     }
     
+    /* Modalを閉じる */
     private func dismissModal() {
         self.dismiss(animated: true, completion: {
             if self.pin != nil {
@@ -192,9 +176,10 @@ class WorkController: UIViewController {
     
     
     /* 時速の計算結果
+     * return 時速の計算結果 type Double
      */
     private func getCalculateSpeed() -> Double {
-        let time = Date().timeIntervalSince(self.startTime)
+        let time = Date().timeIntervalSince(startTimeDate)
         // fmod() 余りを計算
         let minute = (Int)(fmod((time/60), 60))
         // currentTime/60 の余り
@@ -210,7 +195,10 @@ class WorkController: UIViewController {
         return spped
     }
     
-    
+    /* 距離を取得
+     * @param location - 現在地のCLLocation
+     * @return 開始位置とlocationとの距離
+     */
     private func getDistance(location: CLLocation) -> String {
         let distance = self.firstPoint.distance(from: location)
     //        let distance = previous.distance(from: location)
@@ -227,8 +215,9 @@ class WorkController: UIViewController {
 
 extension WorkController: CLLocationManagerDelegate {
     
-    
-    
+    /* CoreLocationのSetup
+     * 画面の表示時に行う必要のある処理
+     */
     private func setupLocationManager() {
         self.locationManager = CLLocationManager() // インスタンスの生成
         self.locationManager.delegate = self // CLLocationManagerDelegateプロトコルを実装するクラスを指定する
@@ -252,25 +241,28 @@ extension WorkController: CLLocationManagerDelegate {
     }
     
     
-    
+    /* 開始位置をMapにMarkする
+     * Work開始時に行う必要のある処理
+     */
     private func markCurrentLocation() {
         let coordinate = locationManager.location?.coordinate
         self.setRegion(coordinate: coordinate!)
-        
+
         let firstPin: MKPointAnnotation = MKPointAnnotation() // ピンを生成.
         firstPin.coordinate =  coordinate! // 座標を設定.
         firstPin.title = "開始位置" // タイトルを設定.
         mapView.addAnnotation(firstPin)
         
         firstPoint = CLLocation(latitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!)
-        self.mapView.centerCoordinate = firstPoint.coordinate // mapViewのcenterを現在地に
+//        self.mapView.centerCoordinate = firstPoint.coordinate // mapViewのcenterを現在地に
+        
+        self.startTimer()
     }
     
-
     
     
     /*
-     認証に変化があった際に呼ばれる
+     Location取得の認証に変化があった際に呼ばれる
      */
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
@@ -363,6 +355,58 @@ extension WorkController: MKMapViewDelegate {
     // Regionが変更された時に呼び出されるメソッド
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
 //        print("regionDidChangeAnimated")
+//        let center = self.mapView.coordina
+//        print(center)
+//        self.mapView.setCenter(center, animated: true)
+    }
+    
+
+    /* 現在の位置でMapを更新
+     * @param coordinate 現在位置 CLLocationCoordinate2D
+     */
+    private func setRegion(coordinate: CLLocationCoordinate2D) {
+        // 表示領域を作成
+        var region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate, self.latDist, self.lonDist)
+//        let region = MKCoordinateRegionMake(coordinate, span)
+        region.center = coordinate
+        region.span.latitudeDelta = 0.003
+        region.span.longitudeDelta = 0.003
+        self.mapView.setRegion(region, animated: true)  // MapViewに反映
+//        self.mapView.centerCoordinate = coordinate
+        self.mapView.setCenter(coordinate, animated: true)
+        
+    }
+    
+    
+    /*
+     * MapにPinをセットする
+     * @param title - pinに表示するタイトル @type String
+     * @param coordinate - pinをセットする位置 @type CLLocationCoordinate2D
+     */
+    private func setPin(title: String, coordinate: CLLocationCoordinate2D) {
+        if self.pin != nil {
+            self.mapView.removeAnnotation(self.pin!)
+        }
+        
+        self.pin = MKPointAnnotation() // ピンを生成.
+        self.pin?.coordinate = coordinate // 座標を設定.
+        self.pin?.title = title // タイトルを設定.
+        self.mapView.addAnnotation(self.pin!)  // MapViewにピンを追加.
+    }
+    
+    
+    /*
+     * Mapに直線を引く
+     * @param from - 線の開始位置 type CLLocationCoordinate2D
+     * @param to - 線の終了位置 type CLLocationCoordinate2D
+     */
+    private func drawLineToMap(from: CLLocationCoordinate2D, to: CLLocationCoordinate2D) {
+        // 座標を配列に格納.
+        var line = [CLLocationCoordinate2D]()
+        line.append(from)
+        line.append(to)
+        let polyLine: MKPolyline = MKPolyline(coordinates: &line, count: line.count)
+        self.mapView.add(polyLine)  // mapViewにcircleを追加.
     }
     
     
@@ -383,35 +427,6 @@ extension WorkController: MKMapViewDelegate {
         return myPolyLineRendere
     }
     
-    
-    private func setRegion(coordinate: CLLocationCoordinate2D) {
-        // 表示領域を作成
-        let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate, self.latDist, self.lonDist);
-        self.mapView.setRegion(region, animated: true)  // MapViewに反映
-    }
-    
-    
-    
-    private func setPin(title: String, coordinate: CLLocationCoordinate2D) {
-        if self.pin != nil {
-            self.mapView.removeAnnotation(self.pin!)
-        }
-        
-        self.pin = MKPointAnnotation() // ピンを生成.
-        self.pin?.coordinate = coordinate // 座標を設定.
-        self.pin?.title = title // タイトルを設定.
-        self.mapView.addAnnotation(self.pin!)  // MapViewにピンを追加.
-    }
-    
-    
-    private func drawLineToMap(from: CLLocationCoordinate2D, to: CLLocationCoordinate2D) {
-        // 座標を配列に格納.
-        var line = [CLLocationCoordinate2D]()
-        line.append(from)
-        line.append(to)
-        let polyLine: MKPolyline = MKPolyline(coordinates: &line, count: line.count)
-        self.mapView.add(polyLine)  // mapViewにcircleを追加.
-    }
     
     
     
