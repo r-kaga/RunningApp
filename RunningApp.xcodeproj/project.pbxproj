@@ -43,6 +43,7 @@
 		E380AB3B1F23735F0034EA8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E380AB391F23735F0034EA8F /* LaunchScreen.storyboard */; };
 		E380AB701F2373E70034EA8F /* MaterialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E380AB6E1F2373E70034EA8F /* MaterialViewController.swift */; };
 		E3894FCC1F8CF1FD000313CC /* SettingFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3894FCB1F8CF1FD000313CC /* SettingFormView.swift */; };
+		E3894FCF1F8CF62A000313CC /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3894FCE1F8CF62A000313CC /* UIButton+.swift */; };
 		E39594071F30C574004AEB27 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39594021F30C574004AEB27 /* Interactor.swift */; };
 		E3B15B5E1F7BEEE200E17A84 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3B15B5D1F7BEEE200E17A84 /* CoreLocation.framework */; };
 		E3CA14E81F5D91B00053468D /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14E71F5D91B00053468D /* HomeModel.swift */; };
@@ -92,6 +93,7 @@
 		E380AB3C1F23735F0034EA8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E380AB6E1F2373E70034EA8F /* MaterialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialViewController.swift; sourceTree = "<group>"; };
 		E3894FCB1F8CF1FD000313CC /* SettingFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFormView.swift; sourceTree = "<group>"; };
+		E3894FCE1F8CF62A000313CC /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		E39594021F30C574004AEB27 /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
 		E3B15B5D1F7BEEE200E17A84 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E3CA14E71F5D91B00053468D /* HomeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 		E380AB2F1F23735F0034EA8F /* RunningApp */ = {
 			isa = PBXGroup;
 			children = (
+				E3894FCD1F8CF607000313CC /* Extension */,
 				E361060E1F243225004F56EC /* Home */,
 				E36106111F243225004F56EC /* MyPage */,
 				E35377631F25975A00A5D6FB /* News */,
@@ -255,6 +258,14 @@
 				E35580141F8B2347000CE75E /* Utility.swift */,
 			);
 			path = RunningApp;
+			sourceTree = "<group>";
+		};
+		E3894FCD1F8CF607000313CC /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				E3894FCE1F8CF62A000313CC /* UIButton+.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		E3F4032C1F88C6CF0073DC45 /* Work */ = {
@@ -422,6 +433,7 @@
 				E3CA14EA1F5D963E0053468D /* HomeView.swift in Sources */,
 				E34188361F794AE6000AB961 /* AppSize.swift in Sources */,
 				E380AB701F2373E70034EA8F /* MaterialViewController.swift in Sources */,
+				E3894FCF1F8CF62A000313CC /* UIButton+.swift in Sources */,
 				E39594071F30C574004AEB27 /* Interactor.swift in Sources */,
 				E30AE0481F8A4FF7002FEFAA /* ModalNavigationController.swift in Sources */,
 				E3034EA41F87BFBF00FCB026 /* Const.swift in Sources */,
