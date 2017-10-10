@@ -10,6 +10,7 @@ class WorkController: UIViewController {
     weak var timer: Timer!
     var startTimeDate: Date!
     
+    @IBOutlet weak var resultCardView: UIView!
     @IBOutlet weak var map: UIView!
     @IBOutlet weak var stopWatchLabel: UILabel!
     @IBOutlet weak var speedLabel: UILabel!
@@ -59,6 +60,9 @@ class WorkController: UIViewController {
         super.viewDidLoad()
         
         navigationController?.setNavigationBarHidden(true, animated: false)
+        resultCardView.layer.cornerRadius = 10.0
+        resultCardView.clipsToBounds = true
+        
 //        navigationItem.title = "Ranrastic"
         self.view.addSubview(countImageView)
         self.map.addSubview(mapView)

@@ -123,7 +123,7 @@
                                                     </view>
                                                 </subviews>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0vT-Fd-jEh">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0vT-Fd-jEh" customClass="SettingButton" customModule="RunningApp" customModuleProvider="target">
                                                 <rect key="frame" x="122" y="238.5" width="100" height="30"/>
                                                 <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -192,6 +192,7 @@
                     <connections>
                         <outlet property="distanceLabel" destination="ci1-3T-eoQ" id="BGg-in-nGM"/>
                         <outlet property="map" destination="mKk-6T-gT8" id="cqC-Wv-C95"/>
+                        <outlet property="resultCardView" destination="iKC-1Z-z8G" id="7Xe-Nm-K5i"/>
                         <outlet property="speedLabel" destination="PaM-kL-xVz" id="2B6-FU-pRP"/>
                         <outlet property="stopWatchLabel" destination="zhv-TQ-wBO" id="9Ws-0j-IBr"/>
                     </connections>
