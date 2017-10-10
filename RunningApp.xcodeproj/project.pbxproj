@@ -42,6 +42,7 @@
 		E380AB381F23735F0034EA8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E380AB371F23735F0034EA8F /* Assets.xcassets */; };
 		E380AB3B1F23735F0034EA8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E380AB391F23735F0034EA8F /* LaunchScreen.storyboard */; };
 		E380AB701F2373E70034EA8F /* MaterialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E380AB6E1F2373E70034EA8F /* MaterialViewController.swift */; };
+		E3894FCC1F8CF1FD000313CC /* SettingFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3894FCB1F8CF1FD000313CC /* SettingFormView.swift */; };
 		E39594071F30C574004AEB27 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39594021F30C574004AEB27 /* Interactor.swift */; };
 		E3B15B5E1F7BEEE200E17A84 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3B15B5D1F7BEEE200E17A84 /* CoreLocation.framework */; };
 		E3CA14E81F5D91B00053468D /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14E71F5D91B00053468D /* HomeModel.swift */; };
@@ -90,6 +91,7 @@
 		E380AB3A1F23735F0034EA8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E380AB3C1F23735F0034EA8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E380AB6E1F2373E70034EA8F /* MaterialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialViewController.swift; sourceTree = "<group>"; };
+		E3894FCB1F8CF1FD000313CC /* SettingFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFormView.swift; sourceTree = "<group>"; };
 		E39594021F30C574004AEB27 /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
 		E3B15B5D1F7BEEE200E17A84 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E3CA14E71F5D91B00053468D /* HomeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 			children = (
 				E33802951F852AD1007EB199 /* SettingForm.storyboard */,
 				E33802931F852A76007EB199 /* SettingForm.swift */,
+				E3894FCB1F8CF1FD000313CC /* SettingFormView.swift */,
 			);
 			path = SettingForm;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				E3CA14E81F5D91B00053468D /* HomeModel.swift in Sources */,
 				E341882E1F794073000AB961 /* MainTabBarController.swift in Sources */,
 				E33802941F852A76007EB199 /* SettingForm.swift in Sources */,
+				E3894FCC1F8CF1FD000313CC /* SettingFormView.swift in Sources */,
 				E380AB311F23735F0034EA8F /* AppDelegate.swift in Sources */,
 				E3F4032E1F88C6EC0073DC45 /* DismissAnimator.swift.swift in Sources */,
 			);
