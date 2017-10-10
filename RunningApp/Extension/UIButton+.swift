@@ -2,7 +2,7 @@
 import Foundation
 import UIKit
 
-class SettingButton: UIButton {
+class ActionAcceptButton: UIButton {
     
     @IBInspectable var cornerRadius: CGFloat = 10.0
     
