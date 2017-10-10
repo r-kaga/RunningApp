@@ -24,6 +24,12 @@ struct Const {
     }
     
     
+    enum WorkType {
+        case run
+        case wallk
+    }
+    
+    
     static let PUSH_TIME = "pushTime"
     
 }
