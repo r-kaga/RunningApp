@@ -50,7 +50,7 @@ class WorkController: UIViewController {
     
     
     @IBAction func handleGesture(_ sender: Any) {
-        dismissModal()
+        confirmWorkEndAlert()
 //        weak var nc = navigationController as? ModalNavigationController
 //        nc?.handleGesture(sender as! UIPanGestureRecognizer)
     }
@@ -160,6 +160,20 @@ class WorkController: UIViewController {
         }
     }
     
+    
+    private func confirmWorkEndAlert() {
+        
+        let alert = UIAlertController(title: "計測を終了します", message: "今回のWorkを記録に残しますか?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            self?.dismissModal()
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive) { [weak self]  _ in
+//            self
+        })
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
     /* Modalを閉じる */
     private func dismissModal() {
         self.dismiss(animated: true, completion: {
@@ -175,7 +189,7 @@ class WorkController: UIViewController {
       *
       */
     @IBAction func endAction(_ sender: Any) {
-        dismissModal()
+        confirmWorkEndAlert()
     }
     
     
