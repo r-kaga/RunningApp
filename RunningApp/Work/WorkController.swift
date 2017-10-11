@@ -26,6 +26,16 @@ class WorkController: UIViewController {
         return countImageView
     }()
     
+    /* complete時のImageViewを生成 */
+    lazy var completeView: UIImageView = {
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: AppSize.width / 3, height: AppSize.height / 3))
+        imageView.image = UIImage(named: "0")!
+        imageView.center = CGPoint(x: AppSize.width / 2, y: AppSize.height / 2)
+        imageView.contentMode = .scaleAspectFit
+        imageView.isHidden = true
+        return imageView
+    }()
+    
     /* 現在地を表示するMapKitを生成 */
     lazy var mapView: MKMapView = {
         // MapViewの生成
@@ -64,6 +74,7 @@ class WorkController: UIViewController {
         resultCardView.clipsToBounds = true
         
 //        navigationItem.title = "Ranrastic"
+        self.view.addSubview(completeView)
         self.view.addSubview(countImageView)
         self.map.addSubview(mapView)
     }
@@ -164,12 +175,26 @@ class WorkController: UIViewController {
     private func confirmWorkEndAlert() {
         
         let alert = UIAlertController(title: "計測を終了します", message: "今回のWorkを記録に残しますか?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive) { [weak self]  _ in
+            //            self
+        })
         alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            
+           guard let total = self?.distanceLabel.text, let speed = self?.speedLabel.text, let time = self?.stopWatchLabel.text
+            else { return }
+            
+            var dictionary = [String: String]()
+            dictionary["total"] = total
+            dictionary["speed"] = speed
+            dictionary["time"] = time
+            
+            UserDefaults.standard.set(dictionary, forKey: String(describing: Date()))
+    
+            self?.completeView.isHidden = false
+            
             self?.dismissModal()
         })
-        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive) { [weak self]  _ in
-//            self
-        })
+
         self.present(alert, animated: true, completion: nil)
         
     }
