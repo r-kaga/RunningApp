@@ -43,11 +43,8 @@ class HomeView:
         self.launchView.image = UIImage(named: "nick-west.jpg")!
         self.addSubview(self.launchView)
         
-        let view = getResultView(date: "2017/17/25", time: "12", speed: "5.8", distance: "15")
-        if let value = UserDefaults.standard.object(forKey: Utility.getNowClockString()) as? [String: String] {
-            print(value)
-            
-        }
+        guard let value = UserDefaults.standard.object(forKey: Utility.getNowClockString()) as? [String: String] else { return }
+        let view = getResultView(date: value["date"]!, time:  value["time"]!, speed: value["speed"]!, distance: value["distance"]!)
         self.addSubview(view)
     }
     
@@ -109,7 +106,7 @@ class HomeView:
         distanceValue.textAlignment = .center
         distanceValue.textColor = .black
         distanceValue.backgroundColor = .white
-        distanceValue.text = "0km"
+        distanceValue.text = distance + "Km"
         view.addSubview(distanceValue)
         
         
@@ -126,7 +123,7 @@ class HomeView:
         speedValue.textAlignment = .center
         speedValue.textColor = .black
         speedValue.backgroundColor = .white
-        speedValue.text = "0"
+        speedValue.text = speed
         view.addSubview(speedValue)
         
         return view

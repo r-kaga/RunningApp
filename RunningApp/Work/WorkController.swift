@@ -181,12 +181,13 @@ class WorkController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] _ in
             
            guard let total = self?.distanceLabel.text, let speed = self?.speedLabel.text, let time = self?.stopWatchLabel.text
-            else { return }
+           else { return }
             
             var dictionary = [String: String]()
-            dictionary["total"] = total
+            dictionary["distance"] = total
             dictionary["speed"] = speed
             dictionary["time"] = time
+            dictionary["date"] =  Utility.getNowClockString()
             
             UserDefaults.standard.set(dictionary, forKey: Utility.getNowClockString())
 
