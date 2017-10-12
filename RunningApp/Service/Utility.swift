@@ -34,6 +34,16 @@ struct Utility {
 //        center.delegate = self
         
     }
+    
+    
+    /* 今日の日付を文字列で取得 */
+    static func getNowClockString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let now = Date()
+        return formatter.string(from: now)
+    }
+    
 
     
 }
