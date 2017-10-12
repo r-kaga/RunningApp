@@ -188,8 +188,8 @@ class WorkController: UIViewController {
             dictionary["speed"] = speed
             dictionary["time"] = time
             
-            UserDefaults.standard.set(dictionary, forKey: String(describing: Date()))
-    
+            UserDefaults.standard.set(dictionary, forKey: Utility.getNowClockString())
+
             self?.completeView.isHidden = false
             
             self?.dismissModal()
@@ -198,6 +198,7 @@ class WorkController: UIViewController {
         self.present(alert, animated: true, completion: nil)
         
     }
+
     
     /* Modalを閉じる */
     private func dismissModal() {

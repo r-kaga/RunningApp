@@ -218,6 +218,15 @@
 			path = ContntReader;
 			sourceTree = "<group>";
 		};
+		E3762A741F8FA1F100B0B501 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				E3894FCD1F8CF607000313CC /* Extension */,
+				E35580141F8B2347000CE75E /* Utility.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		E380AB241F23735E0034EA8F = {
 			isa = PBXGroup;
 			children = (
@@ -239,7 +248,7 @@
 		E380AB2F1F23735F0034EA8F /* RunningApp */ = {
 			isa = PBXGroup;
 			children = (
-				E3894FCD1F8CF607000313CC /* Extension */,
+				E3762A741F8FA1F100B0B501 /* Service */,
 				E361060E1F243225004F56EC /* Home */,
 				E36106111F243225004F56EC /* MyPage */,
 				E35377631F25975A00A5D6FB /* News */,
@@ -255,7 +264,6 @@
 				E341882D1F794073000AB961 /* MainTabBarController.swift */,
 				E380AB6E1F2373E70034EA8F /* MaterialViewController.swift */,
 				E34188311F7944FF000AB961 /* SecondViewController.swift */,
-				E35580141F8B2347000CE75E /* Utility.swift */,
 			);
 			path = RunningApp;
 			sourceTree = "<group>";
