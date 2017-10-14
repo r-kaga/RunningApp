@@ -31,6 +31,10 @@ class SettingController: UIViewController, UITableViewDelegate {
 //                              ["Monitoring", , ],
     ]
     
+    private var TableUnit = [
+        [ "self information", "Kg", "cm", "時" ]
+    ]
+    
     private var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -42,19 +46,36 @@ class SettingController: UIViewController, UITableViewDelegate {
 		tableView.backgroundColor = .black
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorColor = .gray
+        tableView.separatorColor = .black
         self.view.addSubview(tableView)
     }
     
     
     private func presentSettingForm(path: Int) {
-        guard let type = Const.SettingType(rawValue: path) else { return }
+        
+        let blur = UIVisualEffectView(frame: self.view.frame)
+        blur.effect = UIBlurEffect(style: .dark)
+        self.view.addSubview(blur)
 
+        let transion: CATransition = CATransition()
+        transion.duration = 0.3
+        transion.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transion.type = kCATransitionReveal
+        transion.subtype = kCATransitionFromLeft
+        self.view.window?.layer.add(transion, forKey: nil)
+        
+        guard let type = Const.SettingType(rawValue: path) else { return }
+        
         let form = UIStoryboard(name: "SettingForm", bundle: nil).instantiateInitialViewController() as! SettingForm
         form.type = type
         form.delegate = self
-//        form.modalPresentationStyle = .overCurrentContext
-        present(form, animated: true, completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+            self.present(form, animated: true, completion: {
+                blur.removeFromSuperview()
+            })
+        })
+//        form.transition(from: <#T##UIViewController#>, to: <#T##UIViewController#>, duration: <#T##TimeInterval#>, options: ., animations: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>, completion: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(Bool) -> Void#>)
+
     }
     
 }
@@ -76,15 +97,19 @@ extension SettingController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
         cell.textLabel?.text = self.TableTitle[indexPath.section][indexPath.row + 1]
+        
         if let value = UserDefaults.standard.string(forKey: self.TableTitle[indexPath.section][indexPath.row + 1]) {
-            cell.detailTextLabel?.text = value
-            cell.detailTextLabel?.textColor = .black
+            
+            cell.detailTextLabel?.text = value + TableUnit[indexPath.section][indexPath.row + 1]
+        
             if Const.PUSH_TIME == self.TableTitle[indexPath.section][indexPath.row + 1] {
                 Utility.setLocalPushTime(setTime: Int(value)!)
             }
         }
-        cell.backgroundColor = .white
-        cell.textLabel?.textColor = .black
+        
+        cell.backgroundColor = .black
+        cell.detailTextLabel?.textColor = .white
+        cell.textLabel?.textColor = .white
         
         return cell
     }

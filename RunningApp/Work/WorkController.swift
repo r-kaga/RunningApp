@@ -211,8 +211,14 @@ class WorkController: UIViewController {
             self.mapView.removeFromSuperview()
             //            self.mapView = nil
             
+            guard let vc = presentingViewController?.childViewControllers else { return }
+
+            for vc in vc {
+                if let view = vc as? Home {
+                    view.reloadPastWorksView()
+                }
+            }
 //            vc.reloadPastWorksView()
-            
 //            presentingViewController?.loadView()
 //            presentingViewController?.viewDidLoad()
 
