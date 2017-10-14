@@ -52,6 +52,8 @@ class SettingController: UIViewController, UITableViewDelegate {
     
     
     private func presentSettingForm(path: Int) {
+
+        navigationController?.setNavigationBarHidden(true, animated: false)
         
         let blur = UIVisualEffectView(frame: self.view.frame)
         blur.effect = UIBlurEffect(style: .dark)
