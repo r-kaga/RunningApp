@@ -203,13 +203,19 @@ class WorkController: UIViewController {
     
     /* Modalを閉じる */
     private func dismissModal() {
-        self.dismiss(animated: true, completion: {
+        
+        dismiss(animated: true, completion: { [presentingViewController] () -> Void in
             if self.pin != nil {
                 self.mapView.removeAnnotation(self.pin!)
             }
             self.mapView.removeFromSuperview()
             //            self.mapView = nil
+//            presentingViewController?.viewWillAppear(true)
+            presentingViewController?.loadView()
+            presentingViewController?.viewDidLoad()
+
         })
+
     }
     
     /** Endボタン押し時
