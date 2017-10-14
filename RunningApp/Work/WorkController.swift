@@ -26,16 +26,6 @@ class WorkController: UIViewController {
         return countImageView
     }()
     
-    /* complete時のImageViewを生成 */
-    lazy var completeView: UIImageView = {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: AppSize.width / 3, height: AppSize.height / 3))
-        imageView.image = UIImage(named: "0")!
-        imageView.center = CGPoint(x: AppSize.width / 2, y: AppSize.height / 2)
-        imageView.contentMode = .scaleAspectFit
-        imageView.isHidden = true
-        return imageView
-    }()
-    
     /* 現在地を表示するMapKitを生成 */
     lazy var mapView: MKMapView = {
         // MapViewの生成
@@ -44,6 +34,7 @@ class WorkController: UIViewController {
         mapView.delegate = self
         return mapView
     }()
+    
     
     var locationManager: CLLocationManager!
     var pin: MKPointAnnotation?
@@ -74,7 +65,7 @@ class WorkController: UIViewController {
         resultCardView.clipsToBounds = true
         
 //        navigationItem.title = "Ranrastic"
-        self.view.addSubview(completeView)
+        
         self.view.addSubview(countImageView)
         self.map.addSubview(mapView)
     }
@@ -190,10 +181,8 @@ class WorkController: UIViewController {
             dictionary["date"] =  Utility.getNowClockString()
             
             UserDefaults.standard.set(dictionary, forKey: Utility.getNowClockString())
-
-            self?.completeView.isHidden = false
-            
             self?.dismissModal()
+
         })
 
         self.present(alert, animated: true, completion: nil)

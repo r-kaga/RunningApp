@@ -44,6 +44,11 @@ struct Utility {
         return formatter.string(from: now)
     }
     
+    static func showCompleteDialog() {
+        let view = CompleteDialog.make()
+        view?.open()
+    }
+    
 
     
 }
