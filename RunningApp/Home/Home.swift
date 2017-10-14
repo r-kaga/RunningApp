@@ -120,11 +120,9 @@ extension Home: UICollectionViewDelegate, UICollectionViewDataSource {
         let info = [
             "Walking",
             "Running",
-            "Training",
-            "Work Out"
         ]
         
-        let cellImage = UIImage(named: String(path) + ".jpg" )!
+        let cellImage = UIImage(named: info[path])!
         cell.imageView?.image = cellImage
         cell.textLabel?.text = info[path]
         
@@ -136,7 +134,7 @@ extension Home: UICollectionViewDelegate, UICollectionViewDataSource {
      Cellの総数
      */
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return 2
     }
     
 

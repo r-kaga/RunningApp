@@ -135,7 +135,7 @@ class HomeView:
         let height = UIScreen.main.bounds.size.height
         
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: (HomeView.width / 2), height: HomeView.height / 3)
+        layout.itemSize = CGSize(width: (HomeView.width / 2), height: HomeView.height / 4)
         layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
         layout.minimumLineSpacing = 1.0
         layout.minimumInteritemSpacing = 1.0
@@ -144,7 +144,7 @@ class HomeView:
         // セクション毎のヘッダーサイズ.
         layout.headerReferenceSize = CGSize(width: 5, height: height / 4)
         
-        collectionView = UICollectionView(frame: CGRect(x: CGFloat(0), y: HomeView.height - ( HomeView.height / 3 + AppSize.tabBarHeight ), width: HomeView.width, height: HomeView.height / 3), collectionViewLayout: layout)
+        collectionView = UICollectionView(frame: CGRect(x: CGFloat(0), y: HomeView.height - ( HomeView.height / 4 + AppSize.tabBarHeight ), width: HomeView.width, height: HomeView.height / 4), collectionViewLayout: layout)
         collectionView.register(HomeCustomCell.self, forCellWithReuseIdentifier: "MyCell")
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
