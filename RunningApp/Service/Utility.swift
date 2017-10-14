@@ -46,7 +46,8 @@ struct Utility {
     
     static func showCompleteDialog() {
         let view = CompleteDialog.make()
-        view?.open()
+//        view?.open()
+        view?.add()
     }
     
 

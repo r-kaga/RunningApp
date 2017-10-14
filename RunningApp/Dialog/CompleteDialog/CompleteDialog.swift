@@ -28,13 +28,14 @@ class CompleteDialog: UIView, DialogProtocol {
     
     override func didMoveToWindow() {
         
-        UIView.animate(withDuration: 1.5, animations: {
-            self.completeImageView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+//        UIView.animate(withDuration: 1.0, animations: {
+//            self.completeImageView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        self.doStamp()
 
-        }) { _ in
-            self.completeImageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-            self.close()
-        }
+//        }) { _ in
+//            self.completeImageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+//
+//        }
     }
     
     /** タッチイベント
