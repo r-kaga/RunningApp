@@ -210,6 +210,7 @@ class WorkController: UIViewController {
 //            vc.reloadPastWorksView()
 //            presentingViewController?.loadView()
 //            presentingViewController?.viewDidLoad()
+            Utility.showCompleteDialog()
 
         })
 
