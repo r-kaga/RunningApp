@@ -21,7 +21,7 @@ class HomeView:
     
     var collectionView : UICollectionView!
     
-    var launchView: UIImageView!
+//    var launchView: UIImageView!
     
     static let height = UIScreen.main.bounds.size.height
     static let width = UIScreen.main.bounds.size.width
@@ -38,14 +38,16 @@ class HomeView:
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
 
         self.addSubview(self.layout())
-        
-        self.launchView = UIImageView(frame: self.frame)
-        self.launchView.image = UIImage(named: "nick-west.jpg")!
-        self.addSubview(self.launchView)
-        
+
         guard let value = UserDefaults.standard.object(forKey: Utility.getNowClockString()) as? [String: String] else { return }
         let view = getResultView(date: value["date"]!, time:  value["time"]!, speed: value["speed"]!, distance: value["distance"]!)
         self.addSubview(view)
+        
+        
+//        self.launchView = UIImageView(frame: self.frame)
+//        self.launchView.image = UIImage(named: "nick-west.jpg")!
+//        self.addSubview(self.launchView)
+        
     }
     
     override func layoutSubviews() {
