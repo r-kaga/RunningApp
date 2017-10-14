@@ -39,14 +39,10 @@ class HomeView:
 
         self.addSubview(self.layout())
 
-        guard let value = UserDefaults.standard.object(forKey: Utility.getNowClockString()) as? [String: String] else { return }
+        guard let value = UserDefaults.standard.object(forKey: Utility.getNowClockString()) as? [String: String]
+        else { return }
         let view = getResultView(date: value["date"]!, time:  value["time"]!, speed: value["speed"]!, distance: value["distance"]!)
         self.addSubview(view)
-        
-        
-//        self.launchView = UIImageView(frame: self.frame)
-//        self.launchView.image = UIImage(named: "nick-west.jpg")!
-//        self.addSubview(self.launchView)
         
     }
     
@@ -55,7 +51,7 @@ class HomeView:
     }
     
     
-    private func getResultView(date: String, time: String, speed: String, distance: String) -> UIView {
+    public func getResultView(date: String, time: String, speed: String, distance: String) -> UIView {
         
         let view = UIView(frame: CGRect(x: 15, y: 100, width: AppSize.width - 30, height: AppSize.height / 4))
         view.backgroundColor = .white

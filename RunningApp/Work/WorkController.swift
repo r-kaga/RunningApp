@@ -210,9 +210,11 @@ class WorkController: UIViewController {
             }
             self.mapView.removeFromSuperview()
             //            self.mapView = nil
-//            presentingViewController?.viewWillAppear(true)
-            presentingViewController?.loadView()
-            presentingViewController?.viewDidLoad()
+            
+//            vc.reloadPastWorksView()
+            
+//            presentingViewController?.loadView()
+//            presentingViewController?.viewDidLoad()
 
         })
 

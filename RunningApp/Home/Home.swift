@@ -75,25 +75,22 @@ class Home:
     
 
     func onSender(_ path: Int) {
-        
-//        let vc = WorkController(type: .run)
-//        self.present(vc, animated: true, completion: nil)
-    
+
         let sb = UIStoryboard(name: "WorkController", bundle: nil).instantiateInitialViewController() as! ModalNavigationController
         sb.interactor = interactor
         sb.transitioningDelegate = self
         self.present(sb, animated: true, completion: nil)
+ 
+    }
+    
+    public func reloadPastWorksView() {
+
+        guard let value = UserDefaults.standard.object(forKey: Utility.getNowClockString()) as? [String: String]
+        else { return }
         
-//        let viewController = UIStoryboard(name: "WorkController", bundle: nil).instantiateInitialViewController() as! WorkController
-//        self.present(viewController, animated: true, completion: nil)
-        
-//        if path == 1 {
-////            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MaterialViewController") as! MaterialViewController
-////            AppDelegate.getTopMostViewController().present(viewController, animated: true, completion: nil)
-//
-//        } else {
-//            self.onPullModalShow()
-//        }
+        let view = self.homeView.getResultView(date: value["date"]!, time:  value["time"]!, speed: value["speed"]!, distance: value["distance"]!)
+        self.view.addSubview(view)
+
         
     }
     
