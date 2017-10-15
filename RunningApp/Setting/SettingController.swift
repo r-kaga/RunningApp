@@ -44,6 +44,7 @@ class SettingController: UIViewController, UITableViewDelegate {
         
         tableView = UITableView(frame: self.view.frame, style: .grouped)
 		tableView.backgroundColor = .black
+        tableView.bounces = false
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorColor = .black
