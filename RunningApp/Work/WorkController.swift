@@ -10,6 +10,8 @@ class WorkController: UIViewController {
     weak var timer: Timer!
     var startTimeDate: Date!
     
+    private var isStarted = false
+    
     @IBOutlet weak var resultCardView: UIView!
     @IBOutlet weak var map: UIView!
     @IBOutlet weak var stopWatchLabel: UILabel!
@@ -68,6 +70,8 @@ class WorkController: UIViewController {
         
         self.view.addSubview(countImageView)
         self.map.addSubview(mapView)
+        
+        self.setupLocationManager()
     }
 
     
@@ -113,7 +117,7 @@ class WorkController: UIViewController {
 
                     self.countImageView.isHidden = true
                     self.countImageView.removeFromSuperview()
-                    self.setupLocationManager()
+                    self.isStarted = true
 
                 })
 
@@ -355,6 +359,8 @@ extension WorkController: CLLocationManagerDelegate {
      */
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     
+        guard self.isStarted else { return }
+
         // 配列から現在座標を取得.
         guard let location: CLLocation = locations.last else { return }
         
@@ -376,8 +382,8 @@ extension WorkController: CLLocationManagerDelegate {
         self.setPin(title: "現在地", coordinate: location.coordinate)
 
         // 直線を引く座標を作成.
-        let currentCoordinate = location.coordinate
-//        let currentCorrdinate = self.firstPoint.coordinate
+//        let currentCoordinate = location.coordinate
+        let currentCoordinate = self.firstPoint.coordinate
         guard let priviousCoordinate = self.previousPoint?.coordinate else { return }
         self.drawLineToMap(from: priviousCoordinate, to: currentCoordinate)
 
@@ -417,9 +423,11 @@ extension WorkController: MKMapViewDelegate {
         // 表示領域を作成
         var region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate, self.latDist, self.lonDist)
 //        let region = MKCoordinateRegionMake(coordinate, span)
-        region.center = coordinate
-        region.span.latitudeDelta = 0.003
-        region.span.longitudeDelta = 0.003
+//        region.center = coordinate
+
+//                region.span.latitudeDelta = 0.003
+//        region.span.longitudeDelta = 0.003
+
         self.mapView.setRegion(region, animated: true)  // MapViewに反映
 //        self.mapView.centerCoordinate = coordinate
         self.mapView.setCenter(coordinate, animated: true)

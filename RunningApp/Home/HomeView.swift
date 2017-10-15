@@ -41,9 +41,12 @@ class HomeView:
 
         guard let value = UserDefaults.standard.object(forKey: Utility.getNowClockString()) as? [String: String]
         else { return }
-        let view = getResultView(date: value["date"]!, time:  value["time"]!, speed: value["speed"]!, distance: value["distance"]!)
+        
+        let view = resultView(frame: CGRect(x: 15, y: 100, width: AppSize.width - 30, height: AppSize.height / 4))
+        view.setValueToResultView(dateTime: value["date"]!, timeValue: value["time"]!, distance: value["distance"]!, speed: value["speed"]!)
         self.addSubview(view)
         
+
     }
     
     override func layoutSubviews() {
@@ -59,6 +62,7 @@ class HomeView:
         view.clipsToBounds = true
         
         let dateLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height / 3))
+        dateLabel.sizeToFit()
         dateLabel.center = CGPoint(x: view.frame.width /  2, y: 30)
         dateLabel.textAlignment = .center
         dateLabel.textColor = .black
@@ -66,13 +70,13 @@ class HomeView:
         dateLabel.text = "date"
         view.addSubview(dateLabel)
         
-        let dateValue = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height / 3))
-        dateValue.center = CGPoint(x: view.frame.width /  2, y: dateLabel.frame.height + 10)
-        dateValue.textAlignment = .center
-        dateValue.textColor = .black
-        dateValue.backgroundColor = .white
-        dateValue.text = date
-        view.addSubview(dateValue)
+//        let dateValue = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height / 3))
+//        dateValue.center = CGPoint(x: view.frame.width /  2, y: dateLabel.frame.height + 10)
+//        dateValue.textAlignment = .center
+//        dateValue.textColor = .black
+//        dateValue.backgroundColor = .white
+//        dateValue.text = date
+//        view.addSubview(dateValue)
         
         let timeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width / 3, height: view.frame.height / 4))
         timeLabel.center = CGPoint(x: view.frame.width / 6, y: view.frame.height / 1.5)

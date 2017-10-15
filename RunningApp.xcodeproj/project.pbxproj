@@ -39,6 +39,8 @@
 		E365A13A1F9255C50008D475 /* CompleteDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E365A1391F9255C50008D475 /* CompleteDialog.swift */; };
 		E365A13D1F9256020008D475 /* CompleteDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = E365A13C1F9256020008D475 /* CompleteDialog.xib */; };
 		E365A13F1F9257770008D475 /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E365A13E1F9257770008D475 /* Dialog.swift */; };
+		E36912FD1F9370EB00A9B19C /* resultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36912FC1F9370EB00A9B19C /* resultView.swift */; };
+		E36912FF1F9370FB00A9B19C /* resultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E36912FE1F9370FB00A9B19C /* resultView.xib */; };
 		E380AB311F23735F0034EA8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E380AB301F23735F0034EA8F /* AppDelegate.swift */; };
 		E380AB361F23735F0034EA8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E380AB341F23735F0034EA8F /* Main.storyboard */; };
 		E380AB381F23735F0034EA8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E380AB371F23735F0034EA8F /* Assets.xcassets */; };
@@ -89,6 +91,8 @@
 		E365A1391F9255C50008D475 /* CompleteDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteDialog.swift; sourceTree = "<group>"; };
 		E365A13C1F9256020008D475 /* CompleteDialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompleteDialog.xib; sourceTree = "<group>"; };
 		E365A13E1F9257770008D475 /* Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
+		E36912FC1F9370EB00A9B19C /* resultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resultView.swift; sourceTree = "<group>"; };
+		E36912FE1F9370FB00A9B19C /* resultView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = resultView.xib; sourceTree = "<group>"; };
 		E380AB2D1F23735F0034EA8F /* RunningApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunningApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E380AB301F23735F0034EA8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E380AB351F23735F0034EA8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -181,6 +185,8 @@
 				E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */,
 				E3CA14E71F5D91B00053468D /* HomeModel.swift */,
 				E3CA14E91F5D963D0053468D /* HomeView.swift */,
+				E36912FC1F9370EB00A9B19C /* resultView.swift */,
+				E36912FE1F9370FB00A9B19C /* resultView.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -393,6 +399,7 @@
 				E361062E1F24322C004F56EC /* 3.jpg in Resources */,
 				E380AB361F23735F0034EA8F /* Main.storyboard in Resources */,
 				E36106301F24322C004F56EC /* 5.jpg in Resources */,
+				E36912FF1F9370FB00A9B19C /* resultView.xib in Resources */,
 				E341883B1F795520000AB961 /* WorkController.storyboard in Resources */,
 				E36106341F24322C004F56EC /* 9.jpg in Resources */,
 				E361062C1F24322C004F56EC /* 10.jpg in Resources */,
@@ -478,6 +485,7 @@
 				E341882E1F794073000AB961 /* MainTabBarController.swift in Sources */,
 				E33802941F852A76007EB199 /* SettingForm.swift in Sources */,
 				E3894FCC1F8CF1FD000313CC /* SettingFormView.swift in Sources */,
+				E36912FD1F9370EB00A9B19C /* resultView.swift in Sources */,
 				E380AB311F23735F0034EA8F /* AppDelegate.swift in Sources */,
 				E3F4032E1F88C6EC0073DC45 /* DismissAnimator.swift.swift in Sources */,
 			);
