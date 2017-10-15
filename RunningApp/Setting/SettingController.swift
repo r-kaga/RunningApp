@@ -49,7 +49,6 @@ class SettingController: UIViewController, UITableViewDelegate {
         tableView.separatorColor = .black
         self.view.addSubview(tableView)
         
-        Utility.showCompleteDialog()
     }
     
     
