@@ -382,8 +382,7 @@ extension WorkController: CLLocationManagerDelegate {
         self.setPin(title: "現在地", coordinate: location.coordinate)
 
         // 直線を引く座標を作成.
-//        let currentCoordinate = location.coordinate
-        let currentCoordinate = self.firstPoint.coordinate
+        let currentCoordinate = location.coordinate
         guard let priviousCoordinate = self.previousPoint?.coordinate else { return }
         self.drawLineToMap(from: priviousCoordinate, to: currentCoordinate)
 
