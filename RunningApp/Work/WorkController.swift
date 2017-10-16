@@ -118,6 +118,7 @@ class WorkController: UIViewController {
                     self.countImageView.isHidden = true
                     self.countImageView.removeFromSuperview()
                     self.isStarted = true
+                    self.startTimer()
 
                 })
 
@@ -309,7 +310,6 @@ extension WorkController: CLLocationManagerDelegate {
         firstPoint = CLLocation(latitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!)
 //        self.mapView.centerCoordinate = firstPoint.coordinate // mapViewのcenterを現在地に
         
-        self.startTimer()
     }
     
     
