@@ -148,39 +148,6 @@ class WorkController: UIViewController {
     
     /* labelに経過時間を表示 */
     @objc func timerCounter() {
-        
-        let time = Date().timeIntervalSince(startTimeDate)
-        
-        let hour = (Int)(fmod((time / 60 / 60), 60))
-
-        // fmod() 余りを計算
-        let minute = (Int)(fmod((time/60), 60))
-        // currentTime/60 の余り
-        let second = (Int)(fmod(time, 60))
-        
-//        let elapsedTime = Int((minute * 60) + second)
-
-        let elapsedTime = Int(hour + (minute / 60) + (second / 60 / 60))
-//        print(elapsedTime)
-        
-        // タイマー開始からのインターバル時間
-        let currentTime = Date().timeIntervalSince(startTimeDate)
-        
-        
-        // fmod() 余りを計算
-        let minutes = (Int)(fmod((currentTime/60), 60))
-        
-        // currentTime/60 の余り
-        let seconds = (Int)(fmod(currentTime, 60))
-//        print(hour + (minutes / 60) + (seconds / 60 / 60) )
-        
-        
-//        print(hour)
-        print(minute)
-        print(minute / 60)
-
-        print(second)
-        print(second / 3600)
         // NSDate型を日時文字列に変換するためのNSDateFormatterを生成
 //        let formatter = DateFormatter()
 //        formatter.dateFormat = "HH:mm:ss"
@@ -283,49 +250,41 @@ class WorkController: UIViewController {
     }
     
     
-    /* 時速の計算結果
-     * return 時速の計算結果 type Double
-     */
-    private func getCalculateSpeed() -> Double {
-        
-        let time = Date().timeIntervalSince(startTimeDate)
-        // fmod() 余りを計算
-        let minute = (Int)(fmod((time/60), 60))
-        // currentTime/60 の余り
-        let second = (Int)(fmod(time, 60))
-        
-        let elapsedTime = Double((minute * 60) + second)
-        print(elapsedTime)
-        
-        // タイマー開始からのインターバル時間
-        let currentTime = Date().timeIntervalSince(startTimeDate)
-        
-        let hour = (Int)(fmod((currentTime / 60 / 60), 60))
-        
-        // fmod() 余りを計算
-        let minutes = (Int)(fmod((currentTime/60), 60))
-        
-        // currentTime/60 の余り
-        let seconds = (Int)(fmod(currentTime, 60))
-        print(hour + (minutes / 60) + (seconds / 60 / 60) )
-        
-        guard totalDistance != 0.0  else {
-            return 0.0
-        }
-        
-//        print(time / 60 / 60)
-        
-        
-        print(elapsedTime)
-        print(totalDistance)
-        
-        let speed =  totalDistance / elapsedTime * 60 * 60
-        print(speed)
-        
-        print(totalDistance / elapsedTime)
-        
-        return speed
-    }
+//    /* 時速の計算結果
+//     * return 時速の計算結果 type Double
+//     */
+//    private func getCalculateSpeed() -> Double {
+//
+////        let time = Date().timeIntervalSince(startTimeDate)
+////        // fmod() 余りを計算
+////        let minute = (Int)(fmod((time/60), 60))
+////        // currentTime/60 の余り
+////        let second = (Int)(fmod(time, 60))
+////
+////        let elapsedTime = Double((minute * 60) + second)
+////        print(elapsedTime)
+////
+////        // タイマー開始からのインターバル時間
+////        let currentTime = Date().timeIntervalSince(startTimeDate)
+////
+////        let hour = (Int)(fmod((currentTime / 60 / 60), 60))
+////
+////        // fmod() 余りを計算
+////        let minutes = (Int)(fmod((currentTime/60), 60))
+////
+////        // currentTime/60 の余り
+////        let seconds = (Int)(fmod(currentTime, 60))
+////        print(hour + (minutes / 60) + (seconds / 60 / 60) )
+//
+////        guard totalDistance != 0.0  else {
+////            return 0.0
+////        }
+//
+////        let speed =  totalDistance / elapsedTime * 60 * 60
+//        print(totalDistance / elapsedTime)
+//
+//        return speed
+//    }
     
     /* 距離を取得
      * @param location - 現在地のCLLocation
@@ -465,7 +424,7 @@ extension WorkController: CLLocationManagerDelegate {
         self.drawLineToMap(from: priviousCoordinate, to: currentCoordinate)
 
         // 時速の計算結果をlabelに反映
-        self.speedLabel.text = String(self.getCalculateSpeed())
+        self.speedLabel.text = String(location.speed)
     }
     
     /*
