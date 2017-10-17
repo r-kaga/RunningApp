@@ -45,7 +45,6 @@ class HomeView:
         let view = resultView(frame: CGRect(x: 15, y: 100, width: AppSize.width - 30, height: AppSize.height / 4))
         view.setValueToResultView(dateTime: value["date"]!, timeValue: value["time"]!, distance: value["distance"]!, speed: value["speed"]!)
         self.addSubview(view)
-        
 
     }
     

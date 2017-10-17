@@ -30,7 +30,8 @@ class Home:
         
         self.launchView = UIImageView(frame: self.view.frame)
         self.launchView.image = UIImage(named: "nick-west.jpg")!
-        
+        self.launchView.backgroundColor = .black
+
         self.view.addSubview(self.launchView)
         
     }

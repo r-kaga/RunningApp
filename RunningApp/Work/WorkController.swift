@@ -148,15 +148,50 @@ class WorkController: UIViewController {
     
     /* labelに経過時間を表示 */
     @objc func timerCounter() {
+        
+        let time = Date().timeIntervalSince(startTimeDate)
+        
+        let hour = (Int)(fmod((time / 60 / 60), 60))
+
+        // fmod() 余りを計算
+        let minute = (Int)(fmod((time/60), 60))
+        // currentTime/60 の余り
+        let second = (Int)(fmod(time, 60))
+        
+//        let elapsedTime = Int((minute * 60) + second)
+
+        let elapsedTime = Int(hour + (minute / 60) + (second / 60 / 60))
+//        print(elapsedTime)
+        
         // タイマー開始からのインターバル時間
         let currentTime = Date().timeIntervalSince(startTimeDate)
         
+        
         // fmod() 余りを計算
-        let minute = (Int)(fmod((currentTime/60), 60))
+        let minutes = (Int)(fmod((currentTime/60), 60))
+        
         // currentTime/60 の余り
-        let second = (Int)(fmod(currentTime, 60))
+        let seconds = (Int)(fmod(currentTime, 60))
+//        print(hour + (minutes / 60) + (seconds / 60 / 60) )
+        
+        
+//        print(hour)
+        print(minute)
+        print(minute / 60)
+
+        print(second)
+        print(second / 3600)
+        // NSDate型を日時文字列に変換するためのNSDateFormatterを生成
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "HH:mm:ss"
+//        let dateStr: String = formatter.string(from: Date(timeIntervalSinceNow: currentTime))
+//        print(dateStr)
+        
         // %02d： ２桁表示、0で埋める
-        stopWatchLabel.text = "\(String(format:"%02d", minute)):\(String(format:"%02", second))"
+//        let dateFormatter = NSDateFormatter()
+//        dateFormatter.timeZone = NSTimeZone(name: "GMT")
+//        dateFormatter.dateFormat = "HH:mm:ss"
+        stopWatchLabel.text = getElapsedTime()
     }
     
     /* タイマーの終了時処理 */
@@ -229,10 +264,30 @@ class WorkController: UIViewController {
     }
     
     
+    /** 開始時間から現在の経過時間を返却
+     * - return 現在の経過時間 / HH:mm:ss
+     */
+    private func getElapsedTime() -> String {
+        // タイマー開始からのインターバル時間
+        let currentTime = Date().timeIntervalSince(startTimeDate)
+    
+        let hour = (Int)(fmod((currentTime / 60 / 60), 60))
+    
+        // fmod() 余りを計算
+        let minute = (Int)(fmod((currentTime/60), 60))
+    
+        // currentTime/60 の余り
+        let second = (Int)(fmod(currentTime, 60))
+    
+        return  "\(String(format:"%02d", hour)):\(String(format:"%02d", minute)):\(String(format:"%02", second))"
+    }
+    
+    
     /* 時速の計算結果
      * return 時速の計算結果 type Double
      */
     private func getCalculateSpeed() -> Double {
+        
         let time = Date().timeIntervalSince(startTimeDate)
         // fmod() 余りを計算
         let minute = (Int)(fmod((time/60), 60))
@@ -240,13 +295,36 @@ class WorkController: UIViewController {
         let second = (Int)(fmod(time, 60))
         
         let elapsedTime = Double((minute * 60) + second)
+        print(elapsedTime)
+        
+        // タイマー開始からのインターバル時間
+        let currentTime = Date().timeIntervalSince(startTimeDate)
+        
+        let hour = (Int)(fmod((currentTime / 60 / 60), 60))
+        
+        // fmod() 余りを計算
+        let minutes = (Int)(fmod((currentTime/60), 60))
+        
+        // currentTime/60 の余り
+        let seconds = (Int)(fmod(currentTime, 60))
+        print(hour + (minutes / 60) + (seconds / 60 / 60) )
         
         guard totalDistance != 0.0  else {
             return 0.0
         }
         
-        let spped =  totalDistance / 1000 + elapsedTime * 60 * 60
-        return spped
+//        print(time / 60 / 60)
+        
+        
+        print(elapsedTime)
+        print(totalDistance)
+        
+        let speed =  totalDistance / elapsedTime * 60 * 60
+        print(speed)
+        
+        print(totalDistance / elapsedTime)
+        
+        return speed
     }
     
     /* 距離を取得
