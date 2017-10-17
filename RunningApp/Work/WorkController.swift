@@ -406,6 +406,7 @@ extension WorkController: CLLocationManagerDelegate {
             let distance = self.firstPoint.distance(from: location)
             self.totalDistance += floor(distance)
             self.previousPoint = location
+            self.drawLineToMap(from: firstPoint.coordinate, to: location.coordinate)
             return
         }
 
@@ -419,12 +420,10 @@ extension WorkController: CLLocationManagerDelegate {
         self.setPin(title: "現在地", coordinate: location.coordinate)
 
         // 直線を引く座標を作成.
-        let currentCoordinate = location.coordinate
-        guard let priviousCoordinate = self.previousPoint?.coordinate else { return }
-        self.drawLineToMap(from: priviousCoordinate, to: currentCoordinate)
+        self.drawLineToMap(from: previous.coordinate, to: location.coordinate)
 
         // 時速の計算結果をlabelに反映
-        self.speedLabel.text = String(location.speed)
+        self.speedLabel.text = String(location.speed * 3.6)
     }
     
     /*
