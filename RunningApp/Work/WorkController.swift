@@ -17,6 +17,7 @@ class WorkController: UIViewController {
     @IBOutlet weak var stopWatchLabel: UILabel!
     @IBOutlet weak var speedLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var calorieLabel: UILabel!
     
     /* カウントダウンのImageViewを生成 */
     lazy var countImageView: UIImageView = {
@@ -424,7 +425,37 @@ extension WorkController: CLLocationManagerDelegate {
 
         // 時速の計算結果をlabelに反映
         self.speedLabel.text = String(location.speed * 3.6)
+        
+        if let weight = UserDefaults.standard.string(forKey: "weight") {
+            print(weight)
+            
+            // タイマー開始からのインターバル時間
+            let currentTime = Date().timeIntervalSince(startTimeDate)
+            let hour = (Int)(fmod((currentTime / 60 / 60), 60))
+            let minute = (Int)(fmod((currentTime/60), 60))
+            
+            let time = Double(hour + minute / 60)
+            
+            let calorie = 1.05 * 8.0 * time * Double(weight)!
+            self.calorieLabel.text = String(calorie)
+
+//            let calorie = weight * (メッツ - 1) × 時間(h)
+//            【例　散歩：2.5METsの運動を1時間　体重52kgの場合】
+//            1.05×2.5×1.0(時間)×52(kg)＝136.5（kcal）
+//            1METS： 睡眠、TV鑑賞、安静時等
+//            3METS： ウォーキング(少し遅い)
+//            4METS： ウォーキング(少し速い)
+//            5METS： 野球
+//            7METS： テニス
+//            8METS： サイクリング、ジョギング
+//            9METS： 上の階へ荷物を運ぶ
+//            10METS： ランニング（9.7km/h)、水泳（平泳ぎ）、サッカー
+//            11METS： 水泳（クロール、バタフライ）、ランニング（10.8km/h)
+//            15METS： ランニング(14.5km/h)、階段ダッシュ
+        }
+        
     }
+    
     
     /*
      位置情報取得に失敗した時に呼び出されるデリゲート.

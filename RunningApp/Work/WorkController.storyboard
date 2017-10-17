@@ -190,7 +190,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="K8w-sw-osh"/>
                     <connections>
-                        <outlet property="distanceLabel" destination="ci1-3T-eoQ" id="BGg-in-nGM"/>
+                        <outlet property="calorieLabel" destination="YIy-qg-M8n" id="YiH-NT-TqP"/>
+                        <outlet property="distanceLabel" destination="YIy-qg-M8n" id="l7k-Xx-VZn"/>
                         <outlet property="map" destination="mKk-6T-gT8" id="cqC-Wv-C95"/>
                         <outlet property="resultCardView" destination="iKC-1Z-z8G" id="7Xe-Nm-K5i"/>
                         <outlet property="speedLabel" destination="PaM-kL-xVz" id="2B6-FU-pRP"/>
