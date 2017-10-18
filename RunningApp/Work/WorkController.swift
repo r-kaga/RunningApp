@@ -3,7 +3,7 @@ import Foundation
 import UIKit
 import CoreLocation
 import MapKit
-
+import RealmSwift
 
 class WorkController: UIViewController {
     
@@ -200,17 +200,30 @@ class WorkController: UIViewController {
         dictionary["calorie"] = calorie
         dictionary["date"] =  Utility.getNowClockString()
         
+        let realm = try! Realm()
+        let dataSet = RealmDataSet()
+        
+        if let id = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false).first?.id {
+            dataSet.id = id + 1
+        }
+        dataSet.date = Utility.getNowClockString()
+        dataSet.calorie = calorie
+        dataSet.distance = totalDistance
+        dataSet.speed = speed
+        dataSet.time = time
+        
+        try! realm.write {
+            realm.add(dataSet)
+        }
+        
 //        realmModel.realmSet.id = realmModel.realmSet.createNewId()
 //        realmModel.realmSet.id =
-        realmModel.realmSet.date = Utility.getNowClockString()
-        realmModel.realmSet.calorie = calorie
-        realmModel.realmSet.distance = totalDistance
-        realmModel.realmSet.speed = speed
-        realmModel.realmSet.time = time
-        
-        try! realmModel.realmTry.write {
-            realmModel.realmTry.add(realmModel.realmSet)
-        }
+//        realmModel.realmSet.date = Utility.getNowClockString()
+//        realmModel.realmSet.calorie = calorie
+//        realmModel.realmSet.distance = totalDistance
+//        realmModel.realmSet.speed = speed
+//        realmModel.realmSet.time = time
+//        try! realm.wri
         
         UserDefaults.standard.set(dictionary, forKey: Utility.getNowClockString())
     }

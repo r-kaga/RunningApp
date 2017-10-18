@@ -15,7 +15,7 @@ class RealmDataSet: Object {
 //        return try! Realm().objects(type(of: self).self).sorted(byKeyPath: "id").last?.id ?? 0
 //    }
     
-    @objc dynamic var id       = 0 // PrimartKey
+    @objc dynamic var id       = 1 // PrimartKey
     @objc dynamic var date     = String()
     @objc dynamic var distance = String()
     @objc dynamic var speed    = String()
@@ -39,10 +39,7 @@ class RealmDataSet: Object {
 //            }
 //        }
 //    }
-
     
-//    let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
-//    Realm.Configuration.defaultConfiguration = config
     
 //    // 新しいIDを採番します。
 //    func createNewId() -> Int {
@@ -50,11 +47,13 @@ class RealmDataSet: Object {
 //        return (realm.objects(type(of: self).self).sorted(byKeyPath: "id", ascending: false).first?.id ?? 0) + 1
 //    }
     
+    
     // プライマリーキーの設定
     override static func primaryKey() -> String? {
         return "id"
     }
 
+    
 }
 
 
@@ -62,22 +61,21 @@ class RealmDataSet: Object {
 
 
 //struct RealmModel {
-
-    struct realmModel {
-        
-        static var realmTry = try! Realm()
-        
-        static var realmSet = RealmDataSet()
-
+//    struct realmModel {
+//
+//        static var realmTry = try! Realm()
+//
+//        static var realmSet = RealmDataSet()
+//
 //        static var realmSet: RealmDataSet {
 //            let realm = RealmDataSet()
 //            realm.id = realm.createNewId(realm: realmModel.realmTry)
 //            return realm
 //        }
-        
-        static var usersSet = realmModel.realmTry.objects(RealmDataSet.self)
-    }
-    
+//
+//        static var usersSet = realmModel.realmTry.objects(RealmDataSet.self)
+//    }
+//
 //}
 
 

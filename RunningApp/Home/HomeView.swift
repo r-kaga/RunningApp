@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import RealmSwift
 
 
 class HomeView:
@@ -42,8 +42,19 @@ class HomeView:
         guard let value = UserDefaults.standard.object(forKey: Utility.getNowClockString()) as? [String: String]
         else { return }
         
+        
+        
+        let realm = try! Realm()
+        guard let latestData = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false).first else {
+            return
+        }
+        print(latestData)
+        
         let view = resultView(frame: CGRect(x: 15, y: 100, width: AppSize.width - 30, height: AppSize.height / 4))
-        view.setValueToResultView(dateTime: value["date"]!, timeValue: value["time"]!, distance: value["distance"]!, speed: value["speed"]!)
+        view.setValueToResultView(dateTime: latestData.date,
+                                  timeValue: latestData.time,
+                                  distance: latestData.distance,
+                                  speed: latestData.speed)
         self.addSubview(view)
 
     }

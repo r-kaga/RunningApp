@@ -19,8 +19,10 @@ class Home:
 
     let interactor = Interactor()
 
-    var launchView: UIImageView!
+//    var launchView: UIImageView!
+    var launchView: UIView!
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,8 +30,9 @@ class Home:
         
         homeView = HomeView(controller: self)
         
-        self.launchView = UIImageView(frame: self.view.frame)
-        self.launchView.image = UIImage(named: "nick-west.jpg")!
+//        self.launchView = UIImageView(frame: self.view.frame)
+//        self.launchView.image = UIImage(named: "nick-west.jpg")!
+        self.launchView = UIView(frame: self.view.frame)
         self.launchView.backgroundColor = .black
 
         self.view.addSubview(self.launchView)
