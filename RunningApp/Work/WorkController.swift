@@ -187,18 +187,30 @@ class WorkController: UIViewController {
     
     
     private func registWorkResult() {
-        guard let total  = self.distanceLabel.text,
+        guard let totalDistance  = self.distanceLabel.text,
             let speed    = self.speedLabel.text,
             let time     = self.stopWatchLabel.text,
             let calorie  = self.calorieLabel.text
         else { return }
         
         var dictionary = [String: String]()
-        dictionary["distance"] = total
+        dictionary["distance"] = totalDistance
         dictionary["speed"] = speed
         dictionary["time"] = time
         dictionary["calorie"] = calorie
         dictionary["date"] =  Utility.getNowClockString()
+        
+//        realmModel.realmSet.id = realmModel.realmSet.createNewId()
+//        realmModel.realmSet.id =
+        realmModel.realmSet.date = Utility.getNowClockString()
+        realmModel.realmSet.calorie = calorie
+        realmModel.realmSet.distance = totalDistance
+        realmModel.realmSet.speed = speed
+        realmModel.realmSet.time = time
+        
+        try! realmModel.realmTry.write {
+            realmModel.realmTry.add(realmModel.realmSet)
+        }
         
         UserDefaults.standard.set(dictionary, forKey: Utility.getNowClockString())
     }
@@ -416,8 +428,7 @@ extension WorkController: CLLocationManagerDelegate {
             self.drawLineToMap(from: firstPoint.coordinate, to: location.coordinate)
             return
         }
-
-    
+        
         // Regionを作成.
         self.setRegion(coordinate: location.coordinate)
         
@@ -440,7 +451,6 @@ extension WorkController: CLLocationManagerDelegate {
             let time = Double(hour + minute / 60)
             
             calorie = 1.05 * 8.0 * time * Double(weight)!
-
 //            let calorie = weight * (メッツ - 1) × 時間(h)
 //            【例　散歩：2.5METsの運動を1時間　体重52kgの場合】
 //            1.05×2.5×1.0(時間)×52(kg)＝136.5（kcal）
@@ -507,10 +517,10 @@ extension WorkController: MKMapViewDelegate {
 //        region.span.longitudeDelta = 0.003
         //        self.mapView.centerCoordinate = coordinate
         
-        DispatchQueue.main.async {
+//        DispatchQueue.main.async {
             self.mapView.setRegion(region, animated: true)  // MapViewに反映
             self.mapView.setCenter(coordinate, animated: true)
-        }
+//        }
 
         
     }
