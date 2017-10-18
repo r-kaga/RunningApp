@@ -147,6 +147,7 @@ class WorkController: UIViewController {
         startTimeDate = Date()
     }
     
+
     /* labelに経過時間を表示 */
     @objc func timerCounter() {
         // NSDate型を日時文字列に変換するためのNSDateFormatterを生成
@@ -173,30 +174,35 @@ class WorkController: UIViewController {
     
     private func confirmWorkEndAlert() {
         
-        let alert = UIAlertController(title: "計測を終了します", message: "今回のWorkを記録に残しますか?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive) { [weak self]  _ in
-            //            self
-        })
+        let alert = UIAlertController(title: "計測を終了します", message: "終了してもよろしいですか?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] _ in
-            
-           guard let total = self?.distanceLabel.text, let speed = self?.speedLabel.text, let time = self?.stopWatchLabel.text
-           else { return }
-            
-            var dictionary = [String: String]()
-            dictionary["distance"] = total
-            dictionary["speed"] = speed
-            dictionary["time"] = time
-            dictionary["date"] =  Utility.getNowClockString()
-            
-            UserDefaults.standard.set(dictionary, forKey: Utility.getNowClockString())
+            self?.registWorkResult()
             self?.dismissModal()
-
         })
 
         self.present(alert, animated: true, completion: nil)
-        
     }
 
+    
+    
+    private func registWorkResult() {
+        guard let total  = self.distanceLabel.text,
+            let speed    = self.speedLabel.text,
+            let time     = self.stopWatchLabel.text,
+            let calorie  = self.calorieLabel.text
+        else { return }
+        
+        var dictionary = [String: String]()
+        dictionary["distance"] = total
+        dictionary["speed"] = speed
+        dictionary["time"] = time
+        dictionary["calorie"] = calorie
+        dictionary["date"] =  Utility.getNowClockString()
+        
+        UserDefaults.standard.set(dictionary, forKey: Utility.getNowClockString())
+    }
+    
     
     /* Modalを閉じる */
     private func dismissModal() {
@@ -411,21 +417,18 @@ extension WorkController: CLLocationManagerDelegate {
             return
         }
 
-        // 現在地と開始位置の距離を取得
-        self.distanceLabel.text = self.getDistance(location: location)
- 
+    
         // Regionを作成.
         self.setRegion(coordinate: location.coordinate)
-
+        
         // pinをセット
         self.setPin(title: "現在地", coordinate: location.coordinate)
-
+        
         // 直線を引く座標を作成.
         self.drawLineToMap(from: previous.coordinate, to: location.coordinate)
 
-        // 時速の計算結果をlabelに反映
-        self.speedLabel.text = String(location.speed * 3.6)
         
+        var calorie: Double = 0
         if let weight = UserDefaults.standard.string(forKey: "weight") {
             print(weight)
             
@@ -436,8 +439,7 @@ extension WorkController: CLLocationManagerDelegate {
             
             let time = Double(hour + minute / 60)
             
-            let calorie = 1.05 * 8.0 * time * Double(weight)!
-            self.calorieLabel.text = String(calorie)
+            calorie = 1.05 * 8.0 * time * Double(weight)!
 
 //            let calorie = weight * (メッツ - 1) × 時間(h)
 //            【例　散歩：2.5METsの運動を1時間　体重52kgの場合】
@@ -453,6 +455,16 @@ extension WorkController: CLLocationManagerDelegate {
 //            11METS： 水泳（クロール、バタフライ）、ランニング（10.8km/h)
 //            15METS： ランニング(14.5km/h)、階段ダッシュ
         }
+        
+        DispatchQueue.main.async {
+            self.distanceLabel.text = self.getDistance(location: location)
+            
+            // 時速の計算結果をlabelに反映
+            self.speedLabel.text = String(location.speed * 3.6)
+            
+            self.calorieLabel.text = String(calorie)
+        }
+
         
     }
     
@@ -487,16 +499,19 @@ extension WorkController: MKMapViewDelegate {
      */
     private func setRegion(coordinate: CLLocationCoordinate2D) {
         // 表示領域を作成
-        var region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate, self.latDist, self.lonDist)
+        let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate, self.latDist, self.lonDist)
 //        let region = MKCoordinateRegionMake(coordinate, span)
 //        region.center = coordinate
 
 //                region.span.latitudeDelta = 0.003
 //        region.span.longitudeDelta = 0.003
+        //        self.mapView.centerCoordinate = coordinate
+        
+        DispatchQueue.main.async {
+            self.mapView.setRegion(region, animated: true)  // MapViewに反映
+            self.mapView.setCenter(coordinate, animated: true)
+        }
 
-        self.mapView.setRegion(region, animated: true)  // MapViewに反映
-//        self.mapView.centerCoordinate = coordinate
-        self.mapView.setCenter(coordinate, animated: true)
         
     }
     
@@ -514,7 +529,10 @@ extension WorkController: MKMapViewDelegate {
         self.pin = MKPointAnnotation() // ピンを生成.
         self.pin?.coordinate = coordinate // 座標を設定.
         self.pin?.title = title // タイトルを設定.
-        self.mapView.addAnnotation(self.pin!)  // MapViewにピンを追加.
+        
+        DispatchQueue.main.async {
+            self.mapView.addAnnotation(self.pin!)  // MapViewにピンを追加.
+        }
     }
     
     
@@ -529,7 +547,11 @@ extension WorkController: MKMapViewDelegate {
         line.append(from)
         line.append(to)
         let polyLine: MKPolyline = MKPolyline(coordinates: &line, count: line.count)
-        self.mapView.add(polyLine)  // mapViewにcircleを追加.
+        
+        DispatchQueue.main.async {
+            self.mapView.add(polyLine)  // mapViewにcircleを追加.
+        }
+        
     }
     
     
@@ -542,7 +564,7 @@ extension WorkController: MKMapViewDelegate {
         let myPolyLineRendere: MKPolylineRenderer = MKPolylineRenderer(overlay: overlay)
         
         // 線の太さを指定.
-        myPolyLineRendere.lineWidth = 5
+        myPolyLineRendere.lineWidth = 2.5
         
         // 線の色を指定.
         myPolyLineRendere.strokeColor = UIColor.red
