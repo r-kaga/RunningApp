@@ -330,6 +330,9 @@ class WorkController: UIViewController {
         totalDistance = distance
         self.previousPoint = location
         
+        /** まずdistanceがメートルで返ってくるので、1000.0で割り、Kmに変換
+         *   小数点2桁にしたいので、まずは100をかけて、round(四捨五入)してから、100で割り、元の桁に戻す
+         */
         let dis = round( (distance / 1000.0) * 100) / 100
         
         return String(dis)
@@ -348,7 +351,7 @@ extension WorkController: CLLocationManagerDelegate {
         self.locationManager = CLLocationManager() // インスタンスの生成
         self.locationManager.delegate = self // CLLocationManagerDelegateプロトコルを実装するクラスを指定する
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest // 取得精度の設定
-        self.locationManager.distanceFilter = 10  // 取得頻度の設定.
+        self.locationManager.distanceFilter = 30  // 取得頻度の設定.
         self.locationManager.activityType = .fitness
         
         // セキュリティ認証のステータスを取得.
@@ -455,19 +458,20 @@ extension WorkController: CLLocationManagerDelegate {
 //        self.drawLineToMap(from: previous.coordinate, to: location.coordinate)
 
         
-        var calorie: Double = 0
+        var calorie: Double = 0.0
         if let weight = UserDefaults.standard.string(forKey: "weight") {
-            print(weight)
             
             // タイマー開始からのインターバル時間
             let currentTime = Date().timeIntervalSince(startTimeDate)
-            let hour = (Int)(fmod((currentTime / 60 / 60), 60))
-            let minute = (Int)(fmod((currentTime/60), 60))
-            
-            let time = Double(hour + minute / 60)
-            
-            calorie = 1.05 * 8.0 * time * Double(weight)!
-//            let calorie = weight * (メッツ - 1) × 時間(h)
+            let hour = (Double)(fmod((currentTime / 60 / 60), 60))
+            let minute = (Double)(fmod((currentTime/60), 60))
+            let second = (Double)(fmod(currentTime, 60))
+
+            let time = hour + (minute / 60) + (second / 60 / 60)
+
+            let calcu = (1.05 * 8.0 * time * Double(weight)!)
+            calorie = round(calcu * 10.0) / 10.0
+            //            let calorie = weight * (メッツ - 1) × 時間(h)
 //            【例　散歩：2.5METsの運動を1時間　体重52kgの場合】
 //            1.05×2.5×1.0(時間)×52(kg)＝136.5（kcal）
 //            1METS： 睡眠、TV鑑賞、安静時等
@@ -483,13 +487,19 @@ extension WorkController: CLLocationManagerDelegate {
         }
         
         DispatchQueue.main.async {
-            print(self.getDistance(location: location))
             self.distanceLabel.text = self.getDistance(location: location)
             
-            // 時速の計算結果をlabelに反映
-            self.speedLabel.text = String(location.speed * 3.6)
-            
             self.calorieLabel.text = String(calorie)
+
+            // 時速の計算結果をlabelに反映
+            let speed = location.speed * 3.6
+            var speedText = String(speed)
+            if speed < 0 {
+                speedText = "計測不能"
+            }
+            print(speedText)
+            self.speedLabel.text = speedText
+            
         }
 
         
