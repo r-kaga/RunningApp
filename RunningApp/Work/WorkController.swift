@@ -160,7 +160,9 @@ class WorkController: UIViewController {
 //        let dateFormatter = NSDateFormatter()
 //        dateFormatter.timeZone = NSTimeZone(name: "GMT")
 //        dateFormatter.dateFormat = "HH:mm:ss"
-        stopWatchLabel.text = getElapsedTime()
+        DispatchQueue.main.async {
+            self.stopWatchLabel.text = self.getElapsedTime()
+        }
     }
     
     /* タイマーの終了時処理 */
@@ -188,9 +190,9 @@ class WorkController: UIViewController {
     
     private func registWorkResult() {
         guard let totalDistance  = self.distanceLabel.text,
-            let speed    = self.speedLabel.text,
-            let time     = self.stopWatchLabel.text,
-            let calorie  = self.calorieLabel.text
+              let speed    = self.speedLabel.text,
+              let time     = self.stopWatchLabel.text,
+              let calorie  = self.calorieLabel.text
         else { return }
         
         var dictionary = [String: String]()
@@ -327,8 +329,9 @@ class WorkController: UIViewController {
     //        let distance = previous.distance(from: location)
         totalDistance = distance
         self.previousPoint = location
-
+        
         let dis = round( (distance / 1000.0) * 100) / 100
+        
         return String(dis)
     }
     
@@ -438,7 +441,7 @@ extension WorkController: CLLocationManagerDelegate {
             let distance = self.firstPoint.distance(from: location)
             self.totalDistance += floor(distance)
             self.previousPoint = location
-            self.drawLineToMap(from: firstPoint.coordinate, to: location.coordinate)
+//            self.drawLineToMap(from: firstPoint.coordinate, to: location.coordinate)
             return
         }
         
@@ -449,7 +452,7 @@ extension WorkController: CLLocationManagerDelegate {
         self.setPin(title: "現在地", coordinate: location.coordinate)
         
         // 直線を引く座標を作成.
-        self.drawLineToMap(from: previous.coordinate, to: location.coordinate)
+//        self.drawLineToMap(from: previous.coordinate, to: location.coordinate)
 
         
         var calorie: Double = 0
@@ -480,6 +483,7 @@ extension WorkController: CLLocationManagerDelegate {
         }
         
         DispatchQueue.main.async {
+            print(self.getDistance(location: location))
             self.distanceLabel.text = self.getDistance(location: location)
             
             // 時速の計算結果をlabelに反映
