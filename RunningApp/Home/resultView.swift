@@ -12,14 +12,15 @@ import UIKit
 @IBDesignable
 class resultView: UIView {
     
-    @IBOutlet weak var dateTimeValue: UILabel!
+    @IBOutlet weak var dateTimeValueLabel: UILabel!
     
-    @IBOutlet weak var timeValue: UILabel!
+    @IBOutlet weak var timeValueLabel: UILabel!
     
-    @IBOutlet weak var distanceValue: UILabel!
+    @IBOutlet weak var distanceValueLabel: UILabel!
     
-    @IBOutlet weak var speedValue: UILabel!
+    @IBOutlet weak var speedValueLabel: UILabel!
     
+    @IBOutlet weak var calorieValueLabel: UILabel!
     
     /** イニシャライザー
      */
@@ -69,27 +70,33 @@ class resultView: UIView {
     }
     
 
-    public func setValueToResultView(dateTime: String, timeValue: String, distance: String, speed: String) {
+    public func setValueToResultView(dateTime: String, timeValue: String, distance: String, speed: String, calorie: String) {
         setSpeedLabel(value: speed)
         setDateTimeLabel(value: dateTime)
         setTimeLabel(value: timeValue)
         setDistanceLabel(value: distance)
+        setCalorieLabel(value: calorie)
     }
     
     public func setSpeedLabel(value: String) {
-        self.speedValue.text = value
+        self.speedValueLabel.text = value
     }
     
     public func setDateTimeLabel(value: String) {
-        self.dateTimeValue.text = value
+        self.dateTimeValueLabel.text = value
     }
     
     public func setTimeLabel(value: String) {
-        self.timeValue.text = value
+        self.timeValueLabel.text = value
     }
     
     public func setDistanceLabel(value: String) {
-        self.distanceValue.text = value
+        self.distanceValueLabel.text = value
+    }
+    
+    public func setCalorieLabel(value: String) {
+        self.calorieValueLabel.text = value
     }
     
 }
+
