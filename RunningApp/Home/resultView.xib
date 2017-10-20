@@ -37,7 +37,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-10-24 10:24:24" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BkV-Xq-tBx">
-                                    <rect key="frame" x="272.5" y="15" width="162.5" height="53.5"/>
+                                    <rect key="frame" x="292.5" y="15" width="162.5" height="53.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -47,7 +47,7 @@
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="BkV-Xq-tBx" secondAttribute="bottom" constant="15" id="Fcd-1V-RxQ"/>
                                 <constraint firstAttribute="bottom" secondItem="EhU-dg-D6l" secondAttribute="bottom" constant="25" id="J7j-vp-8au"/>
-                                <constraint firstAttribute="trailing" secondItem="BkV-Xq-tBx" secondAttribute="trailing" constant="50" id="JYu-f1-BbT"/>
+                                <constraint firstAttribute="trailing" secondItem="BkV-Xq-tBx" secondAttribute="trailing" constant="30" id="JYu-f1-BbT"/>
                                 <constraint firstItem="EhU-dg-D6l" firstAttribute="top" secondItem="6Pk-UL-IwD" secondAttribute="top" constant="15" id="axZ-mF-zl2"/>
                                 <constraint firstItem="EhU-dg-D6l" firstAttribute="leading" secondItem="6Pk-UL-IwD" secondAttribute="leading" constant="30" id="wRt-Fh-AL6"/>
                                 <constraint firstItem="BkV-Xq-tBx" firstAttribute="top" secondItem="6Pk-UL-IwD" secondAttribute="top" constant="15" id="wVC-h6-auO"/>
