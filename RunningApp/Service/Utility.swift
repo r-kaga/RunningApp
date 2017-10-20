@@ -36,14 +36,19 @@ struct Utility {
     }
     
     
-    /* 今日の日付を文字列で取得 */
+    /** 今日の日付を文字列で取得
+     * - return 2017-10-20 15:14:30
+     */
     static func getNowClockString() -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
         let now = Date()
         return formatter.string(from: now)
     }
     
+    /**
+     * completeダイアログの表示
+     */
     static func showCompleteDialog() {
         let view = CompleteDialog.make()
 //        view?.open()
