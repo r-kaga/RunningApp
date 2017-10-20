@@ -471,7 +471,6 @@ extension WorkController: CLLocationManagerDelegate {
 
             let calcu = (1.05 * 8.0 * time * Double(weight)!)
             calorie = round(calcu * 10.0) / 10.0
-            //            let calorie = weight * (メッツ - 1) × 時間(h)
 //            【例　散歩：2.5METsの運動を1時間　体重52kgの場合】
 //            1.05×2.5×1.0(時間)×52(kg)＝136.5（kcal）
 //            1METS： 睡眠、TV鑑賞、安静時等
@@ -492,7 +491,7 @@ extension WorkController: CLLocationManagerDelegate {
             self.calorieLabel.text = String(calorie)
 
             // 時速の計算結果をlabelに反映
-            let speed = location.speed * 3.6
+            let speed = round((location.speed * 3.6) * 10.0) / 10.0
             var speedText = String(speed)
             if speed < 0 {
                 speedText = "計測不能"
