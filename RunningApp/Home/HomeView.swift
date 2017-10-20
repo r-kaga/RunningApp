@@ -12,7 +12,8 @@ import RealmSwift
 
 
 class HomeView:
-    UIView
+    UIView,
+    UIScrollViewDelegate
     
 
 {
@@ -38,25 +39,8 @@ class HomeView:
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
 
         self.addSubview(self.layout())
-
-        guard let value = UserDefaults.standard.object(forKey: Utility.getNowClockString()) as? [String: String]
-        else { return }
+        self.setUpResultView()
         
-        
-        
-        let realm = try! Realm()
-        guard let latestData = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false).first else {
-            return
-        }
-        print(latestData)
-        
-        let view = resultView(frame: CGRect(x: 15, y: 100, width: AppSize.width - 30, height: AppSize.height / 4))
-        view.setValueToResultView(dateTime: latestData.date,
-                                  timeValue: latestData.time,
-                                  distance: latestData.distance,
-                                  speed: latestData.speed)
-        self.addSubview(view)
-
     }
     
     override func layoutSubviews() {
@@ -64,86 +48,88 @@ class HomeView:
     }
     
     
-    public func getResultView(date: String, time: String, speed: String, distance: String) -> UIView {
-        
-        let view = UIView(frame: CGRect(x: 15, y: 100, width: AppSize.width - 30, height: AppSize.height / 4))
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 10.0
-        view.clipsToBounds = true
-        
-        let dateLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height / 3))
-        dateLabel.sizeToFit()
-        dateLabel.center = CGPoint(x: view.frame.width /  2, y: 30)
-        dateLabel.textAlignment = .center
-        dateLabel.textColor = .black
-        dateLabel.backgroundColor = .white
-        dateLabel.text = "date"
-        view.addSubview(dateLabel)
-        
-//        let dateValue = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height / 3))
-//        dateValue.center = CGPoint(x: view.frame.width /  2, y: dateLabel.frame.height + 10)
-//        dateValue.textAlignment = .center
-//        dateValue.textColor = .black
-//        dateValue.backgroundColor = .white
-//        dateValue.text = date
-//        view.addSubview(dateValue)
-        
-        let timeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width / 3, height: view.frame.height / 4))
-        timeLabel.center = CGPoint(x: view.frame.width / 6, y: view.frame.height / 1.5)
-        timeLabel.textAlignment = .center
-        timeLabel.textColor = .black
-        timeLabel.backgroundColor = .white
-        timeLabel.text = "時間"
-        view.addSubview(timeLabel)
+    private func setUpResultView() {
 
-        let timeValue = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width / 3, height: view.frame.height / 4))
-        timeValue.center = CGPoint(x: view.frame.width / 6, y: timeLabel.frame.maxY + 10 )
-        timeValue.textAlignment = .center
-        timeValue.textColor = .black
-        timeValue.backgroundColor = .white
-        timeValue.text = time
-        view.addSubview(timeValue)
+        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 80, width: AppSize.width, height: AppSize.height / 2.5 + 50))
+        scrollView.backgroundColor = UIColor.black
+        scrollView.contentSize = CGSize(width: AppSize.width * 3, height: AppSize.height / 2.8 + 50) // 中身の大きさを設定
+        
+        scrollView.isPagingEnabled = true
+        scrollView.bounces = false
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        //        scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        scrollView.delegate = self
+        
+
+        let realm = try! Realm()
+        let latestData = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
+    
+        
+        let Latestlabel = UILabel(frame: CGRect(x: AppSize.width / 2 - 50,
+                                          y: 0,
+                                          width: 200,
+                                          height: 50))
+        Latestlabel.text = "Latest Date"
+        Latestlabel.textColor = .white
+        scrollView.addSubview(Latestlabel)
+        
+        let view = resultView(frame: CGRect(x: 15, y: Latestlabel.frame.maxY, width: AppSize.width - 30, height: AppSize.height / 2.5))
+        view.setValueToResultView(dateTime: latestData[0].date,
+                                  timeValue: latestData[0].time,
+                                  distance: latestData[0].distance,
+                                  speed: latestData[0].speed,
+                                  calorie: latestData[0].calorie
+        )
+        scrollView.addSubview(view)
 
         
-        let distanceLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width / 3, height: view.frame.height / 4))
-        distanceLabel.center = CGPoint(x: view.frame.width / 2, y: view.frame.height / 1.5)
-        distanceLabel.textAlignment = .center
-        distanceLabel.textColor = .black
-        distanceLabel.backgroundColor = .white
-        distanceLabel.text = "距離"
-        view.addSubview(distanceLabel)
-        
-        let distanceValue = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width / 3, height: view.frame.height / 4))
-        distanceValue.center = CGPoint(x: view.frame.width / 2, y: distanceLabel.frame.maxY + 10 )
-        distanceValue.textAlignment = .center
-        distanceValue.textColor = .black
-        distanceValue.backgroundColor = .white
-        distanceValue.text = distance + "Km"
-        view.addSubview(distanceValue)
+        let secondlabel = UILabel(frame: CGRect(x: (AppSize.width + AppSize.width / 2) - 50,
+                                                y: 0,
+                                                width: 200,
+                                                height: 50))
+        secondlabel.text = "Seconde Date"
+        secondlabel.textColor = .white
+        scrollView.addSubview(secondlabel)
         
         
-        let speedLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width / 3, height: view.frame.height / 4))
-        speedLabel.center = CGPoint(x: view.frame.width - (view.frame.width / 6), y: view.frame.height / 1.5)
-        speedLabel.textAlignment = .center
-        speedLabel.textColor = .black
-        speedLabel.backgroundColor = .white
-        speedLabel.text = "時速"
-        view.addSubview(speedLabel)
+        let second = resultView(frame: CGRect(x: AppSize.width + 15 , y: secondlabel.frame.maxY, width: AppSize.width - 30, height: AppSize.height / 2.5))
+        second.setValueToResultView(dateTime: latestData[1].date,
+                                   timeValue: latestData[1].time,
+                                   distance: latestData[1].distance,
+                                   speed: latestData[1].speed,
+                                   calorie: latestData[1].calorie
+        )
+        scrollView.addSubview(second)
         
-        let speedValue = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width / 3, height: view.frame.height / 4))
-        speedValue.center = CGPoint(x: view.frame.width - (view.frame.width / 6), y: speedLabel.frame.maxY + 10 )
-        speedValue.textAlignment = .center
-        speedValue.textColor = .black
-        speedValue.backgroundColor = .white
-        speedValue.text = speed
-        view.addSubview(speedValue)
+
+        let thirdlabel = UILabel(frame: CGRect(x: 0,
+                                               y: 0,
+                                               width: 200,
+                                               height: 50))
         
-        return view
+        let third = resultView(frame: CGRect(x: (AppSize.width * 2) + 15, y: thirdlabel.frame.maxY, width: AppSize.width - 30, height: AppSize.height / 2.5))
+        third.setValueToResultView(dateTime: latestData[2].date,
+                                   timeValue: latestData[2].time,
+                                   distance: latestData[2].distance,
+                                   speed: latestData[2].speed,
+                                   calorie: latestData[2].calorie
+        )
+        scrollView.addSubview(third)
+        
+        
+        thirdlabel.center = CGPoint(x: (third.frame.maxX - third.frame.width / 2) + thirdlabel.frame.width, y: 25)
+        thirdlabel.text = "third Date"
+        thirdlabel.textColor = .white
+        scrollView.addSubview(thirdlabel)
+        
+        
+        self.addSubview(scrollView)
     }
     
+
     
-    
-    func layout() -> UICollectionView {
+    private func layout() -> UICollectionView {
         let height = UIScreen.main.bounds.size.height
         
         let layout = UICollectionViewFlowLayout()

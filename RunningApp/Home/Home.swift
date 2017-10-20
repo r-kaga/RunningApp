@@ -21,7 +21,6 @@ class Home:
 
 //    var launchView: UIImageView!
     var launchView: UIView!
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,17 +85,7 @@ class Home:
         self.present(sb, animated: true, completion: nil)
  
     }
-    
-    public func reloadPastWorksView() {
 
-        guard let value = UserDefaults.standard.object(forKey: Utility.getNowClockString()) as? [String: String]
-        else { return }
-        
-        let view = self.homeView.getResultView(date: value["date"]!, time:  value["time"]!, speed: value["speed"]!, distance: value["distance"]!)
-        self.view.addSubview(view)
-
-        
-    }
     
 
 }
