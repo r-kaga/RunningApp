@@ -15,6 +15,8 @@ struct AppSize {
     
     static let width = UIScreen.main.bounds.size.width
     
+    static let center = CGPoint(x: AppSize.width / 2, y: AppSize.height / 2)
+    
     static var tabBarHeight: CGFloat { return 49 }
 
     
