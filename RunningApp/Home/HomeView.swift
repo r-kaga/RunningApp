@@ -50,7 +50,7 @@ class HomeView:
     
     private func setUpResultView() {
 
-        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 80, width: AppSize.width, height: AppSize.height / 2.5 + 50))
+        let scrollView = UIScrollView(frame: CGRect(x: 0, y: AppSize.navigationBarHeight + 30, width: AppSize.width, height: AppSize.height / 2.5 + 50))
         scrollView.backgroundColor = UIColor.black
         scrollView.contentSize = CGSize(width: AppSize.width * 3, height: AppSize.height / 2.8 + 50) // 中身の大きさを設定
         
@@ -66,12 +66,13 @@ class HomeView:
         let latestData = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
     
         
-        let Latestlabel = UILabel(frame: CGRect(x: AppSize.width / 2 - 50,
+        let Latestlabel = UILabel(frame: CGRect(x: AppSize.width / 2 - 100,
                                           y: 0,
                                           width: 200,
                                           height: 50))
         Latestlabel.text = "Latest Date"
         Latestlabel.textColor = .white
+        Latestlabel.textAlignment = .center
         scrollView.addSubview(Latestlabel)
         
         let view = resultView(frame: CGRect(x: 15, y: Latestlabel.frame.maxY, width: AppSize.width - 30, height: AppSize.height / 2.5))
@@ -88,10 +89,7 @@ class HomeView:
                                                 y: 0,
                                                 width: 200,
                                                 height: 50))
-        secondlabel.text = "Seconde Date"
-        secondlabel.textColor = .white
-        scrollView.addSubview(secondlabel)
-        
+
         
         let second = resultView(frame: CGRect(x: AppSize.width + 15 , y: secondlabel.frame.maxY, width: AppSize.width - 30, height: AppSize.height / 2.5))
         second.setValueToResultView(dateTime: latestData[1].date,
@@ -101,6 +99,12 @@ class HomeView:
                                    calorie: latestData[1].calorie
         )
         scrollView.addSubview(second)
+        
+        secondlabel.center = CGPoint(x: (second.frame.maxX - second.frame.width / 2), y: 25)
+        secondlabel.text = "Seconde Date"
+        secondlabel.textColor = .white
+        secondlabel.textAlignment = .center
+        scrollView.addSubview(secondlabel)
         
 
         let thirdlabel = UILabel(frame: CGRect(x: 0,
@@ -118,9 +122,10 @@ class HomeView:
         scrollView.addSubview(third)
         
         
-        thirdlabel.center = CGPoint(x: (third.frame.maxX - third.frame.width / 2) + thirdlabel.frame.width, y: 25)
+        thirdlabel.center = CGPoint(x: (third.frame.maxX - third.frame.width / 2), y: 25)
         thirdlabel.text = "third Date"
         thirdlabel.textColor = .white
+        thirdlabel.textAlignment = .center
         scrollView.addSubview(thirdlabel)
         
         
@@ -133,7 +138,7 @@ class HomeView:
         let height = UIScreen.main.bounds.size.height
         
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: (HomeView.width / 2), height: HomeView.height / 4)
+        layout.itemSize = CGSize(width: (HomeView.width / 2), height: HomeView.height / 5)
         layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
         layout.minimumLineSpacing = 1.0
         layout.minimumInteritemSpacing = 1.0
