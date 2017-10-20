@@ -245,10 +245,8 @@ class WorkController: UIViewController {
 
             for vc in vc {
                 if let view = vc as? Home {
-                    view.reloadPastWorksView()
                 }
             }
-//            vc.reloadPastWorksView()
 //            presentingViewController?.loadView()
 //            presentingViewController?.viewDidLoad()
             Utility.showCompleteDialog()
