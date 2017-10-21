@@ -14,14 +14,11 @@ protocol SettingDelegate: class {
     func reload()
 }
 
-
 extension SettingController: SettingDelegate {
     func reload() {
         self.tableView.reloadData()
     }
 }
-
-
 
 
 class SettingController: UIViewController, UITableViewDelegate {
@@ -42,6 +39,7 @@ class SettingController: UIViewController, UITableViewDelegate {
         
         navigationItem.title = "Setting"
         
+
         tableView = UITableView(frame: self.view.frame, style: .grouped)
 		tableView.backgroundColor = .black
         tableView.bounces = false
