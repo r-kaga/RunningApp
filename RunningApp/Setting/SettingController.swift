@@ -48,6 +48,11 @@ class SettingController: UIViewController, UITableViewDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorColor = .black
+        tableView.register(UINib(nibName: "SettingCell", bundle: nil), forCellReuseIdentifier: "cell")
+        tableView.estimatedRowHeight = 60
+        tableView.rowHeight = 60
+//        tableView.rowHeight = UITableViewAutomaticDimension
+        
         self.view.addSubview(tableView)
         
     }
@@ -99,21 +104,22 @@ extension SettingController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
-        cell.textLabel?.text = self.TableTitle[indexPath.section][indexPath.row + 1]
+//        let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell") as! SettingCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! SettingCell
+        cell.frame = CGRect(x: 0, y: 0, width: AppSize.width, height: 60)
+
+        cell.titleLabel.text = self.TableTitle[indexPath.section][indexPath.row + 1]
+        cell.descriptionLabel.text = "設定項目の説明が入ります"
         
         if let value = UserDefaults.standard.string(forKey: self.TableTitle[indexPath.section][indexPath.row + 1]) {
-            
             cell.detailTextLabel?.text = value + TableUnit[indexPath.section][indexPath.row + 1]
+            cell.settingValueLabel.text = value + TableUnit[indexPath.section][indexPath.row + 1]
         
             if Const.PUSH_TIME == self.TableTitle[indexPath.section][indexPath.row + 1] {
                 Utility.setLocalPushTime(setTime: Int(value)!)
             }
         }
-        
-        cell.backgroundColor = .black
-        cell.detailTextLabel?.textColor = .white
-        cell.textLabel?.textColor = .white
+//        cell.backgroundColor = .black
         
         return cell
     }
