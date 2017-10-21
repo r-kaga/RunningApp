@@ -107,7 +107,7 @@ extension Home: UICollectionViewDelegate, UICollectionViewDataSource {
      */
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell : HomeCustomCell = collectionView.dequeueReusableCell(
+        let cell: HomeCustomCell = collectionView.dequeueReusableCell(
             withReuseIdentifier: "MyCell",
             for: indexPath) as! HomeCustomCell
         
