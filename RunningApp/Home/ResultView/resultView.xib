@@ -30,9 +30,9 @@
                         <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Pk-UL-IwD">
                             <rect key="frame" x="0.0" y="0.0" width="485" height="83.5"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日付" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EhU-dg-D6l">
-                                    <rect key="frame" x="30" y="15" width="43" height="43.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="終了時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EhU-dg-D6l">
+                                    <rect key="frame" x="20" y="15" width="77.5" height="43.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -49,7 +49,7 @@
                                 <constraint firstAttribute="bottom" secondItem="EhU-dg-D6l" secondAttribute="bottom" constant="25" id="J7j-vp-8au"/>
                                 <constraint firstAttribute="trailing" secondItem="BkV-Xq-tBx" secondAttribute="trailing" constant="30" id="JYu-f1-BbT"/>
                                 <constraint firstItem="EhU-dg-D6l" firstAttribute="top" secondItem="6Pk-UL-IwD" secondAttribute="top" constant="15" id="axZ-mF-zl2"/>
-                                <constraint firstItem="EhU-dg-D6l" firstAttribute="leading" secondItem="6Pk-UL-IwD" secondAttribute="leading" constant="30" id="wRt-Fh-AL6"/>
+                                <constraint firstItem="EhU-dg-D6l" firstAttribute="leading" secondItem="6Pk-UL-IwD" secondAttribute="leading" constant="20" id="wRt-Fh-AL6"/>
                                 <constraint firstItem="BkV-Xq-tBx" firstAttribute="top" secondItem="6Pk-UL-IwD" secondAttribute="top" constant="15" id="wVC-h6-auO"/>
                             </constraints>
                         </view>
