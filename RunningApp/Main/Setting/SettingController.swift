@@ -51,6 +51,11 @@ class SettingController: UIViewController, UITableViewDelegate {
         tableView.register(UINib(nibName: "SettingCell", bundle: nil), forCellReuseIdentifier: "cell")
         tableView.estimatedRowHeight = 60
         tableView.rowHeight = 60
+        tableView.sectionIndexColor = .black
+        
+        /* cellの上下に出来る横線を消す。高さがゼロのUIViewで上書き */
+//        tableView.tableFooterView = UIView()
+        
 //        tableView.rowHeight = UITableViewAutomaticDimension
         
         self.view.addSubview(tableView)
@@ -119,8 +124,11 @@ extension SettingController: UITableViewDataSource {
                 Utility.setLocalPushTime(setTime: Int(value)!)
             }
         }
-//        cell.backgroundColor = .black
+        cell.backgroundColor = .black
         
+        /* セレクトされた時に何もしない */
+        cell.selectionStyle = .none
+
         return cell
     }
     
@@ -131,7 +139,7 @@ extension SettingController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: false)
         self.presentSettingForm(path: indexPath.row)
     }
 

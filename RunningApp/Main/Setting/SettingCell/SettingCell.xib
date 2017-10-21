@@ -12,15 +12,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="61" id="SmE-3D-MGA" customClass="SettingCell" customModule="RunningApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="354" height="61"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="65" id="SmE-3D-MGA" customClass="SettingCell" customModule="RunningApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="367" height="65"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SmE-3D-MGA" id="Q3N-3B-drU">
-                <rect key="frame" x="0.0" y="0.0" width="354" height="60.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="367" height="64.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="file" translatesAutoresizingMaskIntoConstraints="NO" id="mCj-UV-GMt">
-                        <rect key="frame" x="5" y="10" width="40" height="40.5"/>
+                        <rect key="frame" x="5" y="10" width="40" height="44.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="eht-NK-mf2"/>
                         </constraints>
@@ -38,7 +38,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDn-UV-q1u">
-                        <rect key="frame" x="288.5" y="21" width="37.5" height="18"/>
+                        <rect key="frame" x="301.5" y="23.5" width="37.5" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -58,13 +58,14 @@
                     <constraint firstAttribute="bottom" secondItem="mCj-UV-GMt" secondAttribute="bottom" constant="10" id="tDS-U4-uBT"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="descriptionLabel" destination="6jU-s3-Ggn" id="BbS-cH-cZQ"/>
                 <outlet property="imageCell" destination="mCj-UV-GMt" id="Rjf-R7-5pg"/>
                 <outlet property="settingValueLabel" destination="xDn-UV-q1u" id="tfW-Db-6i1"/>
                 <outlet property="titleLabel" destination="WES-py-DFp" id="Bu3-Yj-07i"/>
             </connections>
-            <point key="canvasLocation" x="-342" y="19.5"/>
+            <point key="canvasLocation" x="-348.5" y="21.5"/>
         </tableViewCell>
     </objects>
     <resources>

@@ -46,7 +46,6 @@
 		E380AB361F23735F0034EA8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E380AB341F23735F0034EA8F /* Main.storyboard */; };
 		E380AB381F23735F0034EA8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E380AB371F23735F0034EA8F /* Assets.xcassets */; };
 		E380AB3B1F23735F0034EA8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E380AB391F23735F0034EA8F /* LaunchScreen.storyboard */; };
-		E380AB701F2373E70034EA8F /* MaterialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E380AB6E1F2373E70034EA8F /* MaterialViewController.swift */; };
 		E3894FCC1F8CF1FD000313CC /* SettingFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3894FCB1F8CF1FD000313CC /* SettingFormView.swift */; };
 		E3894FCF1F8CF62A000313CC /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3894FCE1F8CF62A000313CC /* UIButton+.swift */; };
 		E38F7FAB1F9AF3ED0036CEE0 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38F7FAA1F9AF3ED0036CEE0 /* SettingCell.swift */; };
@@ -103,7 +102,6 @@
 		E380AB371F23735F0034EA8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E380AB3A1F23735F0034EA8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E380AB3C1F23735F0034EA8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E380AB6E1F2373E70034EA8F /* MaterialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialViewController.swift; sourceTree = "<group>"; };
 		E3894FCB1F8CF1FD000313CC /* SettingFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFormView.swift; sourceTree = "<group>"; };
 		E3894FCE1F8CF62A000313CC /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		E38F7FAA1F9AF3ED0036CEE0 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
@@ -150,10 +148,9 @@
 		E3031D011F80E041002C5739 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				E38F7FAE1F9B0B310036CEE0 /* SettingCell */,
 				E328FB801F866FEC00E1D4BC /* SettingForm */,
 				E3031D021F80E05A002C5739 /* SettingController.swift */,
-				E38F7FAA1F9AF3ED0036CEE0 /* SettingCell.swift */,
-				E38F7FAC1F9AF4CA0036CEE0 /* SettingCell.xib */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -283,23 +280,17 @@
 		E380AB2F1F23735F0034EA8F /* RunningApp */ = {
 			isa = PBXGroup;
 			children = (
-				E365A13B1F9255E00008D475 /* Dialog */,
-				E3762A741F8FA1F100B0B501 /* Service */,
-				E361060E1F243225004F56EC /* Home */,
-				E36106111F243225004F56EC /* MyPage */,
-				E35377631F25975A00A5D6FB /* News */,
+				E38F7FAF1F9B0B460036CEE0 /* Main */,
+				E38F7FB11F9B0BF00036CEE0 /* Realm */,
 				E341882B1F793D5E000AB961 /* Resources */,
-				E3031D011F80E041002C5739 /* Setting */,
-				E3F4032C1F88C6CF0073DC45 /* Work */,
+				E3762A741F8FA1F100B0B501 /* Service */,
+				E38F7FB01F9B0BBF0036CEE0 /* ViewParts */,
 				E380AB301F23735F0034EA8F /* AppDelegate.swift */,
 				E34188351F794AE6000AB961 /* AppSize.swift */,
 				E3034EA31F87BFBF00FCB026 /* Const.swift */,
 				E380AB3C1F23735F0034EA8F /* Info.plist */,
 				E380AB391F23735F0034EA8F /* LaunchScreen.storyboard */,
 				E380AB341F23735F0034EA8F /* Main.storyboard */,
-				E341882D1F794073000AB961 /* MainTabBarController.swift */,
-				E380AB6E1F2373E70034EA8F /* MaterialViewController.swift */,
-				E36913001F97624500A9B19C /* RealmDataSet.swift */,
 			);
 			path = RunningApp;
 			sourceTree = "<group>";
@@ -321,14 +312,52 @@
 			path = ResultView;
 			sourceTree = "<group>";
 		};
+		E38F7FAE1F9B0B310036CEE0 /* SettingCell */ = {
+			isa = PBXGroup;
+			children = (
+				E38F7FAA1F9AF3ED0036CEE0 /* SettingCell.swift */,
+				E38F7FAC1F9AF4CA0036CEE0 /* SettingCell.xib */,
+			);
+			path = SettingCell;
+			sourceTree = "<group>";
+		};
+		E38F7FAF1F9B0B460036CEE0 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				E361060E1F243225004F56EC /* Home */,
+				E36106111F243225004F56EC /* MyPage */,
+				E35377631F25975A00A5D6FB /* News */,
+				E3031D011F80E041002C5739 /* Setting */,
+				E3F4032C1F88C6CF0073DC45 /* Work */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		E38F7FB01F9B0BBF0036CEE0 /* ViewParts */ = {
+			isa = PBXGroup;
+			children = (
+				E365A13B1F9255E00008D475 /* Dialog */,
+				E341882D1F794073000AB961 /* MainTabBarController.swift */,
+			);
+			path = ViewParts;
+			sourceTree = "<group>";
+		};
+		E38F7FB11F9B0BF00036CEE0 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				E36913001F97624500A9B19C /* RealmDataSet.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
 		E3F4032C1F88C6CF0073DC45 /* Work */ = {
 			isa = PBXGroup;
 			children = (
-				E34188371F794E5B000AB961 /* WorkController.swift */,
-				E341883A1F795520000AB961 /* WorkController.storyboard */,
 				E3F4032D1F88C6EC0073DC45 /* DismissAnimator.swift.swift */,
 				E39594021F30C574004AEB27 /* Interactor.swift */,
 				E30AE0471F8A4FF7002FEFAA /* ModalNavigationController.swift */,
+				E341883A1F795520000AB961 /* WorkController.storyboard */,
+				E34188371F794E5B000AB961 /* WorkController.swift */,
 			);
 			path = Work;
 			sourceTree = "<group>";
@@ -488,7 +517,6 @@
 				E3CA14EC1F5D98C90053468D /* HomeCustomCell.swift in Sources */,
 				E3CA14EA1F5D963E0053468D /* HomeView.swift in Sources */,
 				E34188361F794AE6000AB961 /* AppSize.swift in Sources */,
-				E380AB701F2373E70034EA8F /* MaterialViewController.swift in Sources */,
 				E3894FCF1F8CF62A000313CC /* UIButton+.swift in Sources */,
 				E39594071F30C574004AEB27 /* Interactor.swift in Sources */,
 				E365A13A1F9255C50008D475 /* CompleteDialog.swift in Sources */,
