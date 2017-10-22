@@ -186,7 +186,6 @@
 		E361060E1F243225004F56EC /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				E38F7FA91F9AF3C40036CEE0 /* ResultView */,
 				E361060F1F243225004F56EC /* Home.swift */,
 				E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */,
 				E3CA14E71F5D91B00053468D /* HomeModel.swift */,
@@ -337,6 +336,7 @@
 		E38F7FB01F9B0BBF0036CEE0 /* ViewParts */ = {
 			isa = PBXGroup;
 			children = (
+				E38F7FA91F9AF3C40036CEE0 /* ResultView */,
 				E365A13B1F9255E00008D475 /* Dialog */,
 			);
 			path = ViewParts;
