@@ -90,6 +90,33 @@ class SettingController: UIViewController, UITableViewDelegate {
 
     }
     
+    
+    
+    
+    
+    
+    
+    
+    /*
+     * 各indexPathのcellがハイライトされた際に呼ばれます．
+     * あるcellがタップされた際は，didHighlight → didUnhighlight → willSelect → didSelectの順に呼び出されます．
+     * さらにその状態で別のcellがタップされた際は，didHighlight → didUnhighlight → willSelect → willDeselect → didDeselect → didSelectの順に呼び出されます．
+     */
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.contentView.touchStartAnimation()
+    }
+    
+    /*
+     * 各indexPathのcellがアンハイライトされた際に呼ばれます．
+     * 基本的にtableView(_:didHighlightRowAt:)が呼ばれた直後に呼ばれます．
+     */
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.contentView.touchEndAnimation()
+    }
+
+
+   
+    
 }
 
 
