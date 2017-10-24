@@ -49,10 +49,11 @@ class HomeView:
     
     
     private func setUpResultView() {
+        
 
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: AppSize.navigationBarHeight + 30, width: AppSize.width, height: AppSize.height / 2.5 + 50))
         scrollView.backgroundColor = UIColor.black
-        scrollView.contentSize = CGSize(width: AppSize.width * 3, height: AppSize.height / 2.8 + 50) // 中身の大きさを設定
+        scrollView.contentSize = CGSize(width: AppSize.width, height: AppSize.height / 2.8 + 50) // 中身の大きさを設定
         
         scrollView.isPagingEnabled = true
         scrollView.bounces = false
@@ -61,6 +62,10 @@ class HomeView:
         //        scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         scrollView.delegate = self
         
+        defer {
+            self.addSubview(scrollView)
+        }
+
 
         let realm = try! Realm()
         let latestData = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
@@ -106,6 +111,8 @@ class HomeView:
         secondlabel.text = "Seconde Date"
         secondlabel.textColor = .white
         secondlabel.textAlignment = .center
+        
+        scrollView.contentSize.width = AppSize.width
         scrollView.addSubview(secondlabel)
         
 
@@ -122,6 +129,8 @@ class HomeView:
                                    speed: latestData[2].speed,
                                    calorie: latestData[2].calorie
         )
+        
+        scrollView.contentSize.width = AppSize.width
         scrollView.addSubview(third)
         
         
@@ -131,8 +140,6 @@ class HomeView:
         thirdlabel.textAlignment = .center
         scrollView.addSubview(thirdlabel)
 
-        
-        self.addSubview(scrollView)
     }
     
 
