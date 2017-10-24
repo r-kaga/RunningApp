@@ -64,8 +64,9 @@ class HomeView:
 
         let realm = try! Realm()
         let latestData = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
-    
         
+        guard !latestData.isEmpty else { return }
+
         let Latestlabel = UILabel(frame: CGRect(x: AppSize.width / 2 - 100,
                                           y: 0,
                                           width: 200,
@@ -84,19 +85,20 @@ class HomeView:
         )
         scrollView.addSubview(view)
 
+        guard latestData.count >= 2 else { return }
         
         let secondlabel = UILabel(frame: CGRect(x: (AppSize.width + AppSize.width / 2) - 50,
                                                 y: 0,
                                                 width: 200,
                                                 height: 50))
-
+        
         
         let second = resultView(frame: CGRect(x: AppSize.width + 15 , y: secondlabel.frame.maxY, width: AppSize.width - 30, height: AppSize.height / 2.5))
         second.setValueToResultView(dateTime: latestData[1].date,
-                                   timeValue: latestData[1].time,
-                                   distance: latestData[1].distance,
-                                   speed: latestData[1].speed,
-                                   calorie: latestData[1].calorie
+                                    timeValue: latestData[1].time,
+                                    distance: latestData[1].distance,
+                                    speed: latestData[1].speed,
+                                    calorie: latestData[1].calorie
         )
         scrollView.addSubview(second)
         
@@ -107,6 +109,7 @@ class HomeView:
         scrollView.addSubview(secondlabel)
         
 
+        guard latestData.count >= 3 else { return }
         let thirdlabel = UILabel(frame: CGRect(x: 0,
                                                y: 0,
                                                width: 200,
@@ -127,7 +130,7 @@ class HomeView:
         thirdlabel.textColor = .white
         thirdlabel.textAlignment = .center
         scrollView.addSubview(thirdlabel)
-        
+
         
         self.addSubview(scrollView)
     }

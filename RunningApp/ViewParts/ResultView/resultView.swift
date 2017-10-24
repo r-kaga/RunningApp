@@ -22,6 +22,7 @@ class resultView: UIView {
     
     @IBOutlet weak var calorieValueLabel: UILabel!
     
+    
     /** イニシャライザー
      */
     override init(frame: CGRect) {
@@ -29,9 +30,7 @@ class resultView: UIView {
         
         self.layer.cornerRadius = 10.0
         self.clipsToBounds = true
-        
-        
-        
+
         self.loadFromNib()
     }
     
@@ -67,6 +66,7 @@ class resultView: UIView {
             views: ["view" : view]
         )
         self.addConstraints(constraints2)
+        
     }
     
 
@@ -99,4 +99,15 @@ class resultView: UIView {
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+
 

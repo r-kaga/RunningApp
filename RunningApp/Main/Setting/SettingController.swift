@@ -114,8 +114,6 @@ class SettingController: UIViewController, UITableViewDelegate {
         tableView.cellForRow(at: indexPath)?.contentView.touchEndAnimation()
     }
 
-
-   
     
 }
 

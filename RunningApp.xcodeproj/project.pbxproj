@@ -19,6 +19,8 @@
 		E341883B1F795520000AB961 /* WorkController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E341883A1F795520000AB961 /* WorkController.storyboard */; };
 		E353776A1F2597D100A5D6FB /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35377681F2597D100A5D6FB /* News.swift */; };
 		E35580151F8B2347000CE75E /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35580141F8B2347000CE75E /* Utility.swift */; };
+		E355F1961F9F7ADD00509CA1 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355F1951F9F7ADD00509CA1 /* UIViewController+.swift */; };
+		E355F1981F9F7ED300509CA1 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355F1971F9F7ED300509CA1 /* UIView+.swift */; };
 		E36106171F243225004F56EC /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = E361060F1F243225004F56EC /* Home.swift */; };
 		E36106191F243225004F56EC /* MyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36106121F243225004F56EC /* MyPage.swift */; };
 		E361062A1F24322C004F56EC /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E361061D1F24322C004F56EC /* 0.jpg */; };
@@ -74,6 +76,8 @@
 		E341883A1F795520000AB961 /* WorkController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WorkController.storyboard; sourceTree = "<group>"; };
 		E35377681F2597D100A5D6FB /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		E35580141F8B2347000CE75E /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		E355F1951F9F7ADD00509CA1 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		E355F1971F9F7ED300509CA1 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		E361060F1F243225004F56EC /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		E36106121F243225004F56EC /* MyPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPage.swift; sourceTree = "<group>"; };
 		E361061D1F24322C004F56EC /* 0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 0.jpg; sourceTree = "<group>"; };
@@ -302,6 +306,8 @@
 			children = (
 				E3894FCE1F8CF62A000313CC /* UIButton+.swift */,
 				E3FE60C21F9CE3FB0080E378 /* Animation+.swift */,
+				E355F1951F9F7ADD00509CA1 /* UIViewController+.swift */,
+				E355F1971F9F7ED300509CA1 /* UIView+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -519,6 +525,7 @@
 				E3031D031F80E05A002C5739 /* SettingController.swift in Sources */,
 				E3CA14EC1F5D98C90053468D /* HomeCustomCell.swift in Sources */,
 				E3CA14EA1F5D963E0053468D /* HomeView.swift in Sources */,
+				E355F1961F9F7ADD00509CA1 /* UIViewController+.swift in Sources */,
 				E34188361F794AE6000AB961 /* AppSize.swift in Sources */,
 				E3894FCF1F8CF62A000313CC /* UIButton+.swift in Sources */,
 				E39594071F30C574004AEB27 /* Interactor.swift in Sources */,
@@ -529,6 +536,7 @@
 				E3637D351F25DF5700C615D4 /* ContentReaderController.swift in Sources */,
 				E36106191F243225004F56EC /* MyPage.swift in Sources */,
 				E3FE60C31F9CE3FB0080E378 /* Animation+.swift in Sources */,
+				E355F1981F9F7ED300509CA1 /* UIView+.swift in Sources */,
 				E36106171F243225004F56EC /* Home.swift in Sources */,
 				E353776A1F2597D100A5D6FB /* News.swift in Sources */,
 				E3CA14E81F5D91B00053468D /* HomeModel.swift in Sources */,
@@ -682,7 +690,7 @@
 				DEVELOPMENT_TEAM = 8S39MY764C;
 				INFOPLIST_FILE = RunningApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ryokagaya.RunningApps;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryokagaya.Running;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -700,7 +708,7 @@
 				DEVELOPMENT_TEAM = 8S39MY764C;
 				INFOPLIST_FILE = RunningApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ryokagaya.RunningApps;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryokagaya.Running;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;

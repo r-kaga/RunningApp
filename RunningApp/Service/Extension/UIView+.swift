@@ -7,3 +7,22 @@
 //
 
 import Foundation
+import UIKit
+
+
+extension UIView {
+    
+    var closeButton: UIButton {
+        let closeButton = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        return closeButton
+    }
+    
+    func setCloseButton() -> UIButton {
+        closeButton.center = CGPoint(x: self.frame.maxX, y: self.frame.minY)
+        closeButton.setTitle("☓", for: .normal)
+        closeButton.setTitleColor(.white, for: .normal)
+        return closeButton
+    }
+
+    
+}
