@@ -19,8 +19,8 @@ class Home:
 
     let interactor = Interactor()
 
-    var launchView: UIView!
-    var imageView: UIImageView!
+//    var launchView: UIView!
+//    var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,48 +28,51 @@ class Home:
         navigationItem.title = "Home"
         
         homeView = HomeView(controller: self)
+        self.view = self.homeView
         
-        self.launchView = UIView(frame: self.view.frame)
-        self.launchView.backgroundColor = .black
-        
-        imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        imageView.image = UIImage(named: "directionsRun")!
-        imageView.center = self.view.center
-        imageView.contentMode = .scaleAspectFit
-        self.launchView.addSubview(imageView)
-
-        self.view.addSubview(self.launchView)
+//        self.launchView = UIView(frame: self.view.frame)
+//        self.launchView.backgroundColor = .black
+//
+//        imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
+//        imageView.image = UIImage(named: "directionsRun")!
+//        imageView.center = self.view.center
+//        imageView.contentMode = .scaleAspectFit
+//
+//        self.launchView.addSubview(imageView)
+//
+//        self.view.addSubview(self.launchView)
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        //少し縮小するアニメーション
-        UIView.animate(withDuration: 1.2, delay: 0.5, options: .curveEaseOut, animations: {
-//            self.launchView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-            self.imageView.frame.origin.x = self.view.frame.maxX
-        }, completion: { _ in
-            
-            UIView.animate(withDuration: 1.0, animations: {
-                self.imageView.frame.origin.x -= self.view.frame.width / 4
-            }, completion: { _ in
-                
-                //拡大させて、消えるアニメーション
-                UIView.animate(withDuration: 0.5, delay: 0.3, options: .curveEaseOut, animations: {
-                    self.imageView.frame.origin.x = self.view.frame.midX
-//                    self.launchView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-//                    self.launchView.alpha = 0
-                }, completion: { _ in
-                    self.launchView.removeFromSuperview()
-                    self.view = self.homeView
-                })
-                
-            })
+//        //少し縮小するアニメーション
+//        UIView.animate(withDuration: 1.2, delay: 0.5, options: .curveEaseOut, animations: {
+////            self.launchView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+//            self.imageView.frame.origin.x = self.view.frame.maxX
+//        }, completion: { _ in
+//
+//            UIView.animate(withDuration: 1.0, animations: {
+//                self.imageView.frame.origin.x -= self.view.frame.width / 4
+//            }, completion: { _ in
+//
+//                self.launchView.removeFromSuperview()
+//                self.view = self.homeView
+//
+////                //拡大させて、消えるアニメーション
+////                UIView.animate(withDuration: 0.5, delay: 0.3, options: .curveEaseOut, animations: {
+//////                    self.imageView.frame.origin.x = self.view.frame.midX
+//////                    self.launchView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+//////                    self.launchView.alpha = 0
+////                }, completion: { _ in
+//////                    self.launchView.removeFromSuperview()
+//////                    self.view = self.homeView
+////                })
+//
+//            })
 
-
-
-        })
+//        })
         
 
 //            guard UserDefaults.standard.object(forKey: "isInitialLogin") == nil else { return }
