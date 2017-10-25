@@ -240,17 +240,8 @@ class WorkController: UIViewController {
             }
             self.mapView.removeFromSuperview()
             //            self.mapView = nil
-            
-            guard let vc = presentingViewController?.childViewControllers else { return }
-
-            for vc in vc {
-                if let view = vc as? Home {
-                }
-            }
-//            presentingViewController?.loadView()
-//            presentingViewController?.viewDidLoad()
+            print(presentingViewController ?? "presentingViewController")
             Utility.showCompleteDialog()
-
         })
 
     }
@@ -437,8 +428,7 @@ extension WorkController: CLLocationManagerDelegate {
         // 配列から現在座標を取得.
         guard let location: CLLocation = locations.last else { return }
         
-//       guard self.previousPoint != nil {
-        guard let previous = self.previousPoint else {
+        guard let _ = self.previousPoint else {
             let distance = self.firstPoint.distance(from: location)
             self.totalDistance += floor(distance)
             self.previousPoint = location

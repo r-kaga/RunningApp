@@ -118,7 +118,7 @@ extension DialogProtocol where Self: UIView {
             var animation: CABasicAnimation
             animation = CABasicAnimation(keyPath: "transform.rotation")
             animation.duration = 0.1
-            animation.fromValue = amount * Float(M_PI) / 180.0
+            animation.fromValue = amount * Float(Double.pi) / 180.0
             animation.toValue = 0 - (animation.fromValue as! Float)
             animation.repeatCount = 1.0
             animation.autoreverses = true

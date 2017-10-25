@@ -218,11 +218,11 @@
 				E38F7FB01F9B0BBF0036CEE0 /* ViewParts */,
 				E380AB301F23735F0034EA8F /* AppDelegate.swift */,
 				E34188351F794AE6000AB961 /* AppSize.swift */,
-				E341882D1F794073000AB961 /* MainTabBarController.swift */,
 				E3034EA31F87BFBF00FCB026 /* Const.swift */,
 				E380AB3C1F23735F0034EA8F /* Info.plist */,
 				E380AB391F23735F0034EA8F /* LaunchScreen.storyboard */,
 				E380AB341F23735F0034EA8F /* Main.storyboard */,
+				E341882D1F794073000AB961 /* MainTabBarController.swift */,
 			);
 			path = RunningApp;
 			sourceTree = "<group>";
@@ -230,10 +230,10 @@
 		E3894FCD1F8CF607000313CC /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				E3894FCE1F8CF62A000313CC /* UIButton+.swift */,
 				E3FE60C21F9CE3FB0080E378 /* Animation+.swift */,
-				E355F1951F9F7ADD00509CA1 /* UIViewController+.swift */,
+				E3894FCE1F8CF62A000313CC /* UIButton+.swift */,
 				E355F1971F9F7ED300509CA1 /* UIView+.swift */,
+				E355F1951F9F7ADD00509CA1 /* UIViewController+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -270,8 +270,8 @@
 		E38F7FB01F9B0BBF0036CEE0 /* ViewParts */ = {
 			isa = PBXGroup;
 			children = (
-				E38F7FA91F9AF3C40036CEE0 /* ResultView */,
 				E365A13B1F9255E00008D475 /* Dialog */,
+				E38F7FA91F9AF3C40036CEE0 /* ResultView */,
 			);
 			path = ViewParts;
 			sourceTree = "<group>";
