@@ -45,7 +45,6 @@
 		E380AB361F23735F0034EA8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E380AB341F23735F0034EA8F /* Main.storyboard */; };
 		E380AB381F23735F0034EA8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E380AB371F23735F0034EA8F /* Assets.xcassets */; };
 		E380AB3B1F23735F0034EA8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E380AB391F23735F0034EA8F /* LaunchScreen.storyboard */; };
-		E3894FCC1F8CF1FD000313CC /* SettingFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3894FCB1F8CF1FD000313CC /* SettingFormView.swift */; };
 		E3894FCF1F8CF62A000313CC /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3894FCE1F8CF62A000313CC /* UIButton+.swift */; };
 		E38F7FAB1F9AF3ED0036CEE0 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38F7FAA1F9AF3ED0036CEE0 /* SettingCell.swift */; };
 		E38F7FAD1F9AF4CA0036CEE0 /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E38F7FAC1F9AF4CA0036CEE0 /* SettingCell.xib */; };
@@ -101,7 +100,6 @@
 		E380AB371F23735F0034EA8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E380AB3A1F23735F0034EA8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E380AB3C1F23735F0034EA8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E3894FCB1F8CF1FD000313CC /* SettingFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFormView.swift; sourceTree = "<group>"; };
 		E3894FCE1F8CF62A000313CC /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		E38F7FAA1F9AF3ED0036CEE0 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		E38F7FAC1F9AF4CA0036CEE0 /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
@@ -160,7 +158,6 @@
 			children = (
 				E33802951F852AD1007EB199 /* SettingForm.storyboard */,
 				E33802931F852A76007EB199 /* SettingForm.swift */,
-				E3894FCB1F8CF1FD000313CC /* SettingFormView.swift */,
 			);
 			path = SettingForm;
 			sourceTree = "<group>";
@@ -516,7 +513,6 @@
 				E341882E1F794073000AB961 /* MainTabBarController.swift in Sources */,
 				E38F7FAB1F9AF3ED0036CEE0 /* SettingCell.swift in Sources */,
 				E33802941F852A76007EB199 /* SettingForm.swift in Sources */,
-				E3894FCC1F8CF1FD000313CC /* SettingFormView.swift in Sources */,
 				E36912FD1F9370EB00A9B19C /* resultView.swift in Sources */,
 				E380AB311F23735F0034EA8F /* AppDelegate.swift in Sources */,
 				E3F4032E1F88C6EC0073DC45 /* DismissAnimator.swift.swift in Sources */,

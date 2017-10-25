@@ -63,18 +63,18 @@ class SettingController: UIViewController, UITableViewDelegate {
     
     private func presentSettingForm(path: Int) {
 
-        navigationController?.setNavigationBarHidden(true, animated: false)
+//        navigationController?.setNavigationBarHidden(true, animated: false)
         
-        let blur = UIVisualEffectView(frame: self.view.frame)
-        blur.effect = UIBlurEffect(style: .dark)
-        self.view.addSubview(blur)
-
-        let transion: CATransition = CATransition()
-        transion.duration = 0.3
-        transion.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transion.type = kCATransitionReveal
-        transion.subtype = kCATransitionFromLeft
-        self.view.window?.layer.add(transion, forKey: nil)
+//        let blur = UIVisualEffectView(frame: self.view.frame)
+//        blur.effect = UIBlurEffect(style: .dark)
+//        self.view.addSubview(blur)
+//
+//        let transion: CATransition = CATransition()
+//        transion.duration = 0.3
+//        transion.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+//        transion.type = kCATransitionReveal
+//        transion.subtype = kCATransitionFromLeft
+//        self.view.window?.layer.add(transion, forKey: nil)
         
         guard let type = Const.SettingType(rawValue: path) else { return }
         
@@ -83,7 +83,7 @@ class SettingController: UIViewController, UITableViewDelegate {
         form.delegate = self
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
             self.present(form, animated: true, completion: {
-                blur.removeFromSuperview()
+//                blur.removeFromSuperview()
             })
         })
 //        form.transition(from: <#T##UIViewController#>, to: <#T##UIViewController#>, duration: <#T##TimeInterval#>, options: ., animations: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>, completion: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(Bool) -> Void#>)
