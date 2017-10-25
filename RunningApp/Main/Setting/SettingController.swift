@@ -26,9 +26,9 @@ class SettingController: UIViewController, UITableViewDelegate {
 
      private var headerItem = ["self monitoring"]
     
-    private var tableItem = [ 0 : [ "type": "weight", "unit" : "Kg", "image" : "assignment" ],
-                             1 : [ "type": "height", "unit" : "cm", "image" : "assignment" ],
-                             2 : [ "type": Const.PUSH_TIME, "unit" : "時", "image" : "pushTime" ],
+    private var tableItem = [ 0 : [ "type": "weight", "unit" : "Kg", "image" : "assignment", "descriptino" : "カロリー計算で使用します" ],
+                             1 : [ "type": "height", "unit" : "cm", "image" : "assignment", "descriptino" : "カロリー計算で使用します" ],
+                             2 : [ "type": Const.PUSH_TIME, "unit" : "時", "image" : "pushTime", "descriptino" : "指定した時間にリマインドします"],
     ]
 
     private var tableTitle = [ "weight", "height", Const.PUSH_TIME ]
@@ -174,7 +174,7 @@ extension SettingController: UITableViewDataSource {
         guard let item = self.tableItem[indexPath.row] else { return cell }
         
         cell.titleLabel.text = item["type"]
-        cell.descriptionLabel.text = "設定項目の説明が入ります"
+        cell.descriptionLabel.text = item["descriptino"]
         cell.imageCell.image = UIImage(named: item["image"]!)!
         
         if let value = UserDefaults.standard.string(forKey: item["type"]!) {

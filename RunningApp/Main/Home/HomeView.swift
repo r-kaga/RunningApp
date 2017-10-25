@@ -76,12 +76,12 @@ class HomeView:
     private func setUpResultView() {
 
         let scrollView = UIScrollView(frame: CGRect(x: 0,
-                                                    y: AppSize.height - ( AppSize.height / 5 + AppSize.tabBarHeight) - 220 ,
+                                                    y: AppSize.height - ( AppSize.height / 5 + AppSize.tabBarHeight) - 215 ,
                                                     width: AppSize.width,
-                                                    height: 175 + 50))
+                                                    height: 165 + 50))
         
         scrollView.backgroundColor = UIColor.black
-        scrollView.contentSize = CGSize(width: AppSize.width, height: 175 + 50) // 中身の大きさを設定
+        scrollView.contentSize = CGSize(width: AppSize.width, height: 165 + 50) // 中身の大きさを設定
         
         scrollView.isPagingEnabled = true
         scrollView.bounces = false
@@ -110,7 +110,7 @@ class HomeView:
         scrollView.addSubview(Latestlabel)
         
         
-        let view = resultView(frame: CGRect(x: 15, y: Latestlabel.frame.maxY, width: AppSize.width - 30, height: 175))
+        let view = resultView(frame: CGRect(x: 15, y: Latestlabel.frame.maxY, width: AppSize.width - 30, height: 165))
         view.setValueToResultView(dateTime: latestData[0].date,
                                   timeValue: latestData[0].time,
                                   distance: latestData[0].distance,
@@ -127,7 +127,7 @@ class HomeView:
                                                 height: 30))
 
         
-        let second = resultView(frame: CGRect(x: AppSize.width + 15 , y: secondlabel.frame.maxY, width: AppSize.width - 30, height: 175))
+        let second = resultView(frame: CGRect(x: AppSize.width + 15 , y: secondlabel.frame.maxY, width: AppSize.width - 30, height: 165))
         second.setValueToResultView(dateTime: latestData[1].date,
                                     timeValue: latestData[1].time,
                                     distance: latestData[1].distance,
@@ -154,7 +154,7 @@ class HomeView:
                                                height: 30))
 
         
-        let third = resultView(frame: CGRect(x: (AppSize.width * 2) + 15, y: thirdlabel.frame.maxY, width: AppSize.width - 30, height: 175))
+        let third = resultView(frame: CGRect(x: (AppSize.width * 2) + 15, y: thirdlabel.frame.maxY, width: AppSize.width - 30, height: 165))
         third.setValueToResultView(dateTime: latestData[2].date,
                                    timeValue: latestData[2].time,
                                    distance: latestData[2].distance,
@@ -176,7 +176,6 @@ class HomeView:
 
     
     private func layout() -> UICollectionView {
-        let height = UIScreen.main.bounds.size.height
         
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: (AppSize.width / 2), height: AppSize.height / 5)
@@ -186,9 +185,12 @@ class HomeView:
         layout.scrollDirection = .horizontal
         
         // セクション毎のヘッダーサイズ.
-        layout.headerReferenceSize = CGSize(width: 5, height: height / 5)
+//        layout.headerReferenceSize = CGSize(width: 5, height: AppSize.height / 5)
         
-        collectionView = UICollectionView(frame: CGRect(x: CGFloat(0), y: AppSize.height - ( AppSize.height / 5 + AppSize.tabBarHeight ), width: AppSize.width, height: AppSize.height / 4), collectionViewLayout: layout)
+        collectionView = UICollectionView(frame: CGRect(x: 0,
+                                                        y: AppSize.height - ( layout.itemSize.height + AppSize.tabBarHeight),
+                                                        width: AppSize.width,
+                                                        height: layout.itemSize.height), collectionViewLayout: layout)
         collectionView.register(HomeCustomCell.self, forCellWithReuseIdentifier: "MyCell")
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
