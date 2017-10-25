@@ -35,6 +35,22 @@ extension UIView {
         )
     }
 
+    
+    func shrinkAndZoom() {
+        //少し縮小するアニメーション
+        UIView.animate(withDuration: 0.3, delay: 1.0, options: .curveEaseOut, animations: {
+            self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        }, completion: { _ in
+            //拡大させて、消えるアニメーション
+            UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseOut, animations: {
+                self.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+                self.alpha = 0
+            }, completion: { _ in
+                self.removeFromSuperview()
+            })
+    
+        })
+    }
   
     
     

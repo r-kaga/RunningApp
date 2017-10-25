@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,18 +20,7 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nick-west" translatesAutoresizingMaskIntoConstraints="NO" id="GlW-vA-40g">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="GlW-vA-40g" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="30x-ez-Xeb"/>
-                            <constraint firstAttribute="trailing" secondItem="GlW-vA-40g" secondAttribute="trailing" id="CnZ-gO-ocu"/>
-                            <constraint firstItem="GlW-vA-40g" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="lGm-rZ-fyw"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="GlW-vA-40g" secondAttribute="bottom" id="wET-Zm-PWr"/>
-                        </constraints>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -39,7 +28,4 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="nick-west" width="8134" height="5562"/>
-    </resources>
 </document>
