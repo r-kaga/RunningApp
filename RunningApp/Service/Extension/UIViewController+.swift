@@ -15,6 +15,18 @@ extension UIViewController {
     
     func longPressed(_ sender: UILongPressGestureRecognizer) {
         sender.view?.touchStartAnimation()
+//        switch sender.state {
+//            case .began:
+//                sender.view?.touchStartAnimation()
+//            case .ended, .cancelled:
+//                sender.view?.touchEndAnimation()
+//            case .changed, .failed, .possible:
+//                break
+//        }        
+    }
+    
+    func tapGesture(_ sender: UITapGestureRecognizer) {
+        sender.view?.touchEndAnimation()
     }
     
     

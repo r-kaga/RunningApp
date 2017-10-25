@@ -18,11 +18,10 @@ class MyPage: UIViewController, UIScrollViewDelegate {
         navigationItem.title = "My Page"
         
         let scrollView = UIScrollView(frame: CGRect(x: 0,
-                                                  y: AppSize.navigationBarHeight + 30,
+                                                  y: AppSize.navigationBarHeight + 75,
                                                   width: AppSize.width,
                                                   height: AppSize.height))
         scrollView.backgroundColor = .black
-//        scrollView.isPagingEnabled = true
         scrollView.bounces = false
         scrollView.showsVerticalScrollIndicator = true
         scrollView.showsHorizontalScrollIndicator = false
@@ -46,8 +45,8 @@ class MyPage: UIViewController, UIScrollViewDelegate {
                                       calorie: value.calorie)
             view.tag = Int(count)
             
-            let closeButton = UIButton(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
-//            closeButton.center = CGPoint(x: view.frame.maxX, y: view.frame.minY)
+            let closeButton = UIButton(frame: CGRect(x: view.frame.maxX - 75, y: view.frame.maxY - 75, width: 150, height: 150))
+            closeButton.center = CGPoint(x: view.frame.maxX - 20, y: view.frame.minY)
 //            closeButton.center = CGPoint(x: view.frame.width - 75, y: 200 * count - 75)
             closeButton.setTitle("☓", for: .normal)
             closeButton.setTitleColor(.red, for: .normal)
@@ -59,12 +58,15 @@ class MyPage: UIViewController, UIScrollViewDelegate {
             let longPress = UILongPressGestureRecognizer(target: self, action: #selector(MyPage.longPressed(_:)))
             view.addGestureRecognizer(longPress)
             
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(MyPage.tapGesture(_:)))
+            view.addGestureRecognizer(tapGesture)
+            
             scrollView.addSubview(view)
             
             count += 1
         }
         
-        scrollView.contentSize = CGSize(width: AppSize.width, height: (205 * count) + 20 ) // 中身の大きさを設定
+        scrollView.contentSize = CGSize(width: AppSize.width, height: (205 * count) + 100 ) // 中身の大きさを設定
         self.view.addSubview(scrollView)
         
     }
