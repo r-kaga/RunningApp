@@ -34,6 +34,7 @@ extension UIViewController {
         
         let view = sender.view as! resultView
         view.deleteButton.isHidden = true
+        view.deleteButton.alpha = 1
     }
     
     
