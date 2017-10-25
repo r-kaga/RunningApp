@@ -119,7 +119,7 @@ class HomeView:
                                     speed: latestData[1].speed,
                                     calorie: latestData[1].calorie
         )
-        second.typeImageView.image = UIImage(named: "directionsWalk")!
+        second.typeImageView.image = UIImage(named: "directionsRun")!
         scrollView.addSubview(second)
         
         secondlabel.text = "Seconde Date"
