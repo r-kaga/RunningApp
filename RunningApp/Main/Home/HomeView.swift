@@ -22,10 +22,6 @@ class HomeView:
     
     var collectionView : UICollectionView!
     
-//    var launchView: UIImageView!
-    
-    static let height = UIScreen.main.bounds.size.height
-    static let width = UIScreen.main.bounds.size.width
     static let AppFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
 
     
@@ -51,9 +47,13 @@ class HomeView:
     private func setUpResultView() {
         
 
-        let scrollView = UIScrollView(frame: CGRect(x: 0, y: AppSize.navigationBarHeight + 30, width: AppSize.width, height: AppSize.height / 2.5 + 50))
+        let scrollView = UIScrollView(frame: CGRect(x: 0,
+                                                    y: AppSize.height - ( AppSize.height / 5 + AppSize.tabBarHeight) - 230 ,
+                                                    width: AppSize.width,
+                                                    height: 175 + 50))
+        
         scrollView.backgroundColor = UIColor.black
-        scrollView.contentSize = CGSize(width: AppSize.width, height: AppSize.height / 2.8 + 50) // 中身の大きさを設定
+        scrollView.contentSize = CGSize(width: AppSize.width, height: 175 + 50) // 中身の大きさを設定
         
         scrollView.isPagingEnabled = true
         scrollView.bounces = false
@@ -75,13 +75,14 @@ class HomeView:
         let Latestlabel = UILabel(frame: CGRect(x: AppSize.width / 2 - 100,
                                           y: 0,
                                           width: 200,
-                                          height: 50))
+                                          height: 40))
         Latestlabel.text = "Latest Date"
         Latestlabel.textColor = .white
         Latestlabel.textAlignment = .center
         scrollView.addSubview(Latestlabel)
         
-        let view = resultView(frame: CGRect(x: 15, y: Latestlabel.frame.maxY, width: AppSize.width - 30, height: AppSize.height / 2.5))
+        
+        let view = resultView(frame: CGRect(x: 15, y: Latestlabel.frame.maxY, width: AppSize.width - 30, height: 175))
         view.setValueToResultView(dateTime: latestData[0].date,
                                   timeValue: latestData[0].time,
                                   distance: latestData[0].distance,
@@ -98,7 +99,7 @@ class HomeView:
                                                 height: 50))
         
         
-        let second = resultView(frame: CGRect(x: AppSize.width + 15 , y: secondlabel.frame.maxY, width: AppSize.width - 30, height: AppSize.height / 2.5))
+        let second = resultView(frame: CGRect(x: AppSize.width + 15 , y: secondlabel.frame.maxY, width: AppSize.width - 30, height: 175))
         second.setValueToResultView(dateTime: latestData[1].date,
                                     timeValue: latestData[1].time,
                                     distance: latestData[1].distance,
@@ -122,7 +123,7 @@ class HomeView:
                                                width: 200,
                                                height: 50))
         
-        let third = resultView(frame: CGRect(x: (AppSize.width * 2) + 15, y: thirdlabel.frame.maxY, width: AppSize.width - 30, height: AppSize.height / 2.5))
+        let third = resultView(frame: CGRect(x: (AppSize.width * 2) + 15, y: thirdlabel.frame.maxY, width: AppSize.width - 30, height: 175))
         third.setValueToResultView(dateTime: latestData[2].date,
                                    timeValue: latestData[2].time,
                                    distance: latestData[2].distance,
@@ -148,16 +149,16 @@ class HomeView:
         let height = UIScreen.main.bounds.size.height
         
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: (HomeView.width / 2), height: HomeView.height / 5)
+        layout.itemSize = CGSize(width: (AppSize.width / 2), height: AppSize.height / 5)
         layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
         layout.minimumLineSpacing = 1.0
         layout.minimumInteritemSpacing = 1.0
         layout.scrollDirection = .horizontal
         
         // セクション毎のヘッダーサイズ.
-        layout.headerReferenceSize = CGSize(width: 5, height: height / 4)
+        layout.headerReferenceSize = CGSize(width: 5, height: height / 5)
         
-        collectionView = UICollectionView(frame: CGRect(x: CGFloat(0), y: HomeView.height - ( HomeView.height / 4 + AppSize.tabBarHeight ), width: HomeView.width, height: HomeView.height / 4), collectionViewLayout: layout)
+        collectionView = UICollectionView(frame: CGRect(x: CGFloat(0), y: AppSize.height - ( AppSize.height / 5 + AppSize.tabBarHeight ), width: AppSize.width, height: AppSize.height / 4), collectionViewLayout: layout)
         collectionView.register(HomeCustomCell.self, forCellWithReuseIdentifier: "MyCell")
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
