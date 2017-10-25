@@ -34,8 +34,9 @@ class HomeView:
         
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
 
-        self.addSubview(self.layout())
+        self.setUpTotalDistanceView()
         self.setUpResultView()
+        self.addSubview(self.layout())
         
     }
     
@@ -44,8 +45,35 @@ class HomeView:
     }
     
     
-    private func setUpResultView() {
+    private func setUpTotalDistanceView() {
         
+        let view = UIView(frame: CGRect(x: 15, y: AppSize.statusBarAndNavigationBarHeight + 30, width: AppSize.width - 30, height: AppSize.height / 8))
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 10.0
+        view.clipsToBounds = true
+        
+        let totalDistance = UILabel(frame: CGRect(x: 10, y: 5, width: AppSize.width, height: view.frame.height / 3))
+        totalDistance.text = "現在トータル\t45.6Km"
+        totalDistance.textColor = .black
+        totalDistance.textAlignment = .left
+        view.addSubview(totalDistance)
+        
+        let distanceDescription = UILabel(frame: CGRect(x: 0,
+                                                      y: 0,
+                                                      width: 0,
+                                                      height: 0))
+        distanceDescription.text = "〜万里の長城半分〜"
+        distanceDescription.sizeToFit()
+        distanceDescription.center = CGPoint(x: view.frame.width / 2,
+                                             y: totalDistance.frame.maxY + distanceDescription.frame.height / 2 + 10)
+        distanceDescription.textColor = .black
+        view.addSubview(distanceDescription)
+        
+        self.addSubview(view)
+        
+    }
+    
+    private func setUpResultView() {
 
         let scrollView = UIScrollView(frame: CGRect(x: 0,
                                                     y: AppSize.height - ( AppSize.height / 5 + AppSize.tabBarHeight) - 220 ,
