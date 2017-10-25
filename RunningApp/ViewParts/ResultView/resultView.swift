@@ -13,6 +13,7 @@ import RealmSwift
 @IBDesignable
 class resultView: UIView {
     
+    @IBOutlet weak var typeImageView: UIImageView!
     @IBOutlet weak var dateTimeValueLabel: UILabel!
     
     @IBOutlet weak var timeValueLabel: UILabel!
