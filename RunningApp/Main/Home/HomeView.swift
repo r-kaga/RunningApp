@@ -93,11 +93,10 @@ class HomeView:
 
         guard latestData.count >= 2 else { return }
 
-        let secondlabel = UILabel(frame: CGRect(x: (AppSize.width + AppSize.width / 2) - 50,
+        let secondlabel = UILabel(frame: CGRect(x: (AppSize.width + AppSize.width / 2) - 100,
                                                 y: 0,
                                                 width: 200,
-                                                height: 50))
-        scrollView.addSubview(secondlabel)
+                                                height: 30))
 
         
         let second = resultView(frame: CGRect(x: AppSize.width + 15 , y: secondlabel.frame.maxY, width: AppSize.width - 30, height: 175))
@@ -109,21 +108,22 @@ class HomeView:
         )
         scrollView.addSubview(second)
         
-//        secondlabel.center = CGPoint(x: (second.frame.maxX - second.frame.width / 2), y: 0)
         secondlabel.text = "Seconde Date"
         secondlabel.textColor = .white
         secondlabel.textAlignment = .center
         
         scrollView.contentSize.width += AppSize.width
-        
+        scrollView.addSubview(secondlabel)
 
+
+        
+        
         guard latestData.count >= 3 else { return }
         
-        let thirdlabel = UILabel(frame: CGRect(x: 0,
+        let thirdlabel = UILabel(frame: CGRect(x: (AppSize.width * 2 + AppSize.width / 2) - 100,
                                                y: 0,
                                                width: 200,
-                                               height: 50))
-        scrollView.addSubview(thirdlabel)
+                                               height: 30))
 
         
         let third = resultView(frame: CGRect(x: (AppSize.width * 2) + 15, y: thirdlabel.frame.maxY, width: AppSize.width - 30, height: 175))
@@ -137,11 +137,11 @@ class HomeView:
         scrollView.contentSize.width += AppSize.width
         scrollView.addSubview(third)
         
-        
 //        thirdlabel.center = CGPoint(x: (third.frame.maxX - third.frame.width / 2), y: 0)
         thirdlabel.text = "third Date"
         thirdlabel.textColor = .white
         thirdlabel.textAlignment = .center
+        scrollView.addSubview(thirdlabel)
 
     }
     

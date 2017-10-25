@@ -32,13 +32,13 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="終了時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EhU-dg-D6l">
-                                    <rect key="frame" x="20" y="15" width="73.5" height="20"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <rect key="frame" x="20" y="15" width="69.5" height="20"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-10-24 10:24:24" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BkV-Xq-tBx">
-                                    <rect key="frame" x="133.5" y="15" width="154" height="30"/>
+                                    <rect key="frame" x="119.5" y="15" width="154" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -53,13 +53,13 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstItem="elg-QT-cD8" firstAttribute="top" secondItem="6Pk-UL-IwD" secondAttribute="top" id="7X9-4t-r7N"/>
                                 <constraint firstAttribute="bottom" secondItem="BkV-Xq-tBx" secondAttribute="bottom" constant="15" id="Fcd-1V-RxQ"/>
                                 <constraint firstAttribute="bottom" secondItem="EhU-dg-D6l" secondAttribute="bottom" constant="25" id="J7j-vp-8au"/>
                                 <constraint firstItem="EhU-dg-D6l" firstAttribute="top" secondItem="6Pk-UL-IwD" secondAttribute="top" constant="15" id="axZ-mF-zl2"/>
-                                <constraint firstItem="BkV-Xq-tBx" firstAttribute="leading" secondItem="EhU-dg-D6l" secondAttribute="trailing" constant="40" id="kL1-7G-iuQ"/>
+                                <constraint firstItem="BkV-Xq-tBx" firstAttribute="leading" secondItem="EhU-dg-D6l" secondAttribute="trailing" constant="30" id="kL1-7G-iuQ"/>
                                 <constraint firstItem="EhU-dg-D6l" firstAttribute="leading" secondItem="6Pk-UL-IwD" secondAttribute="leading" constant="20" id="wRt-Fh-AL6"/>
                                 <constraint firstItem="BkV-Xq-tBx" firstAttribute="top" secondItem="6Pk-UL-IwD" secondAttribute="top" constant="15" id="wVC-h6-auO"/>
                                 <constraint firstAttribute="trailing" secondItem="elg-QT-cD8" secondAttribute="trailing" constant="5" id="xNJ-Fv-yXa"/>
