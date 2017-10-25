@@ -83,24 +83,17 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="amF-bI-RqD">
-                                        <rect key="frame" x="280" y="15" width="40" height="30"/>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U1n-eI-bH5">
+                                        <rect key="frame" x="295" y="10" width="30" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="40" id="Q9d-Ot-seD"/>
-                                            <constraint firstAttribute="height" constant="30" id="gym-uw-9Yl"/>
+                                            <constraint firstAttribute="width" constant="30" id="KKj-0l-zMs"/>
+                                            <constraint firstAttribute="height" constant="30" id="xVC-Kw-O1f"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                        <state key="normal" title="☓">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="closeButton:" destination="fuU-Cc-gWk" eventType="touchUpInside" id="0LU-vd-VH1"/>
-                                        </connections>
+                                        <state key="normal" image="button:U1n-eI-bH5:image"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="amF-bI-RqD" firstAttribute="top" secondItem="W6U-3S-e20" secondAttribute="top" constant="15" id="1bb-23-nhd"/>
                                     <constraint firstItem="p3I-5q-neS" firstAttribute="leading" secondItem="W6U-3S-e20" secondAttribute="leading" constant="30" id="2e1-r8-YfI"/>
                                     <constraint firstAttribute="bottom" secondItem="yM0-MB-cNu" secondAttribute="bottom" id="9hl-3B-Akl"/>
                                     <constraint firstItem="ygp-Eh-ZRa" firstAttribute="top" secondItem="p3I-5q-neS" secondAttribute="bottom" constant="18" id="Cw5-I7-iU2"/>
@@ -112,8 +105,9 @@
                                     <constraint firstAttribute="trailing" secondItem="UIF-39-7Kn" secondAttribute="trailing" constant="10" id="VQc-Oo-xXu"/>
                                     <constraint firstItem="4B2-A0-roY" firstAttribute="top" secondItem="W6U-3S-e20" secondAttribute="top" constant="40" id="VoI-Fd-hzH"/>
                                     <constraint firstItem="p3I-5q-neS" firstAttribute="centerX" secondItem="W6U-3S-e20" secondAttribute="centerX" id="Wex-vO-W5o"/>
-                                    <constraint firstAttribute="trailing" secondItem="amF-bI-RqD" secondAttribute="trailing" constant="15" id="YQz-b2-FaL"/>
                                     <constraint firstItem="yM0-MB-cNu" firstAttribute="leading" secondItem="W6U-3S-e20" secondAttribute="leading" id="clE-Tj-wU3"/>
+                                    <constraint firstAttribute="trailing" secondItem="U1n-eI-bH5" secondAttribute="trailing" constant="10" id="d4t-tH-BHB"/>
+                                    <constraint firstItem="U1n-eI-bH5" firstAttribute="top" secondItem="W6U-3S-e20" secondAttribute="top" constant="10" id="dJg-5P-w2S"/>
                                     <constraint firstAttribute="trailing" secondItem="p3I-5q-neS" secondAttribute="trailing" constant="30" id="hOl-7h-c6A"/>
                                     <constraint firstItem="p3I-5q-neS" firstAttribute="centerY" secondItem="W6U-3S-e20" secondAttribute="centerY" id="jRu-G0-9ic"/>
                                     <constraint firstAttribute="trailing" secondItem="yM0-MB-cNu" secondAttribute="trailing" id="jXj-Yv-hRM"/>
@@ -149,6 +143,71 @@
         </scene>
     </scenes>
     <resources>
+        <image name="button:U1n-eI-bH5:image" width="24" height="24">
+            <mutableData key="keyedArchiveRepresentation">
+YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
+GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
+c1dOU0NvbG9ygAKADRIgwAAAgAOAC1h7MjQsIDI0fdIVChYYWk5TLm9iamVjdHOhF4AEgArSFQoaHaIb
+HIAFgAaACRAA0iAKISJfEBROU1RJRkZSZXByZXNlbnRhdGlvboAHgAhPEQvqTU0AKgAACQgAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAABsbGxuOjo6OHh4eHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHx8f
+H46Ojo4bGxsbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI6Ojo7/////x8fH
+xxoaGhoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbGxsbx8fHx/////+Ojo6OAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACEhISHFxcXF/////8fHx8caGhoaAAAAAAAAAAAAAAAAAAAA
+ABoaGhrHx8fH/////8XFxcUhISEhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAcHBwcxsbGxv/////Hx8fHGhoaGgAAAAAAAAAAGhoaGsfHx8f/////xsbGxhsbGxsAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHBwcHMbGxsb/////x8fH
+xxgYGBgYGBgYx8fHx//////FxcXFGxsbGwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwcHBzHx8fH/////8fHx8fHx8fH/////8bGxsYbGxsbAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAZGRkZx8fHx///////////xsbGxhgYGBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZGRkZx8fHx///////////xsbG
+xhgYGBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAABwcHBzHx8fH/////8fHx8fHx8fH/////8bGxsYbGxsbAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHBwcHMfHx8f/////xsbG
+xhgYGBgYGBgYxsbGxv/////GxsbGHBwcHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAcHBwcxsbGxv/////GxsbGGhoaGgAAAAAAAAAAGhoaGsfHx8f/////xsbG
+xhwcHBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACIiIiLGxsbG////
+/8fHx8caGhoaAAAAAAAAAAAAAAAAAAAAABoaGhrHx8fH/////8bGxsYiIiIiAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI6Ojo7/////xsbGxhoaGhoAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAbGxsbx8fHx/////+Ojo6OAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+ABsbGxuOjo6OHh4eHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHx8fH46Ojo4bGxsbAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAADgEAAAMAAAABABgAAAEBAAMAAAABABgAAAECAAMAAAAEAAAJtgEDAAMA
+AAABAAEAAAEGAAMAAAABAAIAAAERAAQAAAABAAAACAESAAMAAAABAAEAAAEVAAMAAAABAAQAAAEWAAMA
+AAABABgAAAEXAAQAAAABAAAJAAEcAAMAAAABAAEAAAFSAAMAAAABAAEAAAFTAAMAAAAEAAAJvodzAAcA
+AAIkAAAJxgAAAAAACAAIAAgACAABAAEAAQABAAACJGFwcGwEAAAAbW50clJHQiBYWVogB98ACgAOAA0A
+CAA5YWNzcEFQUEwAAAAAQVBQTAAAAAAAAAAAAAAAAAAAAAAAAPbWAAEAAAAA0y1hcHBs5bsOmGe9Rs1L
+vkRuvRt1mAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKZGVzYwAAAPwAAABlY3BydAAAAWQA
+AAAjd3RwdAAAAYgAAAAUclhZWgAAAZwAAAAUZ1hZWgAAAbAAAAAUYlhZWgAAAcQAAAAUclRSQwAAAdgA
+AAAgY2hhZAAAAfgAAAAsYlRSQwAAAdgAAAAgZ1RSQwAAAdgAAAAgZGVzYwAAAAAAAAALRGlzcGxheSBQ
+MwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB0ZXh0AAAAAENvcHlyaWdodCBBcHBsZSBJbmMuLCAyMDE1AABY
+WVogAAAAAAAA81EAAQAAAAEWzFhZWiAAAAAAAACD3wAAPb////+7WFlaIAAAAAAAAEq/AACxNwAACrlY
+WVogAAAAAAAAKDgAABELAADIuXBhcmEAAAAAAAMAAAACZmYAAPKwAAANUAAAE7YAAAn8c2YzMgAAAAAA
+AQxCAAAF3v//8yYAAAeTAAD9kP//+6L///2jAAAD3AAAwG7SJSYnKFokY2xhc3NuYW1lWCRjbGFzc2Vz
+XxAQTlNCaXRtYXBJbWFnZVJlcKMnKSpaTlNJbWFnZVJlcFhOU09iamVjdNIlJiwtV05TQXJyYXmiLCrS
+JSYvMF5OU011dGFibGVBcnJheaMvLCrTMjMKNDU2V05TV2hpdGVcTlNDb2xvclNwYWNlRDAgMAAQA4AM
+0iUmODlXTlNDb2xvcqI4KtIlJjs8V05TSW1hZ2WiOypfEA9OU0tleWVkQXJjaGl2ZXLRP0BUcm9vdIAB
+AAgAEQAaACMALQAyADcARgBMAFcAXgBlAHIAeQCBAIMAhQCKAIwAjgCXAJwApwCpAKsArQCyALUAtwC5
+ALsAvQDCANkA2wDdDMsM0AzbDOQM9wz7DQYNDw0UDRwNHw0kDTMNNw0+DUYNUw1YDVoNXA1hDWkNbA1x
+DXkNfA2ODZENlgAAAAAAAAIBAAAAAAAAAEEAAAAAAAAAAAAAAAAAAA2YA
+</mutableData>
+        </image>
         <image name="form" width="256" height="256"/>
     </resources>
 </document>

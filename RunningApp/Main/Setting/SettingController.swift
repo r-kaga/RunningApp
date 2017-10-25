@@ -23,14 +23,53 @@ extension SettingController: SettingDelegate {
 
 class SettingController: UIViewController, UITableViewDelegate {
     
+
+     private var headerItem = ["self monitoring"]
     
-    private var TableTitle = [ ["self information", "weight", "height", Const.PUSH_TIME],
-//                              ["Monitoring", , ],
+    private var tableItem = [ 0 : [ "type": "weight", "unit" : "Kg", "image" : "assignment" ],
+                             1 : [ "type": "height", "unit" : "cm", "image" : "assignment" ],
+                             2 : [ "type": Const.PUSH_TIME, "unit" : "時", "image" : "pushTime" ],
     ]
+
+    private var tableTitle = [ "weight", "height", Const.PUSH_TIME ]
     
-    private var TableUnit = [
-        [ "self information", "Kg", "cm", "時" ]
-    ]
+//    enum tableItem {
+//
+//        mutating func setType(indexPath: Int) {
+//            switch indexPath {
+//                case 1:
+//                    return tableItem.weight
+//                case 2:
+//                    return tableItem.height
+//                case 3:
+//                    return tableItem.pushTime
+//                default:
+//                    return
+//            }
+//        }
+//
+//        static var count: Int {
+//          return 3
+//        }
+//
+//
+//        enum weight: String {
+//            case unit = "Kg"
+//            case image = "pushTime"
+//        }
+//
+//        enum height: String {
+//            case unit = "cm"
+//            case image = "pushTime"
+//        }
+//
+//        enum pushTime: String {
+//            case unit = "時"
+//            case image = "pushTime"
+//        }
+//
+//    }
+    
     
     private var tableView: UITableView!
     
@@ -53,7 +92,6 @@ class SettingController: UIViewController, UITableViewDelegate {
         
         /* cellの上下に出来る横線を消す。高さがゼロのUIViewで上書き */
 //        tableView.tableFooterView = UIView()
-        
 //        tableView.rowHeight = UITableViewAutomaticDimension
         
         self.view.addSubview(tableView)
@@ -90,12 +128,7 @@ class SettingController: UIViewController, UITableViewDelegate {
 
     }
     
-    
-    
-    
-    
-    
-    
+
     
     /*
      * 各indexPathのcellがハイライトされた際に呼ばれます．
@@ -122,28 +155,34 @@ extension SettingController: UITableViewDataSource {
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.TableTitle.count
+        return self.headerItem.count
+//        return SettingController.tableItem.count
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.TableTitle[section].count - 1
+        return self.tableTitle.count
+//        return SettingController.tableItem.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell") as! SettingCell
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! SettingCell
         cell.frame = CGRect(x: 0, y: 0, width: AppSize.width, height: 60)
 
-        cell.titleLabel.text = self.TableTitle[indexPath.section][indexPath.row + 1]
+        guard let item = self.tableItem[indexPath.row] else { return cell }
+        
+        cell.titleLabel.text = item["type"]
         cell.descriptionLabel.text = "設定項目の説明が入ります"
+        cell.imageCell.image = UIImage(named: item["image"]!)!
         
-        if let value = UserDefaults.standard.string(forKey: self.TableTitle[indexPath.section][indexPath.row + 1]) {
-            cell.detailTextLabel?.text = value + TableUnit[indexPath.section][indexPath.row + 1]
-            cell.settingValueLabel.text = value + TableUnit[indexPath.section][indexPath.row + 1]
+        if let value = UserDefaults.standard.string(forKey: item["type"]!) {
+//            cell.detailTextLabel?.text = value + TableUnit[indexPath.section][indexPath.row + 1]
+            cell.settingValueLabel.text = value + item["unit"]!
         
-            if Const.PUSH_TIME == self.TableTitle[indexPath.section][indexPath.row + 1] {
+            if Const.PUSH_TIME == item["type"] {
+                print("setLocalPushTime")
                 Utility.setLocalPushTime(setTime: Int(value)!)
             }
         }
@@ -157,7 +196,7 @@ extension SettingController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.TableTitle[section][0]
+        return self.headerItem[0]
     }
     
     
