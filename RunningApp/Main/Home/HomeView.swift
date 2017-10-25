@@ -47,7 +47,7 @@ class HomeView:
     
     private func setUpTotalDistanceView() {
         
-        let view = UIView(frame: CGRect(x: 15, y: AppSize.statusBarAndNavigationBarHeight + 30, width: AppSize.width - 30, height: AppSize.height / 8))
+        let view = UIView(frame: CGRect(x: 15, y: AppSize.statusBarAndNavigationBarHeight + 25, width: AppSize.width - 30, height: AppSize.height / 8))
         view.backgroundColor = .white
         view.layer.cornerRadius = 10.0
         view.clipsToBounds = true
