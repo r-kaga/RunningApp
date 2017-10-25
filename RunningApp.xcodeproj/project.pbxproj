@@ -37,6 +37,8 @@
 		E38F7FAD1F9AF4CA0036CEE0 /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E38F7FAC1F9AF4CA0036CEE0 /* SettingCell.xib */; };
 		E39594071F30C574004AEB27 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39594021F30C574004AEB27 /* Interactor.swift */; };
 		E3B15B5E1F7BEEE200E17A84 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3B15B5D1F7BEEE200E17A84 /* CoreLocation.framework */; };
+		E3B6DC481FA0C7E00037FA07 /* TotalDistanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B6DC471FA0C7E00037FA07 /* TotalDistanceView.swift */; };
+		E3B6DC4A1FA0C7F30037FA07 /* TotalDistanceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3B6DC491FA0C7F30037FA07 /* TotalDistanceView.xib */; };
 		E3CA14E81F5D91B00053468D /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14E71F5D91B00053468D /* HomeModel.swift */; };
 		E3CA14EA1F5D963E0053468D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14E91F5D963D0053468D /* HomeView.swift */; };
 		E3CA14EC1F5D98C90053468D /* HomeCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */; };
@@ -79,6 +81,8 @@
 		E38F7FAC1F9AF4CA0036CEE0 /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		E39594021F30C574004AEB27 /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
 		E3B15B5D1F7BEEE200E17A84 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E3B6DC471FA0C7E00037FA07 /* TotalDistanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalDistanceView.swift; sourceTree = "<group>"; };
+		E3B6DC491FA0C7F30037FA07 /* TotalDistanceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TotalDistanceView.xib; sourceTree = "<group>"; };
 		E3CA14E71F5D91B00053468D /* HomeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		E3CA14E91F5D963D0053468D /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCustomCell.swift; sourceTree = "<group>"; };
@@ -270,6 +274,7 @@
 		E38F7FB01F9B0BBF0036CEE0 /* ViewParts */ = {
 			isa = PBXGroup;
 			children = (
+				E3B6DC461FA0C7C70037FA07 /* TotalDIstanceView */,
 				E365A13B1F9255E00008D475 /* Dialog */,
 				E38F7FA91F9AF3C40036CEE0 /* ResultView */,
 			);
@@ -282,6 +287,15 @@
 				E36913001F97624500A9B19C /* RealmDataSet.swift */,
 			);
 			path = Realm;
+			sourceTree = "<group>";
+		};
+		E3B6DC461FA0C7C70037FA07 /* TotalDIstanceView */ = {
+			isa = PBXGroup;
+			children = (
+				E3B6DC471FA0C7E00037FA07 /* TotalDistanceView.swift */,
+				E3B6DC491FA0C7F30037FA07 /* TotalDistanceView.xib */,
+			);
+			path = TotalDIstanceView;
 			sourceTree = "<group>";
 		};
 		E3F4032C1F88C6CF0073DC45 /* Work */ = {
@@ -365,6 +379,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3B6DC4A1FA0C7F30037FA07 /* TotalDistanceView.xib in Resources */,
 				E365A13D1F9256020008D475 /* CompleteDialog.xib in Resources */,
 				E38F7FAD1F9AF4CA0036CEE0 /* SettingCell.xib in Resources */,
 				E380AB3B1F23735F0034EA8F /* LaunchScreen.storyboard in Resources */,
@@ -435,6 +450,7 @@
 				E36913011F97624500A9B19C /* RealmDataSet.swift in Sources */,
 				E3031D031F80E05A002C5739 /* SettingController.swift in Sources */,
 				E3CA14EC1F5D98C90053468D /* HomeCustomCell.swift in Sources */,
+				E3B6DC481FA0C7E00037FA07 /* TotalDistanceView.swift in Sources */,
 				E3CA14EA1F5D963E0053468D /* HomeView.swift in Sources */,
 				E355F1961F9F7ADD00509CA1 /* UIViewController+.swift in Sources */,
 				E34188361F794AE6000AB961 /* AppSize.swift in Sources */,

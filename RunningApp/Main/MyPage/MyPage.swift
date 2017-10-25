@@ -18,7 +18,7 @@ class MyPage: UIViewController, UIScrollViewDelegate {
         navigationItem.title = "My Page"
         
         let scrollView = UIScrollView(frame: CGRect(x: 0,
-                                                  y: AppSize.navigationBarHeight + 75,
+                                                  y: AppSize.statusBarAndNavigationBarHeight,
                                                   width: AppSize.width,
                                                   height: AppSize.height))
         scrollView.backgroundColor = .black
@@ -26,7 +26,6 @@ class MyPage: UIViewController, UIScrollViewDelegate {
         scrollView.showsVerticalScrollIndicator = true
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.delegate = self
-  
         
         let realm = try! Realm()
         let data = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
@@ -34,9 +33,9 @@ class MyPage: UIViewController, UIScrollViewDelegate {
         var count: CGFloat = 0
         data.forEach { (value) in
             let view = resultView(frame: CGRect(x: 15,
-                                              y: 185 * count,
+                                              y: 170 * count + 20,
                                                 width: AppSize.width - 30,
-                                                height: 165))
+                                                height: 150))
             
             view.setValueToResultView(dateTime: value.date,
                                       timeValue: value.time,
@@ -57,7 +56,7 @@ class MyPage: UIViewController, UIScrollViewDelegate {
             count += 1
         }
         
-        scrollView.contentSize = CGSize(width: AppSize.width, height: (205 * count) + 50 ) // 中身の大きさを設定
+        scrollView.contentSize = CGSize(width: AppSize.width, height: 190 * count) // 中身の大きさを設定
         self.view.addSubview(scrollView)
         
     }

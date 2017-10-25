@@ -47,41 +47,25 @@ class HomeView:
     
     private func setUpTotalDistanceView() {
         
-        let view = UIView(frame: CGRect(x: 15, y: AppSize.statusBarAndNavigationBarHeight + 25, width: AppSize.width - 30, height: AppSize.height / 8))
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 10.0
-        view.clipsToBounds = true
-        
-        let totalDistance = UILabel(frame: CGRect(x: 10, y: 5, width: AppSize.width, height: view.frame.height / 3))
-        totalDistance.text = "現在トータル\t45.6Km"
-        totalDistance.textColor = .black
-        totalDistance.textAlignment = .left
-        view.addSubview(totalDistance)
-        
-        let distanceDescription = UILabel(frame: CGRect(x: 0,
-                                                      y: 0,
-                                                      width: 0,
-                                                      height: 0))
-        distanceDescription.text = "〜万里の長城半分〜"
-        distanceDescription.sizeToFit()
-        distanceDescription.center = CGPoint(x: view.frame.width / 2,
-                                             y: totalDistance.frame.maxY + distanceDescription.frame.height / 2 + 10)
-        distanceDescription.textColor = .black
-        view.addSubview(distanceDescription)
+        let view = TotalDistanceView(frame: CGRect(x: 15,
+                                                   y: AppSize.statusBarAndNavigationBarHeight + 25,
+                                                   width: AppSize.width - 30,
+                                                   height: 80))
+        view.totalDistanceLabel.text = "46.8Km"
+        view.descriptionLabel.text = "〜万里の長城半分〜"
         
         self.addSubview(view)
-        
     }
     
     private func setUpResultView() {
 
         let scrollView = UIScrollView(frame: CGRect(x: 0,
-                                                    y: AppSize.height - ( AppSize.height / 5 + AppSize.tabBarHeight) - 215 ,
+                                                    y: AppSize.height - ( AppSize.height / 5 + AppSize.tabBarHeight) - 205 ,
                                                     width: AppSize.width,
-                                                    height: 165 + 50))
+                                                    height: 150 + 50))
         
         scrollView.backgroundColor = UIColor.black
-        scrollView.contentSize = CGSize(width: AppSize.width, height: 165 + 50) // 中身の大きさを設定
+        scrollView.contentSize = CGSize(width: AppSize.width, height: 150 + 50) // 中身の大きさを設定
         
         scrollView.isPagingEnabled = true
         scrollView.bounces = false
@@ -110,7 +94,7 @@ class HomeView:
         scrollView.addSubview(Latestlabel)
         
         
-        let view = resultView(frame: CGRect(x: 15, y: Latestlabel.frame.maxY, width: AppSize.width - 30, height: 165))
+        let view = resultView(frame: CGRect(x: 15, y: Latestlabel.frame.maxY, width: AppSize.width - 30, height: 150))
         view.setValueToResultView(dateTime: latestData[0].date,
                                   timeValue: latestData[0].time,
                                   distance: latestData[0].distance,
@@ -127,7 +111,7 @@ class HomeView:
                                                 height: 30))
 
         
-        let second = resultView(frame: CGRect(x: AppSize.width + 15 , y: secondlabel.frame.maxY, width: AppSize.width - 30, height: 165))
+        let second = resultView(frame: CGRect(x: AppSize.width + 15 , y: secondlabel.frame.maxY, width: AppSize.width - 30, height: 150))
         second.setValueToResultView(dateTime: latestData[1].date,
                                     timeValue: latestData[1].time,
                                     distance: latestData[1].distance,
@@ -154,7 +138,7 @@ class HomeView:
                                                height: 30))
 
         
-        let third = resultView(frame: CGRect(x: (AppSize.width * 2) + 15, y: thirdlabel.frame.maxY, width: AppSize.width - 30, height: 165))
+        let third = resultView(frame: CGRect(x: (AppSize.width * 2) + 15, y: thirdlabel.frame.maxY, width: AppSize.width - 30, height: 150))
         third.setValueToResultView(dateTime: latestData[2].date,
                                    timeValue: latestData[2].time,
                                    distance: latestData[2].distance,

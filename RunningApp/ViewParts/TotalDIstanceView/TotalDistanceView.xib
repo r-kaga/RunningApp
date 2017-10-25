@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TotalDistanceView" customModule="RunningApp" customModuleProvider="target">
+            <connections>
+                <outlet property="descriptionLabel" destination="xDV-mR-yCc" id="A3z-qY-Jow"/>
+                <outlet property="totalDistanceLabel" destination="g0I-qc-1Hp" id="4zY-IL-v05"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="498" height="100"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aTl-qx-o38">
+                    <rect key="frame" x="0.0" y="0.0" width="498" height="100"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="現在のトータル距離" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LKy-of-JWS">
+                            <rect key="frame" x="184.5" y="10" width="129" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="48.7Km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g0I-qc-1Hp">
+                            <rect key="frame" x="219" y="32" width="60" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="〜万里の長城の半分まで登りました〜" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDV-mR-yCc">
+                            <rect key="frame" x="0.0" y="52.5" width="498" height="47.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="LKy-of-JWS" firstAttribute="top" secondItem="aTl-qx-o38" secondAttribute="top" constant="10" id="3Vw-ku-Ub6"/>
+                        <constraint firstItem="g0I-qc-1Hp" firstAttribute="top" secondItem="LKy-of-JWS" secondAttribute="bottom" constant="5" id="5vT-Ly-pOC"/>
+                        <constraint firstItem="xDV-mR-yCc" firstAttribute="leading" secondItem="aTl-qx-o38" secondAttribute="leading" id="Dcx-Ta-gj8"/>
+                        <constraint firstAttribute="trailing" secondItem="xDV-mR-yCc" secondAttribute="trailing" id="HZ8-uy-X6C"/>
+                        <constraint firstItem="g0I-qc-1Hp" firstAttribute="centerX" secondItem="aTl-qx-o38" secondAttribute="centerX" id="Jon-lf-glZ"/>
+                        <constraint firstItem="xDV-mR-yCc" firstAttribute="top" secondItem="g0I-qc-1Hp" secondAttribute="bottom" id="Pjl-Z8-7nm"/>
+                        <constraint firstItem="LKy-of-JWS" firstAttribute="centerX" secondItem="aTl-qx-o38" secondAttribute="centerX" id="jw7-Ni-ieA"/>
+                        <constraint firstAttribute="bottom" secondItem="xDV-mR-yCc" secondAttribute="bottom" id="jyw-rt-nZh"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="aTl-qx-o38" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9ZC-lM-dXF"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="aTl-qx-o38" secondAttribute="bottom" id="IZU-kh-anH"/>
+                <constraint firstItem="aTl-qx-o38" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ary-KJ-ZJP"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="aTl-qx-o38" secondAttribute="trailing" id="uZX-b6-7BD"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="23" y="14"/>
+        </view>
+    </objects>
+</document>
