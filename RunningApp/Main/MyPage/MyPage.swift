@@ -45,16 +45,7 @@ class MyPage: UIViewController, UIScrollViewDelegate {
                                       calorie: value.calorie)
             view.tag = Int(count)
             
-            let closeButton = UIButton(frame: CGRect(x: view.frame.maxX - 75, y: view.frame.maxY - 75, width: 150, height: 150))
-            closeButton.center = CGPoint(x: view.frame.maxX - 20, y: view.frame.minY)
-//            closeButton.center = CGPoint(x: view.frame.width - 75, y: 200 * count - 75)
-            closeButton.setTitle("☓", for: .normal)
-            closeButton.setTitleColor(.red, for: .normal)
-            
-//            view.bringSubview(toFront: closeButton)
-            view.addSubview(closeButton)
 
-            
             let longPress = UILongPressGestureRecognizer(target: self, action: #selector(MyPage.longPressed(_:)))
             view.addGestureRecognizer(longPress)
             

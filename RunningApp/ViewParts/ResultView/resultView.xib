@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="calorieValueLabel" destination="YbT-FY-JYF" id="3B6-aa-phy"/>
                 <outlet property="dateTimeValueLabel" destination="BkV-Xq-tBx" id="O2j-3O-UAq"/>
+                <outlet property="deleteButton" destination="elg-QT-cD8" id="KTN-2X-0c9"/>
                 <outlet property="distanceValueLabel" destination="sjw-ZS-klk" id="AoI-px-ccL"/>
                 <outlet property="speedValueLabel" destination="zGS-Ln-Wbw" id="feh-Eq-5JN"/>
                 <outlet property="timeValueLabel" destination="fSa-5H-MFk" id="9d3-Z4-YEk"/>
@@ -37,20 +38,31 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-10-24 10:24:24" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BkV-Xq-tBx">
-                                    <rect key="frame" x="191" y="15" width="154" height="30"/>
+                                    <rect key="frame" x="133.5" y="15" width="154" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="elg-QT-cD8">
+                                    <rect key="frame" x="339" y="0.0" width="31" height="30"/>
+                                    <state key="normal" title="削除">
+                                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="deleteAction:" destination="-1" eventType="touchUpInside" id="u4s-KL-ygL"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
+                                <constraint firstItem="elg-QT-cD8" firstAttribute="top" secondItem="6Pk-UL-IwD" secondAttribute="top" id="7X9-4t-r7N"/>
                                 <constraint firstAttribute="bottom" secondItem="BkV-Xq-tBx" secondAttribute="bottom" constant="15" id="Fcd-1V-RxQ"/>
                                 <constraint firstAttribute="bottom" secondItem="EhU-dg-D6l" secondAttribute="bottom" constant="25" id="J7j-vp-8au"/>
-                                <constraint firstAttribute="trailing" secondItem="BkV-Xq-tBx" secondAttribute="trailing" constant="30" id="JYu-f1-BbT"/>
                                 <constraint firstItem="EhU-dg-D6l" firstAttribute="top" secondItem="6Pk-UL-IwD" secondAttribute="top" constant="15" id="axZ-mF-zl2"/>
+                                <constraint firstItem="BkV-Xq-tBx" firstAttribute="leading" secondItem="EhU-dg-D6l" secondAttribute="trailing" constant="40" id="kL1-7G-iuQ"/>
                                 <constraint firstItem="EhU-dg-D6l" firstAttribute="leading" secondItem="6Pk-UL-IwD" secondAttribute="leading" constant="20" id="wRt-Fh-AL6"/>
                                 <constraint firstItem="BkV-Xq-tBx" firstAttribute="top" secondItem="6Pk-UL-IwD" secondAttribute="top" constant="15" id="wVC-h6-auO"/>
+                                <constraint firstAttribute="trailing" secondItem="elg-QT-cD8" secondAttribute="trailing" constant="5" id="xNJ-Fv-yXa"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fnf-bu-lCI">
@@ -184,7 +196,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="-621" y="-73"/>
+            <point key="canvasLocation" x="-598" y="-69"/>
         </view>
     </objects>
 </document>

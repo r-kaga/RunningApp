@@ -22,6 +22,25 @@ class resultView: UIView {
     
     @IBOutlet weak var calorieValueLabel: UILabel!
     
+    @IBOutlet weak var deleteButton: UIButton!
+    
+    
+    @IBAction func deleteAction(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "削除してよろしいですか", message: "データは残りません", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { _ in
+            print("dd")
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            print("cencel")
+        }))
+        
+        AppDelegate.getTopMostViewController().present(alert, animated: true) {
+            print("dddd")
+        }
+
+    }
+    
     
     /** イニシャライザー
      */
@@ -48,6 +67,8 @@ class resultView: UIView {
         view.frame = self.bounds
     
         self.addSubview(view)
+        
+        self.deleteButton.isHidden = true
         
         // カスタムViewのサイズを自分自身と同じサイズにする
         view.translatesAutoresizingMaskIntoConstraints = false
