@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 @IBDesignable
 class resultView: UIView {
@@ -24,12 +25,23 @@ class resultView: UIView {
     
     @IBOutlet weak var deleteButton: UIButton!
     
+    var indexPath: Int?
     
     @IBAction func deleteAction(_ sender: Any) {
         
         let alert = UIAlertController(title: "削除してよろしいですか", message: "データは残りません", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { _ in
-            print("dd")
+            
+            guard let path = self.indexPath else { return }
+            
+            let realm = try! Realm()
+            let data = realm.objects(RealmDataSet.self).filter("id = \(path)")
+            
+            try! realm.write() {
+                realm.delete(data)
+                AppDelegate.getTopMostViewController().loadView()
+            }
+            
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
             print("cencel")

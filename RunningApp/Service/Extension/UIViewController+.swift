@@ -17,6 +17,7 @@ extension UIViewController {
         sender.view?.touchStartAnimation()
         let view = sender.view as! resultView
         view.deleteButton.isHidden = false
+        view.indexPath = sender.view?.tag
         
 //        switch sender.state {
 //            case .began:

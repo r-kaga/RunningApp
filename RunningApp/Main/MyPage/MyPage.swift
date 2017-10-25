@@ -43,7 +43,7 @@ class MyPage: UIViewController, UIScrollViewDelegate {
                                       distance: value.distance,
                                       speed: value.speed,
                                       calorie: value.calorie)
-            view.tag = Int(count)
+            view.tag = Int(value.id)
             
 
             let longPress = UILongPressGestureRecognizer(target: self, action: #selector(MyPage.longPressed(_:)))
