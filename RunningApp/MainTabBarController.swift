@@ -3,6 +3,7 @@ import UIKit
 
 class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
+
         super.viewDidLoad()
         
         self.delegate = self
@@ -26,6 +27,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
         setViewControllers([nv, nv2 ,nv3], animated: true)
     }
+
     
 
 }
