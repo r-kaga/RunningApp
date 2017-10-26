@@ -18,17 +18,19 @@ struct Const {
         case pushTime   = 2
     }
     
+    /** 運動の種類のタイプ */
+    enum WorkType: Int {
+        case wallking = 0
+        case running  = 1
+    }
+    
     enum ErrorType: Error {
         case notInteger
         case empty
     }
     
     
-    enum WorkType {
-        case run
-        case wallk
-    }
-    
+
     
     static let PUSH_TIME = "pushTime"
     

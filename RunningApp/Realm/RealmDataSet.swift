@@ -21,6 +21,7 @@ class RealmDataSet: Object {
     @objc dynamic var speed    = String()
     @objc dynamic var calorie  = String()
     @objc dynamic var time     = String()
+    @objc dynamic var workType = String()
     
     
 //    func save() {

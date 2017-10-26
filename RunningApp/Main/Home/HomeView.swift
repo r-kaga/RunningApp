@@ -101,7 +101,7 @@ class HomeView:
                                   speed: latestData[0].speed,
                                   calorie: latestData[0].calorie
         )
-        view.typeImageView.image = UIImage(named: "directionsWalk")!
+        view.typeImageView.image = UIImage(named: latestData[0].workType)!
         scrollView.addSubview(view)
 
         guard latestData.count >= 2 else { return }
@@ -119,7 +119,7 @@ class HomeView:
                                     speed: latestData[1].speed,
                                     calorie: latestData[1].calorie
         )
-        second.typeImageView.image = UIImage(named: "directionsRun")!
+        second.typeImageView.image = UIImage(named: latestData[1].workType)!
         scrollView.addSubview(second)
         
         secondlabel.text = "Seconde Date"
@@ -128,8 +128,6 @@ class HomeView:
         
         scrollView.contentSize.width += AppSize.width
         scrollView.addSubview(secondlabel)
-
-
         
         
         guard latestData.count >= 3 else { return }
@@ -147,7 +145,7 @@ class HomeView:
                                    speed: latestData[2].speed,
                                    calorie: latestData[2].calorie
         )
-        third.typeImageView.image = UIImage(named: "directionsWalk")!
+        third.typeImageView.image = UIImage(named: latestData[2].workType)!
 
         
         scrollView.contentSize.width += AppSize.width

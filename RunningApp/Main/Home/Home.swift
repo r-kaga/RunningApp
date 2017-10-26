@@ -19,6 +19,7 @@ class Home:
 
     let interactor = Interactor()
 
+
 //    var launchView: UIView!
 //    var imageView: UIImageView!
     
@@ -93,13 +94,16 @@ class Home:
     
 
     func onSender(_ path: Int) {
-
+        
         let sb = UIStoryboard(name: "WorkController", bundle: nil).instantiateInitialViewController() as! ModalNavigationController
         sb.interactor = interactor
         sb.transitioningDelegate = self
+        WorkController.workType = Utility.pathConvertWorkType(path: path).0
+        
         self.present(sb, animated: true, completion: nil)
- 
+
     }
+    
 
     
 
@@ -112,7 +116,6 @@ extension Home: UICollectionViewDelegate, UICollectionViewDataSource {
      Cellが選択時
      */
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Num: \(indexPath.row)")
         self.onSender(indexPath.row)
     }
     
@@ -128,14 +131,10 @@ extension Home: UICollectionViewDelegate, UICollectionViewDataSource {
         
         
         let path = indexPath[1]
-        let info = [
-            "Walking",
-            "Running",
-        ]
-        
-        let cellImage = UIImage(named: info[path])!
+        let type = Utility.pathConvertWorkType(path: path)
+        let cellImage = UIImage(named: type.1)!
         cell.imageView?.image = cellImage
-        cell.textLabel?.text = info[path]
+        cell.textLabel?.text = type.1
         
         return cell
     }
@@ -160,6 +159,7 @@ extension Home: UIViewControllerTransitioningDelegate {
         let sb = UIStoryboard(name: "ModalViewController", bundle: nil).instantiateInitialViewController() as! ModalNavigationController
         sb.interactor = interactor
         sb.transitioningDelegate = self
+//        sb.
         AppDelegate.getTopMostViewController().present(sb, animated: true, completion: nil)
     }
     

@@ -56,5 +56,16 @@ struct Utility {
     }
     
 
+    static func pathConvertWorkType(path: Int) -> (String, String) {
+        switch path {
+        case Const.WorkType.running.rawValue:
+            return ("directionsRun", "running")
+        case Const.WorkType.wallking.rawValue:
+            return ("directionsWalk", "walking")
+        default:
+            return ("directionsRun", "running")
+        }
+    }
+    
     
 }

@@ -42,6 +42,7 @@ class MyPage: UIViewController, UIScrollViewDelegate {
                                       distance: value.distance,
                                       speed: value.speed,
                                       calorie: value.calorie)
+            view.typeImageView.image = UIImage(named: value.workType)!
             view.tag = Int(value.id)
             
 

@@ -10,6 +10,8 @@ class WorkController: UIViewController {
     weak var timer: Timer!
     var startTimeDate: Date!
     
+    static var workType: String?
+    
     private var isStarted = false
     
     @IBOutlet weak var resultCardView: UIView!
@@ -52,17 +54,19 @@ class WorkController: UIViewController {
     
     var totalDistance: Double = 0.0
     
+    var interactor: Interactor!
+    
     
     @IBAction func handleGesture(_ sender: Any) {
         confirmWorkEndAlert()
 //        weak var nc = navigationController as? ModalNavigationController
 //        nc?.handleGesture(sender as! UIPanGestureRecognizer)
     }
-    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         navigationController?.setNavigationBarHidden(true, animated: false)
         resultCardView.layer.cornerRadius = 10.0
         resultCardView.clipsToBounds = true
@@ -192,15 +196,10 @@ class WorkController: UIViewController {
         guard let totalDistance  = self.distanceLabel.text,
               let speed    = self.speedLabel.text,
               let time     = self.stopWatchLabel.text,
-              let calorie  = self.calorieLabel.text
+              let calorie  = self.calorieLabel.text,
+              let type     = WorkController.workType
         else { return }
-        
-        var dictionary = [String: String]()
-        dictionary["distance"] = totalDistance
-        dictionary["speed"] = speed
-        dictionary["time"] = time
-        dictionary["calorie"] = calorie
-        dictionary["date"] =  Utility.getNowClockString()
+
         
         let realm = try! Realm()
         let dataSet = RealmDataSet()
@@ -213,21 +212,12 @@ class WorkController: UIViewController {
         dataSet.distance = totalDistance
         dataSet.speed = speed
         dataSet.time = time
+        dataSet.workType = type
         
         try! realm.write {
             realm.add(dataSet)
         }
-        
-//        realmModel.realmSet.id = realmModel.realmSet.createNewId()
-//        realmModel.realmSet.id =
-//        realmModel.realmSet.date = Utility.getNowClockString()
-//        realmModel.realmSet.calorie = calorie
-//        realmModel.realmSet.distance = totalDistance
-//        realmModel.realmSet.speed = speed
-//        realmModel.realmSet.time = time
-//        try! realm.wri
-        
-        UserDefaults.standard.set(dictionary, forKey: Utility.getNowClockString())
+
     }
     
     
@@ -600,10 +590,6 @@ extension WorkController: MKMapViewDelegate {
     
     
 }
-
-
-
-
 
 
 
