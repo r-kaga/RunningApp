@@ -57,7 +57,7 @@ class MyPage: UIViewController, UIScrollViewDelegate {
             count += 1
         }
         
-        scrollView.contentSize = CGSize(width: AppSize.width, height: (150 * (count + 1) + 30)) // 中身の大きさを設定
+        scrollView.contentSize = CGSize(width: AppSize.width, height: (150 * (count + 1) + 40)) // 中身の大きさを設定
         self.view.addSubview(scrollView)
         
     }
