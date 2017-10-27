@@ -58,11 +58,12 @@ class HomeView:
     }
     
     private func setUpResultView() {
-
+        
         let scrollView = UIScrollView(frame: CGRect(x: 0,
-                                                    y: AppSize.height - ( AppSize.height / 5 + AppSize.tabBarHeight) - 205 ,
+                                                    y: 0,
                                                     width: AppSize.width,
                                                     height: 150 + 50))
+        scrollView.center = AppSize.center
         
         scrollView.backgroundColor = UIColor.black
         scrollView.contentSize = CGSize(width: AppSize.width, height: 150 + 50) // 中身の大きさを設定

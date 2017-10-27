@@ -42,6 +42,7 @@ class Home:
 //        self.launchView.addSubview(imageView)
 //
 //        self.view.addSubview(self.launchView)
+
         
     }
     
