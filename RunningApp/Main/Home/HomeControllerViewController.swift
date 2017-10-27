@@ -13,24 +13,28 @@ class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var ressultOutlet: UIView!
     
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionOutlet: UIView!
+    
+    
+    
+    let interactor = Interactor()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setUpResultView()
-    }
+        navigationItem.title = "Home"
 
+        setUpResultView()
+        self.collectionOutlet.addSubview(self.layout())
+    }
     
     
     private func setUpResultView() {
-        
-        scrollView.center = AppSize.center
-        
+
+        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: ressultOutlet.frame.width, height: ressultOutlet.frame.height))
         scrollView.backgroundColor = UIColor.black
         scrollView.contentSize = CGSize(width: ressultOutlet.frame.width, height: ressultOutlet.frame.height) // 中身の大きさを設定
-        
         scrollView.isPagingEnabled = true
         scrollView.bounces = false
         scrollView.showsVerticalScrollIndicator = false
@@ -54,7 +58,7 @@ class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
 //        scrollView.addSubview(Latestlabel)
 //
         
-        let view = resultView(frame: CGRect(x: 0, y: 0, width: AppSize.width - 30, height: ressultOutlet.frame.height))
+        let view = resultView(frame: CGRect(x: 15, y: 0, width: ressultOutlet.frame.width - 30, height: ressultOutlet.bounds.height))
         view.setValueToResultView(dateTime: latestData[0].date,
                                   timeValue: latestData[0].time,
                                   distance: latestData[0].distance,
@@ -72,7 +76,7 @@ class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
 //                                                height: 30))
         
         
-        let second = resultView(frame: CGRect(x: AppSize.width + 15 , y: 0, width: AppSize.width - 30, height: ressultOutlet.frame.height))
+        let second = resultView(frame: CGRect(x: ressultOutlet.frame.width + 15, y: 0, width: ressultOutlet.frame.width - 30, height: ressultOutlet.frame.height))
         second.setValueToResultView(dateTime: latestData[1].date,
                                     timeValue: latestData[1].time,
                                     distance: latestData[1].distance,
@@ -98,7 +102,7 @@ class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
 //                                               height: 30))
         
         
-        let third = resultView(frame: CGRect(x: (AppSize.width * 2) + 15, y: 0, width: AppSize.width - 30, height: ressultOutlet.frame.height))
+        let third = resultView(frame: CGRect(x: (ressultOutlet.frame.width * 2) + 15, y: 0, width: ressultOutlet.frame.width - 30, height: ressultOutlet.frame.height))
         third.setValueToResultView(dateTime: latestData[2].date,
                                    timeValue: latestData[2].time,
                                    distance: latestData[2].distance,
@@ -116,9 +120,52 @@ class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
 //        thirdlabel.textAlignment = .center
 //        scrollView.addSubview(thirdlabel)
         
+//        self.view.addSubview(scrollView)
+        self.ressultOutlet.addSubview(scrollView)
+        
     }
     
     
+    private func layout() -> UICollectionView {
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: AppSize.width / 2, height: collectionOutlet.frame.height)
+        layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        layout.minimumLineSpacing = 1.0
+        layout.minimumInteritemSpacing = 1.0
+        layout.scrollDirection = .horizontal
+        
+        // セクション毎のヘッダーサイズ.
+        //        layout.headerReferenceSize = CGSize(width: 5, height: AppSize.height / 5)
+        
+        let collectionView = UICollectionView(frame: CGRect(x: 0,
+                                                         y: 0,
+                                                         width: AppSize.width,
+                                                         height: layout.itemSize.height), collectionViewLayout: layout)
+        collectionView.register(HomeCustomCell.self, forCellWithReuseIdentifier: "MyCell")
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        return collectionView
+    }
+    
+
+    
+    
+    func onSender(_ path: Int) {
+        
+        let sb = UIStoryboard(name: "WorkController", bundle: nil).instantiateInitialViewController() as! ModalNavigationController
+        sb.interactor = interactor
+        sb.transitioningDelegate = self
+        WorkController.workType = Utility.pathConvertWorkType(path: path).0
+        
+        self.present(sb, animated: true, completion: nil)
+        
+    }
+    
+
     
     
     override func didReceiveMemoryWarning() {
@@ -129,3 +176,79 @@ class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
 
 
 }
+
+
+
+
+extension HomeControllerViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    /*
+     Cellが選択時
+     */
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.onSender(indexPath.row)
+    }
+    
+    
+    /*
+     Cellに値を設定
+     */
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell: HomeCustomCell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: "MyCell",
+            for: indexPath) as! HomeCustomCell
+        
+        
+        let path = indexPath[1]
+        let type = Utility.pathConvertWorkType(path: path)
+        let cellImage = UIImage(named: type.1)!
+        cell.imageView?.image = cellImage
+        cell.textLabel?.text = type.1
+        
+        return cell
+    }
+    
+    
+    /*
+     Cellの総数
+     */
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    
+    
+}
+
+
+
+
+
+extension HomeControllerViewController: UIViewControllerTransitioningDelegate {
+    
+    func onPullModalShow() {
+        let sb = UIStoryboard(name: "ModalViewController", bundle: nil).instantiateInitialViewController() as! ModalNavigationController
+        sb.interactor = interactor
+        sb.transitioningDelegate = self
+        //        sb.
+        AppDelegate.getTopMostViewController().present(sb, animated: true, completion: nil)
+    }
+    
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissAnimator()
+    }
+    
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
+    }
+    
+    
+}
+
+
+
+
+
