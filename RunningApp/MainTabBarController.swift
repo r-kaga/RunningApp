@@ -13,9 +13,11 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         UITabBar.appearance().barTintColor = .black
         UITabBar.appearance().tintColor = .white
         
-        let vc = Home()
+//        let vc = Home()
+        let vc = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as! HomeControllerViewController
         vc.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home")!, tag: 1)
         let nv = UINavigationController(rootViewController: vc)
+        
         
         let vc2 = MyPage()
         vc2.tabBarItem = UITabBarItem(title: "MyPage", image: UIImage(named: "account")!, tag: 2)
