@@ -26,7 +26,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wx2-ZU-8fI">
-                                <rect key="frame" x="0.0" y="184" width="320" height="195"/>
+                                <rect key="frame" x="0.0" y="174" width="320" height="225"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GUt-I2-VI8">
@@ -39,11 +39,11 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wx2-ZU-8fI" firstAttribute="top" secondItem="5Ch-I5-9dW" secondAttribute="bottom" constant="20" id="1mX-r6-TpQ"/>
+                            <constraint firstItem="wx2-ZU-8fI" firstAttribute="top" secondItem="5Ch-I5-9dW" secondAttribute="bottom" constant="10" id="1mX-r6-TpQ"/>
                             <constraint firstItem="GUt-I2-VI8" firstAttribute="leading" secondItem="SZe-J7-h9d" secondAttribute="leading" id="5hy-Tj-xdV"/>
                             <constraint firstItem="GUt-I2-VI8" firstAttribute="bottom" secondItem="SZe-J7-h9d" secondAttribute="bottom" id="Y4E-81-TKb"/>
                             <constraint firstItem="wx2-ZU-8fI" firstAttribute="leading" secondItem="SZe-J7-h9d" secondAttribute="leading" id="YJF-Iy-tsf"/>
-                            <constraint firstItem="GUt-I2-VI8" firstAttribute="top" secondItem="wx2-ZU-8fI" secondAttribute="bottom" constant="50" id="egH-5Y-PSb"/>
+                            <constraint firstItem="GUt-I2-VI8" firstAttribute="top" secondItem="wx2-ZU-8fI" secondAttribute="bottom" constant="30" id="egH-5Y-PSb"/>
                             <constraint firstItem="5Ch-I5-9dW" firstAttribute="top" secondItem="SZe-J7-h9d" secondAttribute="top" constant="20" id="jgN-1c-DyX"/>
                             <constraint firstItem="SZe-J7-h9d" firstAttribute="trailing" secondItem="5Ch-I5-9dW" secondAttribute="trailing" constant="15" id="kyZ-4y-f0T"/>
                             <constraint firstItem="SZe-J7-h9d" firstAttribute="trailing" secondItem="GUt-I2-VI8" secondAttribute="trailing" id="mav-Ma-lXz"/>

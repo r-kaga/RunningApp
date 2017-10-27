@@ -48,17 +48,21 @@ class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
         
         guard !latestData.isEmpty else { return }
         
-//        let Latestlabel = UILabel(frame: CGRect(x: AppSize.width / 2 - 100,
-//                                                y: 0,
-//                                                width: 200,
-//                                                height: 30))
-//        Latestlabel.text = "Latest Date"
-//        Latestlabel.textColor = .white
-//        Latestlabel.textAlignment = .center
-//        scrollView.addSubview(Latestlabel)
-//
+        let Latestlabel = UILabel(frame: CGRect(x: AppSize.width / 2 - 100,
+                                                y: 0,
+                                                width: 200,
+                                                height: 20))
+        Latestlabel.text = "Latest Date"
+        Latestlabel.textColor = .white
+        Latestlabel.textAlignment = .center
+        scrollView.addSubview(Latestlabel)
+
+        let view = resultView(frame: CGRect(x: 15,
+                                            y: Latestlabel.frame.maxY + 5,
+                                            width: ressultOutlet.frame.width - 30,
+                                            height: ressultOutlet.frame.height - (Latestlabel.frame.maxY + 5))
+        )
         
-        let view = resultView(frame: CGRect(x: 15, y: 0, width: ressultOutlet.frame.width - 30, height: ressultOutlet.bounds.height))
         view.setValueToResultView(dateTime: latestData[0].date,
                                   timeValue: latestData[0].time,
                                   distance: latestData[0].distance,
@@ -70,13 +74,21 @@ class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
         
         guard latestData.count >= 2 else { return }
         
-//        let secondlabel = UILabel(frame: CGRect(x: (AppSize.width + AppSize.width / 2) - 100,
-//                                                y: 0,
-//                                                width: 200,
-//                                                height: 30))
+        let secondlabel = UILabel(frame: CGRect(x: (AppSize.width + AppSize.width / 2) - 100,
+                                                y: 0,
+                                                width: 200,
+                                                height: 20))
         
+        secondlabel.text = "Seconde Date"
+        secondlabel.textColor = .white
+        secondlabel.textAlignment = .center
+        scrollView.contentSize.width += ressultOutlet.frame.width
+        scrollView.addSubview(secondlabel)
         
-        let second = resultView(frame: CGRect(x: ressultOutlet.frame.width + 15, y: 0, width: ressultOutlet.frame.width - 30, height: ressultOutlet.frame.height))
+        let second = resultView(frame: CGRect(x: ressultOutlet.frame.width + 15,
+                                              y: secondlabel.frame.maxY + 5,
+                                              width: ressultOutlet.frame.width - 30,
+                                              height: ressultOutlet.frame.height - (secondlabel.frame.maxY + 5)))
         second.setValueToResultView(dateTime: latestData[1].date,
                                     timeValue: latestData[1].time,
                                     distance: latestData[1].distance,
@@ -85,24 +97,28 @@ class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
         )
         second.typeImageView.image = UIImage(named: latestData[1].workType)!
         scrollView.addSubview(second)
-        
-//        secondlabel.text = "Seconde Date"
-//        secondlabel.textColor = .white
-//        secondlabel.textAlignment = .center
-//
-        scrollView.contentSize.width += ressultOutlet.frame.width
-//        scrollView.addSubview(secondlabel)
+
         
         
         guard latestData.count >= 3 else { return }
         
-//        let thirdlabel = UILabel(frame: CGRect(x: (AppSize.width * 2 + AppSize.width / 2) - 100,
-//                                               y: 0,
-//                                               width: 200,
-//                                               height: 30))
+        let thirdlabel = UILabel(frame: CGRect(x: (AppSize.width * 2 + AppSize.width / 2) - 100,
+                                               y: 0,
+                                               width: 200,
+                                               height: 20))
         
+        //        thirdlabel.center = CGPoint(x: (third.frame.maxX - third.frame.width / 2), y: 0)
+        thirdlabel.text = "third Date"
+        thirdlabel.textColor = .white
+        thirdlabel.textAlignment = .center
+        scrollView.addSubview(thirdlabel)
         
-        let third = resultView(frame: CGRect(x: (ressultOutlet.frame.width * 2) + 15, y: 0, width: ressultOutlet.frame.width - 30, height: ressultOutlet.frame.height))
+        let third = resultView(frame: CGRect(x: (ressultOutlet.frame.width * 2) + 15,
+                                             y: thirdlabel.frame.maxY + 5,
+                                             width: ressultOutlet.frame.width - 30,
+                                             height: ressultOutlet.frame.height - (thirdlabel.frame.maxY + 5))
+        )
+        
         third.setValueToResultView(dateTime: latestData[2].date,
                                    timeValue: latestData[2].time,
                                    distance: latestData[2].distance,
@@ -113,14 +129,8 @@ class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
         
         scrollView.contentSize.width += ressultOutlet.frame.width
         scrollView.addSubview(third)
+
         
-        //        thirdlabel.center = CGPoint(x: (third.frame.maxX - third.frame.width / 2), y: 0)
-//        thirdlabel.text = "third Date"
-//        thirdlabel.textColor = .white
-//        thirdlabel.textAlignment = .center
-//        scrollView.addSubview(thirdlabel)
-        
-//        self.view.addSubview(scrollView)
         self.ressultOutlet.addSubview(scrollView)
         
     }
