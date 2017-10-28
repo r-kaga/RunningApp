@@ -230,7 +230,10 @@ class WorkController: UIViewController {
             }
             self.mapView.removeFromSuperview()
             //            self.mapView = nil
-            print(presentingViewController ?? "presentingViewController")
+
+            presentingViewController?.loadView()
+            presentingViewController?.viewDidLoad()
+            
             Utility.showCompleteDialog()
         })
 

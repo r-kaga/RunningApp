@@ -30,15 +30,16 @@ class resultView: UIView {
     
     @IBAction func deleteAction(_ sender: Any) {
         
-//        defer {
+        defer {
 //            let vc = AppDelegate.getTopMostViewController()
 //            vc.loadView()
 //            vc.viewDidLoad()
-//        }
+            
+        }
         
         let alert = UIAlertController(title: "削除してよろしいですか", message: "データは残りません", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { _ in
-            
+        
             guard let path = self.indexPath else { return }
             
             let realm = try! Realm()
@@ -47,6 +48,7 @@ class resultView: UIView {
             try! realm.write() {
                 realm.delete(data)
             }
+            
             
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in

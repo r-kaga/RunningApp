@@ -27,7 +27,8 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         vc3.tabBarItem = UITabBarItem(title: "Setting", image: UIImage(named: "setting")!, tag: 3)
         let nv3 = UINavigationController(rootViewController: vc3)
 
-        setViewControllers([nv, nv2 ,nv3], animated: true)
+//        setViewControllers([nv, nv2 ,nv3], animated: true)
+        setViewControllers([nv, nv2, nv3], animated: false)
     }
 
     
