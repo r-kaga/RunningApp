@@ -11,8 +11,8 @@ import RealmSwift
 
 class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
 
+    @IBOutlet weak var totalDistance: TotalDistanceView!
     @IBOutlet weak var ressultOutlet: UIView!
-    
     @IBOutlet weak var collectionOutlet: UIView!
     
     
@@ -27,6 +27,7 @@ class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
 
         setUpResultView()
         self.collectionOutlet.addSubview(self.layout())
+
     }
     
     
@@ -133,6 +134,16 @@ class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
         
         self.ressultOutlet.addSubview(scrollView)
         
+        
+        /** トータルディスタンスView */
+        let realmDate = realm.objects(RealmDataSet.self)
+        var distanceDate = 0
+        realmDate.forEach { value in
+            distanceDate = Int(value.distance)!
+        }
+        totalDistance.totalDistanceLabel.text = String(distanceDate)
+        totalDistance.descriptionLabel.text = Utility.getDescrition(distance: distanceDate)
+        
     }
     
     
@@ -155,6 +166,7 @@ class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
         collectionView.register(HomeCustomCell.self, forCellWithReuseIdentifier: "MyCell")
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
+//        collectionView.bounces = false
         collectionView.delegate = self
         collectionView.dataSource = self
         

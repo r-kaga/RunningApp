@@ -55,7 +55,9 @@ struct Utility {
         view?.add()
     }
     
-
+    /** collectionViewのpathから、運動のタイプをタプルで返却
+     *  ("Category Image", "CollectionView Image")
+     */
     static func pathConvertWorkType(path: Int) -> (String, String) {
         switch path {
         case Const.WorkType.running.rawValue:
@@ -67,5 +69,46 @@ struct Utility {
         }
     }
     
+    /**
+     *
+     */
+    static func getDescrition(distance: Int) -> String {
+        switch distance {
+        case 0...5: // 0Km~10Km
+            return "まずは5Km突破を目指そう"
+        case 5...10: // 0Km~10Km
+            return "あともう少しでハーフマラソン完走"
+        
+        case 10...15: // 10Km~30Km
+            return "フルマラソン完走まで頑張ろう!"
+        
+        case 15...20: // 10Km~30Km
+            return "フルマラソン完走まで頑張ろう!"
+            
+        case 20...25: // 10Km~30Km
+            return "フルマラソン完走まで頑張ろう!"
+            
+        case 25...30: // 10Km~30Km
+            return "フルマラソン完走まで頑張ろう!"
+            
+        case 30...35: // 10Km~30Km
+            return "フルマラソン完走まで頑張ろう!"
+  
+        case 35...40: // 10Km~30Km
+            return "フルマラソン完走まで頑張ろう!"
+        
+        case 40...47: // 10Km~30Km
+            return "フルマラソン完走まで頑張ろう!"
+            
+        case 47...50: // 47Km~10Km
+            return "フルマラソン完走!"
+        
+        case 50...100: // 0Km~10Km
+            return "万里の長城を登りきろう"
+            
+        default:
+            return "風になろう"
+        }
+    }
     
 }

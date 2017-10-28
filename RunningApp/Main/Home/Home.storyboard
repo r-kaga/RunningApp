@@ -26,7 +26,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wx2-ZU-8fI">
-                                <rect key="frame" x="0.0" y="179" width="320" height="215"/>
+                                <rect key="frame" x="0.0" y="189" width="320" height="205"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GUt-I2-VI8">
@@ -39,7 +39,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wx2-ZU-8fI" firstAttribute="top" secondItem="5Ch-I5-9dW" secondAttribute="bottom" constant="15" id="1mX-r6-TpQ"/>
+                            <constraint firstItem="wx2-ZU-8fI" firstAttribute="top" secondItem="5Ch-I5-9dW" secondAttribute="bottom" constant="25" id="1mX-r6-TpQ"/>
                             <constraint firstItem="GUt-I2-VI8" firstAttribute="leading" secondItem="SZe-J7-h9d" secondAttribute="leading" id="5hy-Tj-xdV"/>
                             <constraint firstItem="GUt-I2-VI8" firstAttribute="bottom" secondItem="SZe-J7-h9d" secondAttribute="bottom" id="Y4E-81-TKb"/>
                             <constraint firstItem="wx2-ZU-8fI" firstAttribute="leading" secondItem="SZe-J7-h9d" secondAttribute="leading" id="YJF-Iy-tsf"/>
@@ -57,6 +57,7 @@
                     <connections>
                         <outlet property="collectionOutlet" destination="GUt-I2-VI8" id="uu4-OW-Nfq"/>
                         <outlet property="ressultOutlet" destination="wx2-ZU-8fI" id="UZ3-wv-edB"/>
+                        <outlet property="totalDistance" destination="5Ch-I5-9dW" id="rkm-HK-785"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VUo-S2-Svl" userLabel="First Responder" sceneMemberID="firstResponder"/>
