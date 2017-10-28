@@ -64,14 +64,14 @@ class SettingForm: UIViewController {
             })
             
         } catch Const.ErrorType.empty {
-            let alert = UIAlertController(title: "からです", message: "からです", preferredStyle: .alert)
+            let alert = UIAlertController(title: "値が入力されていません", message: "", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
                 print("OK")
             }))
             self.present(alert, animated: true, completion: nil)
 
         } catch Const.ErrorType.notInteger {
-            let alert = UIAlertController(title: "数値を入れて下さい", message: "数値です", preferredStyle: .alert)
+            let alert = UIAlertController(title: "数値が入力されていません", message: "", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
                 print("OK")
             }))
