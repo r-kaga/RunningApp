@@ -16,6 +16,9 @@ class DistanceChartsController: UIViewController, ChartViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.layer.cornerRadius = 10.0
+        self.view.clipsToBounds = true
+        
         let realm = try! Realm()
         let motionDate = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
 
@@ -26,20 +29,26 @@ class DistanceChartsController: UIViewController, ChartViewDelegate {
         let chartView = LineChartView(frame: rect)
         chartView.chartDescription?.text = ""
         
-//        chartView.xAxis.enabled = false
+        chartView.xAxis.enabled = false
 //        chartView.leftAxis.enabled = false
 //        chartView.rightAxis.enabled = false
         
         var entries = [BarChartDataEntry]()
         var count = 0.0
         motionDate.forEach { (date) in
-            entries.append(BarChartDataEntry(x: Double(count), y: Double(date.distance)!))
+            entries.append(BarChartDataEntry(x: count, y: Double(date.distance)!))
             count += 0.1
         }
         chartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
         
         let set = LineChartDataSet(values: entries, label: "走行距離")
-        set.colors = ChartColorTemplates.vordiplom()
+//        set.colors = ChartColorTemplates.vordiplom()
+//        set.colors = ChartColorTemplates.pastel()
+
+//        set.circleColors = ChartColorTemplates.pastel()
+//        set.circleColors = ChartColorTemplates.liberty()
+//        set.circleColors = ChartColorTemplates.material()
+
         chartView.data = LineChartData(dataSet: set)
         self.view.addSubview(chartView)
 
