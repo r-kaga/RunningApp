@@ -280,6 +280,7 @@
 		E38F7FB01F9B0BBF0036CEE0 /* ViewParts */ = {
 			isa = PBXGroup;
 			children = (
+				E365A13B1F9255E00008D475 /* Dialog */,
 				E3B6DC461FA0C7C70037FA07 /* TotalDIstanceView */,
 				E38F7FA91F9AF3C40036CEE0 /* ResultView */,
 			);
@@ -297,7 +298,6 @@
 		E3B6DC461FA0C7C70037FA07 /* TotalDIstanceView */ = {
 			isa = PBXGroup;
 			children = (
-				E365A13B1F9255E00008D475 /* Dialog */,
 				E3B6DC471FA0C7E00037FA07 /* TotalDistanceView.swift */,
 				E3B6DC491FA0C7F30037FA07 /* TotalDistanceView.xib */,
 			);

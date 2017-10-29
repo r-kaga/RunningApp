@@ -12,7 +12,6 @@ import RealmSwift
 
 class MyPage: UIViewController, UIScrollViewDelegate {
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -64,5 +63,11 @@ class MyPage: UIViewController, UIScrollViewDelegate {
     }
 
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.loadView()
+        self.viewDidLoad()
+    }
 
 }

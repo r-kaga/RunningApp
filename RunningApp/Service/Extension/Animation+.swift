@@ -53,5 +53,20 @@ extension UIView {
     }
   
     
+    func Vibrate() {
+        
+        self.layer.removeAllAnimations()
+        
+        var animation: CABasicAnimation
+        animation = CABasicAnimation(keyPath: "transform.rotation")
+        animation.duration = 0.1
+        animation.repeatCount = .infinity
+        animation.fromValue = 2.0 * Float(Double.pi) / 180.0
+        animation.toValue = 0 - (animation.fromValue as! Float)
+        animation.autoreverses = true
+        self.layer.add(animation, forKey: "VibrateAnimationKey")
+    }
     
+
+
 }
