@@ -19,20 +19,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wx2-ZU-8fI">
-                                <rect key="frame" x="0.0" y="214" width="320" height="205"/>
+                                <rect key="frame" x="0.0" y="234" width="320" height="185"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GUt-I2-VI8">
-                                <rect key="frame" x="0.0" y="439" width="320" height="80"/>
+                                <rect key="frame" x="0.0" y="429" width="320" height="90"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="ZjN-VQ-Vab"/>
+                                    <constraint firstAttribute="height" constant="90" id="ZjN-VQ-Vab"/>
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nrv-TM-ULR">
-                                <rect key="frame" x="10" y="74" width="300" height="130"/>
+                                <rect key="frame" x="10" y="74" width="300" height="150"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="NnV-aR-PDJ"/>
+                                    <constraint firstAttribute="height" constant="150" id="NnV-aR-PDJ"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="cvF-SG-dNn" kind="embed" id="6OA-fn-IOx"/>
@@ -48,7 +48,7 @@
                             <constraint firstItem="GUt-I2-VI8" firstAttribute="bottom" secondItem="SZe-J7-h9d" secondAttribute="bottom" id="Y4E-81-TKb"/>
                             <constraint firstItem="wx2-ZU-8fI" firstAttribute="leading" secondItem="SZe-J7-h9d" secondAttribute="leading" id="YJF-Iy-tsf"/>
                             <constraint firstItem="SZe-J7-h9d" firstAttribute="trailing" secondItem="nrv-TM-ULR" secondAttribute="trailing" constant="10" id="aOL-le-7kE"/>
-                            <constraint firstItem="GUt-I2-VI8" firstAttribute="top" secondItem="wx2-ZU-8fI" secondAttribute="bottom" constant="20" id="egH-5Y-PSb"/>
+                            <constraint firstItem="GUt-I2-VI8" firstAttribute="top" secondItem="wx2-ZU-8fI" secondAttribute="bottom" constant="10" id="egH-5Y-PSb"/>
                             <constraint firstItem="SZe-J7-h9d" firstAttribute="trailing" secondItem="GUt-I2-VI8" secondAttribute="trailing" id="mav-Ma-lXz"/>
                             <constraint firstItem="SZe-J7-h9d" firstAttribute="trailing" secondItem="wx2-ZU-8fI" secondAttribute="trailing" id="uia-Zb-tQ9"/>
                         </constraints>
@@ -70,7 +70,7 @@
             <objects>
                 <viewController id="cvF-SG-dNn" customClass="DistanceChartsController" customModule="RunningApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="254-Da-AEB">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="130"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="150"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="Fcs-gq-dKg"/>
