@@ -22,8 +22,7 @@ class DistanceChartsController: UIViewController, ChartViewDelegate {
         let realm = try! Realm()
         let motionDate = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
 
-        var rect = CGRect(x: 0, y: 0, width: AppSize.width - 20, height: 150)
-        
+        let rect = CGRect(x: 0, y: 10, width: AppSize.width - 20, height: 145)
         let chartView = LineChartView(frame: rect)
         chartView.chartDescription?.text = ""
         
