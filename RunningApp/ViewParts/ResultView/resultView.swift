@@ -186,7 +186,7 @@ class resultView: UIView {
         setSpeedLabel(value: speed)
         setDateTimeLabel(value: dateTime)
         setTimeLabel(value: timeValue)
-        setDistanceLabel(value: distance)
+        setDistanceLabel(value: distance + "km")
         setCalorieLabel(value: calorie)
     }
     
