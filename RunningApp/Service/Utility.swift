@@ -72,7 +72,7 @@ struct Utility {
     /**
      *
      */
-    static func getDescrition(distance: Int) -> String {
+    static func getDescrition(distance: Double) -> String {
         var str = ""
         switch distance {
         case 0...5: // 0Km~10Km

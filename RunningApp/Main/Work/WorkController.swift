@@ -231,8 +231,8 @@ class WorkController: UIViewController {
             self.mapView.removeFromSuperview()
             //            self.mapView = nil
 
-            presentingViewController?.loadView()
-            presentingViewController?.viewDidLoad()
+//            presentingViewController?.loadView()
+//            presentingViewController?.viewDidLoad()
             
             Utility.showCompleteDialog()
         })

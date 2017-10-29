@@ -28,37 +28,10 @@ class resultView: UIView {
     
     var indexPath: Int?
     
+    var closeButton: UIButton!
+    
     @IBAction func deleteAction(_ sender: Any) {
-        
-        defer {
-//            let vc = AppDelegate.getTopMostViewController()
-//            vc.loadView()
-//            vc.viewDidLoad()
-            
-        }
-        
-        let alert = UIAlertController(title: "削除してよろしいですか", message: "データは残りません", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { _ in
-        
-            guard let path = self.indexPath else { return }
-            
-            let realm = try! Realm()
-            let data = realm.objects(RealmDataSet.self).filter("id = \(path)")
-            
-            try! realm.write() {
-                realm.delete(data)
-            }
-            
-            
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-            print("cencel")
-        }))
-        
-        AppDelegate.getTopMostViewController().present(alert, animated: true) {
-            print("dddd")
-        }
-
+        delete()
     }
     
     
@@ -71,11 +44,13 @@ class resultView: UIView {
         self.clipsToBounds = true
 
         self.loadFromNib()
+//        self.setUpCloseButton()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.loadFromNib()
+//        self.setUpCloseButton()
     }
     
     
@@ -109,7 +84,103 @@ class resultView: UIView {
         self.addConstraints(constraints2)
         
     }
+
     
+//    private func setUpCloseButton() {
+//
+//        closeButton = UIButton(frame: CGRect(x: self.frame.width - 40, y: 0, width: 40, height: 40))
+//        closeButton.backgroundColor = .clear
+//        closeButton.setTitle("❌", for: .normal)
+//        //        button.setImage(UIImage(named: "close")!, for: .normal)
+//        closeButton.addTarget(self, action: #selector(resultView.buttonTaped(_:)), for: .touchUpInside)
+//        self.addSubview(closeButton)
+//
+//    }
+//
+//    @objc func  buttonTaped(_ sender: AnyObject) {
+//        delete()
+//    }
+//
+    
+    
+    private func delete() {
+        
+        defer {
+            //            let vc = AppDelegate.getTopMostViewController()
+            //            vc.loadView()
+            //            vc.viewDidLoad()
+            
+        }
+        
+        let alert = UIAlertController(title: "削除してよろしいですか", message: "データは残りません", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { _ in
+            
+            guard let path = self.indexPath else { return }
+            
+            let realm = try! Realm()
+            let data = realm.objects(RealmDataSet.self).filter("id = \(path)")
+            
+            try! realm.write() {
+                realm.delete(data)
+            }
+            
+            
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            print("cencel")
+        }))
+        
+        AppDelegate.getTopMostViewController().present(alert, animated: true) {
+            print("dddd")
+        }
+    }
+
+    
+    private func drawBadge() {
+        let labelText = CATextLayer() // textを描画するためのCALayer
+        labelText.contentsScale = UIScreen.main.scale // バッジラベルに適用される倍率. 現在のディスプレイのスケールを取得
+        labelText.string = "❌" // バッジに表示する値
+        labelText.fontSize = 15.0 // fontSize
+        labelText.font = UIFont.systemFont(ofSize: 15) // fontの種類
+        labelText.alignmentMode = kCAAlignmentCenter // center寄せ
+        labelText.foregroundColor = UIColor.white.cgColor // CATextLayerのtextColorの変更
+        labelText.frame = CGRect(x: self.frame.width - 15, y: -10, width: 30, height: 30) // badgeのlabelのframe
+        let shapeLayer = CAShapeLayer() // 図を描画するためのCALayer
+        shapeLayer.contentsScale = UIScreen.main.scale // レイヤーに適用される倍率. 現在のディスプレイのスケールを取得
+//        let cornerRadius = CGFloat(labelText.frame.width) // 丸め幅
+//        let borderInset = CGFloat(-2.0) // badgetextのpadding. 赤丸までどれくらい空けるか
+
+        /** UIBezierPath -> 図形を描画
+         *  roundedRectでのinitは、角が丸い矩形を描画する
+         *    roundedRect -> 図形の形状を定義 CGRect
+         *  byRoundingCorners -> 丸めたいコーナーを設定
+         *    cornerRadius -> 楕円の半径
+         *  insetBy -> Marginをつける labelTextから広がる形のCGRect dx - x座標, dy - y座標
+         */
+//        let aPath = UIBezierPath(roundedRect: labelText.frame.insetBy(dx: borderInset, dy: borderInset), cornerRadius: cornerRadius)
+//        let aPath = UIBezierPath(rect: labelText.frame)
+//        shapeLayer.path = aPath.cgPath //図形を描画
+//        shapeLayer.fillColor = UIColor.white.cgColor // 図形の中の色
+//        shapeLayer.strokeColor = UIColor.white.cgColor // 輪郭の線の色
+//        shapeLayer.lineWidth = 0.5 // 輪郭の線の太さ
+        
+        /** layerを追加
+         *  index - layerのindex番号 階層の0番目にレイヤーを追加
+         */
+//        shapeLayer.insertSublayer(labelText, at: 0)
+        
+        // 追加したlayerのframe. 継承させたButtonの中での座標
+//        shapeLayer.frame = shapeLayer.frame.offsetBy(dx: self.frame.width, dy: 0.0)
+        
+//        self.layer.insertSublayer(shapeLayer, at: 1)
+        self.layer.insertSublayer(labelText, at: 1)
+
+        // trueにすると、円の上が切れる. レイヤの境界に一致する暗黙のクリッピングマスクを作成する maskプロパティも指定されている場合は、2つのマスクを乗算して最終的なマスク値を取得します。
+        self.layer.masksToBounds = false
+
+        self.layer.addSublayer(labelText)
+
+    }
 
     public func setValueToResultView(dateTime: String, timeValue: String, distance: String, speed: String, calorie: String) {
         setSpeedLabel(value: speed)

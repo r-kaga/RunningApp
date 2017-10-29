@@ -137,13 +137,12 @@ class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
         
         /** トータルディスタンスView */
         let realmDate = realm.objects(RealmDataSet.self)
-        var distanceDate = 0
+        var distanceDate = 0.0
         realmDate.forEach { value in
-            distanceDate = Int(value.distance)!
+            distanceDate += Double(value.distance)!
         }
         totalDistance.totalDistanceLabel.text = String(distanceDate)
         totalDistance.descriptionLabel.text = Utility.getDescrition(distance: distanceDate)
-        
     }
     
     
