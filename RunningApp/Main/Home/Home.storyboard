@@ -18,37 +18,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Ch-I5-9dW" customClass="TotalDistanceView" customModule="RunningApp" customModuleProvider="target">
-                                <rect key="frame" x="15" y="84" width="290" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="Vzd-7X-vdK"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wx2-ZU-8fI">
-                                <rect key="frame" x="0.0" y="189" width="320" height="205"/>
+                                <rect key="frame" x="0.0" y="209" width="320" height="210"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GUt-I2-VI8">
-                                <rect key="frame" x="0.0" y="419" width="320" height="100"/>
+                                <rect key="frame" x="0.0" y="439" width="320" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="ZjN-VQ-Vab"/>
+                                    <constraint firstAttribute="height" constant="80" id="ZjN-VQ-Vab"/>
                                 </constraints>
                             </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nrv-TM-ULR">
+                                <rect key="frame" x="5" y="69" width="310" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="NnV-aR-PDJ"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="cvF-SG-dNn" kind="embed" id="6OA-fn-IOx"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wx2-ZU-8fI" firstAttribute="top" secondItem="5Ch-I5-9dW" secondAttribute="bottom" constant="25" id="1mX-r6-TpQ"/>
+                            <constraint firstItem="SZe-J7-h9d" firstAttribute="trailing" secondItem="nrv-TM-ULR" secondAttribute="trailing" constant="5" id="1hs-ae-lTU"/>
+                            <constraint firstItem="nrv-TM-ULR" firstAttribute="leading" secondItem="SZe-J7-h9d" secondAttribute="leading" constant="5" id="4yB-hi-Wrl"/>
                             <constraint firstItem="GUt-I2-VI8" firstAttribute="leading" secondItem="SZe-J7-h9d" secondAttribute="leading" id="5hy-Tj-xdV"/>
+                            <constraint firstItem="nrv-TM-ULR" firstAttribute="top" secondItem="SZe-J7-h9d" secondAttribute="top" constant="5" id="AgC-ht-1tJ"/>
+                            <constraint firstItem="wx2-ZU-8fI" firstAttribute="top" secondItem="nrv-TM-ULR" secondAttribute="bottom" constant="10" id="FCB-Bf-W1T"/>
+                            <constraint firstItem="nrv-TM-ULR" firstAttribute="top" secondItem="SZe-J7-h9d" secondAttribute="top" constant="5" id="FH0-L4-EZg"/>
                             <constraint firstItem="GUt-I2-VI8" firstAttribute="bottom" secondItem="SZe-J7-h9d" secondAttribute="bottom" id="Y4E-81-TKb"/>
                             <constraint firstItem="wx2-ZU-8fI" firstAttribute="leading" secondItem="SZe-J7-h9d" secondAttribute="leading" id="YJF-Iy-tsf"/>
-                            <constraint firstItem="GUt-I2-VI8" firstAttribute="top" secondItem="wx2-ZU-8fI" secondAttribute="bottom" constant="25" id="egH-5Y-PSb"/>
-                            <constraint firstItem="5Ch-I5-9dW" firstAttribute="top" secondItem="SZe-J7-h9d" secondAttribute="top" constant="20" id="jgN-1c-DyX"/>
-                            <constraint firstItem="SZe-J7-h9d" firstAttribute="trailing" secondItem="5Ch-I5-9dW" secondAttribute="trailing" constant="15" id="kyZ-4y-f0T"/>
+                            <constraint firstItem="SZe-J7-h9d" firstAttribute="trailing" secondItem="nrv-TM-ULR" secondAttribute="trailing" constant="5" id="aOL-le-7kE"/>
+                            <constraint firstItem="GUt-I2-VI8" firstAttribute="top" secondItem="wx2-ZU-8fI" secondAttribute="bottom" constant="20" id="egH-5Y-PSb"/>
+                            <constraint firstItem="nrv-TM-ULR" firstAttribute="leading" secondItem="SZe-J7-h9d" secondAttribute="leading" constant="5" id="fVC-Jo-Vc2"/>
                             <constraint firstItem="SZe-J7-h9d" firstAttribute="trailing" secondItem="GUt-I2-VI8" secondAttribute="trailing" id="mav-Ma-lXz"/>
                             <constraint firstItem="SZe-J7-h9d" firstAttribute="trailing" secondItem="wx2-ZU-8fI" secondAttribute="trailing" id="uia-Zb-tQ9"/>
-                            <constraint firstItem="5Ch-I5-9dW" firstAttribute="leading" secondItem="SZe-J7-h9d" secondAttribute="leading" constant="15" id="xcA-Xu-mM7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SZe-J7-h9d"/>
                     </view>
@@ -57,12 +62,26 @@
                     <connections>
                         <outlet property="collectionOutlet" destination="GUt-I2-VI8" id="uu4-OW-Nfq"/>
                         <outlet property="ressultOutlet" destination="wx2-ZU-8fI" id="UZ3-wv-edB"/>
-                        <outlet property="totalDistance" destination="5Ch-I5-9dW" id="rkm-HK-785"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VUo-S2-Svl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="26.25" y="185.91549295774649"/>
+            <point key="canvasLocation" x="416" y="35"/>
+        </scene>
+        <!--Distance Charts Controller-->
+        <scene sceneID="MZH-lk-Qwn">
+            <objects>
+                <viewController id="cvF-SG-dNn" customClass="DistanceChartsController" customModule="RunningApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="254-Da-AEB">
+                        <rect key="frame" x="0.0" y="0.0" width="310" height="130"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="Fcs-gq-dKg"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3JO-1g-Aaf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1172" y="-176"/>
         </scene>
     </scenes>
 </document>

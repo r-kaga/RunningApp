@@ -8,6 +8,7 @@ target 'RunningApp' do
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'RealmSwift'
+  pod 'Charts'
   # Pods for RunningApp
 
 end

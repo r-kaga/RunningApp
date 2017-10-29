@@ -11,14 +11,10 @@ import RealmSwift
 
 class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
 
-    @IBOutlet weak var totalDistance: TotalDistanceView!
     @IBOutlet weak var ressultOutlet: UIView!
     @IBOutlet weak var collectionOutlet: UIView!
     
-    
-    
     let interactor = Interactor()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +23,7 @@ class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
 
         setUpResultView()
         self.collectionOutlet.addSubview(self.layout())
-
     }
-    
     
     private func setUpResultView() {
 
@@ -133,16 +127,7 @@ class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
 
         
         self.ressultOutlet.addSubview(scrollView)
-        
-        
-        /** トータルディスタンスView */
-        let realmDate = realm.objects(RealmDataSet.self)
-        var distanceDate = 0.0
-        realmDate.forEach { value in
-            distanceDate += Double(value.distance)!
-        }
-        totalDistance.totalDistanceLabel.text = String(distanceDate)
-        totalDistance.descriptionLabel.text = Utility.getDescrition(distance: distanceDate)
+
     }
     
     

@@ -44,6 +44,7 @@
 		E3CA14E81F5D91B00053468D /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14E71F5D91B00053468D /* HomeModel.swift */; };
 		E3CA14EA1F5D963E0053468D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14E91F5D963D0053468D /* HomeView.swift */; };
 		E3CA14EC1F5D98C90053468D /* HomeCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */; };
+		E3D6F2741FA5F6BC00241D07 /* DistanceChartsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D6F2731FA5F6BC00241D07 /* DistanceChartsController.swift */; };
 		E3F4032E1F88C6EC0073DC45 /* DismissAnimator.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F4032D1F88C6EC0073DC45 /* DismissAnimator.swift.swift */; };
 		E3FE60C31F9CE3FB0080E378 /* Animation+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FE60C21F9CE3FB0080E378 /* Animation+.swift */; };
 /* End PBXBuildFile section */
@@ -90,6 +91,7 @@
 		E3CA14E71F5D91B00053468D /* HomeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		E3CA14E91F5D963D0053468D /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCustomCell.swift; sourceTree = "<group>"; };
+		E3D6F2731FA5F6BC00241D07 /* DistanceChartsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceChartsController.swift; sourceTree = "<group>"; };
 		E3F4032D1F88C6EC0073DC45 /* DismissAnimator.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift.swift; sourceTree = "<group>"; };
 		E3FE60C21F9CE3FB0080E378 /* Animation+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -269,6 +271,7 @@
 		E38F7FAF1F9B0B460036CEE0 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				E3D6F26E1FA5F31500241D07 /* DistanceChartsController */,
 				E361060E1F243225004F56EC /* Home */,
 				E36106111F243225004F56EC /* MyPage */,
 				E3031D011F80E041002C5739 /* Setting */,
@@ -302,6 +305,14 @@
 				E3B6DC491FA0C7F30037FA07 /* TotalDistanceView.xib */,
 			);
 			path = TotalDIstanceView;
+			sourceTree = "<group>";
+		};
+		E3D6F26E1FA5F31500241D07 /* DistanceChartsController */ = {
+			isa = PBXGroup;
+			children = (
+				E3D6F2731FA5F6BC00241D07 /* DistanceChartsController.swift */,
+			);
+			path = DistanceChartsController;
 			sourceTree = "<group>";
 		};
 		E3F4032C1F88C6CF0073DC45 /* Work */ = {
@@ -458,6 +469,7 @@
 				E3031D031F80E05A002C5739 /* SettingController.swift in Sources */,
 				E31264511FA22F5D00F2B23D /* HomeControllerViewController.swift in Sources */,
 				E3CA14EC1F5D98C90053468D /* HomeCustomCell.swift in Sources */,
+				E3D6F2741FA5F6BC00241D07 /* DistanceChartsController.swift in Sources */,
 				E3B6DC481FA0C7E00037FA07 /* TotalDistanceView.swift in Sources */,
 				E3CA14EA1F5D963E0053468D /* HomeView.swift in Sources */,
 				E355F1961F9F7ADD00509CA1 /* UIViewController+.swift in Sources */,
