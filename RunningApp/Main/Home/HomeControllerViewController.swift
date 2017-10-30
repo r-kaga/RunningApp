@@ -36,6 +36,10 @@ class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
         scrollView.showsHorizontalScrollIndicator = false
         //        scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         scrollView.delegate = self
+        
+        defer {
+            self.ressultOutlet.addSubview(scrollView)
+        }
 
         
         let realm = try! Realm()
