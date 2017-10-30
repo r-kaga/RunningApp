@@ -3,6 +3,7 @@ PODS:
   - Charts (3.0.4):
     - Charts/Core (= 3.0.4)
   - Charts/Core (3.0.4)
+  - Pastel (0.3.0)
   - Realm (3.0.1):
     - Realm/Headers (= 3.0.1)
   - Realm/Headers (3.0.1)
@@ -13,16 +14,18 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - Charts
+  - Pastel
   - RealmSwift
   - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   Charts: 0705898046257443f0afbbc3179f4b67507b6e48
+  Pastel: 738740c84f2b15bbcd96ebe99c4e6c2f5dd42262
   Realm: ba6144c74f835f7497791f6599d63a7755377b83
   RealmSwift: 7d13b1ac4b6022a13f841e3143e7789c9e40ad0d
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 1827e1fa004303f2561f646c150a8dde40870c86
+PODFILE CHECKSUM: da8508ca2694f4eae2b2d36e3866ddc4607b593c
 
 COCOAPODS: 1.2.1

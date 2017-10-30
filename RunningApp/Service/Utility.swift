@@ -21,14 +21,14 @@ struct Utility {
         
         //以下で登録処理
         let content = UNMutableNotificationContent()
-        content.title = "SimWay";
-        content.body = "SimWayからの通知だよ";
+        content.title = "今日は運動しましたか";
+        content.body = "毎日の運動を大切にしましょう";
         content.sound = UNNotificationSound.default()
         content.badge = 1
         content.userInfo = ["id" : "activityGoal"]
         let date = DateComponents(hour: setTime)//(month:7, day:7, hour:12, minute:0)
         let trigger = UNCalendarNotificationTrigger.init(dateMatching: date, repeats: true)//1回だけならrepeatsをfalseに
-        let request = UNNotificationRequest.init(identifier: "simwayNotification", content: content, trigger: trigger)
+        let request = UNNotificationRequest.init(identifier: "runKitNotification", content: content, trigger: trigger)
         let center = UNUserNotificationCenter.current()
         center.add(request)
 //        center.delegate = self

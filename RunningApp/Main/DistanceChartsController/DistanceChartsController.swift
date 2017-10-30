@@ -20,13 +20,14 @@ class DistanceChartsController: UIViewController, ChartViewDelegate {
         self.view.clipsToBounds = true
         
         let realm = try! Realm()
-        let motionDate = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
+        let motionDate = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: true)
 
-        let rect = CGRect(x: 0, y: 10, width: AppSize.width - 20, height: 145)
+        let rect = CGRect(x: 0, y: 0 , width: AppSize.width - 20, height: 150)
         let chartView = LineChartView(frame: rect)
         chartView.chartDescription?.text = ""
         
         chartView.xAxis.enabled = false
+
 //        chartView.leftAxis.enabled = false
 //        chartView.rightAxis.enabled = false
         

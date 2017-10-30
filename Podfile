@@ -9,6 +9,7 @@ target 'RunningApp' do
   pod 'SwiftyJSON'
   pod 'RealmSwift'
   pod 'Charts'
+  pod 'Pastel'
   # Pods for RunningApp
 
 end
