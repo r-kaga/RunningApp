@@ -14,10 +14,19 @@ class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var ressultOutlet: UIView!
     @IBOutlet weak var collectionOutlet: UIView!
     
+    @IBOutlet weak var distanceCharts: UIView!
+    
+    var resultOutletHeight: CGFloat {
+        return AppSize.height - (self.distanceCharts.frame.maxY + self.collectionOutlet.frame.height + AppSize.tabBarHeight + 20)
+    }
+    
     let interactor = Interactor()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(ressultOutlet.frame.height)
+        print(resultOutletHeight)
 
         navigationItem.title = "Home"
 
@@ -27,9 +36,12 @@ class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
     
     private func setUpResultView() {
 
-        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: ressultOutlet.frame.width, height: ressultOutlet.frame.height))
+        print(ressultOutlet.frame.height)
+        print(resultOutletHeight)
+        
+        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.height))
         scrollView.backgroundColor = UIColor.black
-        scrollView.contentSize = CGSize(width: ressultOutlet.frame.width, height: ressultOutlet.frame.height) // 中身の大きさを設定
+        scrollView.contentSize = CGSize(width: AppSize.width, height: ressultOutlet.frame.height) // 中身の大きさを設定
         scrollView.isPagingEnabled = true
         scrollView.bounces = false
         scrollView.showsVerticalScrollIndicator = false
@@ -57,10 +69,12 @@ class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
         scrollView.addSubview(Latestlabel)
 
         let view = resultView(frame: CGRect(x: 15,
-                                            y: Latestlabel.frame.maxY + 5,
-                                            width: ressultOutlet.frame.width - 30,
-                                            height: ressultOutlet.frame.height - (Latestlabel.frame.maxY + 5))
+                                            y: 5,
+                                            width: AppSize.width - 30,
+                                            height: resultOutletHeight - (Latestlabel.frame.maxY + 5))
+
         )
+        view.center = CGPoint(x: AppSize.width / 2, y: Latestlabel.frame.maxY + view.frame.height / 2 + 5)
         
         view.setValueToResultView(dateTime: latestData[0].date,
                                   timeValue: latestData[0].time,
@@ -81,13 +95,13 @@ class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
         secondlabel.text = "Seconde Date"
         secondlabel.textColor = .white
         secondlabel.textAlignment = .center
-        scrollView.contentSize.width += ressultOutlet.frame.width
+        scrollView.contentSize.width += AppSize.width
         scrollView.addSubview(secondlabel)
         
-        let second = resultView(frame: CGRect(x: ressultOutlet.frame.width + 15,
+        let second = resultView(frame: CGRect(x: AppSize.width + 15,
                                               y: secondlabel.frame.maxY + 5,
-                                              width: ressultOutlet.frame.width - 30,
-                                              height: ressultOutlet.frame.height - (secondlabel.frame.maxY + 5)))
+                                              width: AppSize.width - 30,
+                                              height: resultOutletHeight - (secondlabel.frame.maxY + 5)))
         second.setValueToResultView(dateTime: latestData[1].date,
                                     timeValue: latestData[1].time,
                                     distance: latestData[1].distance,
@@ -112,10 +126,10 @@ class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
         thirdlabel.textAlignment = .center
         scrollView.addSubview(thirdlabel)
         
-        let third = resultView(frame: CGRect(x: (ressultOutlet.frame.width * 2) + 15,
+        let third = resultView(frame: CGRect(x: (AppSize.width * 2) + 15,
                                              y: thirdlabel.frame.maxY + 5,
-                                             width: ressultOutlet.frame.width - 30,
-                                             height: ressultOutlet.frame.height - (thirdlabel.frame.maxY + 5))
+                                             width: AppSize.width - 30,
+                                             height: resultOutletHeight - (thirdlabel.frame.maxY + 5))
         )
         
         third.setValueToResultView(dateTime: latestData[2].date,
@@ -126,7 +140,7 @@ class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
         )
         third.typeImageView.image = UIImage(named: latestData[2].workType)!
         
-        scrollView.contentSize.width += ressultOutlet.frame.width
+        scrollView.contentSize.width += AppSize.width
         scrollView.addSubview(third)
 
         

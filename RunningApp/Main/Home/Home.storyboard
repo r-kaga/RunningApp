@@ -20,7 +20,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wx2-ZU-8fI">
                                 <rect key="frame" x="0.0" y="234" width="320" height="185"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GUt-I2-VI8">
                                 <rect key="frame" x="0.0" y="429" width="320" height="90"/>
@@ -58,6 +58,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
                     <connections>
                         <outlet property="collectionOutlet" destination="GUt-I2-VI8" id="uu4-OW-Nfq"/>
+                        <outlet property="distanceCharts" destination="nrv-TM-ULR" id="XWZ-Re-uMw"/>
                         <outlet property="ressultOutlet" destination="wx2-ZU-8fI" id="UZ3-wv-edB"/>
                     </connections>
                 </viewController>
