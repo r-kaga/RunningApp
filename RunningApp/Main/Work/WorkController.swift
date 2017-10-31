@@ -228,13 +228,15 @@ class WorkController: UIViewController {
             }
             self.mapView.removeFromSuperview()
 
-            let nav = presentingViewController  as! UINavigationController
-            //呼び出し元のView Controllerを遷移履歴から取得しパラメータを渡す
-            let home = nav.viewControllers[nav.viewControllers.count-1] as! HomeViewController
-            home.setUpResultView()
+            let tabVC = presentingViewController as! MainTabBarViewController
+            
+            printtabVC.viewControllers)
+            
+//            let home = presentingViewController as! HomeViewController
+//            home.setUpResultView()
 
-//            presentingViewController?.loadView()
-//            presentingViewController?.viewDidLoad()
+            presentingViewController?.loadView()
+            presentingViewController?.viewDidLoad()
             
             Utility.showCompleteDialog()
         })
