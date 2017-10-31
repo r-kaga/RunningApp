@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home Controller View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="U6N-IT-s9w">
             <objects>
-                <viewController id="agd-nW-Aut" customClass="HomeControllerViewController" customModule="RunningApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="agd-nW-Aut" customClass="HomeViewController" customModule="RunningApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KXN-ex-Bfm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

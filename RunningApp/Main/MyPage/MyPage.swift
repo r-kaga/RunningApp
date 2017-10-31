@@ -63,11 +63,4 @@ class MyPage: UIViewController, UIScrollViewDelegate {
     }
 
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        self.loadView()
-        self.viewDidLoad()
-    }
-
 }

@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
+class HomeViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var ressultOutlet: UIView!
     @IBOutlet weak var collectionOutlet: UIView!
@@ -34,7 +34,7 @@ class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
         self.collectionOutlet.addSubview(self.layout())
     }
     
-    private func setUpResultView() {
+    public func setUpResultView() {
 
         print(ressultOutlet.frame.height)
         print(resultOutletHeight)
@@ -204,7 +204,7 @@ class HomeControllerViewController: UIViewController, UIScrollViewDelegate {
 
 
 
-extension HomeControllerViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     /*
      Cellが選択時
@@ -247,9 +247,7 @@ extension HomeControllerViewController: UICollectionViewDelegate, UICollectionVi
 
 
 
-
-
-extension HomeControllerViewController: UIViewControllerTransitioningDelegate {
+extension HomeViewController: UIViewControllerTransitioningDelegate {
     
     func onPullModalShow() {
         let sb = UIStoryboard(name: "ModalViewController", bundle: nil).instantiateInitialViewController() as! ModalNavigationController

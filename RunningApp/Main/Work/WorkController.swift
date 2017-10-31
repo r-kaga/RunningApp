@@ -179,14 +179,12 @@ class WorkController: UIViewController {
     
     
     private func confirmWorkEndAlert() {
-        
         let alert = UIAlertController(title: "計測を終了します", message: "終了してもよろしいですか?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] _ in
             self?.registWorkResult()
             self?.dismissModal()
         })
-
         self.present(alert, animated: true, completion: nil)
     }
 
@@ -229,7 +227,11 @@ class WorkController: UIViewController {
                 self.mapView.removeAnnotation(self.pin!)
             }
             self.mapView.removeFromSuperview()
-            //            self.mapView = nil
+
+            let nav = presentingViewController  as! UINavigationController
+            //呼び出し元のView Controllerを遷移履歴から取得しパラメータを渡す
+            let home = nav.viewControllers[nav.viewControllers.count-1] as! HomeViewController
+            home.setUpResultView()
 
 //            presentingViewController?.loadView()
 //            presentingViewController?.viewDidLoad()

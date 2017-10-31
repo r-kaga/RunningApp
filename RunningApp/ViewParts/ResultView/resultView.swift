@@ -109,7 +109,6 @@ class resultView: UIView {
             //            let vc = AppDelegate.getTopMostViewController()
             //            vc.loadView()
             //            vc.viewDidLoad()
-            
         }
         
         let alert = UIAlertController(title: "削除してよろしいですか", message: "データは残りません", preferredStyle: .alert)
@@ -124,6 +123,9 @@ class resultView: UIView {
                 realm.delete(data)
             }
             
+            let vc = AppDelegate.getTopMostViewController()
+            vc.loadView()
+            vc.viewDidLoad()
             
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in

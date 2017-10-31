@@ -46,5 +46,10 @@ extension UIViewController {
     }
     
     
+    func refresh() {
+        self.loadView()
+        self.viewDidLoad()
+    }
+    
     
 }
