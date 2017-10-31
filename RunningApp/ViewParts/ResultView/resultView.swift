@@ -132,9 +132,7 @@ class resultView: UIView {
             print("cencel")
         }))
         
-        AppDelegate.getTopMostViewController().present(alert, animated: true) {
-            print("dddd")
-        }
+        AppDelegate.getTopMostViewController().present(alert, animated: true)
     }
 
     

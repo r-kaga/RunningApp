@@ -136,6 +136,7 @@ class WorkController: UIViewController {
     
     /* ストップウォッチ */
     private func startTimer() {
+        print("ddddd")
         if timer != nil{
             // timerが起動中なら一旦破棄する
             timer.invalidate()
@@ -237,8 +238,8 @@ class WorkController: UIViewController {
 //            home.loadView()
 //            home.viewDidLoad()
 
-//            presentingViewController?.loadView()
-//            presentingViewController?.viewDidLoad()
+            presentingViewController?.loadView()
+            presentingViewController?.viewDidLoad()
             
             Utility.showCompleteDialog()
         })
