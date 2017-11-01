@@ -44,6 +44,7 @@
 		E3CA14E81F5D91B00053468D /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14E71F5D91B00053468D /* HomeModel.swift */; };
 		E3CA14EA1F5D963E0053468D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14E91F5D963D0053468D /* HomeView.swift */; };
 		E3CA14EC1F5D98C90053468D /* HomeCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */; };
+		E3CE4ABE1FA8AB3F0074200A /* Gradiate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CE4ABD1FA8AB3F0074200A /* Gradiate.swift */; };
 		E3D6F2741FA5F6BC00241D07 /* DistanceChartsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D6F2731FA5F6BC00241D07 /* DistanceChartsController.swift */; };
 		E3F4032E1F88C6EC0073DC45 /* DismissAnimator.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F4032D1F88C6EC0073DC45 /* DismissAnimator.swift.swift */; };
 		E3FE60C31F9CE3FB0080E378 /* Animation+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FE60C21F9CE3FB0080E378 /* Animation+.swift */; };
@@ -91,6 +92,7 @@
 		E3CA14E71F5D91B00053468D /* HomeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		E3CA14E91F5D963D0053468D /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCustomCell.swift; sourceTree = "<group>"; };
+		E3CE4ABD1FA8AB3F0074200A /* Gradiate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradiate.swift; sourceTree = "<group>"; };
 		E3D6F2731FA5F6BC00241D07 /* DistanceChartsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceChartsController.swift; sourceTree = "<group>"; };
 		E3F4032D1F88C6EC0073DC45 /* DismissAnimator.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift.swift; sourceTree = "<group>"; };
 		E3FE60C21F9CE3FB0080E378 /* Animation+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation+.swift"; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			children = (
 				E3894FCD1F8CF607000313CC /* Extension */,
 				E35580141F8B2347000CE75E /* Utility.swift */,
+				E3CE4ABD1FA8AB3F0074200A /* Gradiate.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				E36912FD1F9370EB00A9B19C /* resultView.swift in Sources */,
 				E380AB311F23735F0034EA8F /* AppDelegate.swift in Sources */,
 				E3F4032E1F88C6EC0073DC45 /* DismissAnimator.swift.swift in Sources */,
+				E3CE4ABE1FA8AB3F0074200A /* Gradiate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,7 +638,7 @@
 				DEVELOPMENT_TEAM = 8S39MY764C;
 				INFOPLIST_FILE = RunningApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ryokagaya.Running;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryokagaya.RunningApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -652,7 +656,7 @@
 				DEVELOPMENT_TEAM = 8S39MY764C;
 				INFOPLIST_FILE = RunningApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ryokagaya.Running;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryokagaya.RunningApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;

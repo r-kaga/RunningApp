@@ -78,9 +78,12 @@ class SettingController: UIViewController, UITableViewDelegate {
         
         navigationItem.title = "Setting"
         
+        let gradient = Gradiate(frame: self.view.frame)
+        self.view.layer.addSublayer(gradient.setUpGradiate())
+        gradient.animateGradient()
 
         tableView = UITableView(frame: self.view.frame, style: .grouped)
-		tableView.backgroundColor = .black
+		tableView.backgroundColor = .clear
         tableView.bounces = false
         tableView.delegate = self
         tableView.dataSource = self
@@ -93,6 +96,7 @@ class SettingController: UIViewController, UITableViewDelegate {
         /* cellの上下に出来る横線を消す。高さがゼロのUIViewで上書き */
 //        tableView.tableFooterView = UIView()
 //        tableView.rowHeight = UITableViewAutomaticDimension
+
         
         self.view.addSubview(tableView)
         
@@ -101,19 +105,6 @@ class SettingController: UIViewController, UITableViewDelegate {
     
     private func presentSettingForm(path: Int) {
 
-//        navigationController?.setNavigationBarHidden(true, animated: false)
-        
-//        let blur = UIVisualEffectView(frame: self.view.frame)
-//        blur.effect = UIBlurEffect(style: .dark)
-//        self.view.addSubview(blur)
-//
-//        let transion: CATransition = CATransition()
-//        transion.duration = 0.3
-//        transion.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-//        transion.type = kCATransitionReveal
-//        transion.subtype = kCATransitionFromLeft
-//        self.view.window?.layer.add(transion, forKey: nil)
-        
         guard let type = Const.SettingType(rawValue: path) else { return }
         
         let form = UIStoryboard(name: "SettingForm", bundle: nil).instantiateInitialViewController() as! SettingForm
@@ -186,7 +177,7 @@ extension SettingController: UITableViewDataSource {
                 Utility.setLocalPushTime(setTime: Int(value)!)
             }
         }
-        cell.backgroundColor = .black
+        cell.backgroundColor = .clear
         
         /* セレクトされた時に何もしない */
         cell.selectionStyle = .none

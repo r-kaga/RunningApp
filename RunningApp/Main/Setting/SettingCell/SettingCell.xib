@@ -44,7 +44,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="mCj-UV-GMt" firstAttribute="top" secondItem="Q3N-3B-drU" secondAttribute="top" constant="10" id="JiZ-mN-J17"/>
                     <constraint firstItem="6jU-s3-Ggn" firstAttribute="leading" secondItem="mCj-UV-GMt" secondAttribute="trailing" constant="10" id="NC4-hi-HRB"/>
@@ -58,7 +58,7 @@
                     <constraint firstAttribute="bottom" secondItem="mCj-UV-GMt" secondAttribute="bottom" constant="10" id="tDS-U4-uBT"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="descriptionLabel" destination="6jU-s3-Ggn" id="BbS-cH-cZQ"/>
                 <outlet property="imageCell" destination="mCj-UV-GMt" id="Rjf-R7-5pg"/>

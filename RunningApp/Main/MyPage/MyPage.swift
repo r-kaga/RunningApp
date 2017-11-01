@@ -17,11 +17,15 @@ class MyPage: UIViewController, UIScrollViewDelegate {
         
         navigationItem.title = "My Page"
         
+        let gradient = Gradiate(frame: self.view.frame)
+        self.view.layer.addSublayer(gradient.setUpGradiate())
+        gradient.animateGradient()
+        
         let scrollView = UIScrollView(frame: CGRect(x: 0,
                                                   y: AppSize.statusBarAndNavigationBarHeight,
                                                   width: AppSize.width,
                                                   height: AppSize.height))
-        scrollView.backgroundColor = .black
+        scrollView.backgroundColor = .clear
         scrollView.bounces = false
         scrollView.showsVerticalScrollIndicator = true
         scrollView.showsHorizontalScrollIndicator = false
@@ -59,7 +63,7 @@ class MyPage: UIViewController, UIScrollViewDelegate {
         
         scrollView.contentSize = CGSize(width: AppSize.width, height: (170 * (count + 1) - 50)) // 中身の大きさを設定
         self.view.addSubview(scrollView)
-        
+
     }
 
 

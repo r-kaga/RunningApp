@@ -27,11 +27,19 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         print(ressultOutlet.frame.height)
         print(resultOutletHeight)
+        
+//        let gradient = Gradiate(frame: self.view.frame)
+//        self.view.layer.addSublayer(gradient.setUpGradiate())
+//        gradient.animateGradient()
 
         navigationItem.title = "Home"
 
         setUpResultView()
         self.collectionOutlet.addSubview(self.layout())
+
+//        self.view.bringSubview(toFront: collectionOutlet)
+//        self.view.bringSubview(toFront: ressultOutlet)
+//        self.view.bringSubview(toFront: distanceCharts)
     }
     
     public func setUpResultView() {
