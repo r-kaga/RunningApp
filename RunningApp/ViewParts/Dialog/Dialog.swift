@@ -29,15 +29,17 @@ extension DialogProtocol where Self: UIView {
     /** 表示
      */
     func open() {
+        self.alpha = 0.0
+        
         let app = UIApplication.shared.delegate as! AppDelegate
         self.frame = (app.window?.frame)!
         app.window?.addSubview(self)
         
-        self.frame.origin.y = UIScreen.main.bounds.height
+//        self.frame.origin.y = UIScreen.main.bounds.height
         
-        UIView.animate(withDuration: 0.2, animations: {
-        
-            self.frame.origin.y -= self.frame.height
+        UIView.animate(withDuration: 0.5, animations: {
+            self.alpha = 1.0
+//            self.frame.origin.y -= self.frame.height
        
         }, completion: { finished in
             
@@ -52,6 +54,7 @@ extension DialogProtocol where Self: UIView {
         }, completion: { finished in
             let app = UIApplication.shared.delegate as! AppDelegate
             app.window?.removeFromSuperview()
+            app.window?.layer.removeAllAnimations()
         })
     }
     
@@ -110,9 +113,7 @@ extension DialogProtocol where Self: UIView {
     
     // amount = 揺れ幅
     func vibrate(amount: Float) {
-//
-//        let app = UIApplication.shared.delegate as! AppDelegate
-//        let view = (app.window?.frame)
+
         if amount > 0 {
             var animation: CABasicAnimation
             animation = CABasicAnimation(keyPath: "transform.rotation")
@@ -122,15 +123,17 @@ extension DialogProtocol where Self: UIView {
             animation.repeatCount = 1.0
             animation.autoreverses = true
             self.layer.add(animation, forKey: "VibrateAnimationKey")
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.close()
+            }
         
         } else {
             self.layer.removeAnimation(forKey: "VibrateAnimationKey")
             self.removeFromSuperview()
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.close()
-        }
+
         
     }
     

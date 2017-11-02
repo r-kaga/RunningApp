@@ -35,8 +35,7 @@ class Loading: UIView, DialogProtocol {
     }
     
     
-    /** outlet等がインスタンス化された後に呼ばれる
-     */
+    /** outlet等がインスタンス化された後に呼ばれる */
     override func awakeFromNib() {
         initSetUp()
         appearance()
@@ -49,13 +48,11 @@ class Loading: UIView, DialogProtocol {
         super.init(coder: aDecoder)!
     }
     
-    /** 初期設定
-     */
+    /** 初期設定 */
     private func initSetUp() {
     }
     
-    /** 表示装飾系セットアップ
-     */
+    /** 表示装飾系セットアップ */
     private func appearance() {
 
         self.panelOutlet.isHidden = true
@@ -111,8 +108,7 @@ class Loading: UIView, DialogProtocol {
     }
     
 
-    /** クローズ処理
-     */
+    /** クローズ処理 */
     func startLoading() {
 
         self.open()
@@ -142,14 +138,16 @@ class Loading: UIView, DialogProtocol {
         animation.fillMode = kCAFillModeForwards
         
         self.progress_layer.add(animation, forKey: "progress")
-        
-        workItem = DispatchWorkItem() {
-            self.progress_layer.removeAnimation(forKey: "progress")
-            self.close()
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: workItem!)
-        
     }
+    
+    /**  */
+//    func close(time: Int = 3) {
+//        self.progress_layer.removeAnimation(forKey: "progress")
+//        workItem = DispatchWorkItem() {
+//        self.close()
+//        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: self.workItem!)
+//    }
 
 }
 

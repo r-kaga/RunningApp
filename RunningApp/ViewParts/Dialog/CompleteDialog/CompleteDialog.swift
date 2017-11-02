@@ -61,9 +61,10 @@ class CompleteDialog: UIView, DialogProtocol {
         self.completeImageView.alpha = 0
         self.completeImageView.isHidden = false
         
-        // radianで回転角度を指定(45度).
-        self.completeImageView.transform = CGAffineTransform(rotationAngle: CGFloat(15))
-
+        // radianで回転角度を指定(35度).
+        let angle = 15 * CGFloat.pi / 180
+        self.completeImageView.transform = CGAffineTransform(rotationAngle: CGFloat(angle))
+        
         UIView.animate(withDuration: 0.05,
                        delay: 0.0,
                        usingSpringWithDamping: 0.2,
@@ -71,7 +72,7 @@ class CompleteDialog: UIView, DialogProtocol {
                        options:[],
                        animations:{
                         // サイズを大きくする
-                        self.completeImageView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+                        self.completeImageView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
         }, completion: nil)
         
         UIView.animate(withDuration: 0.05,
@@ -83,8 +84,7 @@ class CompleteDialog: UIView, DialogProtocol {
                         self.completeImageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
                         // 透過度を元に戻す
                         self.completeImageView.alpha = 1.0
-        },
-                       completion:{ finished in
+        }, completion:{ finished in
                         // 台紙を揺らす
                         self.vibrate(amount: 3.0)
         })

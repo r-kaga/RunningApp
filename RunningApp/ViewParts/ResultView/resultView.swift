@@ -30,6 +30,8 @@ class resultView: UIView {
     
     var closeButton: UIButton!
     
+    var loading: Loading?
+    
     @IBAction func deleteAction(_ sender: Any) {
         delete()
     }
@@ -114,7 +116,14 @@ class resultView: UIView {
         let alert = UIAlertController(title: "削除してよろしいですか", message: "データは残りません", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { _ in
             
+//            defer {
+//                self.loading?.close()
+//            }
+            
             guard let path = self.indexPath else { return }
+            
+//            self.loading = Loading.make()
+//            self.loading?.startLoading()
             
             let realm = try! Realm()
             let data = realm.objects(RealmDataSet.self).filter("id = \(path)")
@@ -123,12 +132,11 @@ class resultView: UIView {
                 realm.delete(data)
             }
             
+            self.removeFromSuperview()
             let vc = AppDelegate.getTopMostViewController()
             vc.loadView()
             vc.viewDidLoad()
             
-            Utility.showLoading()
-        
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
             print("cencel")
