@@ -42,7 +42,6 @@ extension DialogProtocol where Self: UIView {
         }, completion: { finished in
             
         })
-
     }
     
     /** クローズ

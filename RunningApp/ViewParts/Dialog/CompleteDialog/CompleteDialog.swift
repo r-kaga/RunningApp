@@ -11,7 +11,9 @@ import UIKit
 
 class CompleteDialog: UIView, DialogProtocol {
 
-    @IBOutlet weak var completeImageView: UIImageView!
+    
+    @IBOutlet weak var completeImageView: UIView!
+    
     
     /** ビュー作成
      * @return Parts
@@ -27,15 +29,66 @@ class CompleteDialog: UIView, DialogProtocol {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        let gradient = Gradiate(frame: self.frame)
-        self.layer.addSublayer(gradient.setUpGradiate())
-        gradient.animateGradient()
+
+        self.completeImageView.layer.borderColor = UIColor.white.cgColor
+        self.completeImageView.layer.borderWidth = 2.0
+        self.completeImageView.layer.cornerRadius = 15.0
+        self.completeImageView.clipsToBounds = true
         
-        self.bringSubview(toFront: completeImageView)
     }
     
-    override func didMoveToWindow() {
-        self.doStamp()
+//    override func didMoveToWindow() {
+//        self.doStamp()
+//    }
+    
+    /** 表示
+     */
+    func open() {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        self.frame = (app.window?.frame)!
+        
+        self.completeImageView.isHidden = true
+
+        app.window?.addSubview(self)
+ 
+        UIView.animate(withDuration: 0.5, delay: 1.0, animations: {
+            self.stamp()
+        })
+    }
+    
+    
+    func stamp() {
+        self.completeImageView.alpha = 0
+        self.completeImageView.isHidden = false
+        
+        // radianで回転角度を指定(45度).
+        self.completeImageView.transform = CGAffineTransform(rotationAngle: CGFloat(15))
+
+        UIView.animate(withDuration: 0.05,
+                       delay: 0.0,
+                       usingSpringWithDamping: 0.2,
+                       initialSpringVelocity: 10,
+                       options:[],
+                       animations:{
+                        // サイズを大きくする
+                        self.completeImageView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        }, completion: nil)
+        
+        UIView.animate(withDuration: 0.05,
+                       delay: 0.1,
+                       usingSpringWithDamping: 1.0,
+                       initialSpringVelocity: 90,
+                       options: [], animations: {
+//                        // サイズを元に戻す
+                        self.completeImageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                        // 透過度を元に戻す
+                        self.completeImageView.alpha = 1.0
+        },
+                       completion:{ finished in
+                        // 台紙を揺らす
+                        self.vibrate(amount: 3.0)
+        })
+        
     }
     
     /** タッチイベント
