@@ -47,6 +47,8 @@
 		E3CA14EA1F5D963E0053468D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14E91F5D963D0053468D /* HomeView.swift */; };
 		E3CA14EC1F5D98C90053468D /* HomeCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */; };
 		E3CE4ABE1FA8AB3F0074200A /* Gradiate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CE4ABD1FA8AB3F0074200A /* Gradiate.swift */; };
+		E3D259A31FAAA59F00978399 /* NoDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D259A21FAAA59F00978399 /* NoDateView.swift */; };
+		E3D259A61FAAA5BF00978399 /* NoDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3D259A51FAAA5BF00978399 /* NoDateView.xib */; };
 		E3D6F2741FA5F6BC00241D07 /* DistanceChartsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D6F2731FA5F6BC00241D07 /* DistanceChartsController.swift */; };
 		E3F4032E1F88C6EC0073DC45 /* DismissAnimator.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F4032D1F88C6EC0073DC45 /* DismissAnimator.swift.swift */; };
 		E3FE60C31F9CE3FB0080E378 /* Animation+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FE60C21F9CE3FB0080E378 /* Animation+.swift */; };
@@ -97,6 +99,8 @@
 		E3CA14E91F5D963D0053468D /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCustomCell.swift; sourceTree = "<group>"; };
 		E3CE4ABD1FA8AB3F0074200A /* Gradiate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradiate.swift; sourceTree = "<group>"; };
+		E3D259A21FAAA59F00978399 /* NoDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDateView.swift; sourceTree = "<group>"; };
+		E3D259A51FAAA5BF00978399 /* NoDateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoDateView.xib; sourceTree = "<group>"; };
 		E3D6F2731FA5F6BC00241D07 /* DistanceChartsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceChartsController.swift; sourceTree = "<group>"; };
 		E3F4032D1F88C6EC0073DC45 /* DismissAnimator.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift.swift; sourceTree = "<group>"; };
 		E3FE60C21F9CE3FB0080E378 /* Animation+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation+.swift"; sourceTree = "<group>"; };
@@ -300,6 +304,7 @@
 		E38F7FB01F9B0BBF0036CEE0 /* ViewParts */ = {
 			isa = PBXGroup;
 			children = (
+				E3D259A41FAAA5AC00978399 /* NoDateView */,
 				E365A13B1F9255E00008D475 /* Dialog */,
 				E3B6DC461FA0C7C70037FA07 /* TotalDIstanceView */,
 				E38F7FA91F9AF3C40036CEE0 /* ResultView */,
@@ -322,6 +327,15 @@
 				E3B6DC491FA0C7F30037FA07 /* TotalDistanceView.xib */,
 			);
 			path = TotalDIstanceView;
+			sourceTree = "<group>";
+		};
+		E3D259A41FAAA5AC00978399 /* NoDateView */ = {
+			isa = PBXGroup;
+			children = (
+				E3D259A21FAAA59F00978399 /* NoDateView.swift */,
+				E3D259A51FAAA5BF00978399 /* NoDateView.xib */,
+			);
+			path = NoDateView;
 			sourceTree = "<group>";
 		};
 		E3D6F26E1FA5F31500241D07 /* DistanceChartsController */ = {
@@ -414,6 +428,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3B6DC4A1FA0C7F30037FA07 /* TotalDistanceView.xib in Resources */,
+				E3D259A61FAAA5BF00978399 /* NoDateView.xib in Resources */,
 				E312644F1FA22C0100F2B23D /* Home.storyboard in Resources */,
 				E365A13D1F9256020008D475 /* CompleteDialog.xib in Resources */,
 				E38F7FAD1F9AF4CA0036CEE0 /* SettingCell.xib in Resources */,
@@ -498,6 +513,7 @@
 				E30AE0481F8A4FF7002FEFAA /* ModalNavigationController.swift in Sources */,
 				E3034EA41F87BFBF00FCB026 /* Const.swift in Sources */,
 				E34188381F794E5B000AB961 /* WorkController.swift in Sources */,
+				E3D259A31FAAA59F00978399 /* NoDateView.swift in Sources */,
 				E36106191F243225004F56EC /* MyPage.swift in Sources */,
 				E3FE60C31F9CE3FB0080E378 /* Animation+.swift in Sources */,
 				E355F1981F9F7ED300509CA1 /* UIView+.swift in Sources */,

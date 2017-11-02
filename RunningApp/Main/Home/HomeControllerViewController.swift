@@ -13,7 +13,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var ressultOutlet: UIView!
     @IBOutlet weak var collectionOutlet: UIView!
-    
     @IBOutlet weak var distanceCharts: UIView!
     
     var resultOutletHeight: CGFloat {
@@ -25,28 +24,15 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(ressultOutlet.frame.height)
-        print(resultOutletHeight)
-        
-//        let gradient = Gradiate(frame: self.view.frame)
-//        self.view.layer.addSublayer(gradient.setUpGradiate())
-//        gradient.animateGradient()
 
         navigationItem.title = "Home"
 
         setUpResultView()
         self.collectionOutlet.addSubview(self.layout())
-
-//        self.view.bringSubview(toFront: collectionOutlet)
-//        self.view.bringSubview(toFront: ressultOutlet)
-//        self.view.bringSubview(toFront: distanceCharts)
     }
     
     public func setUpResultView() {
 
-        print(ressultOutlet.frame.height)
-        print(resultOutletHeight)
-        
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.height))
         scrollView.backgroundColor = UIColor.black
         scrollView.contentSize = CGSize(width: AppSize.width, height: ressultOutlet.frame.height) // 中身の大きさを設定
@@ -65,7 +51,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         let realm = try! Realm()
         let latestData = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
         
-        guard !latestData.isEmpty else { return }
+        guard !latestData.isEmpty else {
+            setupNoDate(date: true)
+            return
+        }
         
         let Latestlabel = UILabel(frame: CGRect(x: AppSize.width / 2 - 100,
                                                 y: 0,
@@ -153,9 +142,20 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
 
         
         self.ressultOutlet.addSubview(scrollView)
-
     }
     
+    
+    private func setupNoDate(date: Bool) {
+        guard date else { return }
+//        self.distanceCharts.removeFromSuperview()
+        self.distanceCharts.isHidden = true
+        
+        let noDateView = NoDateView(frame: CGRect(x: 0, y: 0, width: AppSize.width - 100, height: AppSize.height / 2.5))
+        noDateView.center = self.view.center
+//        noDateView.layer.cornerRadius = 15.0
+//        noDateView.clipsToBounds = true
+        self.view.addSubview(noDateView)
+    }
     
     private func layout() -> UICollectionView {
         

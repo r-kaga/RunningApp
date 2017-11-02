@@ -19,10 +19,12 @@ struct Utility {
      */
     static func setLocalPushTime(setTime: Int) {
         
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+
         //以下で登録処理
         let content = UNMutableNotificationContent()
-        content.title = "今日は運動しましたか";
-        content.body = "毎日の運動を大切にしましょう";
+        content.title = "今日は運動しましたか"
+        content.body = "毎日の運動を大切にしましょう"
         content.sound = UNNotificationSound.default()
         content.badge = 1
         content.userInfo = ["id" : "activityGoal"]
@@ -60,7 +62,7 @@ struct Utility {
      */
     static func showLoading() {
         let view = Loading.make()
-        view?.open()
+        view?.startLoading()
 //        view?.add()
     }
     

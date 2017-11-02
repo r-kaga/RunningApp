@@ -34,6 +34,11 @@ class MyPage: UIViewController, UIScrollViewDelegate {
         let realm = try! Realm()
         let data = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
         
+        guard !data.isEmpty else {
+            setupNoDate()
+            return
+        }
+        
         var count: CGFloat = 0
         data.forEach { (value) in
             let view = resultView(frame: CGRect(x: 15,
@@ -64,6 +69,13 @@ class MyPage: UIViewController, UIScrollViewDelegate {
         scrollView.contentSize = CGSize(width: AppSize.width, height: (170 * (count + 1) - 50)) // 中身の大きさを設定
         self.view.addSubview(scrollView)
 
+    }
+    
+    
+    private func setupNoDate() {
+        let noDateView = NoDateView(frame: CGRect(x: 0, y: 0, width: AppSize.width - 100, height: AppSize.height / 2.5))
+        noDateView.center = self.view.center
+        self.view.addSubview(noDateView)
     }
 
 
