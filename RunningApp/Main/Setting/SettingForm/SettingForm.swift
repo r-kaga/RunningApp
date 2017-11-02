@@ -64,9 +64,7 @@ class SettingForm: UIViewController {
 
         let gradient = Gradiate(frame: self.view.frame)
         self.view.layer.addSublayer(gradient.setUpGradiate())
-        gradient.animateGradient()
-
-        
+//        gradient.animateGradient()
 
         self.view.bringSubview(toFront: logoImageView)
         self.view.bringSubview(toFront: SettingCategoryLabel)

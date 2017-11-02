@@ -32,6 +32,7 @@ class resultView: UIView {
     
     @IBAction func deleteAction(_ sender: Any) {
         delete()
+        Utility.showLoading()
     }
     
     

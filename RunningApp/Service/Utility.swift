@@ -55,6 +55,15 @@ struct Utility {
         view?.add()
     }
     
+    /**
+     * loadingダイアログの表示
+     */
+    static func showLoading() {
+        let view = Loading.make()
+        view?.open()
+//        view?.add()
+    }
+    
     /** collectionViewのpathから、運動のタイプをタプルで返却
      *  ("Category Image", "CollectionView Image")
      */

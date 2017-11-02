@@ -78,9 +78,9 @@ class SettingController: UIViewController, UITableViewDelegate {
         
         navigationItem.title = "Setting"
         
-        let gradient = Gradiate(frame: self.view.frame)
-        self.view.layer.addSublayer(gradient.setUpGradiate())
-        gradient.animateGradient()
+//        let gradient = Gradiate(frame: self.view.frame)
+//        self.view.layer.addSublayer(gradient.setUpGradiate())
+//        gradient.animateGradient()
 
         tableView = UITableView(frame: self.view.frame, style: .grouped)
 		tableView.backgroundColor = .clear
@@ -97,9 +97,7 @@ class SettingController: UIViewController, UITableViewDelegate {
 //        tableView.tableFooterView = UIView()
 //        tableView.rowHeight = UITableViewAutomaticDimension
 
-        
         self.view.addSubview(tableView)
-        
     }
     
     
@@ -177,7 +175,7 @@ extension SettingController: UITableViewDataSource {
                 Utility.setLocalPushTime(setTime: Int(value)!)
             }
         }
-        cell.backgroundColor = .clear
+        cell.backgroundColor = .black
         
         /* セレクトされた時に何もしない */
         cell.selectionStyle = .none

@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-//class CompleteDialog: Dialog {
 class CompleteDialog: UIView, DialogProtocol {
 
     @IBOutlet weak var completeImageView: UIImageView!
@@ -26,16 +25,17 @@ class CompleteDialog: UIView, DialogProtocol {
         return view
     }
     
-    override func didMoveToWindow() {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        let gradient = Gradiate(frame: self.frame)
+        self.layer.addSublayer(gradient.setUpGradiate())
+        gradient.animateGradient()
         
-//        UIView.animate(withDuration: 1.0, animations: {
-//            self.completeImageView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        self.bringSubview(toFront: completeImageView)
+    }
+    
+    override func didMoveToWindow() {
         self.doStamp()
-
-//        }) { _ in
-//            self.completeImageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-//
-//        }
     }
     
     /** タッチイベント

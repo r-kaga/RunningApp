@@ -17,9 +17,9 @@ class MyPage: UIViewController, UIScrollViewDelegate {
         
         navigationItem.title = "My Page"
         
-        let gradient = Gradiate(frame: self.view.frame)
-        self.view.layer.addSublayer(gradient.setUpGradiate())
-        gradient.animateGradient()
+//        let gradient = Gradiate(frame: self.view.frame)
+//        self.view.layer.addSublayer(gradient.setUpGradiate())
+//        gradient.animateGradient()
         
         let scrollView = UIScrollView(frame: CGRect(x: 0,
                                                   y: AppSize.statusBarAndNavigationBarHeight,
