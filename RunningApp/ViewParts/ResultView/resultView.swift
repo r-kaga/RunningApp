@@ -32,7 +32,6 @@ class resultView: UIView {
     
     @IBAction func deleteAction(_ sender: Any) {
         delete()
-        Utility.showLoading()
     }
     
     
@@ -128,6 +127,8 @@ class resultView: UIView {
             vc.loadView()
             vc.viewDidLoad()
             
+            Utility.showLoading()
+        
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
             print("cencel")
