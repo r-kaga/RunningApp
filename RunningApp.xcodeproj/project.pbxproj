@@ -10,6 +10,9 @@
 		E1633205A450704EC5F7B81C /* Pods_RunningApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB4A23F43657309C31FDA106 /* Pods_RunningApp.framework */; };
 		E3031D031F80E05A002C5739 /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3031D021F80E05A002C5739 /* SettingController.swift */; };
 		E3034EA41F87BFBF00FCB026 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3034EA31F87BFBF00FCB026 /* Const.swift */; };
+		E30530271FACC8C10097D9A3 /* Alert+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30530261FACC8C10097D9A3 /* Alert+.swift */; };
+		E305302A1FACC9AA0097D9A3 /* infoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30530291FACC9AA0097D9A3 /* infoDetailViewController.swift */; };
+		E305302C1FACC9B20097D9A3 /* infoDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E305302B1FACC9B20097D9A3 /* infoDetailViewController.storyboard */; };
 		E30AE0481F8A4FF7002FEFAA /* ModalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30AE0471F8A4FF7002FEFAA /* ModalNavigationController.swift */; };
 		E312644F1FA22C0100F2B23D /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E312644E1FA22C0100F2B23D /* Home.storyboard */; };
 		E31264511FA22F5D00F2B23D /* HomeControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31264501FA22F5D00F2B23D /* HomeControllerViewController.swift */; };
@@ -64,6 +67,9 @@
 		B52ED86E09986E423E72B09E /* Pods-RunningApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunningApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-RunningApp/Pods-RunningApp.release.xcconfig"; sourceTree = "<group>"; };
 		E3031D021F80E05A002C5739 /* SettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		E3034EA31F87BFBF00FCB026 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		E30530261FACC8C10097D9A3 /* Alert+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+.swift"; sourceTree = "<group>"; };
+		E30530291FACC9AA0097D9A3 /* infoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = infoDetailViewController.swift; sourceTree = "<group>"; };
+		E305302B1FACC9B20097D9A3 /* infoDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = infoDetailViewController.storyboard; sourceTree = "<group>"; };
 		E30AE0471F8A4FF7002FEFAA /* ModalNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalNavigationController.swift; sourceTree = "<group>"; };
 		E312644E1FA22C0100F2B23D /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		E31264501FA22F5D00F2B23D /* HomeControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControllerViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +161,15 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
+		E30530281FACC9830097D9A3 /* infoDetail */ = {
+			isa = PBXGroup;
+			children = (
+				E30530291FACC9AA0097D9A3 /* infoDetailViewController.swift */,
+				E305302B1FACC9B20097D9A3 /* infoDetailViewController.storyboard */,
+			);
+			path = infoDetail;
+			sourceTree = "<group>";
+		};
 		E328FB801F866FEC00E1D4BC /* SettingForm */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +203,7 @@
 		E36106111F243225004F56EC /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				E30530281FACC9830097D9A3 /* infoDetail */,
 				E3CAC82D1FAB22B300AE1B55 /* MyPageCell */,
 				E36106121F243225004F56EC /* MyPage.swift */,
 			);
@@ -277,6 +293,7 @@
 				E3894FCE1F8CF62A000313CC /* UIButton+.swift */,
 				E355F1971F9F7ED300509CA1 /* UIView+.swift */,
 				E355F1951F9F7ADD00509CA1 /* UIViewController+.swift */,
+				E30530261FACC8C10097D9A3 /* Alert+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -467,6 +484,7 @@
 				E380AB381F23735F0034EA8F /* Assets.xcassets in Resources */,
 				E380AB361F23735F0034EA8F /* Main.storyboard in Resources */,
 				E36912FF1F9370FB00A9B19C /* resultView.xib in Resources */,
+				E305302C1FACC9B20097D9A3 /* infoDetailViewController.storyboard in Resources */,
 				E341883B1F795520000AB961 /* WorkController.storyboard in Resources */,
 				E33802961F852AD1007EB199 /* SettingForm.storyboard in Resources */,
 			);
@@ -537,9 +555,11 @@
 				E3B6DC481FA0C7E00037FA07 /* TotalDistanceView.swift in Sources */,
 				E3CA14EA1F5D963E0053468D /* HomeView.swift in Sources */,
 				E355F1961F9F7ADD00509CA1 /* UIViewController+.swift in Sources */,
+				E30530271FACC8C10097D9A3 /* Alert+.swift in Sources */,
 				E34188361F794AE6000AB961 /* AppSize.swift in Sources */,
 				E3894FCF1F8CF62A000313CC /* UIButton+.swift in Sources */,
 				E39594071F30C574004AEB27 /* Interactor.swift in Sources */,
+				E305302A1FACC9AA0097D9A3 /* infoDetailViewController.swift in Sources */,
 				E365A13A1F9255C50008D475 /* CompleteDialog.swift in Sources */,
 				E30AE0481F8A4FF7002FEFAA /* ModalNavigationController.swift in Sources */,
 				E3CAC82C1FAB229C00AE1B55 /* MyPageCell.swift in Sources */,

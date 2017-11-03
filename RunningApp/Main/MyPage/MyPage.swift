@@ -51,6 +51,8 @@ class MyPage: UIViewController, UIScrollViewDelegate {
         let realm = try! Realm()
         myInfo = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
         
+        print(type(of: myInfo[0]))
+        
 //        setupMyInfo()
         self.view.addSubview(tableView)
     }
@@ -190,10 +192,15 @@ extension MyPage: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        print(indexPath.row)
-        if let parts = MyInfoActionDialog.make() {
-            parts.open()
-        }
+        
+        let infoDetail = UIStoryboard(name: "infoDetailViewController", bundle: nil).instantiateInitialViewController() as! infoDetailViewController
+        infoDetail.myInfo = myInfo[indexPath.row]
+        self.navigationController?.pushViewController(infoDetail, animated: true)
+        
+//        guard let view = tableView.cellForRow(at: indexPath)?.contentView else { return }
+//        if let parts = MyInfoActionDialog.make() {
+//            parts.open()
+//        }
     }
     
     
@@ -204,10 +211,6 @@ extension MyPage: UITableViewDataSource {
     
     
 }
-
-
-
-
 
 
 
