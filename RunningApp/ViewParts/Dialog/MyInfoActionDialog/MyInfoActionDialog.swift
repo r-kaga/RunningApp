@@ -29,7 +29,7 @@ class MyInfoActionDialog: UIView, DialogProtocol {
     @IBOutlet weak var deleteButton: UIButton!
 
     @IBAction func deleteButtonAction(_ sender: Any) {
-        dialogView.touchEndAnimation()
+        self.dialogView.touchEndAnimation()
     }
     
     

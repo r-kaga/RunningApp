@@ -112,9 +112,11 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                                     calorie: latestData[1].calorie
         )
         second.typeImageView.image = UIImage(named: latestData[1].workType)!
-        scrollView.addSubview(second)
-
         
+        second.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(Home.longPressed(_:))))
+        second.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(Home.tapGesture(_:))))
+        
+        scrollView.addSubview(second)
         
         guard latestData.count >= 3 else { return }
         
@@ -144,6 +146,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         third.typeImageView.image = UIImage(named: latestData[2].workType)!
         
         scrollView.contentSize.width += AppSize.width
+        
+        third.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(Home.longPressed(_:))))
+        third.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(Home.tapGesture(_:))))
+        
         scrollView.addSubview(third)
 
         

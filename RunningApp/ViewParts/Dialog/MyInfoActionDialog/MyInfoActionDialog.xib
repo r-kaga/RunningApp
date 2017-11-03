@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PXN-gZ-cb3">
+                <view alpha="0.84999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PXN-gZ-cb3">
                     <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
@@ -72,7 +72,7 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="blurView" destination="PXN-gZ-cb3" id="29f-vc-ZZr"/>
+                <outlet property="blurView" destination="PXN-gZ-cb3" id="sHG-xi-iZo"/>
                 <outlet property="deleteButton" destination="GLJ-vH-dpq" id="f6a-io-rBq"/>
                 <outlet property="detailButton" destination="dmi-2H-4RI" id="xJe-yn-PSU"/>
                 <outlet property="dialogView" destination="pOd-aG-jhN" id="0fc-S6-7iN"/>
