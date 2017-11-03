@@ -14,13 +14,37 @@ class MyPage: UIViewController, UIScrollViewDelegate {
 
     var loading: Loading?
     
+    private var tableView: UITableView!
+    
+    private let headerItem = [ "MyInfo" ]
+    private var myInfo: Results<RealmDataSet>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationItem.title = "My Page"
+
+        
+        self.loading = Loading.make()
+        self.loading?.startLoading()
+        
+        tableView = UITableView(frame: self.view.frame, style: .grouped)
+        tableView.backgroundColor = .black
+        tableView.bounces = false
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorColor = .black
+        tableView.register(UINib(nibName: "MyPageCell", bundle: nil), forCellReuseIdentifier: "myPageCell")
+        tableView.estimatedRowHeight = 80
+        tableView.rowHeight = 80
+        tableView.sectionIndexColor = .black
+
+        let realm = try! Realm()
+        myInfo = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
+        
+//        setupMyInfo()
         
         self.loading?.close()
-        setupMyInfo()
+        self.view.addSubview(tableView)
     }
     
     /**  */
@@ -94,3 +118,81 @@ class MyPage: UIViewController, UIScrollViewDelegate {
 
 
 }
+
+
+
+extension MyPage: UITableViewDelegate {
+    
+//    /*
+//     * 各indexPathのcellがハイライトされた際に呼ばれます．
+//     * あるcellがタップされた際は，didHighlight → didUnhighlight → willSelect → didSelectの順に呼び出されます．
+//     * さらにその状態で別のcellがタップされた際は，didHighlight → didUnhighlight → willSelect → willDeselect → didDeselect → didSelectの順に呼び出されます．
+//     */
+//    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+//        tableView.cellForRow(at: indexPath)?.contentView.touchStartAnimation()
+//    }
+//
+//    /*
+//     * 各indexPathのcellがアンハイライトされた際に呼ばれます．
+//     * 基本的にtableView(_:didHighlightRowAt:)が呼ばれた直後に呼ばれます．
+//     */
+//    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+//        tableView.cellForRow(at: indexPath)?.contentView.touchEndAnimation()
+//    }
+
+    
+}
+
+
+extension MyPage: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.headerItem.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.myInfo.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myPageCell") as! MyPageCell
+//        let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+        cell.frame = CGRect(x: 0, y: 0, width: AppSize.width, height: 80)
+        
+        let item = self.myInfo[indexPath.row]
+        print(item)
+        cell.typeImageView?.image = UIImage(named: item.workType)!
+        cell.dateLabel.text = item.date
+        cell.timeLabel.text = item.time
+        cell.distanceLabel.text = item.distance + "km"
+        cell.calorieLabel.text = item.calorie + "カロリー"
+        
+//        cell.backgroundColor = .black        
+        /* セレクトされた時に何もしない */
+        cell.selectionStyle = .none
+
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.headerItem[0]
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+
+

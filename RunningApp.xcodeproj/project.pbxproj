@@ -46,6 +46,8 @@
 		E3CA14E81F5D91B00053468D /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14E71F5D91B00053468D /* HomeModel.swift */; };
 		E3CA14EA1F5D963E0053468D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14E91F5D963D0053468D /* HomeView.swift */; };
 		E3CA14EC1F5D98C90053468D /* HomeCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */; };
+		E3CAC82C1FAB229C00AE1B55 /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CAC82B1FAB229C00AE1B55 /* MyPageCell.swift */; };
+		E3CAC82F1FAB22B900AE1B55 /* MyPageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3CAC82E1FAB22B900AE1B55 /* MyPageCell.xib */; };
 		E3CE4ABE1FA8AB3F0074200A /* Gradiate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CE4ABD1FA8AB3F0074200A /* Gradiate.swift */; };
 		E3D259A31FAAA59F00978399 /* NoDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D259A21FAAA59F00978399 /* NoDateView.swift */; };
 		E3D259A61FAAA5BF00978399 /* NoDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3D259A51FAAA5BF00978399 /* NoDateView.xib */; };
@@ -98,6 +100,8 @@
 		E3CA14E71F5D91B00053468D /* HomeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		E3CA14E91F5D963D0053468D /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCustomCell.swift; sourceTree = "<group>"; };
+		E3CAC82B1FAB229C00AE1B55 /* MyPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCell.swift; sourceTree = "<group>"; };
+		E3CAC82E1FAB22B900AE1B55 /* MyPageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPageCell.xib; sourceTree = "<group>"; };
 		E3CE4ABD1FA8AB3F0074200A /* Gradiate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradiate.swift; sourceTree = "<group>"; };
 		E3D259A21FAAA59F00978399 /* NoDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDateView.swift; sourceTree = "<group>"; };
 		E3D259A51FAAA5BF00978399 /* NoDateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoDateView.xib; sourceTree = "<group>"; };
@@ -180,6 +184,7 @@
 		E36106111F243225004F56EC /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				E3CAC82D1FAB22B300AE1B55 /* MyPageCell */,
 				E36106121F243225004F56EC /* MyPage.swift */,
 			);
 			path = MyPage;
@@ -329,6 +334,15 @@
 			path = TotalDIstanceView;
 			sourceTree = "<group>";
 		};
+		E3CAC82D1FAB22B300AE1B55 /* MyPageCell */ = {
+			isa = PBXGroup;
+			children = (
+				E3CAC82B1FAB229C00AE1B55 /* MyPageCell.swift */,
+				E3CAC82E1FAB22B900AE1B55 /* MyPageCell.xib */,
+			);
+			path = MyPageCell;
+			sourceTree = "<group>";
+		};
 		E3D259A41FAAA5AC00978399 /* NoDateView */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,6 +447,7 @@
 				E365A13D1F9256020008D475 /* CompleteDialog.xib in Resources */,
 				E38F7FAD1F9AF4CA0036CEE0 /* SettingCell.xib in Resources */,
 				E37DDE271FAA1B2800EC61E5 /* Loading.xib in Resources */,
+				E3CAC82F1FAB22B900AE1B55 /* MyPageCell.xib in Resources */,
 				E380AB3B1F23735F0034EA8F /* LaunchScreen.storyboard in Resources */,
 				E380AB381F23735F0034EA8F /* Assets.xcassets in Resources */,
 				E380AB361F23735F0034EA8F /* Main.storyboard in Resources */,
@@ -511,6 +526,7 @@
 				E39594071F30C574004AEB27 /* Interactor.swift in Sources */,
 				E365A13A1F9255C50008D475 /* CompleteDialog.swift in Sources */,
 				E30AE0481F8A4FF7002FEFAA /* ModalNavigationController.swift in Sources */,
+				E3CAC82C1FAB229C00AE1B55 /* MyPageCell.swift in Sources */,
 				E3034EA41F87BFBF00FCB026 /* Const.swift in Sources */,
 				E34188381F794E5B000AB961 /* WorkController.swift in Sources */,
 				E3D259A31FAAA59F00978399 /* NoDateView.swift in Sources */,
