@@ -13,27 +13,26 @@ import UIKit
 extension UIAlertController {
 
     static func presentActionSheet() {
-        let alert = UIAlertController(title: "タイトル", message: "message", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let alert = UIAlertController(title: "削除しますか?", message: "データは残りません", preferredStyle: .actionSheet)
+    
+//        // アクションを生成.
+//        let myAction_1 = UIAlertAction(title: "Hello", style: UIAlertActionStyle.default, handler: {
+//            (action: UIAlertAction!) in
+//            print("Hello")
+//        })
         
-        // アクションを生成.
-        let myAction_1 = UIAlertAction(title: "Hello", style: UIAlertActionStyle.default, handler: {
+        let destory = UIAlertAction(title: "削除", style: .destructive, handler: {
             (action: UIAlertAction!) in
-            print("Hello")
+            
         })
         
-        let myAction_2 = UIAlertAction(title: "yes", style: UIAlertActionStyle.destructive, handler: {
+        let myAction_3 = UIAlertAction(title: "キャンセル", style: .cancel, handler: {
             (action: UIAlertAction!) in
-            print("yes")
-        })
-        
-        let myAction_3 = UIAlertAction(title: "no", style: UIAlertActionStyle.cancel, handler: {
-            (action: UIAlertAction!) in
-            print("no")
+            
         })
         
         // アクションを追加.
-        alert.addAction(myAction_1)
-        alert.addAction(myAction_2)
+        alert.addAction(destory)
         alert.addAction(myAction_3)
         
         AppDelegate.getTopMostViewController().present(alert, animated: true, completion: nil)

@@ -164,8 +164,8 @@
 		E30530281FACC9830097D9A3 /* infoDetail */ = {
 			isa = PBXGroup;
 			children = (
-				E30530291FACC9AA0097D9A3 /* infoDetailViewController.swift */,
 				E305302B1FACC9B20097D9A3 /* infoDetailViewController.storyboard */,
+				E30530291FACC9AA0097D9A3 /* infoDetailViewController.swift */,
 			);
 			path = infoDetail;
 			sourceTree = "<group>";
@@ -190,12 +190,12 @@
 		E361060E1F243225004F56EC /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				E312644E1FA22C0100F2B23D /* Home.storyboard */,
 				E361060F1F243225004F56EC /* Home.swift */,
+				E31264501FA22F5D00F2B23D /* HomeControllerViewController.swift */,
 				E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */,
 				E3CA14E71F5D91B00053468D /* HomeModel.swift */,
 				E3CA14E91F5D963D0053468D /* HomeView.swift */,
-				E312644E1FA22C0100F2B23D /* Home.storyboard */,
-				E31264501FA22F5D00F2B23D /* HomeControllerViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -203,8 +203,8 @@
 		E36106111F243225004F56EC /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
-				E30530281FACC9830097D9A3 /* infoDetail */,
 				E3CAC82D1FAB22B300AE1B55 /* MyPageCell */,
+				E30530281FACC9830097D9A3 /* infoDetail */,
 				E36106121F243225004F56EC /* MyPage.swift */,
 			);
 			path = MyPage;
@@ -213,9 +213,9 @@
 		E365A13B1F9255E00008D475 /* Dialog */ = {
 			isa = PBXGroup;
 			children = (
-				E3CAC8301FAC455300AE1B55 /* MyInfoActionDialog */,
-				E37DDE231FAA1AFF00EC61E5 /* Loading */,
 				E365A1401F9258AC0008D475 /* CompleteDialog */,
+				E37DDE231FAA1AFF00EC61E5 /* Loading */,
+				E3CAC8301FAC455300AE1B55 /* MyInfoActionDialog */,
 				E365A13E1F9257770008D475 /* Dialog.swift */,
 			);
 			path = Dialog;
@@ -234,8 +234,8 @@
 			isa = PBXGroup;
 			children = (
 				E3894FCD1F8CF607000313CC /* Extension */,
-				E35580141F8B2347000CE75E /* Utility.swift */,
 				E3CE4ABD1FA8AB3F0074200A /* Gradiate.swift */,
+				E35580141F8B2347000CE75E /* Utility.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -289,11 +289,11 @@
 		E3894FCD1F8CF607000313CC /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				E30530261FACC8C10097D9A3 /* Alert+.swift */,
 				E3FE60C21F9CE3FB0080E378 /* Animation+.swift */,
 				E3894FCE1F8CF62A000313CC /* UIButton+.swift */,
 				E355F1971F9F7ED300509CA1 /* UIView+.swift */,
 				E355F1951F9F7ADD00509CA1 /* UIViewController+.swift */,
-				E30530261FACC8C10097D9A3 /* Alert+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -331,10 +331,10 @@
 		E38F7FB01F9B0BBF0036CEE0 /* ViewParts */ = {
 			isa = PBXGroup;
 			children = (
-				E3D259A41FAAA5AC00978399 /* NoDateView */,
 				E365A13B1F9255E00008D475 /* Dialog */,
-				E3B6DC461FA0C7C70037FA07 /* TotalDIstanceView */,
+				E3D259A41FAAA5AC00978399 /* NoDateView */,
 				E38F7FA91F9AF3C40036CEE0 /* ResultView */,
+				E3B6DC461FA0C7C70037FA07 /* TotalDIstanceView */,
 			);
 			path = ViewParts;
 			sourceTree = "<group>";

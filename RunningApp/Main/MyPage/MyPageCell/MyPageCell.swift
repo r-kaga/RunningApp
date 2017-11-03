@@ -17,9 +17,5 @@ class MyPageCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var calorieLabel: UILabel!
     
-    @IBOutlet weak var deleteButton: UIButton!
-    
-
 }

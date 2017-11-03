@@ -177,7 +177,7 @@ extension MyPage: UITableViewDataSource {
         cell.dateLabel.text = item.date
         cell.timeLabel.text = item.time
         cell.distanceLabel.text = item.distance + "km"
-        cell.calorieLabel.text = item.calorie + "カロリー"
+
         
 //        cell.backgroundColor = .black        
         /* セレクトされた時に何もしない */
