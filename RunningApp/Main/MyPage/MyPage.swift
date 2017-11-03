@@ -10,6 +10,17 @@ import UIKit
 import RealmSwift
 
 
+protocol MyPageDelegate: class {
+    func reload()
+}
+
+extension MyPage: MyPageDelegate {
+    func reload() {
+        self.tableView.reloadData()
+    }
+}
+
+
 class MyPage: UIViewController, UIScrollViewDelegate {
 
     var loading: Loading?
@@ -23,27 +34,24 @@ class MyPage: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         navigationItem.title = "My Page"
 
-        
         self.loading = Loading.make()
         self.loading?.startLoading()
         
-        tableView = UITableView(frame: self.view.frame, style: .grouped)
+        tableView = UITableView(frame: CGRect(x: 15, y: 0, width: AppSize.width - 30, height: AppSize.height), style: .grouped)
         tableView.backgroundColor = .black
         tableView.bounces = false
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorColor = .black
+        tableView.separatorColor = .clear
         tableView.register(UINib(nibName: "MyPageCell", bundle: nil), forCellReuseIdentifier: "myPageCell")
-        tableView.estimatedRowHeight = 80
-        tableView.rowHeight = 80
+        tableView.estimatedRowHeight = 60
+        tableView.rowHeight = 60
         tableView.sectionIndexColor = .black
 
         let realm = try! Realm()
         myInfo = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
         
 //        setupMyInfo()
-        
-        self.loading?.close()
         self.view.addSubview(tableView)
     }
     
@@ -156,9 +164,11 @@ extension MyPage: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myPageCell") as! MyPageCell
-//        let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        cell.frame = CGRect(x: 0, y: 0, width: AppSize.width, height: 80)
-        
+        cell.frame = CGRect(x: 15, y: 0, width: AppSize.width - 30, height: 60)
+        cell.layer.cornerRadius = 10.0
+        cell.clipsToBounds = true
+        cell.backgroundColor = .black
+
         let item = self.myInfo[indexPath.row]
         print(item)
         cell.typeImageView?.image = UIImage(named: item.workType)!
@@ -180,8 +190,17 @@ extension MyPage: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+        print(indexPath.row)
+        if let parts = MyInfoActionDialog.make() {
+            parts.open()
+            
+        }
     }
     
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        self.loading?.close()
+    }
     
     
     

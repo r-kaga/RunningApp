@@ -33,10 +33,12 @@ class DistanceChartsController: UIViewController, ChartViewDelegate {
         
         var entries = [BarChartDataEntry]()
         var count = 0.0
-        motionDate.forEach { (date) in
-            entries.append(BarChartDataEntry(x: count, y: Double(date.distance)!))
+        
+        for i in 1...15 {
+            entries.append(BarChartDataEntry(x: count, y: Double(motionDate[i].distance)!))
             count += 0.1
         }
+
         chartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
         
         let set = LineChartDataSet(values: entries, label: "走行距離")

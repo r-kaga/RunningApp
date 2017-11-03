@@ -39,7 +39,11 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="elg-QT-cD8">
-                                    <rect key="frame" x="391" y="0.0" width="30" height="30"/>
+                                    <rect key="frame" x="396" y="0.0" width="30" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="30" id="LHB-ZI-Ypr"/>
+                                        <constraint firstAttribute="height" constant="30" id="WYu-jD-4JF"/>
+                                    </constraints>
                                     <state key="normal" title="❌">
                                         <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
@@ -67,11 +71,12 @@
                                 <constraint firstAttribute="bottom" secondItem="Flq-HT-HSd" secondAttribute="bottom" id="IdQ-Mj-ZxJ"/>
                                 <constraint firstItem="Vzb-7v-qy6" firstAttribute="leading" secondItem="6Pk-UL-IwD" secondAttribute="leading" id="Mlg-s7-kSR"/>
                                 <constraint firstItem="Flq-HT-HSd" firstAttribute="top" secondItem="EhU-dg-D6l" secondAttribute="bottom" id="Q2a-GE-WLP"/>
+                                <constraint firstItem="elg-QT-cD8" firstAttribute="top" secondItem="6Pk-UL-IwD" secondAttribute="top" id="TCb-yE-7S7"/>
                                 <constraint firstItem="Flq-HT-HSd" firstAttribute="centerX" secondItem="6Pk-UL-IwD" secondAttribute="centerX" id="TbM-yy-zzE"/>
                                 <constraint firstItem="EhU-dg-D6l" firstAttribute="top" secondItem="6Pk-UL-IwD" secondAttribute="top" constant="5" id="axZ-mF-zl2"/>
                                 <constraint firstItem="EhU-dg-D6l" firstAttribute="centerX" secondItem="6Pk-UL-IwD" secondAttribute="centerX" id="lve-vJ-8dk"/>
+                                <constraint firstAttribute="trailing" secondItem="elg-QT-cD8" secondAttribute="trailing" id="omT-mg-ucf"/>
                                 <constraint firstAttribute="bottom" secondItem="Vzb-7v-qy6" secondAttribute="bottom" id="owY-2y-1Li"/>
-                                <constraint firstAttribute="trailing" secondItem="elg-QT-cD8" secondAttribute="trailing" constant="5" id="xNJ-Fv-yXa"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fnf-bu-lCI">

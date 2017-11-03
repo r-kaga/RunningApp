@@ -80,6 +80,12 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                                   calorie: latestData[0].calorie
         )
         view.typeImageView.image = UIImage(named: latestData[0].workType)!
+        
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(Home.longPressed(_:)))
+        view.addGestureRecognizer(longPress)
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(Home.tapGesture(_:)))
+        view.addGestureRecognizer(tapGesture)
         scrollView.addSubview(view)
         
         guard latestData.count >= 2 else { return }
