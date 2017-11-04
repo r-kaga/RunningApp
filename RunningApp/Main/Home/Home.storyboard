@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wx2-ZU-8fI">
-                                <rect key="frame" x="0.0" y="234" width="320" height="185"/>
+                                <rect key="frame" x="0.0" y="234" width="320" height="180"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GUt-I2-VI8">
@@ -48,7 +48,7 @@
                             <constraint firstItem="GUt-I2-VI8" firstAttribute="bottom" secondItem="SZe-J7-h9d" secondAttribute="bottom" id="Y4E-81-TKb"/>
                             <constraint firstItem="wx2-ZU-8fI" firstAttribute="leading" secondItem="SZe-J7-h9d" secondAttribute="leading" id="YJF-Iy-tsf"/>
                             <constraint firstItem="SZe-J7-h9d" firstAttribute="trailing" secondItem="nrv-TM-ULR" secondAttribute="trailing" constant="10" id="aOL-le-7kE"/>
-                            <constraint firstItem="GUt-I2-VI8" firstAttribute="top" secondItem="wx2-ZU-8fI" secondAttribute="bottom" constant="10" id="egH-5Y-PSb"/>
+                            <constraint firstItem="GUt-I2-VI8" firstAttribute="top" secondItem="wx2-ZU-8fI" secondAttribute="bottom" constant="15" id="egH-5Y-PSb"/>
                             <constraint firstItem="SZe-J7-h9d" firstAttribute="trailing" secondItem="GUt-I2-VI8" secondAttribute="trailing" id="mav-Ma-lXz"/>
                             <constraint firstItem="SZe-J7-h9d" firstAttribute="trailing" secondItem="wx2-ZU-8fI" secondAttribute="trailing" id="uia-Zb-tQ9"/>
                         </constraints>

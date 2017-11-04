@@ -81,11 +81,12 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         )
         view.typeImageView.image = UIImage(named: latestData[0].workType)!
         
-        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(Home.longPressed(_:)))
-        view.addGestureRecognizer(longPress)
-
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(Home.tapGesture(_:)))
-        view.addGestureRecognizer(tapGesture)
+//        view.indexPath = latestData[0].id
+//        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(Home.longPressed(_:)))
+//        view.addGestureRecognizer(longPress)
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(Home.tapGesture(_:)))
+//        view.addGestureRecognizer(tapGesture)
+        
         scrollView.addSubview(view)
         
         guard latestData.count >= 2 else { return }
@@ -113,8 +114,9 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         )
         second.typeImageView.image = UIImage(named: latestData[1].workType)!
         
-        second.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(Home.longPressed(_:))))
-        second.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(Home.tapGesture(_:))))
+//        second.indexPath = latestData[1].id
+//        second.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(Home.longPressed(_:))))
+//        second.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(Home.tapGesture(_:))))
         
         scrollView.addSubview(second)
         
@@ -145,14 +147,13 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         )
         third.typeImageView.image = UIImage(named: latestData[2].workType)!
         
+//        third.indexPath = latestData[2].id
+//        third.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(Home.longPressed(_:))))
+//        third.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(Home.tapGesture(_:))))
+        
         scrollView.contentSize.width += AppSize.width
-        
-        third.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(Home.longPressed(_:))))
-        third.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(Home.tapGesture(_:))))
-        
         scrollView.addSubview(third)
 
-        
         self.ressultOutlet.addSubview(scrollView)
     }
     

@@ -86,31 +86,11 @@ class resultView: UIView {
         self.addConstraints(constraints2)
         
     }
-
-    
-//    private func setUpCloseButton() {
-//
-//        closeButton = UIButton(frame: CGRect(x: self.frame.width - 40, y: 0, width: 40, height: 40))
-//        closeButton.backgroundColor = .clear
-//        closeButton.setTitle("❌", for: .normal)
-//        //        button.setImage(UIImage(named: "close")!, for: .normal)
-//        closeButton.addTarget(self, action: #selector(resultView.buttonTaped(_:)), for: .touchUpInside)
-//        self.addSubview(closeButton)
-//
-//    }
-//
-//    @objc func  buttonTaped(_ sender: AnyObject) {
-//        delete()
-//    }
-//
-    
-    
+ 
     private func delete() {
         
         defer {
-            //            let vc = AppDelegate.getTopMostViewController()
-            //            vc.loadView()
-            //            vc.viewDidLoad()
+
         }
         
         let alert = UIAlertController(title: "削除してよろしいですか", message: "データは残りません", preferredStyle: .alert)
