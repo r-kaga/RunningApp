@@ -12,11 +12,16 @@ import RealmSwift
 
 protocol MyPageDelegate: class {
     func reload()
+    func setNavigationTitle(title: String)
 }
 
 extension MyPage: MyPageDelegate {
     func reload() {
         self.tableView.reloadData()
+    }
+    
+    func setNavigationTitle(title: String) {
+        navigationItem.title = title
     }
 }
 
@@ -32,7 +37,6 @@ class MyPage: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "My Page"
 
         self.loading = Loading.make()
         self.loading?.startLoading()
@@ -56,6 +60,13 @@ class MyPage: UIViewController, UIScrollViewDelegate {
 //        setupMyInfo()
         self.view.addSubview(tableView)
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.title = "MyPage"
+    }
+    
     
     /**  */
     private func setupMyInfo() {
@@ -196,14 +207,9 @@ extension MyPage: UITableViewDataSource {
         let infoDetail = UIStoryboard(name: "infoDetailViewController", bundle: nil).instantiateInitialViewController() as! infoDetailViewController
         infoDetail.myInfo = myInfo[indexPath.row]
         infoDetail.delegate = self
-        self.navigationController?.pushViewController(infoDetail, animated: true)
         
-//        guard let view = tableView.cellForRow(at: indexPath)?.contentView else { return }
-//        if let parts = MyInfoActionDialog.make() {
-//            parts.open()
-//        }
+        self.navigationController?.pushViewController(infoDetail, animated: true)
     }
-    
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         self.loading?.close()

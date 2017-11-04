@@ -23,10 +23,17 @@ class infoDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         navigationItem.title = myInfo?.date
         navigationController?.navigationBar.topItem?.title = ""
-    
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false // スワイプで戻る動きを禁止
+ 
+        let moreButton = UIBarButtonItem(image: UIImage(named: "more_vert")!,
+                                         style: .done,
+                                         target: self,
+                                         action: #selector(infoDetailViewController.moreButtonAction(_:)))
+        navigationItem.setRightBarButton(moreButton, animated: true)
+        
         workTypeLabel.text = myInfo?.workType == "directionsRun" ? "ランニング" : "ウォーキング"
         calorieLabel.text = myInfo?.calorie
         distanceLabel.text = myInfo?.distance
@@ -35,10 +42,9 @@ class infoDetailViewController: UIViewController {
     }
 
     
-    @IBAction func barButtonAction(_ sender: Any) {
+    @objc private func moreButtonAction(_ sender: UIButton) {
         UIAlertController.presentActionSheet(deleteAction: delete)
     }
-    
     
     private func delete() {
         let loading = Loading.make()
@@ -59,7 +65,5 @@ class infoDetailViewController: UIViewController {
         self.delegate?.reload()
     }
     
-
-
 
 }
