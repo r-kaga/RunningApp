@@ -14,23 +14,11 @@ class Gradiate: UIView {
     let gradient = CAGradientLayer()
     var gradientSet = [[CGColor]]()
     var currentGradient: Int = 0
-    
-    let gradientOne = UIColor(red: 41/255, green: 46/255, blue: 73/255, alpha: 1).cgColor
-    let gradientTwo  = UIColor(red: 83/255, green: 105/255, blue: 118/255, alpha: 1).cgColor
-//    let gradientThree  = UIColor(red: 187/255, green: 210/255, blue: 197/255, alpha: 1).cgColor
-    let gradientThree = UIColor(red: 21/255, green: 26/255, blue: 73/255, alpha: 1).cgColor
 
-    
-    //    let gradientOne  = UIColor(red: 48/255, green: 62/255, blue: 103/255, alpha: 1).cgColor
-    //    let gradientTwo  = UIColor(red: 244/255, green: 88/255, blue: 53/255, alpha: 1).cgColor
-    //    let gradientThree = UIColor(red: 196/255, green: 70/255, blue: 107/255, alpha: 1).cgColor
+    let gradientOne = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
+    let gradientTwo  = UIColor(red: 67/255, green: 67/255, blue: 67/255, alpha: 1).cgColor
+    let gradientThree = UIColor(red: 45/255, green: 45/255, blue: 45/255, alpha: 1).cgColor
 
-    //    let gradientOne  = UIColor(red: 83/255, green: 105/255, blue: 108/255, alpha: 1).cgColor
-    //    let gradientThree = UIColor(red: 41/255, green: 46/255, blue: 73/255, alpha: 1).cgColor
-    
-    //    let gradientOne  = UIColor(red: 43/255, green: 88/255, blue: 118/255, alpha: 1).cgColor
-    //    let gradientThree = UIColor(red: 78/255, green: 67/255, blue: 118/255, alpha: 1).cgColor
-    
     func setUpGradiate() -> CAGradientLayer {
         gradientSet.append([gradientOne, gradientTwo])
 //        gradientSet.append([gradientTwo, gradientOne])

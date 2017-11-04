@@ -10,8 +10,8 @@ import UIKit
 
 class Loading: UIView, DialogProtocol {
 
-    static let PROGRESS_LINE_COLOR = UIColor.red // プログレスバーカラー
-    static let BASE_LINE_COLOR = UIColor.lightGray // ラインバックグランドカラー
+//    static let PROGRESS_LINE_COLOR = UIColor.red // プログレスバーカラー
+//    static let BASE_LINE_COLOR = UIColor.lightGray // ラインバックグランドカラー
     static let CIRCLE_RATE: CGFloat = 80 // メインのビューのサイズから何パーセンの大きさにするか
     
     @IBOutlet weak var panelOutlet: UIView!
@@ -66,9 +66,9 @@ class Loading: UIView, DialogProtocol {
         self.layer.shadowRadius = 1
         self.layer.shadowOpacity = 0.2
         
-        let RED: CGFloat = 255/255
-        let GREEN: CGFloat = 6/255
-        let BLUE: CGFloat  = 90/255
+        let RED: CGFloat   = 65/255
+        let GREEN: CGFloat = 67/255
+        let BLUE: CGFloat  = 69/255
         
         let min_size = min(self.panelOutlet.frame.width, self.panelOutlet.frame.height)
         let diameter = min_size * CGFloat(Loading.CIRCLE_RATE / 100.0)

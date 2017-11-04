@@ -183,12 +183,10 @@ extension MyPage: UITableViewDataSource {
         cell.backgroundColor = .black
 
         let item = self.myInfo[indexPath.row]
-        print(item)
         cell.typeImageView?.image = UIImage(named: item.workType)!
         cell.dateLabel.text = item.date
         cell.timeLabel.text = item.time
         cell.distanceLabel.text = item.distance + "km"
-
         
 //        cell.backgroundColor = .black        
         /* セレクトされた時に何もしない */
@@ -214,7 +212,6 @@ extension MyPage: UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         self.loading?.close()
     }
-    
     
     
 }
