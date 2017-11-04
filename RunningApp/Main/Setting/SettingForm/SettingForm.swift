@@ -22,7 +22,10 @@ class SettingForm: UIViewController {
     
     @IBOutlet weak var closeButton: UIButton!
     
- 
+    @IBAction func ScreenTapAction(_ sender: Any) {
+        self.textField.endEditing(true)
+    }
+    
     var type: Const.SettingType?
     var categoryName: String!
     weak var delegate: SettingDelegate?

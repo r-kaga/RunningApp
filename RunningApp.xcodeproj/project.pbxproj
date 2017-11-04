@@ -30,6 +30,8 @@
 		E365A13A1F9255C50008D475 /* CompleteDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E365A1391F9255C50008D475 /* CompleteDialog.swift */; };
 		E365A13D1F9256020008D475 /* CompleteDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = E365A13C1F9256020008D475 /* CompleteDialog.xib */; };
 		E365A13F1F9257770008D475 /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E365A13E1F9257770008D475 /* Dialog.swift */; };
+		E368B0E11FADC7690021985F /* Gradation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E368B0E01FADC7690021985F /* Gradation.swift */; };
+		E368B0E31FADCC7F0021985F /* GradiateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E368B0E21FADCC7F0021985F /* GradiateView.swift */; };
 		E36912FD1F9370EB00A9B19C /* resultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36912FC1F9370EB00A9B19C /* resultView.swift */; };
 		E36912FF1F9370FB00A9B19C /* resultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E36912FE1F9370FB00A9B19C /* resultView.xib */; };
 		E36913011F97624500A9B19C /* RealmDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36913001F97624500A9B19C /* RealmDataSet.swift */; };
@@ -87,6 +89,8 @@
 		E365A1391F9255C50008D475 /* CompleteDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteDialog.swift; sourceTree = "<group>"; };
 		E365A13C1F9256020008D475 /* CompleteDialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompleteDialog.xib; sourceTree = "<group>"; };
 		E365A13E1F9257770008D475 /* Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
+		E368B0E01FADC7690021985F /* Gradation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradation.swift; sourceTree = "<group>"; };
+		E368B0E21FADCC7F0021985F /* GradiateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradiateView.swift; sourceTree = "<group>"; };
 		E36912FC1F9370EB00A9B19C /* resultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resultView.swift; sourceTree = "<group>"; };
 		E36912FE1F9370FB00A9B19C /* resultView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = resultView.xib; sourceTree = "<group>"; };
 		E36913001F97624500A9B19C /* RealmDataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDataSet.swift; sourceTree = "<group>"; };
@@ -230,11 +234,21 @@
 			path = CompleteDialog;
 			sourceTree = "<group>";
 		};
+		E368B0DF1FADC7550021985F /* Gradation */ = {
+			isa = PBXGroup;
+			children = (
+				E3CE4ABD1FA8AB3F0074200A /* Gradiate.swift */,
+				E368B0E01FADC7690021985F /* Gradation.swift */,
+				E368B0E21FADCC7F0021985F /* GradiateView.swift */,
+			);
+			path = Gradation;
+			sourceTree = "<group>";
+		};
 		E3762A741F8FA1F100B0B501 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				E368B0DF1FADC7550021985F /* Gradation */,
 				E3894FCD1F8CF607000313CC /* Extension */,
-				E3CE4ABD1FA8AB3F0074200A /* Gradiate.swift */,
 				E35580141F8B2347000CE75E /* Utility.swift */,
 			);
 			path = Service;
@@ -548,6 +562,7 @@
 				E35580151F8B2347000CE75E /* Utility.swift in Sources */,
 				E36913011F97624500A9B19C /* RealmDataSet.swift in Sources */,
 				E3031D031F80E05A002C5739 /* SettingController.swift in Sources */,
+				E368B0E11FADC7690021985F /* Gradation.swift in Sources */,
 				E3CAC8321FAC458200AE1B55 /* MyInfoActionDialog.swift in Sources */,
 				E31264511FA22F5D00F2B23D /* HomeControllerViewController.swift in Sources */,
 				E3CA14EC1F5D98C90053468D /* HomeCustomCell.swift in Sources */,
@@ -579,6 +594,7 @@
 				E36912FD1F9370EB00A9B19C /* resultView.swift in Sources */,
 				E380AB311F23735F0034EA8F /* AppDelegate.swift in Sources */,
 				E3F4032E1F88C6EC0073DC45 /* DismissAnimator.swift.swift in Sources */,
+				E368B0E31FADCC7F0021985F /* GradiateView.swift in Sources */,
 				E3CE4ABE1FA8AB3F0074200A /* Gradiate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

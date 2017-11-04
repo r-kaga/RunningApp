@@ -14,6 +14,7 @@ class WorkController: UIViewController {
     
     private var isStarted = false
     
+    @IBOutlet weak var resultView: UIView!
     @IBOutlet weak var resultCardView: UIView!
     @IBOutlet weak var map: UIView!
     @IBOutlet weak var stopWatchLabel: UILabel!
@@ -70,13 +71,18 @@ class WorkController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
         resultCardView.layer.cornerRadius = 10.0
         resultCardView.clipsToBounds = true
-        
-//        navigationItem.title = "Ranrastic"
-        
+
         self.view.addSubview(countImageView)
         self.map.addSubview(mapView)
         
         self.setupLocationManager()
+        
+        let gradient = Gradiate(frame: resultView.frame)
+        resultView.layer.addSublayer(gradient.setUpGradiate())
+        gradient.animateGradient()
+
+        resultView.bringSubview(toFront: resultCardView)
+
     }
 
     

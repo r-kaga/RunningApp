@@ -25,7 +25,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weight" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UIF-39-7Kn">
                                 <rect key="frame" x="30" y="165" width="315" height="30"/>
@@ -69,6 +69,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="mEU-RM-bP1" firstAttribute="trailing" secondItem="UIF-39-7Kn" secondAttribute="trailing" constant="30" id="5lJ-iI-ove"/>
                             <constraint firstItem="4B2-A0-roY" firstAttribute="centerX" secondItem="mEU-RM-bP1" secondAttribute="centerX" id="80o-8z-Lq5"/>
@@ -85,6 +86,9 @@
                             <constraint firstItem="UIF-39-7Kn" firstAttribute="leading" secondItem="mEU-RM-bP1" secondAttribute="leading" constant="30" id="wIV-Cs-UuM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mEU-RM-bP1"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="uw9-XA-qPP" appends="YES" id="YAz-Kl-njm"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="SettingCategoryLabel" destination="UIF-39-7Kn" id="NCE-MH-hC0"/>
@@ -95,6 +99,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yCb-LQ-LKN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="uw9-XA-qPP">
+                    <connections>
+                        <action selector="ScreenTapAction:" destination="fuU-Cc-gWk" id="eg3-6f-fUt"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-303.19999999999999" y="71.514242878560722"/>
         </scene>
