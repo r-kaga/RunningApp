@@ -13,7 +13,7 @@ import UIKit
 extension UIViewController {
 
     
-    func longPressed(_ sender: UILongPressGestureRecognizer) {
+    @objc func longPressed(_ sender: UILongPressGestureRecognizer) {
         let view = sender.view as! resultView
         view.touchStartAnimation()
         view.deleteButton.isHidden = false
@@ -35,7 +35,7 @@ extension UIViewController {
 //        }
     }
     
-    func tapGesture(_ sender: UITapGestureRecognizer) {
+    @objc func tapGesture(_ sender: UITapGestureRecognizer) {
         sender.view?.touchEndAnimation()
         
         let view = sender.view as! resultView
