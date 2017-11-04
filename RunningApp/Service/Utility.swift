@@ -54,7 +54,6 @@ struct Utility {
     static func showCompleteDialog() {
         let view = CompleteDialog.make()
         view?.open()
-//        view?.add()
     }
     
     /**
@@ -63,7 +62,6 @@ struct Utility {
     static func showLoading() {
         let view = Loading.make()
         view?.startLoading()
-//        view?.add()
     }
     
     /** collectionViewのpathから、運動のタイプをタプルで返却

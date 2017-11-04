@@ -12,7 +12,7 @@ class HomeCustomCell : UICollectionViewCell{
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        let defaultImage: UIImage = UIImage(named:"0.jpg")!
+        let defaultImage: UIImage = UIImage(named:"asphalt-highway")!
         
         imageView = UIImageView(frame: CGRect(x:0, y:0, width: frame.width, height: frame.height))
         imageView?.image = defaultImage

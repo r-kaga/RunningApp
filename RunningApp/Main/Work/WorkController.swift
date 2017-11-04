@@ -7,13 +7,6 @@ import RealmSwift
 
 class WorkController: UIViewController {
     
-    weak var timer: Timer!
-    var startTimeDate: Date!
-    
-    static var workType: String?
-    
-    private var isStarted = false
-    
     @IBOutlet weak var resultView: UIView!
     @IBOutlet weak var resultCardView: UIView!
     @IBOutlet weak var map: UIView!
@@ -21,6 +14,14 @@ class WorkController: UIViewController {
     @IBOutlet weak var speedLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var calorieLabel: UILabel!
+    
+    static var workType: String?
+
+    
+    weak var timer: Timer!
+    var startTimeDate: Date!
+    
+    private var isStarted = false
     
     /* カウントダウンのImageViewを生成 */
     lazy var countImageView: UIImageView = {
@@ -82,7 +83,6 @@ class WorkController: UIViewController {
         gradient.animateGradient()
 
         resultView.bringSubview(toFront: resultCardView)
-
     }
 
     
@@ -142,7 +142,6 @@ class WorkController: UIViewController {
     
     /* ストップウォッチ */
     private func startTimer() {
-        print("ddddd")
         if timer != nil{
             // timerが起動中なら一旦破棄する
             timer.invalidate()
@@ -184,7 +183,7 @@ class WorkController: UIViewController {
         }
     }
     
-    
+    /** 計測終了確認アラート */
     private func confirmWorkEndAlert() {
         let alert = UIAlertController(title: "計測を終了します", message: "終了してもよろしいですか?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -196,7 +195,7 @@ class WorkController: UIViewController {
     }
 
     
-    
+    /** DBに登録 */
     private func registWorkResult() {
         guard let totalDistance  = self.distanceLabel.text,
               let speed    = self.speedLabel.text,
@@ -252,13 +251,6 @@ class WorkController: UIViewController {
 
     }
     
-    /** Endボタン押し時
-      *
-      */
-    @IBAction func endAction(_ sender: Any) {
-        confirmWorkEndAlert()
-    }
-    
     
     /** 開始時間から現在の経過時間を返却
      * - return 現在の経過時間 / HH:mm:ss
@@ -266,16 +258,23 @@ class WorkController: UIViewController {
     private func getElapsedTime() -> String {
         // タイマー開始からのインターバル時間
         let currentTime = Date().timeIntervalSince(startTimeDate)
-    
+        
         let hour = (Int)(fmod((currentTime / 60 / 60), 60))
-    
+        
         // fmod() 余りを計算
         let minute = (Int)(fmod((currentTime/60), 60))
-    
+        
         // currentTime/60 の余り
         let second = (Int)(fmod(currentTime, 60))
-    
+        
         return  "\(String(format:"%02d", hour)):\(String(format:"%02d", minute)):\(String(format:"%02", second))"
+    }
+    
+    
+    
+    /** Endボタン押し時 */
+    @IBAction func endAction(_ sender: Any) {
+        confirmWorkEndAlert()
     }
     
     
@@ -404,29 +403,25 @@ extension WorkController: CLLocationManagerDelegate {
             case .authorizedAlways:
                 print("常時、位置情報の取得が許可されています。")
                 locationManager.startUpdatingLocation()
-                
+                locationManager.activityType = .fitness
+
                 /*
                  other その他（デフォルト値）
                  automotiveNavigation 自動車ナビゲーション用
                  fitness 歩行者
                  otherNavigation その他のナビゲーションケース（ボート、電車、飛行機)
                  */
-                locationManager.activityType = .fitness
 
             case .authorizedWhenInUse:
                 print("起動時のみ、位置情報の取得が許可されています。")
                 locationManager.startUpdatingLocation()
                 locationManager.activityType = .fitness
                 self.markCurrentLocation()
-                // 位置情報取得の開始処理
-
         }
     }
     
     
-    /*
-     位置情報取得に成功したときに呼び出されるデリゲート.
-     */
+    /* 位置情報取得に成功したときに呼び出されるデリゲート. */
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     
         guard self.isStarted else { return }
@@ -450,7 +445,6 @@ extension WorkController: CLLocationManagerDelegate {
         
         // 直線を引く座標を作成.
 //        self.drawLineToMap(from: previous.coordinate, to: location.coordinate)
-
         
         var calorie: Double = 0.0
         if let weight = UserDefaults.standard.string(forKey: "weight") {
@@ -492,24 +486,18 @@ extension WorkController: CLLocationManagerDelegate {
             }
             print(speedText)
             self.speedLabel.text = speedText
-            
         }
 
         
     }
     
     
-    /*
-     位置情報取得に失敗した時に呼び出されるデリゲート.
-     */
+    /* 位置情報取得に失敗した時に呼び出されるデリゲート. */
     func locationManager(_ manager: CLLocationManager,didFailWithError error: Error){
         print(error)
     }
 
-
-
 }
-
 
 
 
@@ -523,7 +511,6 @@ extension WorkController: MKMapViewDelegate {
 //        self.mapView.setCenter(center, animated: true)
     }
     
-
     /* 現在の位置でMapを更新
      * @param coordinate 現在位置 CLLocationCoordinate2D
      */
@@ -532,10 +519,9 @@ extension WorkController: MKMapViewDelegate {
         let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate, self.latDist, self.lonDist)
 //        let region = MKCoordinateRegionMake(coordinate, span)
 //        region.center = coordinate
-
-//                region.span.latitudeDelta = 0.003
+//        region.span.latitudeDelta = 0.003
 //        region.span.longitudeDelta = 0.003
-        //        self.mapView.centerCoordinate = coordinate
+//        self.mapView.centerCoordinate = coordinate
         
 //        DispatchQueue.main.async {
             self.mapView.setRegion(region, animated: true)  // MapViewに反映
@@ -585,19 +571,12 @@ extension WorkController: MKMapViewDelegate {
     }
     
     
-    /*
-     addOverlayした際に呼ばれるデリゲートメソッド.
-     */
+    /** addOverlayした際に呼ばれるデリゲートメソッド. */
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        
         // rendererを生成.
         let myPolyLineRendere: MKPolylineRenderer = MKPolylineRenderer(overlay: overlay)
-        
-        // 線の太さを指定.
-        myPolyLineRendere.lineWidth = 2.5
-        
-        // 線の色を指定.
-        myPolyLineRendere.strokeColor = UIColor.red
+        myPolyLineRendere.lineWidth = 2.5 // 線の太さを指定.
+        myPolyLineRendere.strokeColor = UIColor.red // 線の色を指定.
         
         return myPolyLineRendere
     }

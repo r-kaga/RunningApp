@@ -15,7 +15,7 @@
 		E305302C1FACC9B20097D9A3 /* infoDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E305302B1FACC9B20097D9A3 /* infoDetailViewController.storyboard */; };
 		E30AE0481F8A4FF7002FEFAA /* ModalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30AE0471F8A4FF7002FEFAA /* ModalNavigationController.swift */; };
 		E312644F1FA22C0100F2B23D /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E312644E1FA22C0100F2B23D /* Home.storyboard */; };
-		E31264511FA22F5D00F2B23D /* HomeControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31264501FA22F5D00F2B23D /* HomeControllerViewController.swift */; };
+		E31264511FA22F5D00F2B23D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31264501FA22F5D00F2B23D /* HomeViewController.swift */; };
 		E33802941F852A76007EB199 /* SettingForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33802931F852A76007EB199 /* SettingForm.swift */; };
 		E33802961F852AD1007EB199 /* SettingForm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E33802951F852AD1007EB199 /* SettingForm.storyboard */; };
 		E341882E1F794073000AB961 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E341882D1F794073000AB961 /* MainTabBarController.swift */; };
@@ -25,7 +25,6 @@
 		E35580151F8B2347000CE75E /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35580141F8B2347000CE75E /* Utility.swift */; };
 		E355F1961F9F7ADD00509CA1 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355F1951F9F7ADD00509CA1 /* UIViewController+.swift */; };
 		E355F1981F9F7ED300509CA1 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355F1971F9F7ED300509CA1 /* UIView+.swift */; };
-		E36106171F243225004F56EC /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = E361060F1F243225004F56EC /* Home.swift */; };
 		E36106191F243225004F56EC /* MyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36106121F243225004F56EC /* MyPage.swift */; };
 		E365A13A1F9255C50008D475 /* CompleteDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E365A1391F9255C50008D475 /* CompleteDialog.swift */; };
 		E365A13D1F9256020008D475 /* CompleteDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = E365A13C1F9256020008D475 /* CompleteDialog.xib */; };
@@ -46,10 +45,6 @@
 		E38F7FAD1F9AF4CA0036CEE0 /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E38F7FAC1F9AF4CA0036CEE0 /* SettingCell.xib */; };
 		E39594071F30C574004AEB27 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39594021F30C574004AEB27 /* Interactor.swift */; };
 		E3B15B5E1F7BEEE200E17A84 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3B15B5D1F7BEEE200E17A84 /* CoreLocation.framework */; };
-		E3B6DC481FA0C7E00037FA07 /* TotalDistanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B6DC471FA0C7E00037FA07 /* TotalDistanceView.swift */; };
-		E3B6DC4A1FA0C7F30037FA07 /* TotalDistanceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3B6DC491FA0C7F30037FA07 /* TotalDistanceView.xib */; };
-		E3CA14E81F5D91B00053468D /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14E71F5D91B00053468D /* HomeModel.swift */; };
-		E3CA14EA1F5D963E0053468D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14E91F5D963D0053468D /* HomeView.swift */; };
 		E3CA14EC1F5D98C90053468D /* HomeCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */; };
 		E3CAC82C1FAB229C00AE1B55 /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CAC82B1FAB229C00AE1B55 /* MyPageCell.swift */; };
 		E3CAC82F1FAB22B900AE1B55 /* MyPageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3CAC82E1FAB22B900AE1B55 /* MyPageCell.xib */; };
@@ -74,7 +69,7 @@
 		E305302B1FACC9B20097D9A3 /* infoDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = infoDetailViewController.storyboard; sourceTree = "<group>"; };
 		E30AE0471F8A4FF7002FEFAA /* ModalNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalNavigationController.swift; sourceTree = "<group>"; };
 		E312644E1FA22C0100F2B23D /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
-		E31264501FA22F5D00F2B23D /* HomeControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControllerViewController.swift; sourceTree = "<group>"; };
+		E31264501FA22F5D00F2B23D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E33802931F852A76007EB199 /* SettingForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingForm.swift; sourceTree = "<group>"; };
 		E33802951F852AD1007EB199 /* SettingForm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingForm.storyboard; sourceTree = "<group>"; };
 		E341882D1F794073000AB961 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -84,7 +79,6 @@
 		E35580141F8B2347000CE75E /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		E355F1951F9F7ADD00509CA1 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		E355F1971F9F7ED300509CA1 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
-		E361060F1F243225004F56EC /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		E36106121F243225004F56EC /* MyPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPage.swift; sourceTree = "<group>"; };
 		E365A1391F9255C50008D475 /* CompleteDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteDialog.swift; sourceTree = "<group>"; };
 		E365A13C1F9256020008D475 /* CompleteDialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompleteDialog.xib; sourceTree = "<group>"; };
@@ -107,10 +101,6 @@
 		E38F7FAC1F9AF4CA0036CEE0 /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		E39594021F30C574004AEB27 /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
 		E3B15B5D1F7BEEE200E17A84 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		E3B6DC471FA0C7E00037FA07 /* TotalDistanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalDistanceView.swift; sourceTree = "<group>"; };
-		E3B6DC491FA0C7F30037FA07 /* TotalDistanceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TotalDistanceView.xib; sourceTree = "<group>"; };
-		E3CA14E71F5D91B00053468D /* HomeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
-		E3CA14E91F5D963D0053468D /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCustomCell.swift; sourceTree = "<group>"; };
 		E3CAC82B1FAB229C00AE1B55 /* MyPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCell.swift; sourceTree = "<group>"; };
 		E3CAC82E1FAB22B900AE1B55 /* MyPageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPageCell.xib; sourceTree = "<group>"; };
@@ -195,11 +185,8 @@
 			isa = PBXGroup;
 			children = (
 				E312644E1FA22C0100F2B23D /* Home.storyboard */,
-				E361060F1F243225004F56EC /* Home.swift */,
-				E31264501FA22F5D00F2B23D /* HomeControllerViewController.swift */,
+				E31264501FA22F5D00F2B23D /* HomeViewController.swift */,
 				E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */,
-				E3CA14E71F5D91B00053468D /* HomeModel.swift */,
-				E3CA14E91F5D963D0053468D /* HomeView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -292,10 +279,10 @@
 				E380AB301F23735F0034EA8F /* AppDelegate.swift */,
 				E34188351F794AE6000AB961 /* AppSize.swift */,
 				E3034EA31F87BFBF00FCB026 /* Const.swift */,
+				E341882D1F794073000AB961 /* MainTabBarController.swift */,
 				E380AB3C1F23735F0034EA8F /* Info.plist */,
 				E380AB391F23735F0034EA8F /* LaunchScreen.storyboard */,
 				E380AB341F23735F0034EA8F /* Main.storyboard */,
-				E341882D1F794073000AB961 /* MainTabBarController.swift */,
 			);
 			path = RunningApp;
 			sourceTree = "<group>";
@@ -348,7 +335,6 @@
 				E365A13B1F9255E00008D475 /* Dialog */,
 				E3D259A41FAAA5AC00978399 /* NoDateView */,
 				E38F7FA91F9AF3C40036CEE0 /* ResultView */,
-				E3B6DC461FA0C7C70037FA07 /* TotalDIstanceView */,
 			);
 			path = ViewParts;
 			sourceTree = "<group>";
@@ -359,15 +345,6 @@
 				E36913001F97624500A9B19C /* RealmDataSet.swift */,
 			);
 			path = Realm;
-			sourceTree = "<group>";
-		};
-		E3B6DC461FA0C7C70037FA07 /* TotalDIstanceView */ = {
-			isa = PBXGroup;
-			children = (
-				E3B6DC471FA0C7E00037FA07 /* TotalDistanceView.swift */,
-				E3B6DC491FA0C7F30037FA07 /* TotalDistanceView.xib */,
-			);
-			path = TotalDIstanceView;
 			sourceTree = "<group>";
 		};
 		E3CAC82D1FAB22B300AE1B55 /* MyPageCell */ = {
@@ -486,7 +463,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3B6DC4A1FA0C7F30037FA07 /* TotalDistanceView.xib in Resources */,
 				E3D259A61FAAA5BF00978399 /* NoDateView.xib in Resources */,
 				E312644F1FA22C0100F2B23D /* Home.storyboard in Resources */,
 				E3CAC8341FAC458800AE1B55 /* MyInfoActionDialog.xib in Resources */,
@@ -564,11 +540,9 @@
 				E3031D031F80E05A002C5739 /* SettingController.swift in Sources */,
 				E368B0E11FADC7690021985F /* Gradation.swift in Sources */,
 				E3CAC8321FAC458200AE1B55 /* MyInfoActionDialog.swift in Sources */,
-				E31264511FA22F5D00F2B23D /* HomeControllerViewController.swift in Sources */,
+				E31264511FA22F5D00F2B23D /* HomeViewController.swift in Sources */,
 				E3CA14EC1F5D98C90053468D /* HomeCustomCell.swift in Sources */,
 				E3D6F2741FA5F6BC00241D07 /* DistanceChartsController.swift in Sources */,
-				E3B6DC481FA0C7E00037FA07 /* TotalDistanceView.swift in Sources */,
-				E3CA14EA1F5D963E0053468D /* HomeView.swift in Sources */,
 				E355F1961F9F7ADD00509CA1 /* UIViewController+.swift in Sources */,
 				E30530271FACC8C10097D9A3 /* Alert+.swift in Sources */,
 				E34188361F794AE6000AB961 /* AppSize.swift in Sources */,
@@ -584,8 +558,6 @@
 				E36106191F243225004F56EC /* MyPage.swift in Sources */,
 				E3FE60C31F9CE3FB0080E378 /* Animation+.swift in Sources */,
 				E355F1981F9F7ED300509CA1 /* UIView+.swift in Sources */,
-				E36106171F243225004F56EC /* Home.swift in Sources */,
-				E3CA14E81F5D91B00053468D /* HomeModel.swift in Sources */,
 				E365A13F1F9257770008D475 /* Dialog.swift in Sources */,
 				E37DDE251FAA1B2100EC61E5 /* Loading.swift in Sources */,
 				E341882E1F794073000AB961 /* MainTabBarController.swift in Sources */,

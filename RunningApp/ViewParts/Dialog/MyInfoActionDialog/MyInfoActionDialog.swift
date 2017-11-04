@@ -12,11 +12,10 @@ import UIKit
 class MyInfoActionDialog: UIView, DialogProtocol {
     
     @IBOutlet weak var blurView: UIView!
-    
     @IBOutlet weak var dialogView: UIView!
-    
     @IBOutlet weak var detailButton: UIButton!
-    
+    @IBOutlet weak var deleteButton: UIButton!
+
     @IBAction func detailButtonAction(_ sender: Any) {
         self.dialogView.touchStartAnimation()
     }
@@ -24,21 +23,15 @@ class MyInfoActionDialog: UIView, DialogProtocol {
     @IBAction func tapGesture(_ sender: Any) {
         self.close()
     }
-    
-    
-    @IBOutlet weak var deleteButton: UIButton!
 
     @IBAction func deleteButtonAction(_ sender: Any) {
         self.dialogView.touchEndAnimation()
     }
     
-    
     /** ビュー作成
      * @return Parts
      */
     class func make() -> MyInfoActionDialog? {
-        let _ = Dialog.removeAllSuperview()
-        
         let view = UINib(nibName: "MyInfoActionDialog", bundle: nil).instantiate(withOwner: self, options: nil)[0] as! MyInfoActionDialog
         view.tag = 99
         return view

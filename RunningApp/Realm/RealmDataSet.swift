@@ -48,7 +48,6 @@ class RealmDataSet: Object {
 //        return (realm.objects(type(of: self).self).sorted(byKeyPath: "id", ascending: false).first?.id ?? 0) + 1
 //    }
     
-    
     // プライマリーキーの設定
     override static func primaryKey() -> String? {
         return "id"
@@ -56,8 +55,6 @@ class RealmDataSet: Object {
 
     
 }
-
-
 
 
 

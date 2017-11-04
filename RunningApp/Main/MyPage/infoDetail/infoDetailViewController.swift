@@ -24,23 +24,31 @@ class infoDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupNavigation()
+        setupMyInfo()
+    }
+
+    /** Navigationのセットアップ */
+    private func setupNavigation() {
         navigationItem.title = myInfo?.date
         navigationController?.navigationBar.topItem?.title = ""
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false // スワイプで戻る動きを禁止
- 
+    
         let moreButton = UIBarButtonItem(image: UIImage(named: "more_vert")!,
-                                         style: .done,
-                                         target: self,
-                                         action: #selector(infoDetailViewController.moreButtonAction(_:)))
+        style: .done,
+        target: self,
+        action: #selector(infoDetailViewController.moreButtonAction(_:)))
         navigationItem.setRightBarButton(moreButton, animated: true)
-        
+    }
+    
+    /** 表示する情報のセットアップ*/
+    private func setupMyInfo() {
         workTypeLabel.text = myInfo?.workType == "directionsRun" ? "ランニング" : "ウォーキング"
         calorieLabel.text = myInfo?.calorie
         distanceLabel.text = myInfo?.distance
         timeLabel.text = myInfo?.time
         speedLabel.text = myInfo?.speed
     }
-
     
     @objc private func moreButtonAction(_ sender: UIButton) {
         UIAlertController.presentActionSheet(deleteAction: delete)

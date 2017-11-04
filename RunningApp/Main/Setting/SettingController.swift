@@ -21,7 +21,7 @@ extension SettingController: SettingDelegate {
 }
 
 
-class SettingController: UIViewController, UITableViewDelegate {
+class SettingController: UIViewController {
     
 
     private var headerItem = ["self monitoring"]
@@ -77,13 +77,13 @@ class SettingController: UIViewController, UITableViewDelegate {
         super.viewDidLoad()
         
         navigationItem.title = "Setting"
-        
-//        let gradient = Gradiate(frame: self.view.frame)
-//        self.view.layer.addSublayer(gradient.setUpGradiate())
-//        gradient.animateGradient()
-
+        setupTableView()
+    }
+    
+    /** tableViewのセットアップ */
+    private func setupTableView() {
         tableView = UITableView(frame: self.view.frame, style: .grouped)
-		tableView.backgroundColor = .clear
+        tableView.backgroundColor = .clear
         tableView.bounces = false
         tableView.delegate = self
         tableView.dataSource = self
@@ -94,30 +94,30 @@ class SettingController: UIViewController, UITableViewDelegate {
         tableView.sectionIndexColor = .black
         
         /* cellの上下に出来る横線を消す。高さがゼロのUIViewで上書き */
-//        tableView.tableFooterView = UIView()
-//        tableView.rowHeight = UITableViewAutomaticDimension
-
+        //        tableView.tableFooterView = UIView()
+        //        tableView.rowHeight = UITableViewAutomaticDimension
+        
         self.view.addSubview(tableView)
     }
     
-    
-    private func presentSettingForm(path: Int) {
-
-        guard let type = Const.SettingType(rawValue: path) else { return }
+    /** Formの表示
+     *  @param path -> Int - 押されたCellのIndexPath
+     */
+    private func presentSettingForm(path: IndexPath) {
+        guard let type = Const.SettingType(rawValue: path.row) else { return }
         
         let form = UIStoryboard(name: "SettingForm", bundle: nil).instantiateInitialViewController() as! SettingForm
         form.type = type
         form.delegate = self
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
-            self.present(form, animated: true, completion: {
-//                blur.removeFromSuperview()
-            })
-        })
-//        form.transition(from: <#T##UIViewController#>, to: <#T##UIViewController#>, duration: <#T##TimeInterval#>, options: ., animations: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>, completion: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(Bool) -> Void#>)
-
+        self.present(form, animated: true, completion: nil)
     }
     
 
+    
+}
+
+
+extension SettingController: UITableViewDelegate {
     
     /*
      * 各indexPathのcellがハイライトされた際に呼ばれます．
@@ -137,6 +137,7 @@ class SettingController: UIViewController, UITableViewDelegate {
     }
 
     
+    
 }
 
 
@@ -145,13 +146,11 @@ extension SettingController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.headerItem.count
-//        return SettingController.tableItem.count
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.tableTitle.count
-//        return SettingController.tableItem.count
     }
     
     
@@ -191,7 +190,7 @@ extension SettingController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        self.presentSettingForm(path: indexPath.row)
+        self.presentSettingForm(path: indexPath)
     }
 
     

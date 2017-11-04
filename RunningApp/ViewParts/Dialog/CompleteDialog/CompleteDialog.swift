@@ -11,16 +11,12 @@ import UIKit
 
 class CompleteDialog: UIView, DialogProtocol {
 
-    
     @IBOutlet weak var completeImageView: UIView!
-    
     
     /** ビュー作成
      * @return Parts
      */
     class func make() -> CompleteDialog? {
-        let _ = Dialog.removeAllSuperview()
-        
         let view = UINib(nibName: "CompleteDialog", bundle: nil).instantiate(withOwner: self, options: nil)[0] as! CompleteDialog
         view.tag = 99
         

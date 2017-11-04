@@ -13,8 +13,6 @@ import Pastel
 
 class SettingForm: UIViewController {
     
-//    @IBOutlet weak var formView: UIView!
-    
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var SettingCategoryLabel: UILabel!
     @IBOutlet weak var textField: UITextField!
@@ -35,18 +33,7 @@ class SettingForm: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let type = type else { return }
-        switch type {
-            case .weight:
-                categoryName = "weight"
-            case .height:
-                categoryName = "height"
-            case .pushTime:
-                categoryName = Const.PUSH_TIME
-        }
-        SettingCategoryLabel.text = categoryName
-        
-        textField.delegate = self
+         initSetup()
         
 //        pastelView = PastelView(frame: view.bounds)
 //        pastelView.startPastelPoint = .bottomLeft
@@ -64,20 +51,34 @@ class SettingForm: UIViewController {
 //        pastelView.startAnimation()
 //
 //        view.insertSubview(pastelView, at: 0)
+    }
 
+    private func initSetup() {
+        
+        textField.delegate = self
+
+        guard let type = type else { return }
+        switch type {
+        case .weight:
+            categoryName = "weight"
+        case .height:
+            categoryName = "height"
+        case .pushTime:
+            categoryName = Const.PUSH_TIME
+        }
+        SettingCategoryLabel.text = categoryName
+        
+        
         let gradient = Gradiate(frame: self.view.frame)
         self.view.layer.addSublayer(gradient.setUpGradiate())
         gradient.animateGradient()
-
+        
         self.view.bringSubview(toFront: logoImageView)
         self.view.bringSubview(toFront: SettingCategoryLabel)
         self.view.bringSubview(toFront: textField)
         self.view.bringSubview(toFront: settingButton)
         self.view.bringSubview(toFront: closeButton)
-        
     }
-
-
     
     @IBAction func settingButton(_ sender: Any) {
 
@@ -108,22 +109,17 @@ class SettingForm: UIViewController {
         
     }
 
+
+    private func validateSetting(value: String) throws -> Int  {
+        guard !value.isEmpty else { throw Const.ErrorType.empty }
+        guard let value = Int(value) else { throw Const.ErrorType.notInteger }
+        
+        return value
+    }
+    
     @IBAction func closeButton(_ sender: Any) {
         dismiss(animated: true) {
         }
-    }
-    
-    
-    private func validateSetting(value: String) throws -> Int  {
-        guard !value.isEmpty else {
-            throw Const.ErrorType.empty
-        }
-        
-        guard let value = Int(value) else {
-            throw Const.ErrorType.notInteger
-        }
-        return value
-
     }
     
     
@@ -139,13 +135,4 @@ extension SettingForm: UITextFieldDelegate {
 }
 
 
-//
-//extension SettingForm: CAAnimationDelegate {
-//    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-//        if flag {
-//            gradient.colors = gradientSet[currentGradient]
-//            animateGradient()
-//        }
-//    }
-//}
-//
+

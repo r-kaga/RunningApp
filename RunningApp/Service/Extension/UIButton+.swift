@@ -11,6 +11,4 @@ class ActionAcceptButton: UIButton {
         clipsToBounds = true
     }
     
-    
-    
 }

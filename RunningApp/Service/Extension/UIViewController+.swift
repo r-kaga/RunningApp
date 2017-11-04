@@ -12,7 +12,7 @@ import UIKit
 
 extension UIViewController {
 
-    
+    /** 長押しされたら、震えるようなアニメーション */
     @objc func longPressed(_ sender: UILongPressGestureRecognizer) {
         let view = sender.view as! resultView
         view.touchStartAnimation()

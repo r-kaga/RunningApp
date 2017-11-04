@@ -10,8 +10,8 @@ import UIKit
 
 class Loading: UIView, DialogProtocol {
 
-//    static let PROGRESS_LINE_COLOR = UIColor.red // プログレスバーカラー
-//    static let BASE_LINE_COLOR = UIColor.lightGray // ラインバックグランドカラー
+    static let STOROKE_LINE_COLOR = UIColor(red: 65/255, green: 67/255, blue: 69/255, alpha: 0.15).cgColor // プログレスバーカラー
+    static let BASE_LINE_COLOR = UIColor(red: 65/255, green: 67/255, blue: 69/255, alpha: 1.0).cgColor // ラインバックグランドカラー
     static let CIRCLE_RATE: CGFloat = 80 // メインのビューのサイズから何パーセンの大きさにするか
     
     @IBOutlet weak var panelOutlet: UIView!
@@ -21,19 +21,14 @@ class Loading: UIView, DialogProtocol {
     var time: CGFloat!
     var timer: Timer?
     
-    var workItem: DispatchWorkItem?
-    
     /** ビュー作成
      * @return Parts
      */
     class func make() -> Loading? {
-        let _ = Dialog.removeAllSuperview()
-        
         let view = UINib(nibName: "Loading", bundle: nil).instantiate(withOwner: self, options: nil)[0] as! Loading
         view.tag = 88
         return view
     }
-    
     
     /** outlet等がインスタンス化された後に呼ばれる */
     override func awakeFromNib() {
@@ -57,7 +52,7 @@ class Loading: UIView, DialogProtocol {
 
         self.panelOutlet.isHidden = true
         self.panelOutlet.layer.cornerRadius = 15.0
-//        self.panelOutlet.layer.cornerRadius = self.panelOutlet.frame.width / 2
+        self.panelOutlet.layer.cornerRadius = self.panelOutlet.frame.width / 2
 //        self.panelOutlet.backgroundColor = .clear
 
         self.layer.masksToBounds = true
@@ -65,10 +60,7 @@ class Loading: UIView, DialogProtocol {
         self.layer.shadowOffset = CGSize(width: 0, height: 4) // 上向きの影
         self.layer.shadowRadius = 1
         self.layer.shadowOpacity = 0.2
-        
-        let RED: CGFloat   = 65/255
-        let GREEN: CGFloat = 67/255
-        let BLUE: CGFloat  = 69/255
+ 
         
         let min_size = min(self.panelOutlet.frame.width, self.panelOutlet.frame.height)
         let diameter = min_size * CGFloat(Loading.CIRCLE_RATE / 100.0)
@@ -83,7 +75,7 @@ class Loading: UIView, DialogProtocol {
         )
         
         clayer.fillColor = UIColor.clear.cgColor
-        clayer.strokeColor = UIColor(red: RED, green: GREEN, blue: BLUE, alpha: 0.15).cgColor
+        clayer.strokeColor = Loading.BASE_LINE_COLOR
         clayer.lineWidth = 4.0
         self.fix_rect = CGRect(
             x: (self.panelOutlet.frame.width / 2.0) - radius,
@@ -100,7 +92,7 @@ class Loading: UIView, DialogProtocol {
         self.progress_layer.frame = clayer.frame
         
         self.progress_layer.fillColor = clayer.fillColor
-        self.progress_layer.strokeColor = UIColor(red: RED, green: GREEN, blue: BLUE, alpha: 1).cgColor
+        self.progress_layer.strokeColor = Loading.STOROKE_LINE_COLOR
         self.progress_layer.lineWidth = clayer.lineWidth
         self.progress_layer.lineCap = kCALineCapRound
         
@@ -140,14 +132,6 @@ class Loading: UIView, DialogProtocol {
         self.progress_layer.add(animation, forKey: "progress")
     }
     
-    /**  */
-//    func close(time: Int = 3) {
-//        self.progress_layer.removeAnimation(forKey: "progress")
-//        workItem = DispatchWorkItem() {
-//        self.close()
-//        }
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: self.workItem!)
-//    }
 
 }
 

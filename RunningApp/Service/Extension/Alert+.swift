@@ -12,15 +12,12 @@ import UIKit
 
 extension UIAlertController {
 
+    /** 削除ボタン付きのアクションシートを表示
+     * @param deleteAction - 削除が選択された時のclosure () -> ()
+     */
     static func presentActionSheet(deleteAction: @escaping () -> () ) {
         let alert = UIAlertController(title: "削除しますか?", message: "データは残りません", preferredStyle: .actionSheet)
     
-//        // アクションを生成.
-//        let myAction_1 = UIAlertAction(title: "Hello", style: UIAlertActionStyle.default, handler: {
-//            (action: UIAlertAction!) in
-//            print("Hello")
-//        })
-        
         let destory = UIAlertAction(title: "削除", style: .destructive, handler: {
             (action: UIAlertAction!) in
             deleteAction()
@@ -38,8 +35,6 @@ extension UIAlertController {
         AppDelegate.getTopMostViewController().present(alert, animated: true, completion: nil)
     }
 
-    
-    
     
     
 }

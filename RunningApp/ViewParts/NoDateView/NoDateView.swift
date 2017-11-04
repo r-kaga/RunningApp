@@ -15,13 +15,8 @@ class NoDateView: UIView {
      */
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        self.layer.cornerRadius = 10.0
-        self.clipsToBounds = true
-        
         self.loadFromNib()
     }
-    
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -34,6 +29,9 @@ class NoDateView: UIView {
         let view = Bundle.main.loadNibNamed("NoDateView", owner: self, options: nil)?.first as! UIView
         view.frame = self.bounds
         self.addSubview(view)
+        
+        self.layer.cornerRadius = 10.0
+        self.clipsToBounds = true
         
         // カスタムViewのサイズを自分自身と同じサイズにする
         view.translatesAutoresizingMaskIntoConstraints = false

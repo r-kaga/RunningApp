@@ -11,6 +11,9 @@ import UIKit
 
 extension UIView {
     
+   /** タップされた時に、小さくする
+     * 押されたようなアニメーション
+     */
    func touchStartAnimation(){
         UIView.animate(withDuration: 0.1,
                        delay: 0.0,
@@ -23,6 +26,7 @@ extension UIView {
         )
     }
     
+    /** 元のViewの大きさに戻す */
     func touchEndAnimation(){
         UIView.animate(withDuration: 0.1,
                        delay: 0.0,
@@ -35,7 +39,7 @@ extension UIView {
         )
     }
 
-    
+    /** 少し縮小した後、拡大して消えるアニメーション */
     func shrinkAndZoom() {
         //少し縮小するアニメーション
         UIView.animate(withDuration: 0.3, delay: 1.0, options: .curveEaseOut, animations: {

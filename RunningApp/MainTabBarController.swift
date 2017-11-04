@@ -13,25 +13,21 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         UITabBar.appearance().barTintColor = .black
         UITabBar.appearance().tintColor = .white
         
-//        let vc = Home()
-        let vc = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as! HomeViewController
-        vc.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home")!, tag: 1)
-        let nv = UINavigationController(rootViewController: vc)
+        let home = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as! HomeViewController
+        home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home")!, tag: 1)
+        let homeNv = UINavigationController(rootViewController: home)
         
+        let myPage = MyPage()
+        myPage.tabBarItem = UITabBarItem(title: "MyPage", image: UIImage(named: "account")!, tag: 2)
+        let myPageNv = UINavigationController(rootViewController: myPage)
         
-        let vc2 = MyPage()
-        vc2.tabBarItem = UITabBarItem(title: "MyPage", image: UIImage(named: "account")!, tag: 2)
-        let nv2 = UINavigationController(rootViewController: vc2)
-        
-        let vc3 = SettingController()
-        vc3.tabBarItem = UITabBarItem(title: "Setting", image: UIImage(named: "setting")!, tag: 3)
-        let nv3 = UINavigationController(rootViewController: vc3)
+        let setting = SettingController()
+        setting.tabBarItem = UITabBarItem(title: "Setting", image: UIImage(named: "setting")!, tag: 3)
+        let settingNv = UINavigationController(rootViewController: setting)
 
-//        setViewControllers([nv, nv2 ,nv3], animated: true)
-        setViewControllers([nv, nv2, nv3], animated: false)
+        setViewControllers([homeNv, myPageNv, settingNv], animated: false)
     }
 
-    
 
 }
 

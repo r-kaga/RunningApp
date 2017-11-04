@@ -38,7 +38,6 @@ class Gradiate: UIView {
         
         gradient.drawsAsynchronously = true
         self.layer.addSublayer(gradient)
-//        animateGradient()
         
         return gradient
     }

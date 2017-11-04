@@ -13,21 +13,24 @@ import UIKit
 protocol DialogProtocol {
     func open()
     func close()
+    func add()
+    func shake()
+    func doStamp()
+    func vibrate(amount: Float)
 }
 
 extension DialogProtocol where Self: UIView {
-    
     
     /** addSubview
      */
     func add() {
         let app = UIApplication.shared.delegate as! AppDelegate
         self.frame = (app.window?.frame)!
+        self.alpha = 0.0
         app.window?.addSubview(self)
     }
     
-    /** 表示
-     */
+    /** 表示 */
     func open() {
         self.alpha = 0.0
         
@@ -35,19 +38,16 @@ extension DialogProtocol where Self: UIView {
         self.frame = (app.window?.frame)!
         app.window?.addSubview(self)
         
-//        self.frame.origin.y = UIScreen.main.bounds.height
+        self.frame.origin.y = UIScreen.main.bounds.height
         
         UIView.animate(withDuration: 0.5, animations: {
             self.alpha = 1.0
-//            self.frame.origin.y -= self.frame.height
-       
-        }, completion: { finished in
-            
-        })
+            self.frame.origin.y -= self.frame.height
+   
+        }, completion: nil)
     }
     
-    /** クローズ
-     */
+    /** クローズ */
     func close() {
         UIView.animate(withDuration: 0.2, animations: {
             self.alpha = 0
@@ -59,8 +59,7 @@ extension DialogProtocol where Self: UIView {
     }
     
     
-    /*
-     */
+    /* 揺らし続けるアニメーション */
     func shake() {
         let animation = CABasicAnimation(keyPath: "position")
         animation.duration = 0.05
@@ -71,7 +70,7 @@ extension DialogProtocol where Self: UIView {
         layer.add(animation, forKey: "position")
     }
     
-    
+    /** スタンプアニメーション */
     func doStamp() {
         self.alpha = 0
         self.isHidden = false
@@ -111,7 +110,9 @@ extension DialogProtocol where Self: UIView {
     }
     
     
-    // amount = 揺れ幅
+    /** Viewを揺らすアニメーション
+     *  amount = 揺れ幅
+     */
     func vibrate(amount: Float) {
 
         if amount > 0 {
@@ -133,106 +134,11 @@ extension DialogProtocol where Self: UIView {
             self.removeFromSuperview()
         }
         
-
-        
     }
-    
     
     
     
 }
 
-
-
-class Dialog:
-    UIView
-{
-    static var parts: Dialog?                        // パーツインスタンス
-    var stamp: String?                                // スクリプトで送信された文字列、レスポンス値に詰める
-    var timer: Timer?                                // 表示コントロールタイマー
-    
-    internal var return_value: String?
-    
-
-    /** すべてのパーツを削除しパーツ表示
-     * @return 最優先度が高いエラーページの存在 true: ある
-     */
-    static func removeAllSuperview() -> Bool {
-        var error = false
-        
-        let app = UIApplication.shared.delegate as! AppDelegate
-        if let window = app.window {
-            for view in window.subviews {
-                if view.tag == 99 {
-                    error = true
-                } else if view.tag == 9 {
-                    let parts = view as! Dialog
-                    if let _time = parts.timer {
-                        _time.invalidate()
-                    }
-                    parts.removeFromSuperview()
-                }
-            }
-        }
-        
-        return error
-    }
-    
-    /** パーツ表示確認
-     * @return true:表示中 false:非表示
-     */
-    static func isParts() -> Bool {
-        var flg = false
-        if Dialog.parts != nil {
-            flg = true
-        }
-        return flg
-    }
-    
-    /** 表示
-     */
-    func open() {
-        let app = UIApplication.shared.delegate as! AppDelegate
-        self.frame = (app.window?.frame)!
-        app.window?.addSubview(self)
-        
-//        let picker: UIView? = lib_UIUtil.searchTagToUIView(tag: 10, parentView: self)
-//        
-//        if let view = picker {
-//            view.frame.origin.y = UIScreen.main.bounds.height
-//            
-//            UIView.animate(withDuration: 0.2, animations: {
-//                view.frame.origin.y -= view.frame.height
-//            }, completion: { finished in
-//            })
-//            
-//        } else {
-//            self.alpha = 0
-//            
-//            UIView.animate(withDuration: 0.2, animations: {
-//                self.alpha = 1
-//            }, completion: { finished in
-//            })
-//        }
-        
-    }
-    
-    /** クローズ
-     */
-    func close() {
-        if let _time = self.timer {
-            _time.invalidate()
-        }
-        
-        UIView.animate(withDuration: 0.2, animations: {
-            self.alpha = 0
-        }, completion: { finished in
-            let app = UIApplication.shared.delegate as! AppDelegate
-            app.window?.removeFromSuperview()
-        })
-    }
-    
-    
-}
 
 

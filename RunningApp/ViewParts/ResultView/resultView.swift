@@ -15,58 +15,48 @@ class resultView: UIView {
     
     @IBOutlet weak var typeImageView: UIImageView!
     @IBOutlet weak var dateTimeValueLabel: UILabel!
-    
     @IBOutlet weak var timeValueLabel: UILabel!
-    
     @IBOutlet weak var distanceValueLabel: UILabel!
-    
     @IBOutlet weak var speedValueLabel: UILabel!
-    
     @IBOutlet weak var calorieValueLabel: UILabel!
-    
     @IBOutlet weak var deleteButton: UIButton!
     
     var indexPath: Int?
-    
-    var closeButton: UIButton!
-    
-    var loading: Loading?
     
     @IBAction func deleteAction(_ sender: Any) {
         delete()
     }
     
-    
-    /** イニシャライザー
-     */
+    /** イニシャライザー */
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         self.layer.cornerRadius = 10.0
         self.clipsToBounds = true
-
+        
         self.loadFromNib()
-//        self.setUpCloseButton()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
+        self.layer.cornerRadius = 10.0
+        self.clipsToBounds = true
+        
         self.loadFromNib()
-//        self.setUpCloseButton()
     }
     
     
-    /** Nibファイル読み込み
-     */
+    /** Nibファイル読み込み */
     private func loadFromNib() {
         
         let view = Bundle.main.loadNibNamed("resultView", owner: self, options: nil)?.first as! UIView
         view.frame = self.bounds
-    
+
         self.addSubview(view)
         
         self.deleteButton.isHidden = true
-        
+
         // カスタムViewのサイズを自分自身と同じサイズにする
         view.translatesAutoresizingMaskIntoConstraints = false
         let constraints1 = NSLayoutConstraint.constraints(
@@ -88,23 +78,12 @@ class resultView: UIView {
     }
  
     private func delete() {
-        
-        defer {
 
-        }
-        
         let alert = UIAlertController(title: "削除してよろしいですか", message: "データは残りません", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { _ in
-            
-//            defer {
-//                self.loading?.close()
-//            }
-            
+
             guard let path = self.indexPath else { return }
-            
-//            self.loading = Loading.make()
-//            self.loading?.startLoading()
-            
+
             let realm = try! Realm()
             let data = realm.objects(RealmDataSet.self).filter("id = \(path)")
             
@@ -169,7 +148,6 @@ class resultView: UIView {
         self.layer.masksToBounds = false
 
         self.layer.addSublayer(labelText)
-
     }
 
     public func setValueToResultView(dateTime: String, timeValue: String, distance: String, speed: String, calorie: String) {
