@@ -195,6 +195,7 @@ extension MyPage: UITableViewDataSource {
         
         let infoDetail = UIStoryboard(name: "infoDetailViewController", bundle: nil).instantiateInitialViewController() as! infoDetailViewController
         infoDetail.myInfo = myInfo[indexPath.row]
+        infoDetail.delegate = self
         self.navigationController?.pushViewController(infoDetail, animated: true)
         
 //        guard let view = tableView.cellForRow(at: indexPath)?.contentView else { return }

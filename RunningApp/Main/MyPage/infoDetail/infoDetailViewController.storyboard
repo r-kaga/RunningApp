@@ -436,9 +436,10 @@
                         <viewLayoutGuide key="safeArea" id="kox-ET-N8u"/>
                     </view>
                     <navigationItem key="navigationItem" id="g56-Ab-dMT">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="action" id="UAO-Ed-AYo">
+                        <barButtonItem key="backBarButtonItem" title="戻る" id="sFd-8d-IW5"/>
+                        <barButtonItem key="rightBarButtonItem" image="more_vert" id="Vg9-7e-19P">
                             <connections>
-                                <action selector="barButtonAction:" destination="4vk-35-Ach" id="fBn-HL-xgg"/>
+                                <action selector="barButtonAction:" destination="4vk-35-Ach" id="Fp2-Ib-hKk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -452,7 +453,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="maH-aH-9u8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="767.20000000000005" y="-161.46926536731635"/>
+            <point key="canvasLocation" x="887" y="-161"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zmU-cM-iad">
@@ -470,13 +471,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3L-3O-1pb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="63" y="-161"/>
+            <point key="canvasLocation" x="-95" y="-161"/>
         </scene>
     </scenes>
     <resources>
         <image name="access_time" width="48" height="48"/>
         <image name="format_color_reset" width="48" height="48"/>
         <image name="landscape" width="48" height="48"/>
+        <image name="more_vert" width="24" height="24"/>
         <image name="pause_white" width="48" height="48"/>
         <image name="warning" width="48" height="48"/>
     </resources>
