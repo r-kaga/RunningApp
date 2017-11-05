@@ -27,7 +27,7 @@ extension MyPage: MyPageDelegate {
 
 class MyPage: UIViewController, UIScrollViewDelegate {
 
-    var loading: Loading?
+//    var loading: Loading?
     
     private var tableView: UITableView!
     
@@ -36,10 +36,6 @@ class MyPage: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.loading = Loading.make()
-        self.loading?.startLoading()
-        
         setupTableView()
     }
     
@@ -63,6 +59,11 @@ class MyPage: UIViewController, UIScrollViewDelegate {
         
         let realm = try! Realm()
         myInfo = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
+        
+        guard !myInfo.isEmpty else {
+            setupNoDate()
+            return
+        }
         
         self.view.addSubview(tableView)
     }
@@ -153,7 +154,7 @@ extension MyPage: UITableViewDataSource {
     
     /** tableView表示された時 */
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        self.loading?.close()
+//        self.loading?.close()
     }
     
     

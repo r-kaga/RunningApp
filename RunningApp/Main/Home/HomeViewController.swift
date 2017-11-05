@@ -26,8 +26,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         navigationItem.title = "Home"
 
-        setUpResultView()
         setupCollectionView()
+        setUpResultView()
     }
     
     
@@ -46,9 +46,11 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         defer {
             self.ressultOutlet.addSubview(scrollView)
         }
-
+ 
         let realm = try! Realm()
+        
         let latestData = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
+        print(latestData)
         
         guard !latestData.isEmpty else {
             setupNoDate(date: true)
@@ -67,7 +69,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         let view = resultView(frame: CGRect(x: 15,
                                             y: 5,
                                             width: AppSize.width - 30,
-                                            height: resultOutletHeight - (Latestlabel.frame.maxY + 5))
+                                            height: resultOutletHeight - (Latestlabel.frame.maxY + 15))
 
         )
         view.center = CGPoint(x: AppSize.width / 2, y: Latestlabel.frame.maxY + view.frame.height / 2 + 5)
@@ -104,7 +106,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         let second = resultView(frame: CGRect(x: AppSize.width + 15,
                                               y: secondlabel.frame.maxY + 5,
                                               width: AppSize.width - 30,
-                                              height: resultOutletHeight - (secondlabel.frame.maxY + 5)))
+                                              height: resultOutletHeight - (secondlabel.frame.maxY + 15)))
         second.setValueToResultView(dateTime: latestData[1].date,
                                     timeValue: latestData[1].time,
                                     distance: latestData[1].distance,
@@ -135,7 +137,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         let third = resultView(frame: CGRect(x: (AppSize.width * 2) + 15,
                                              y: thirdlabel.frame.maxY + 5,
                                              width: AppSize.width - 30,
-                                             height: resultOutletHeight - (thirdlabel.frame.maxY + 5))
+                                             height: resultOutletHeight - (thirdlabel.frame.maxY + 15))
         )
         
         third.setValueToResultView(dateTime: latestData[2].date,

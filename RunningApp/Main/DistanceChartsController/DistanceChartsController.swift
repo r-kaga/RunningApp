@@ -25,6 +25,10 @@ class DistanceChartsController: UIViewController, ChartViewDelegate {
         let realm = try! Realm()
         let motionDate = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: true)
         
+        guard !motionDate.isEmpty else {
+            return
+        }
+        
         let rect = CGRect(x: 0, y: 0 , width: AppSize.width - 20, height: 150)
         let chartView = LineChartView(frame: rect)
         chartView.chartDescription?.text = ""
@@ -37,7 +41,9 @@ class DistanceChartsController: UIViewController, ChartViewDelegate {
         var entries = [BarChartDataEntry]()
         var count = 0.0
         
-        for i in 1...15 {
+        let roop = motionDate.count >= 15 ? 15 : motionDate.count
+        
+        for i in 0..<roop {
             entries.append(BarChartDataEntry(x: count, y: Double(motionDate[i].distance)!))
             count += 0.1
         }

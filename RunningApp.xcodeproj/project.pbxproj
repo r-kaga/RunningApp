@@ -710,7 +710,7 @@
 				DEVELOPMENT_TEAM = 8S39MY764C;
 				INFOPLIST_FILE = RunningApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ryokagaya.RunningApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryokagaya.runkit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -728,7 +728,7 @@
 				DEVELOPMENT_TEAM = 8S39MY764C;
 				INFOPLIST_FILE = RunningApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ryokagaya.RunningApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryokagaya.runkit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
