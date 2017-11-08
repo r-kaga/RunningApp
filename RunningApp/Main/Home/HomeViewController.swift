@@ -10,7 +10,9 @@ import UIKit
 import RealmSwift
 
 class HomeViewController: UIViewController, UIScrollViewDelegate {
-
+    
+    @IBOutlet weak var userDateView: UIStackView!
+    
     @IBOutlet weak var ressultOutlet: UIView!
     @IBOutlet weak var collectionOutlet: UIView!
     @IBOutlet weak var distanceCharts: UIView!
@@ -33,7 +35,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     private func setUpResultView() {
 
-        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.height))
+        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: resultOutletHeight))
         scrollView.backgroundColor = UIColor.black
         scrollView.contentSize = CGSize(width: AppSize.width, height: ressultOutlet.frame.height) // 中身の大きさを設定
         scrollView.isPagingEnabled = true
@@ -66,10 +68,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         Latestlabel.textAlignment = .center
         scrollView.addSubview(Latestlabel)
 
-        let view = resultView(frame: CGRect(x: 15,
+        let view = resultView(frame: CGRect(x: 0,
                                             y: 5,
-                                            width: AppSize.width - 30,
-                                            height: resultOutletHeight - (Latestlabel.frame.maxY + 15))
+                                            width: userDateView.frame.width,
+                                            height: userDateView.frame.height / 2)
 
         )
         view.center = CGPoint(x: AppSize.width / 2, y: Latestlabel.frame.maxY + view.frame.height / 2 + 5)
@@ -106,7 +108,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         let second = resultView(frame: CGRect(x: AppSize.width + 15,
                                               y: secondlabel.frame.maxY + 5,
                                               width: AppSize.width - 30,
-                                              height: resultOutletHeight - (secondlabel.frame.maxY + 15)))
+                                              height: userDateView.frame.height / 2))
         second.setValueToResultView(dateTime: latestData[1].date,
                                     timeValue: latestData[1].time,
                                     distance: latestData[1].distance,
@@ -137,7 +139,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         let third = resultView(frame: CGRect(x: (AppSize.width * 2) + 15,
                                              y: thirdlabel.frame.maxY + 5,
                                              width: AppSize.width - 30,
-                                             height: resultOutletHeight - (thirdlabel.frame.maxY + 15))
+                                             height: userDateView.frame.height / 2)
         )
         
         third.setValueToResultView(dateTime: latestData[2].date,
