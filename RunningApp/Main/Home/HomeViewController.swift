@@ -9,6 +9,19 @@
 import UIKit
 import RealmSwift
 
+protocol HomeDelegate: class {
+    func dateUpdate()
+}
+
+extension HomeViewController: HomeDelegate {
+    func dateUpdate() {
+//        self.setUpResultView()
+        self.loadView()
+    }
+    
+    
+}
+
 class HomeViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var ressultOutlet: UIView!
@@ -204,6 +217,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         sb.interactor = interactor
         sb.transitioningDelegate = self
         WorkController.workType = Utility.pathConvertWorkType(path: path).0
+        WorkController.homeDelegate = self
         
         self.present(sb, animated: true, completion: nil)
     }

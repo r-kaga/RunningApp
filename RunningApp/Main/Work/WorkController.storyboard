@@ -12,7 +12,7 @@
         <!--Work Controller-->
         <scene sceneID="1dw-UC-uiI">
             <objects>
-                <viewController id="oKm-Fp-TRq" customClass="WorkController" customModule="RunningApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="currentContext" id="oKm-Fp-TRq" customClass="WorkController" customModule="RunningApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CCu-NW-bNS"/>
                         <viewControllerLayoutGuide type="bottom" id="HD7-th-7cq"/>
@@ -182,7 +182,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="bpY-2A-BKR" secondAttribute="trailing" id="0MO-uP-oA6"/>
@@ -210,12 +210,12 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="847.20000000000005" y="82.3088455772114"/>
+            <point key="canvasLocation" x="1082" y="81"/>
         </scene>
         <!--Modal Navigation Controller-->
         <scene sceneID="5pJ-Sw-j7A">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="c60-Xw-p1P" customClass="ModalNavigationController" customModule="RunningApp" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="currentContext" id="c60-Xw-p1P" customClass="ModalNavigationController" customModule="RunningApp" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qn2-LY-OM5">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -228,7 +228,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lNY-Le-E60" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="76" y="82"/>
+            <point key="canvasLocation" x="175" y="81"/>
         </scene>
     </scenes>
 </document>

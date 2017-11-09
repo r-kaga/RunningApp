@@ -58,11 +58,54 @@ class WorkController: UIViewController {
     
     var interactor: Interactor!
     
+    var isTransform: Bool = false
+    
+    static var homeDelegate: HomeDelegate?
     
     @IBAction func handleGesture(_ sender: Any) {
-        confirmWorkEndAlert()
+//        confirmWorkEndAlert()
 //        weak var nc = navigationController as? ModalNavigationController
 //        nc?.handleGesture(sender as! UIPanGestureRecognizer)
+        
+        print("----------------------")
+        
+//        if  isTransform {
+//
+//            UIView.animate(withDuration: 0.3) {
+//                self.map.alpha = 1.0
+//                //            self.resultView.alpha = 1.0
+//
+//                UIView.animate(withDuration: 0.5) {
+//                    //                self.map.frame = CGRect(x: AppSize.width - 150, y: AppSize.height - 150, width: 150, height: 150)
+//                    //                self.map.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+//                    self.resultView.frame = CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.height / 2)
+//                    self.resultView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+//
+//                    self.isTransform = false
+//                }
+//            }
+//
+//        } else {
+        
+            UIView.animate(withDuration: 0.3) {
+                self.map.alpha = 0.0
+                //            self.resultView.alpha = 0.0
+                
+                UIView.animate(withDuration: 1.0) {
+//                    self.map.frame = CGRect(x: AppSize.width - 150, y: AppSize.height - 150, width: 150, height: 150)
+//                    self.map.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+                    self.resultView.frame = CGRect(x: AppSize.width - 150, y: AppSize.height - 150 - AppSize.tabBarHeight, width: 150, height: 150)
+                    self.resultView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+                    
+//                    self.isTransform = true
+
+                }
+            }
+//        }
+
+
+        
+
     }
 
 
@@ -242,7 +285,8 @@ class WorkController: UIViewController {
 //            let home = nav.viewControllers[nav.viewControllers.count-1] as! HomeViewController
 //            home.loadView()
 //            home.viewDidLoad()
-
+//            WorkController.homeDelegate?.dateUpdate()
+            
             presentingViewController?.loadView()
             presentingViewController?.viewDidLoad()
             
