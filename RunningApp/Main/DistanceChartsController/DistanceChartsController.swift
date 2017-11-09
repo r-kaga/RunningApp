@@ -29,7 +29,7 @@ class DistanceChartsController: UIViewController, ChartViewDelegate {
             return
         }
         
-        let rect = CGRect(x: 0, y: 0 , width: AppSize.width - 20, height: 180)
+        let rect = CGRect(x: 0, y: 0 , width: AppSize.width - 20, height: 160)
         let chartView = LineChartView(frame: rect)
         chartView.chartDescription?.text = ""
         
