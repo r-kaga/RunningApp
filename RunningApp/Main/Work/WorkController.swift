@@ -78,7 +78,7 @@ class WorkController: UIViewController {
         
         self.setupLocationManager()
         
-        let gradient = Gradiate(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.height - map.frame.height))
+        let gradient = Gradiate(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.height / 2))
         resultView.layer.addSublayer(gradient.setUpGradiate())
         gradient.animateGradient()
 
