@@ -125,8 +125,7 @@ extension MyPage: UITableViewDataSource {
     
     /** cellの数を設定 */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return self.myInfo.count
-        return 10
+        return self.myInfo.count
     }
     
     /** cellの生成 */
