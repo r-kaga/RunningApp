@@ -46,7 +46,8 @@ class MyPage: UIViewController, UIScrollViewDelegate {
 
     
     private func setupTableView() {
-        tableView = UITableView(frame: CGRect(x: 15, y: 0, width: AppSize.width - 30, height: AppSize.height), style: .grouped)
+
+        tableView = UITableView(frame: CGRect(x: 15, y: AppSize.height / 3, width: AppSize.width - 30, height: AppSize.height - (AppSize.height / 3)), style: .plain)
         tableView.backgroundColor = .black
         tableView.bounces = false
         tableView.delegate = self
@@ -56,6 +57,8 @@ class MyPage: UIViewController, UIScrollViewDelegate {
         tableView.estimatedRowHeight = 60
         tableView.rowHeight = 60
         tableView.sectionIndexColor = .black
+        tableView.sectionIndexBackgroundColor = .black
+        tableView.sectionIndexTrackingBackgroundColor = .black
         
         let realm = try! Realm()
         myInfo = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
@@ -66,6 +69,15 @@ class MyPage: UIViewController, UIScrollViewDelegate {
         }
         
         self.view.addSubview(tableView)
+        
+        
+        
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: 15))
+        label.textAlignment = .center
+        label.center = CGPoint(x: AppSize.width / 2, y:  tableView.frame.minY - 15)
+        label.text = "Your Fitness All Date"
+        label.textColor = .white
+        self.view.addSubview(label)
     }
     
     
@@ -99,6 +111,7 @@ extension MyPage: UITableViewDelegate {
         tableView.cellForRow(at: indexPath)?.contentView.touchEndAnimation()
     }
 
+
     
 }
 
@@ -112,7 +125,8 @@ extension MyPage: UITableViewDataSource {
     
     /** cellの数を設定 */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.myInfo.count
+//        return self.myInfo.count
+        return 10
     }
     
     /** cellの生成 */
@@ -122,16 +136,16 @@ extension MyPage: UITableViewDataSource {
         cell.layer.cornerRadius = 10.0
         cell.clipsToBounds = true
         cell.backgroundColor = .black
-
-        let item = self.myInfo[indexPath.row]
-        cell.typeImageView?.image = UIImage(named: item.workType)!
-        cell.dateLabel.text = item.date
-        cell.timeLabel.text = item.time
-        cell.distanceLabel.text = item.distance + "km"
-        
-//        cell.backgroundColor = .black        
-        /* セレクトされた時に何もしない */
-        cell.selectionStyle = .none
+//
+//        let item = self.myInfo[indexPath.row]
+//        cell.typeImageView?.image = UIImage(named: item.workType)!
+//        cell.dateLabel.text = item.date
+//        cell.timeLabel.text = item.time
+//        cell.distanceLabel.text = item.distance + "km"
+//        
+////        cell.backgroundColor = .black        
+//        /* セレクトされた時に何もしない */
+//        cell.selectionStyle = .none
 
         return cell
     }

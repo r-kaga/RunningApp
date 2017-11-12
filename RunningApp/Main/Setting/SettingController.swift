@@ -23,7 +23,6 @@ extension SettingController: SettingDelegate {
 
 class SettingController: UIViewController {
     
-
     private var headerItem = ["self monitoring"]
     
     private var tableItem = [ 0 : [ "type": "weight", "unit" : "Kg", "image" : "assignment", "descriptino" : "カロリー計算で使用します" ],
