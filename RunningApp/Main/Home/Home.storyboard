@@ -13,7 +13,7 @@
         <!--Home View Controller-->
         <scene sceneID="U6N-IT-s9w">
             <objects>
-                <viewController id="agd-nW-Aut" customClass="HomeViewController" customModule="RunningApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController definesPresentationContext="YES" id="agd-nW-Aut" customClass="HomeViewController" customModule="RunningApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KXN-ex-Bfm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

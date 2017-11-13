@@ -54,6 +54,7 @@
 		E3D259A31FAAA59F00978399 /* NoDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D259A21FAAA59F00978399 /* NoDateView.swift */; };
 		E3D259A61FAAA5BF00978399 /* NoDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3D259A51FAAA5BF00978399 /* NoDateView.xib */; };
 		E3D6F2741FA5F6BC00241D07 /* DistanceChartsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D6F2731FA5F6BC00241D07 /* DistanceChartsController.swift */; };
+		E3DCFF651FB88F4B00FF54D1 /* MyPageChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DCFF641FB88F4B00FF54D1 /* MyPageChartsViewController.swift */; };
 		E3F4032E1F88C6EC0073DC45 /* DismissAnimator.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F4032D1F88C6EC0073DC45 /* DismissAnimator.swift.swift */; };
 		E3FE60C31F9CE3FB0080E378 /* Animation+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FE60C21F9CE3FB0080E378 /* Animation+.swift */; };
 /* End PBXBuildFile section */
@@ -110,6 +111,7 @@
 		E3D259A21FAAA59F00978399 /* NoDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDateView.swift; sourceTree = "<group>"; };
 		E3D259A51FAAA5BF00978399 /* NoDateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoDateView.xib; sourceTree = "<group>"; };
 		E3D6F2731FA5F6BC00241D07 /* DistanceChartsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceChartsController.swift; sourceTree = "<group>"; };
+		E3DCFF641FB88F4B00FF54D1 /* MyPageChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageChartsViewController.swift; sourceTree = "<group>"; };
 		E3F4032D1F88C6EC0073DC45 /* DismissAnimator.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift.swift; sourceTree = "<group>"; };
 		E3FE60C21F9CE3FB0080E378 /* Animation+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -320,6 +322,7 @@
 		E38F7FAF1F9B0B460036CEE0 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				E3DCFF631FB88F2C00FF54D1 /* MyPageChartsViewController */,
 				E3D6F26E1FA5F31500241D07 /* DistanceChartsController */,
 				E361060E1F243225004F56EC /* Home */,
 				E36106111F243225004F56EC /* MyPage */,
@@ -380,6 +383,14 @@
 				E3D6F2731FA5F6BC00241D07 /* DistanceChartsController.swift */,
 			);
 			path = DistanceChartsController;
+			sourceTree = "<group>";
+		};
+		E3DCFF631FB88F2C00FF54D1 /* MyPageChartsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E3DCFF641FB88F4B00FF54D1 /* MyPageChartsViewController.swift */,
+			);
+			path = MyPageChartsViewController;
 			sourceTree = "<group>";
 		};
 		E3F4032C1F88C6CF0073DC45 /* Work */ = {
@@ -553,6 +564,7 @@
 				E30AE0481F8A4FF7002FEFAA /* ModalNavigationController.swift in Sources */,
 				E3CAC82C1FAB229C00AE1B55 /* MyPageCell.swift in Sources */,
 				E3034EA41F87BFBF00FCB026 /* Const.swift in Sources */,
+				E3DCFF651FB88F4B00FF54D1 /* MyPageChartsViewController.swift in Sources */,
 				E34188381F794E5B000AB961 /* WorkController.swift in Sources */,
 				E3D259A31FAAA59F00978399 /* NoDateView.swift in Sources */,
 				E36106191F243225004F56EC /* MyPage.swift in Sources */,

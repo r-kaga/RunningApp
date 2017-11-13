@@ -37,6 +37,7 @@ class MyPage: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        setupCharts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,6 +45,15 @@ class MyPage: UIViewController, UIScrollViewDelegate {
         navigationItem.title = "MyPage"
     }
 
+    
+    private func setupCharts() {
+        
+        let charts = MyPageChartsViewController()
+        let containerView = UIView(frame: CGRect(x: 10, y: AppSize.statusBarAndNavigationBarHeight, width: AppSize.width, height: AppSize.height - (AppSize.height / 4)))
+        containerView.addSubview(charts.view)
+        self.view.addSubview(containerView)
+        
+    }
     
     private func setupTableView() {
 
@@ -69,8 +79,6 @@ class MyPage: UIViewController, UIScrollViewDelegate {
         }
         
         self.view.addSubview(tableView)
-        
-        
         
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: 15))
         label.textAlignment = .center
