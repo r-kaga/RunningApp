@@ -17,7 +17,8 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home")!, tag: 1)
         let homeNv = UINavigationController(rootViewController: home)
         
-        let myPage = MyPage()
+//        let myPage = MyPage()
+        let myPage = UIStoryboard(name: "MyPage", bundle: nil).instantiateInitialViewController() as! MyPage
         myPage.tabBarItem = UITabBarItem(title: "MyPage", image: UIImage(named: "account")!, tag: 2)
         let myPageNv = UINavigationController(rootViewController: myPage)
         

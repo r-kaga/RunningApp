@@ -10,6 +10,9 @@
 		E1633205A450704EC5F7B81C /* Pods_RunningApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB4A23F43657309C31FDA106 /* Pods_RunningApp.framework */; };
 		E3031D031F80E05A002C5739 /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3031D021F80E05A002C5739 /* SettingController.swift */; };
 		E3034EA41F87BFBF00FCB026 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3034EA31F87BFBF00FCB026 /* Const.swift */; };
+		E3049AFB1FBB36870050897E /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3049AF81FBB36860050897E /* MyInfoViewController.swift */; };
+		E3049AFC1FBB36870050897E /* MyInfoCharsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3049AF91FBB36860050897E /* MyInfoCharsViewController.swift */; };
+		E3049B001FBB38980050897E /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3049AFF1FBB38980050897E /* MyPage.storyboard */; };
 		E30530271FACC8C10097D9A3 /* Alert+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30530261FACC8C10097D9A3 /* Alert+.swift */; };
 		E305302A1FACC9AA0097D9A3 /* infoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30530291FACC9AA0097D9A3 /* infoDetailViewController.swift */; };
 		E305302C1FACC9B20097D9A3 /* infoDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E305302B1FACC9B20097D9A3 /* infoDetailViewController.storyboard */; };
@@ -65,6 +68,9 @@
 		B52ED86E09986E423E72B09E /* Pods-RunningApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunningApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-RunningApp/Pods-RunningApp.release.xcconfig"; sourceTree = "<group>"; };
 		E3031D021F80E05A002C5739 /* SettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		E3034EA31F87BFBF00FCB026 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		E3049AF81FBB36860050897E /* MyInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
+		E3049AF91FBB36860050897E /* MyInfoCharsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoCharsViewController.swift; sourceTree = "<group>"; };
+		E3049AFF1FBB38980050897E /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
 		E30530261FACC8C10097D9A3 /* Alert+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+.swift"; sourceTree = "<group>"; };
 		E30530291FACC9AA0097D9A3 /* infoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = infoDetailViewController.swift; sourceTree = "<group>"; };
 		E305302B1FACC9B20097D9A3 /* infoDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = infoDetailViewController.storyboard; sourceTree = "<group>"; };
@@ -196,9 +202,12 @@
 		E36106111F243225004F56EC /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				E3049AF81FBB36860050897E /* MyInfoViewController.swift */,
+				E36106121F243225004F56EC /* MyPage.swift */,
+				E3049AFF1FBB38980050897E /* MyPage.storyboard */,
+				E3049AF91FBB36860050897E /* MyInfoCharsViewController.swift */,
 				E3CAC82D1FAB22B300AE1B55 /* MyPageCell */,
 				E30530281FACC9830097D9A3 /* infoDetail */,
-				E36106121F243225004F56EC /* MyPage.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -478,6 +487,7 @@
 				E312644F1FA22C0100F2B23D /* Home.storyboard in Resources */,
 				E3CAC8341FAC458800AE1B55 /* MyInfoActionDialog.xib in Resources */,
 				E365A13D1F9256020008D475 /* CompleteDialog.xib in Resources */,
+				E3049B001FBB38980050897E /* MyPage.storyboard in Resources */,
 				E38F7FAD1F9AF4CA0036CEE0 /* SettingCell.xib in Resources */,
 				E37DDE271FAA1B2800EC61E5 /* Loading.xib in Resources */,
 				E3CAC82F1FAB22B900AE1B55 /* MyPageCell.xib in Resources */,
@@ -561,8 +571,10 @@
 				E39594071F30C574004AEB27 /* Interactor.swift in Sources */,
 				E305302A1FACC9AA0097D9A3 /* infoDetailViewController.swift in Sources */,
 				E365A13A1F9255C50008D475 /* CompleteDialog.swift in Sources */,
+				E3049AFB1FBB36870050897E /* MyInfoViewController.swift in Sources */,
 				E30AE0481F8A4FF7002FEFAA /* ModalNavigationController.swift in Sources */,
 				E3CAC82C1FAB229C00AE1B55 /* MyPageCell.swift in Sources */,
+				E3049AFC1FBB36870050897E /* MyInfoCharsViewController.swift in Sources */,
 				E3034EA41F87BFBF00FCB026 /* Const.swift in Sources */,
 				E3DCFF651FB88F4B00FF54D1 /* MyPageChartsViewController.swift in Sources */,
 				E34188381F794E5B000AB961 /* WorkController.swift in Sources */,
