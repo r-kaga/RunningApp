@@ -63,12 +63,11 @@ class WorkController: UIViewController {
     static var homeDelegate: HomeDelegate?
     
     @IBAction func handleGesture(_ sender: Any) {
-//        confirmWorkEndAlert()
+        confirmWorkEndAlert()
 //        weak var nc = navigationController as? ModalNavigationController
 //        nc?.handleGesture(sender as! UIPanGestureRecognizer)
         
-        print("----------------------")
-        
+//        print("----------------------")
 //        if  isTransform {
 //
 //            UIView.animate(withDuration: 0.3) {
@@ -79,30 +78,30 @@ class WorkController: UIViewController {
 //                    //                self.map.frame = CGRect(x: AppSize.width - 150, y: AppSize.height - 150, width: 150, height: 150)
 //                    //                self.map.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
 //                    self.resultView.frame = CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.height / 2)
-//                    self.resultView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+////                    self.resultView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+////
+////                    self.isTransform = false
+////                }
+////            }
+////
+////        } else {
 //
-//                    self.isTransform = false
+//            UIView.animate(withDuration: 0.3) {
+//                self.map.alpha = 0.0
+//                //            self.resultView.alpha = 0.0
+//
+//                UIView.animate(withDuration: 1.0) {
+////                    self.map.frame = CGRect(x: AppSize.width - 150, y: AppSize.height - 150, width: 150, height: 150)
+////                    self.map.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+//                    self.resultView.frame = CGRect(x: AppSize.width - 150, y: AppSize.height - 150 - AppSize.tabBarHeight, width: 150, height: 150)
+//                    self.resultView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+//
+////                    self.isTransform = true
+//
 //                }
 //            }
+////        }
 //
-//        } else {
-        
-            UIView.animate(withDuration: 0.3) {
-                self.map.alpha = 0.0
-                //            self.resultView.alpha = 0.0
-                
-                UIView.animate(withDuration: 1.0) {
-//                    self.map.frame = CGRect(x: AppSize.width - 150, y: AppSize.height - 150, width: 150, height: 150)
-//                    self.map.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-                    self.resultView.frame = CGRect(x: AppSize.width - 150, y: AppSize.height - 150 - AppSize.tabBarHeight, width: 150, height: 150)
-                    self.resultView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-                    
-//                    self.isTransform = true
-
-                }
-            }
-//        }
-
 
         
 
