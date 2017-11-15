@@ -11,6 +11,7 @@ import UIKit
 class MyPage: UIPageViewController, UIPageViewControllerDataSource, UIScrollViewDelegate {
     
     private var pageViewControllers: [UIViewController] = []
+    private var button: PageMenuButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,13 @@ class MyPage: UIPageViewController, UIPageViewControllerDataSource, UIScrollView
         
         //UIPageViewControllerに表示対象を設定
         setViewControllers([pageViewControllers[0]], direction: .forward, animated: true, completion: nil)
+        
+        button = PageMenuButton(frame: CGRect(x: 0, y: AppSize.statusBarAndNavigationBarHeight,
+                                                  width: AppSize.width, height: 40))
+        button.backgroundColor = .white
+//        button.grahButton.addTarget(self, action: #selector(MyPage.senderFromIndex(_:)), for: .touchUpInside)
+//        button.recordButton.addTarget(self, action: #selector(MyPage.senderFromIndex(_:)), for: .touchUpInside)
+        self.view.addSubview(button)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,7 +44,11 @@ class MyPage: UIPageViewController, UIPageViewControllerDataSource, UIScrollView
         //右にスワイプした場合に表示したいviewControllerを返す
         //ようはページを戻す
         //今表示しているページは何ページ目か取得する
+        
         let index = pageViewControllers.index(of: viewController)
+        
+        button.didSelect(index: index!)
+
         if index == 0 {
             //1ページ目の場合は何もしない
             return nil
@@ -49,11 +61,14 @@ class MyPage: UIPageViewController, UIPageViewControllerDataSource, UIScrollView
     func pageViewController(_ pageViewController:
         UIPageViewController, viewControllerAfter viewController: UIViewController) ->
         UIViewController? {
-            
+        
             //左にスワイプした場合に表示したいviewControllerを返す
             //ようはページを進める
             //今表示しているページは何ページ目か取得する
             let index = pageViewControllers.index(of: viewController)
+            
+            button.didSelect(index: index!)
+            
             if index == pageViewControllers.count-1 {
                 //最終ページの場合は何もしない
                 return nil
@@ -62,6 +77,17 @@ class MyPage: UIPageViewController, UIPageViewControllerDataSource, UIScrollView
                 return pageViewControllers[index!+1]
             }
     }
+    
+    
+//    func senderFromIndex(_ sender: UIButton) {
+//        switch sender {
+//            case 1:
+//                
+//            case 2:
+//
+//            default: break
+//        }
+//    }
     
 
 }

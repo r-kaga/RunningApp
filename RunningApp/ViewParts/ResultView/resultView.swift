@@ -74,7 +74,6 @@ class resultView: UIView {
             views: ["view" : view]
         )
         self.addConstraints(constraints2)
-        
     }
  
     private func delete() {

@@ -37,28 +37,18 @@ class MyInfoViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         
         setupTableView()
-        //        setupCharts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.title = "MyPage"
     }
-    
-    private func setupCharts() {
-        
-        let charts = MyPageChartsViewController()
-        let containerView = UIView(frame: CGRect(x: 10, y: AppSize.statusBarAndNavigationBarHeight, width: AppSize.width, height: AppSize.height - (AppSize.height / 4)))
-        containerView.addSubview(charts.view)
-        self.view.addSubview(containerView)
-        
-    }
 
     private func setupTableView() {
 
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: 15))
         label.textAlignment = .center
-        label.center = CGPoint(x: AppSize.width / 2, y:  AppSize.statusBarAndNavigationBarHeight + 15)
+        label.center = CGPoint(x: AppSize.width / 2, y:  AppSize.statusBarAndNavigationBarHeight + 15 + 40)
         label.text = "Your Fitness All Date"
         label.textColor = .white
         self.view.addSubview(label)

@@ -13,6 +13,8 @@
 		E3049AFB1FBB36870050897E /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3049AF81FBB36860050897E /* MyInfoViewController.swift */; };
 		E3049AFC1FBB36870050897E /* MyInfoCharsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3049AF91FBB36860050897E /* MyInfoCharsViewController.swift */; };
 		E3049B001FBB38980050897E /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3049AFF1FBB38980050897E /* MyPage.storyboard */; };
+		E3049B021FBB54730050897E /* PageMenuButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3049B011FBB54730050897E /* PageMenuButton.xib */; };
+		E3049B041FBB54880050897E /* PageMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3049B031FBB54880050897E /* PageMenuButton.swift */; };
 		E30530271FACC8C10097D9A3 /* Alert+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30530261FACC8C10097D9A3 /* Alert+.swift */; };
 		E305302A1FACC9AA0097D9A3 /* infoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30530291FACC9AA0097D9A3 /* infoDetailViewController.swift */; };
 		E305302C1FACC9B20097D9A3 /* infoDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E305302B1FACC9B20097D9A3 /* infoDetailViewController.storyboard */; };
@@ -71,6 +73,8 @@
 		E3049AF81FBB36860050897E /* MyInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
 		E3049AF91FBB36860050897E /* MyInfoCharsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoCharsViewController.swift; sourceTree = "<group>"; };
 		E3049AFF1FBB38980050897E /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
+		E3049B011FBB54730050897E /* PageMenuButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PageMenuButton.xib; sourceTree = "<group>"; };
+		E3049B031FBB54880050897E /* PageMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageMenuButton.swift; sourceTree = "<group>"; };
 		E30530261FACC8C10097D9A3 /* Alert+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+.swift"; sourceTree = "<group>"; };
 		E30530291FACC9AA0097D9A3 /* infoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = infoDetailViewController.swift; sourceTree = "<group>"; };
 		E305302B1FACC9B20097D9A3 /* infoDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = infoDetailViewController.storyboard; sourceTree = "<group>"; };
@@ -163,6 +167,15 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
+		E3049B051FBB548E0050897E /* PageMenuButton */ = {
+			isa = PBXGroup;
+			children = (
+				E3049B031FBB54880050897E /* PageMenuButton.swift */,
+				E3049B011FBB54730050897E /* PageMenuButton.xib */,
+			);
+			path = PageMenuButton;
+			sourceTree = "<group>";
+		};
 		E30530281FACC9830097D9A3 /* infoDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,12 +215,12 @@
 		E36106111F243225004F56EC /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
-				E3049AF81FBB36860050897E /* MyInfoViewController.swift */,
-				E36106121F243225004F56EC /* MyPage.swift */,
-				E3049AFF1FBB38980050897E /* MyPage.storyboard */,
-				E3049AF91FBB36860050897E /* MyInfoCharsViewController.swift */,
 				E3CAC82D1FAB22B300AE1B55 /* MyPageCell */,
 				E30530281FACC9830097D9A3 /* infoDetail */,
+				E3049AF81FBB36860050897E /* MyInfoViewController.swift */,
+				E3049AF91FBB36860050897E /* MyInfoCharsViewController.swift */,
+				E36106121F243225004F56EC /* MyPage.swift */,
+				E3049AFF1FBB38980050897E /* MyPage.storyboard */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -344,6 +357,7 @@
 		E38F7FB01F9B0BBF0036CEE0 /* ViewParts */ = {
 			isa = PBXGroup;
 			children = (
+				E3049B051FBB548E0050897E /* PageMenuButton */,
 				E365A13B1F9255E00008D475 /* Dialog */,
 				E3D259A41FAAA5AC00978399 /* NoDateView */,
 				E38F7FA91F9AF3C40036CEE0 /* ResultView */,
@@ -484,6 +498,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3D259A61FAAA5BF00978399 /* NoDateView.xib in Resources */,
+				E3049B021FBB54730050897E /* PageMenuButton.xib in Resources */,
 				E312644F1FA22C0100F2B23D /* Home.storyboard in Resources */,
 				E3CAC8341FAC458800AE1B55 /* MyInfoActionDialog.xib in Resources */,
 				E365A13D1F9256020008D475 /* CompleteDialog.xib in Resources */,
@@ -577,6 +592,7 @@
 				E3049AFC1FBB36870050897E /* MyInfoCharsViewController.swift in Sources */,
 				E3034EA41F87BFBF00FCB026 /* Const.swift in Sources */,
 				E3DCFF651FB88F4B00FF54D1 /* MyPageChartsViewController.swift in Sources */,
+				E3049B041FBB54880050897E /* PageMenuButton.swift in Sources */,
 				E34188381F794E5B000AB961 /* WorkController.swift in Sources */,
 				E3D259A31FAAA59F00978399 /* NoDateView.swift in Sources */,
 				E36106191F243225004F56EC /* MyPage.swift in Sources */,
