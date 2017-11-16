@@ -5,7 +5,6 @@ import RealmSwift
 
 class MyInfoCharsViewController: UIViewController, ChartViewDelegate, UIScrollViewDelegate {
     
-    var months: [String]!
     private var myInfo: Results<RealmDataSet>!
     private var scrollView: UIScrollView!
 
@@ -14,16 +13,13 @@ class MyInfoCharsViewController: UIViewController, ChartViewDelegate, UIScrollVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0, 16.0, 4.0, 18.0, 2.0, 4.0, 5.0, 4.0]
-        
         let realm = try! Realm()
         myInfo = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
         guard !myInfo.isEmpty else { return }
         
         setupScrollView()
         setupPieChart()
-        setChart(months, values: unitsSold)
+        setChart()
         
         self.view.addSubview(scrollView)
     }
@@ -80,7 +76,7 @@ class MyInfoCharsViewController: UIViewController, ChartViewDelegate, UIScrollVi
         scrollView.addSubview(chartView)
     }
     
-    func setChart(_ dataPoints: [String], values: [Double]) {
+    func setChart() {
         
         let rect = CGRect(x: 0, y: AppSize.height / 2 + 50, width: AppSize.width, height: AppSize.height / 2)
         barChartView = BarChartView(frame: rect)
@@ -89,34 +85,82 @@ class MyInfoCharsViewController: UIViewController, ChartViewDelegate, UIScrollVi
 
         var dataEntries: [BarChartDataEntry] = []
 
-//        for i in 0..<dataPoints.count {
-//            print(i)
-//            let dataEntry = BarChartDataEntry(x: values[i], y: Double(i), data: dataPoints[i] as AnyObject)
-//            dataEntries.append(dataEntry)
-//        }
-//
-//        let chartDataSet = BarChartDataSet(values: dataEntries, label: "月別走行距離")
-//        let chartData = BarChartData(dataSet: chartDataSet)
-//
-//        barChartView.data = chartData
-        
-//        let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
         barChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: months)
-//        barChartView.xAxis.granularity = 12
+        barChartView.xAxis.granularity = 1
         
-        for i in 0..<dataPoints.count {
-            print( months[i])
-//            let dataEntry = BarChartDataEntry(x: Double(i + 2), y: 10.0, data: months[i] as AnyObject )
-            let dataEntry = BarChartDataEntry(x: 10.0, y: 10.0)
+        var distanceArray = [Double]()
+        myInfo.forEach { value in
+            print(value.date)
+            
+            var monthDistance = [String: Double]()
+            switch value.date {
+                case let e where e.contains("2017-01"):
+                    monthDistance["Jan"] = Double(value.distance)
+                
+                case let e where e.contains("2017-02"):
+                    monthDistance["Feb"] = Double(value.distance)
+                
+                case let e where e.contains("2017-03"):
+                    monthDistance["Mar"] = Double(value.distance)
+                
+                case let e where e.contains("2017-04"):
+                    monthDistance["Apr"] = Double(value.distance)
+                
+                case let e where e.contains("2017-05"):
+                    monthDistance["May"] = Double(value.distance)
+                
+                case let e where e.contains("2017-06"):
+                    monthDistance["Jun"] = Double(value.distance)
+                
+                case let e where e.contains("2017-07"):
+                    monthDistance["Jul"] = Double(value.distance)
+                
+                case let e where e.contains("2017-08"):
+                        monthDistance["Aug"] = Double(value.distance)
+                
+                case let e where e.contains("2017-09"):
+                    monthDistance["Sep"] = Double(value.distance)
+                
+                case let e where e.contains("2017-10"):
+                    monthDistance["Oct"] = Double(value.distance)
+                
+                case let e where e.contains("2017-11"):
+                    monthDistance["Nov"] = Double(value.distance)
+                
+                case let e where e.contains("2017-12"):
+                    monthDistance["Dec"] = Double(value.distance)
+                
+                default: break
+                
+            }
+            
+            distanceArray.append(monthDistance["Jan"] ?? 0.0)
+            distanceArray.append(monthDistance["Feb"] ?? 0.0)
+            distanceArray.append(monthDistance["Mar"] ?? 0.0)
+            distanceArray.append(monthDistance["Apr"] ?? 0.0)
+            distanceArray.append(monthDistance["May"] ?? 0.0)
+            distanceArray.append(monthDistance["Jun"] ?? 0.0)
+            distanceArray.append(monthDistance["Jul"] ?? 0.0)
+            distanceArray.append(monthDistance["Aug"] ?? 0.0)
+            distanceArray.append(monthDistance["Sep"] ?? 0.0)
+            distanceArray.append(monthDistance["Oct"] ?? 0.0)
+            distanceArray.append(monthDistance["Nov"] ?? 0.0)
+            distanceArray.append(monthDistance["Dec"] ?? 0.0)
 
+            }
+        
+        
+        for i in 0..<months.count {
+            let dataEntry = BarChartDataEntry(x: Double(i), y: distanceArray[i], data: months as AnyObject )
             dataEntries.append(dataEntry)
         }
         
-        let chartDataSet = BarChartDataSet(values: dataEntries, label: "Units Sold")
+        let chartDataSet = BarChartDataSet(values: dataEntries, label: "月別ランニング距離")
         let chartData = BarChartData(dataSet: chartDataSet)
         barChartView.data = chartData
         
-        scrollView.contentSize.height += barChartView.frame.height
+        scrollView.contentSize.height += barChartView.frame.height - 50
         scrollView.addSubview(barChartView)
     }
     
