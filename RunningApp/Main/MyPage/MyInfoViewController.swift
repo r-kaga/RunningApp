@@ -80,7 +80,7 @@ class MyInfoViewController: UIViewController, UIScrollViewDelegate {
 
 
     private func setupNoDate() {
-        let noDateView = NoDateView(frame: CGRect(x: 0, y: 0, width: AppSize.width - 100, height: AppSize.height / 2.5))
+        let noDateView = NoDateView(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.height / 2.5))
         noDateView.center = self.view.center
         self.view.addSubview(noDateView)
     }

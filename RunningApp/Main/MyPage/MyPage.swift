@@ -78,11 +78,10 @@ class MyPage: UIPageViewController, UIPageViewControllerDataSource, UIScrollView
             }
     }
     
-    
 //    func senderFromIndex(_ sender: UIButton) {
 //        switch sender {
 //            case 1:
-//                
+//
 //            case 2:
 //
 //            default: break
