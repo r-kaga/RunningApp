@@ -39,6 +39,8 @@
 		E36912FD1F9370EB00A9B19C /* resultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36912FC1F9370EB00A9B19C /* resultView.swift */; };
 		E36912FF1F9370FB00A9B19C /* resultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E36912FE1F9370FB00A9B19C /* resultView.xib */; };
 		E36913011F97624500A9B19C /* RealmDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36913001F97624500A9B19C /* RealmDataSet.swift */; };
+		E37631881FBEE70600D027E5 /* Picker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37631871FBEE70600D027E5 /* Picker.swift */; };
+		E376318A1FBEE70C00D027E5 /* Picker.xib in Resources */ = {isa = PBXBuildFile; fileRef = E37631891FBEE70C00D027E5 /* Picker.xib */; };
 		E37DDE251FAA1B2100EC61E5 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37DDE241FAA1B2100EC61E5 /* Loading.swift */; };
 		E37DDE271FAA1B2800EC61E5 /* Loading.xib in Resources */ = {isa = PBXBuildFile; fileRef = E37DDE261FAA1B2800EC61E5 /* Loading.xib */; };
 		E380AB311F23735F0034EA8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E380AB301F23735F0034EA8F /* AppDelegate.swift */; };
@@ -99,6 +101,8 @@
 		E36912FC1F9370EB00A9B19C /* resultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resultView.swift; sourceTree = "<group>"; };
 		E36912FE1F9370FB00A9B19C /* resultView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = resultView.xib; sourceTree = "<group>"; };
 		E36913001F97624500A9B19C /* RealmDataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDataSet.swift; sourceTree = "<group>"; };
+		E37631871FBEE70600D027E5 /* Picker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picker.swift; sourceTree = "<group>"; };
+		E37631891FBEE70C00D027E5 /* Picker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Picker.xib; sourceTree = "<group>"; };
 		E37DDE241FAA1B2100EC61E5 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
 		E37DDE261FAA1B2800EC61E5 /* Loading.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Loading.xib; sourceTree = "<group>"; };
 		E380AB2D1F23735F0034EA8F /* RunningApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunningApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -265,6 +269,15 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		E37631861FBEE6F000D027E5 /* Picker */ = {
+			isa = PBXGroup;
+			children = (
+				E37631871FBEE70600D027E5 /* Picker.swift */,
+				E37631891FBEE70C00D027E5 /* Picker.xib */,
+			);
+			path = Picker;
+			sourceTree = "<group>";
+		};
 		E37DDE231FAA1AFF00EC61E5 /* Loading */ = {
 			isa = PBXGroup;
 			children = (
@@ -357,6 +370,7 @@
 		E38F7FB01F9B0BBF0036CEE0 /* ViewParts */ = {
 			isa = PBXGroup;
 			children = (
+				E37631861FBEE6F000D027E5 /* Picker */,
 				E3049B051FBB548E0050897E /* PageMenuButton */,
 				E365A13B1F9255E00008D475 /* Dialog */,
 				E3D259A41FAAA5AC00978399 /* NoDateView */,
@@ -502,6 +516,7 @@
 				E312644F1FA22C0100F2B23D /* Home.storyboard in Resources */,
 				E3CAC8341FAC458800AE1B55 /* MyInfoActionDialog.xib in Resources */,
 				E365A13D1F9256020008D475 /* CompleteDialog.xib in Resources */,
+				E376318A1FBEE70C00D027E5 /* Picker.xib in Resources */,
 				E3049B001FBB38980050897E /* MyPage.storyboard in Resources */,
 				E38F7FAD1F9AF4CA0036CEE0 /* SettingCell.xib in Resources */,
 				E37DDE271FAA1B2800EC61E5 /* Loading.xib in Resources */,
@@ -582,6 +597,7 @@
 				E355F1961F9F7ADD00509CA1 /* UIViewController+.swift in Sources */,
 				E30530271FACC8C10097D9A3 /* Alert+.swift in Sources */,
 				E34188361F794AE6000AB961 /* AppSize.swift in Sources */,
+				E37631881FBEE70600D027E5 /* Picker.swift in Sources */,
 				E3894FCF1F8CF62A000313CC /* UIButton+.swift in Sources */,
 				E39594071F30C574004AEB27 /* Interactor.swift in Sources */,
 				E305302A1FACC9AA0097D9A3 /* infoDetailViewController.swift in Sources */,
