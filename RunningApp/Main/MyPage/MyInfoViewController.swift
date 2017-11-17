@@ -65,6 +65,7 @@ class MyInfoViewController: UIViewController, UIScrollViewDelegate {
         tableView.sectionIndexColor = .black
         tableView.sectionIndexBackgroundColor = .black
         tableView.sectionIndexTrackingBackgroundColor = .black
+        tableView.sectionHeaderHeight = 30
 
         let realm = try! Realm()
         myInfo = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
@@ -145,11 +146,22 @@ extension MyInfoViewController: UITableViewDataSource {
         return cell
     }
 
-    /** hearderを設定*/
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.headerItem[0]
+//    /** hearderを設定*/
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return self.headerItem[0]
+//    }
+    /** hearderのViewを設定 */
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView:UIView = UIView(frame: CGRect(x: 0, y: 0, width: 150, height: 30))
+        headerView.backgroundColor = .black
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: headerView.frame.width, height: headerView.frame.height))
+        label.text = self.headerItem[section]
+        label.textColor = .white
+        headerView.addSubview(label)
+        return headerView
     }
 
+ 
     /** cellが選択された時 */
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
