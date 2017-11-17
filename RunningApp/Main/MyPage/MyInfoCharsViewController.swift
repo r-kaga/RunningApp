@@ -15,7 +15,10 @@ class MyInfoCharsViewController: UIViewController, ChartViewDelegate, UIScrollVi
         
         let realm = try! Realm()
         myInfo = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
-        guard !myInfo.isEmpty else { return }
+        guard !myInfo.isEmpty else {
+            setupNoDate()
+            return
+        }
         
         setupScrollView()
         setupPieChart()
@@ -24,6 +27,11 @@ class MyInfoCharsViewController: UIViewController, ChartViewDelegate, UIScrollVi
         self.view.addSubview(scrollView)
     }
     
+    private func setupNoDate() {
+        let noDateView = NoDateView(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.height / 2.5))
+        noDateView.center = self.view.center
+        self.view.addSubview(noDateView)
+    }
     
     private func setupScrollView() {
         scrollView = UIScrollView(frame: CGRect(x: 0, y: AppSize.statusBarAndNavigationBarHeight + 40, width: AppSize.width, height: AppSize.height))
