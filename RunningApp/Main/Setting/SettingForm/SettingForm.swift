@@ -59,10 +59,6 @@ class SettingForm: UIViewController, PickerDelegate {
         self.view.bringSubview(toFront: settingButton)
         self.view.bringSubview(toFront: closeButton)
 
-        
-        let picker = Picker.make()
-        picker.delegate = self
-        picker.open()
     }
 
     @IBAction func settingButton(_ sender: Any) {
@@ -126,6 +122,13 @@ extension SettingForm: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.resignFirstResponder()
+        let picker = Picker.make()
+        picker.delegate = self
+        picker.open()
     }
     
 }

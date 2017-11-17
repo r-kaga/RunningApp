@@ -40,10 +40,12 @@ class Picker: UIView,  UIPickerViewDelegate, UIPickerViewDataSource, DialogProto
         picker.delegate = self
         picker.dataSource = self
         // はじめに表示する項目を指定
-        picker.selectRow(1, inComponent: 0, animated: true)
+        picker.selectRow(0, inComponent: 0, animated: true)
         
         buttonViewOutlet.addBorder(types: [.Bottom], color: UIColor(red: 215/255, green: 215/255, blue: 219/255, alpha: 0.8))
         acceptButton.addBorder(types: [.Left], color: UIColor(red: 215/255, green: 215/255, blue: 219/255, alpha: 0.8))
+        
+        selectedValue = dataList[0]
         
     }
 
@@ -83,14 +85,12 @@ class Picker: UIView,  UIPickerViewDelegate, UIPickerViewDataSource, DialogProto
     func open() {
         let app = UIApplication.shared.delegate as! AppDelegate
         self.frame = (app.window?.frame)!
-        
-        self.isHidden = true
-        
+        self.alpha = 0.0
         app.window?.addSubview(self)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-            self.isHidden = false
-        })
+        UIView.animate(withDuration: 0.5) {
+            self.alpha = 1.0
+        }
     }
     
     /** タッチイベント
