@@ -49,24 +49,21 @@ class MyInfoCharsViewController: UIViewController, ChartViewDelegate, UIScrollVi
         let rect = CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.height / 2)
         let chartView = PieChartView(frame: rect)
 
-        var runCount = 0
-        var walkingCount = 0
+        var runCount: CGFloat = 0
+        var walkingCount: CGFloat = 0
         myInfo.forEach { value in
             switch value.workType {
             case "directionsRun":
-                runCount += 1
-            case "directionsWalking":
-                walkingCount += 1
+                runCount += 1.0
+            case "directionsWalk":
+                walkingCount += 1.0
             default: break
             }
         }
-        
-        let runPercentage = Double(runCount / (runCount + walkingCount) * 100)
-        let walkPercentage = Double(walkingCount / (runCount + walkingCount) * 100)
 
-        print(runPercentage)
-        print(walkPercentage)
-
+        let runPercentage = Double((runCount / (runCount + walkingCount)) * 100)
+        let walkPercentage = Double((walkingCount / (runCount + walkingCount)) * 100)
+  
         let entries = [
             PieChartDataEntry(value: runPercentage, label: "Running"),
             PieChartDataEntry(value: walkPercentage, label: "Walking"),
@@ -98,67 +95,87 @@ class MyInfoCharsViewController: UIViewController, ChartViewDelegate, UIScrollVi
         barChartView.xAxis.granularity = 1
         
         var distanceArray = [Double]()
+        var  Jan = 0.0,
+             Feb = 0.0,
+             Mar = 0.0,
+             Apr = 0.0,
+             May = 0.0,
+             Jun = 0.0,
+             Jul = 0.0,
+             Aug = 0.0,
+             Sep = 0.0,
+             Oct = 0.0,
+             Nov = 0.0,
+             Dec = 0.0
+        
         myInfo.forEach { value in
-            print(value.date)
-            
-            var monthDistance = [String: Double]()
             switch value.date {
                 case let e where e.contains("2017-01"):
-                    monthDistance["Jan"] = Double(value.distance)
-                
+                    guard let value = Double(value.distance) else { return }
+                    Jan = value
+
                 case let e where e.contains("2017-02"):
-                    monthDistance["Feb"] = Double(value.distance)
-                
+                    guard let value = Double(value.distance) else { return }
+                    Feb = value
+
                 case let e where e.contains("2017-03"):
-                    monthDistance["Mar"] = Double(value.distance)
-                
+                    guard let value = Double(value.distance) else { return }
+                    Mar = value
+
                 case let e where e.contains("2017-04"):
-                    monthDistance["Apr"] = Double(value.distance)
-                
+                    guard let value = Double(value.distance) else { return }
+                    Apr = value
+
                 case let e where e.contains("2017-05"):
-                    monthDistance["May"] = Double(value.distance)
-                
+                    guard let value = Double(value.distance) else { return }
+                    May = value
+
                 case let e where e.contains("2017-06"):
-                    monthDistance["Jun"] = Double(value.distance)
-                
+                    guard let value = Double(value.distance) else { return }
+                    Jun = value
+
                 case let e where e.contains("2017-07"):
-                    monthDistance["Jul"] = Double(value.distance)
-                
+                    guard let value = Double(value.distance) else { return }
+                    Jul = value
+
                 case let e where e.contains("2017-08"):
-                        monthDistance["Aug"] = Double(value.distance)
-                
+                    guard let value = Double(value.distance) else { return }
+                    Aug = value
+
                 case let e where e.contains("2017-09"):
-                    monthDistance["Sep"] = Double(value.distance)
-                
+                    guard let value = Double(value.distance) else { return }
+                    Sep = value
+
                 case let e where e.contains("2017-10"):
-                    monthDistance["Oct"] = Double(value.distance)
-                
+                    guard let value = Double(value.distance) else { return }
+                    Oct = value
+
                 case let e where e.contains("2017-11"):
-                    monthDistance["Nov"] = Double(value.distance)
+                    guard let value = Double(value.distance) else { return }
+                    Nov += value
                 
                 case let e where e.contains("2017-12"):
-                    monthDistance["Dec"] = Double(value.distance)
-                
+                    guard let value = Double(value.distance) else { return }
+                    Dec += value
+
                 default: break
                 
             }
-            
-            distanceArray.append(monthDistance["Jan"] ?? 0.0)
-            distanceArray.append(monthDistance["Feb"] ?? 0.0)
-            distanceArray.append(monthDistance["Mar"] ?? 0.0)
-            distanceArray.append(monthDistance["Apr"] ?? 0.0)
-            distanceArray.append(monthDistance["May"] ?? 0.0)
-            distanceArray.append(monthDistance["Jun"] ?? 0.0)
-            distanceArray.append(monthDistance["Jul"] ?? 0.0)
-            distanceArray.append(monthDistance["Aug"] ?? 0.0)
-            distanceArray.append(monthDistance["Sep"] ?? 0.0)
-            distanceArray.append(monthDistance["Oct"] ?? 0.0)
-            distanceArray.append(monthDistance["Nov"] ?? 0.0)
-            distanceArray.append(monthDistance["Dec"] ?? 0.0)
+        }
+        
+        distanceArray.append(Jan)
+        distanceArray.append(Feb)
+        distanceArray.append(Mar)
+        distanceArray.append(Apr)
+        distanceArray.append(May)
+        distanceArray.append(Jun)
+        distanceArray.append(Jul)
+        distanceArray.append(Aug)
+        distanceArray.append(Sep)
+        distanceArray.append(Oct)
+        distanceArray.append(Nov)
+        distanceArray.append(Dec)
 
-            }
-        
-        
         for i in 0..<months.count {
             let dataEntry = BarChartDataEntry(x: Double(i), y: distanceArray[i], data: months as AnyObject )
             dataEntries.append(dataEntry)
