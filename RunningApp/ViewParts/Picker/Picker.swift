@@ -19,7 +19,8 @@ class Picker: UIView,  UIPickerViewDelegate, UIPickerViewDataSource, DialogProto
     
     @IBOutlet weak var buttonViewOutlet: UIStackView!
     @IBOutlet weak var picker: UIPickerView!
-    let dataList = ["iOS", "macOS", "tvOS", "Android", "Windows"]
+    
+    public var dataList = [String]()
 
     var selectedValue: String?
     weak var delegate: PickerDelegate?
@@ -39,14 +40,13 @@ class Picker: UIView,  UIPickerViewDelegate, UIPickerViewDataSource, DialogProto
         picker.backgroundColor = .white
         picker.delegate = self
         picker.dataSource = self
-        // はじめに表示する項目を指定
-        picker.selectRow(0, inComponent: 0, animated: true)
+
         
         buttonViewOutlet.addBorder(types: [.Bottom], color: UIColor(red: 215/255, green: 215/255, blue: 219/255, alpha: 0.8))
         acceptButton.addBorder(types: [.Left], color: UIColor(red: 215/255, green: 215/255, blue: 219/255, alpha: 0.8))
         
-        selectedValue = dataList[0]
-        
+        // はじめに表示する項目を指定
+        picker.selectRow(0, inComponent: 0, animated: true)
     }
 
     
@@ -76,6 +76,7 @@ class Picker: UIView,  UIPickerViewDelegate, UIPickerViewDataSource, DialogProto
     @IBAction func acceptAction(_ sender: Any) {
         guard let value = selectedValue else { return }
         self.delegate?.acceptAction(value: value)
+        self.close()
     }
     
     @IBAction func cancelAction(_ sender: Any) {
@@ -90,6 +91,8 @@ class Picker: UIView,  UIPickerViewDelegate, UIPickerViewDataSource, DialogProto
         
         UIView.animate(withDuration: 0.5) {
             self.alpha = 1.0
+            self.selectedValue = self.dataList[0]
+
         }
     }
     

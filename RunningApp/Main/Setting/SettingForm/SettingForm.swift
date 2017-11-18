@@ -28,9 +28,10 @@ class SettingForm: UIViewController, PickerDelegate {
     var categoryName: String!
     weak var delegate: SettingDelegate?
 
+    var settingValue = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         initSetup()
     }
 
@@ -42,10 +43,28 @@ class SettingForm: UIViewController, PickerDelegate {
         switch type {
         case .weight:
             categoryName = "weight"
+            
+            var weightNum = [String]()
+            for i in 40..<100 {
+                weightNum.append(String(i))
+            }
+            settingValue = weightNum
+            
         case .height:
             categoryName = "height"
+            var heightNum = [String]()
+            for i in 140..<200 {
+                heightNum.append(String(i))
+            }
+            settingValue = heightNum
+            
         case .pushTime:
             categoryName = Const.PUSH_TIME
+            var timeNum = [String]()
+            for i in 0..<24 {
+                timeNum.append(String(i))
+            }
+            settingValue = timeNum
         }
         SettingCategoryLabel.text = categoryName
         
@@ -58,7 +77,6 @@ class SettingForm: UIViewController, PickerDelegate {
         self.view.bringSubview(toFront: textField)
         self.view.bringSubview(toFront: settingButton)
         self.view.bringSubview(toFront: closeButton)
-
     }
 
     @IBAction func settingButton(_ sender: Any) {
@@ -66,10 +84,9 @@ class SettingForm: UIViewController, PickerDelegate {
     }
 
 
+    /** PickerでOKボタンを押された際のデリゲート */
     func acceptAction(value: String) {
-        print(value)
-        print("--------------")
-        settingNewValue()
+        textField.text = value
     }
     
     
@@ -127,6 +144,7 @@ extension SettingForm: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.resignFirstResponder()
         let picker = Picker.make()
+        picker.dataList = settingValue
         picker.delegate = self
         picker.open()
     }
