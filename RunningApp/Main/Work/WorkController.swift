@@ -369,15 +369,33 @@ class WorkController: UIViewController {
         } else {
             distance = self.firstPoint.distance(from: location)
         }
-        
+
         /** まずdistanceがメートルで返ってくるので、1000.0で割り、Kmに変換
          *   小数点2桁にしたいので、まずは100をかけて、round(四捨五入)してから、100で割り、元の桁に戻す
          */
         let dis = round( (distance / 1000.0) * 100) / 100
-        
+
         totalDistance += dis
         self.previousPoint = location
         
+//        var isFirst = true
+//        var from: CLLocation?
+//        for i in self.locationArray {
+//            if isFirst {
+//                isFirst = false
+//                from = i
+//                continue
+//            }
+//            guard let fromLocation = from else { continue }
+//
+//            print(fromLocation)
+//            print(i)
+//
+//            totalDistance += fromLocation.distance(from: i)
+//            from = i
+//        }
+
+        print(totalDistance)
         return String(totalDistance)
     }
     
@@ -476,8 +494,8 @@ extension WorkController: CLLocationManagerDelegate {
         guard self.isStarted else { return }
 
         // 配列から現在座標を取得.
-        guard let location: CLLocation = locations.last else { return }
-        
+        guard let location: CLLocation = locations.first else { return }
+
 //        guard let _ = self.previousPoint else {
 //            let _ = self.getDistance(location: location)
 //            self.drawLineToMap(from: firstPoint.coordinate, to: location.coordinate)
