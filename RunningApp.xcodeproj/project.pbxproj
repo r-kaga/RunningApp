@@ -51,6 +51,7 @@
 		E38F7FAB1F9AF3ED0036CEE0 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38F7FAA1F9AF3ED0036CEE0 /* SettingCell.swift */; };
 		E38F7FAD1F9AF4CA0036CEE0 /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E38F7FAC1F9AF4CA0036CEE0 /* SettingCell.xib */; };
 		E39594071F30C574004AEB27 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39594021F30C574004AEB27 /* Interactor.swift */; };
+		E3A84C541FC15FB000540812 /* PopupTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A84C531FC15FB000540812 /* PopupTransition.swift */; };
 		E3B15B5E1F7BEEE200E17A84 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3B15B5D1F7BEEE200E17A84 /* CoreLocation.framework */; };
 		E3CA14EC1F5D98C90053468D /* HomeCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */; };
 		E3CAC82C1FAB229C00AE1B55 /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CAC82B1FAB229C00AE1B55 /* MyPageCell.swift */; };
@@ -115,6 +116,7 @@
 		E38F7FAA1F9AF3ED0036CEE0 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		E38F7FAC1F9AF4CA0036CEE0 /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		E39594021F30C574004AEB27 /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
+		E3A84C531FC15FB000540812 /* PopupTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupTransition.swift; sourceTree = "<group>"; };
 		E3B15B5D1F7BEEE200E17A84 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCustomCell.swift; sourceTree = "<group>"; };
 		E3CAC82B1FAB229C00AE1B55 /* MyPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCell.swift; sourceTree = "<group>"; };
@@ -262,8 +264,11 @@
 		E3762A741F8FA1F100B0B501 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				E3A84C521FC15F6400540812 /* Transition */,
+				E38F7FB01F9B0BBF0036CEE0 /* ViewParts */,
 				E368B0DF1FADC7550021985F /* Gradation */,
 				E3894FCD1F8CF607000313CC /* Extension */,
+				E34188351F794AE6000AB961 /* AppSize.swift */,
 				E35580141F8B2347000CE75E /* Utility.swift */,
 			);
 			path = Service;
@@ -312,9 +317,7 @@
 				E38F7FB11F9B0BF00036CEE0 /* Realm */,
 				E341882B1F793D5E000AB961 /* Resources */,
 				E3762A741F8FA1F100B0B501 /* Service */,
-				E38F7FB01F9B0BBF0036CEE0 /* ViewParts */,
 				E380AB301F23735F0034EA8F /* AppDelegate.swift */,
-				E34188351F794AE6000AB961 /* AppSize.swift */,
 				E3034EA31F87BFBF00FCB026 /* Const.swift */,
 				E341882D1F794073000AB961 /* MainTabBarController.swift */,
 				E380AB3C1F23735F0034EA8F /* Info.plist */,
@@ -359,8 +362,8 @@
 			children = (
 				E3DCFF631FB88F2C00FF54D1 /* MyPageChartsViewController */,
 				E3D6F26E1FA5F31500241D07 /* DistanceChartsController */,
-				E361060E1F243225004F56EC /* Home */,
 				E36106111F243225004F56EC /* MyPage */,
+				E361060E1F243225004F56EC /* Home */,
 				E3031D011F80E041002C5739 /* Setting */,
 				E3F4032C1F88C6CF0073DC45 /* Work */,
 			);
@@ -385,6 +388,14 @@
 				E36913001F97624500A9B19C /* RealmDataSet.swift */,
 			);
 			path = Realm;
+			sourceTree = "<group>";
+		};
+		E3A84C521FC15F6400540812 /* Transition */ = {
+			isa = PBXGroup;
+			children = (
+				E3A84C531FC15FB000540812 /* PopupTransition.swift */,
+			);
+			path = Transition;
 			sourceTree = "<group>";
 		};
 		E3CAC82D1FAB22B300AE1B55 /* MyPageCell */ = {
@@ -601,6 +612,7 @@
 				E3894FCF1F8CF62A000313CC /* UIButton+.swift in Sources */,
 				E39594071F30C574004AEB27 /* Interactor.swift in Sources */,
 				E305302A1FACC9AA0097D9A3 /* infoDetailViewController.swift in Sources */,
+				E3A84C541FC15FB000540812 /* PopupTransition.swift in Sources */,
 				E365A13A1F9255C50008D475 /* CompleteDialog.swift in Sources */,
 				E3049AFB1FBB36870050897E /* MyInfoViewController.swift in Sources */,
 				E30AE0481F8A4FF7002FEFAA /* ModalNavigationController.swift in Sources */,

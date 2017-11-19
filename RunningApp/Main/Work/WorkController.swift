@@ -362,17 +362,23 @@ class WorkController: UIViewController {
      * @return 開始位置とlocationとの距離
      */
     private func getDistance(location: CLLocation) -> String {
-        let distance = self.firstPoint.distance(from: location)
-    //        let distance = previous.distance(from: location)
-        totalDistance = distance
-        self.previousPoint = location
+        
+        var distance: Double
+        if let previous = self.previousPoint {
+            distance = previous.distance(from: location)
+        } else {
+            distance = self.firstPoint.distance(from: location)
+        }
         
         /** まずdistanceがメートルで返ってくるので、1000.0で割り、Kmに変換
          *   小数点2桁にしたいので、まずは100をかけて、round(四捨五入)してから、100で割り、元の桁に戻す
          */
         let dis = round( (distance / 1000.0) * 100) / 100
         
-        return String(dis)
+        totalDistance += dis
+        self.previousPoint = location
+        
+        return String(totalDistance)
     }
     
 }
@@ -472,13 +478,11 @@ extension WorkController: CLLocationManagerDelegate {
         // 配列から現在座標を取得.
         guard let location: CLLocation = locations.last else { return }
         
-        guard let _ = self.previousPoint else {
-            let distance = self.firstPoint.distance(from: location)
-            self.totalDistance += floor(distance)
-            self.previousPoint = location
+//        guard let _ = self.previousPoint else {
+//            let _ = self.getDistance(location: location)
 //            self.drawLineToMap(from: firstPoint.coordinate, to: location.coordinate)
-            return
-        }
+//            return
+//        }
         
         // Regionを作成.
         self.setRegion(coordinate: location.coordinate)
@@ -524,10 +528,7 @@ extension WorkController: CLLocationManagerDelegate {
             // 時速の計算結果をlabelに反映
             let speed = round((location.speed * 3.6) * 10.0) / 10.0
             var speedText = String(speed)
-            if speed < 0 {
-                speedText = "計測不能"
-            }
-            print(speedText)
+            if speed < 0 { speedText = "計測不能" }
             self.speedLabel.text = speedText
         }
 
