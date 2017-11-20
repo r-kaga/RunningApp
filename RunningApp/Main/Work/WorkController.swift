@@ -4,6 +4,7 @@ import UIKit
 import CoreLocation
 import MapKit
 import RealmSwift
+import CoreMotion
 
 class WorkController: UIViewController {
     
@@ -22,6 +23,9 @@ class WorkController: UIViewController {
     var startTimeDate: Date!
     
     private var isStarted = false
+    
+    let pedometer = CMPedometer()
+
     
     /* カウントダウンのImageViewを生成 */
     lazy var countImageView: UIImageView = {
@@ -125,6 +129,18 @@ class WorkController: UIViewController {
         gradient.animateGradient()
 
         resultView.bringSubview(toFront: resultCardView)
+        
+        if CMPedometer.isStepCountingAvailable() {
+            self.pedometer.startPedometerUpdatesFromDate(NSDate(), withHandler: {
+                [weak self] (data: CMPedometerData?, error: NSError?) -> Void in
+                // 歩数が更新されるたびに呼ばれる
+                dispatch_async(dispatch_get_main_queue(), {
+                    if data != nil && error == nil {
+//                        self?.stepLabel.text = "step: \(data!.numberOfSteps)"
+                    }
+                })
+            })
+        }
     }
 
     
@@ -412,8 +428,9 @@ extension WorkController: CLLocationManagerDelegate {
         self.locationManager = CLLocationManager() // インスタンスの生成
         self.locationManager.delegate = self // CLLocationManagerDelegateプロトコルを実装するクラスを指定する
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest // 取得精度の設定
-        self.locationManager.distanceFilter = 30  // 取得頻度の設定.
+        self.locationManager.distanceFilter = 10  // 取得頻度の設定.
         self.locationManager.activityType = .fitness
+        self.locationManager.pausesLocationUpdatesAutomatically = false
         
         // セキュリティ認証のステータスを取得.
         let status = CLLocationManager.authorizationStatus()
