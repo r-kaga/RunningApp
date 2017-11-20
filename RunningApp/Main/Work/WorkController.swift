@@ -129,18 +129,7 @@ class WorkController: UIViewController {
         gradient.animateGradient()
 
         resultView.bringSubview(toFront: resultCardView)
-        
-        if CMPedometer.isStepCountingAvailable() {
-            self.pedometer.startPedometerUpdatesFromDate(NSDate(), withHandler: {
-                [weak self] (data: CMPedometerData?, error: NSError?) -> Void in
-                // 歩数が更新されるたびに呼ばれる
-                dispatch_async(dispatch_get_main_queue(), {
-                    if data != nil && error == nil {
-//                        self?.stepLabel.text = "step: \(data!.numberOfSteps)"
-                    }
-                })
-            })
-        }
+
     }
 
     
@@ -282,6 +271,20 @@ class WorkController: UIViewController {
 
     }
     
+    private func setupPedometer() {
+        guard CMPedometer.isStepCountingAvailable() else { return }
+        self.pedometer.startUpdates(from: NSDate() as Date) { (data: CMPedometerData?, error) -> Void in
+            DispatchQueue.main.async {
+                guard let data = data,
+                    error == nil
+                    else { return }
+                let steps = data.numberOfSteps
+                let distance = data.distance
+                self.distanceLabel.text = "steps: \(steps)"
+                print("distance = \(distance)")
+            }
+        }
+    }
     
     /* Modalを閉じる */
     private func dismissModal() {
@@ -462,7 +465,7 @@ extension WorkController: CLLocationManagerDelegate {
         
         firstPoint = CLLocation(latitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!)
 //        self.mapView.centerCoordinate = firstPoint.coordinate // mapViewのcenterを現在地に
-        
+        setupPedometer()
     }
     
     
