@@ -17,15 +17,30 @@ class WorkController: UIViewController {
     @IBOutlet weak var calorieLabel: UILabel!
     
     static var workType: String?
+    static var homeDelegate: HomeDelegate?
 
-    
     weak var timer: Timer!
     var startTimeDate: Date!
     
     private var isStarted = false
     
     let pedometer = CMPedometer()
-
+    
+    var locationManager: CLLocationManager!
+    var pin: MKPointAnnotation?
+    
+    // 縮尺
+    var latDist : CLLocationDistance = 500
+    var lonDist : CLLocationDistance = 500
+    
+    var firstPoint: CLLocation!
+    var previousPoint: CLLocation?
+    
+    var totalDistance: Double = 0.0
+    
+    var interactor: Interactor!
+    
+//    var isTransform: Bool = false
     
     /* カウントダウンのImageViewを生成 */
     lazy var countImageView: UIImageView = {
@@ -46,72 +61,7 @@ class WorkController: UIViewController {
         return mapView
     }()
     
-    
-    var locationManager: CLLocationManager!
-    var pin: MKPointAnnotation?
-    
-    // 縮尺
-    var latDist : CLLocationDistance = 500
-    var lonDist : CLLocationDistance = 500
-    
-    var firstPoint: CLLocation!
-    var currentPoint: CLLocation?
-    var previousPoint: CLLocation?
-    
-    var totalDistance: Double = 0.0
-    
-    var interactor: Interactor!
-    
-    var isTransform: Bool = false
-    
-    static var homeDelegate: HomeDelegate?
-    
-    @IBAction func handleGesture(_ sender: Any) {
-        confirmWorkEndAlert()
-//        weak var nc = navigationController as? ModalNavigationController
-//        nc?.handleGesture(sender as! UIPanGestureRecognizer)
-        
-//        print("----------------------")
-//        if  isTransform {
-//
-//            UIView.animate(withDuration: 0.3) {
-//                self.map.alpha = 1.0
-//                //            self.resultView.alpha = 1.0
-//
-//                UIView.animate(withDuration: 0.5) {
-//                    //                self.map.frame = CGRect(x: AppSize.width - 150, y: AppSize.height - 150, width: 150, height: 150)
-//                    //                self.map.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-//                    self.resultView.frame = CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.height / 2)
-////                    self.resultView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-////
-////                    self.isTransform = false
-////                }
-////            }
-////
-////        } else {
-//
-//            UIView.animate(withDuration: 0.3) {
-//                self.map.alpha = 0.0
-//                //            self.resultView.alpha = 0.0
-//
-//                UIView.animate(withDuration: 1.0) {
-////                    self.map.frame = CGRect(x: AppSize.width - 150, y: AppSize.height - 150, width: 150, height: 150)
-////                    self.map.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-//                    self.resultView.frame = CGRect(x: AppSize.width - 150, y: AppSize.height - 150 - AppSize.tabBarHeight, width: 150, height: 150)
-//                    self.resultView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-//
-////                    self.isTransform = true
-//
-//                }
-//            }
-////        }
-//
-
-        
-
-    }
-
-
+  
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -129,7 +79,6 @@ class WorkController: UIViewController {
         gradient.animateGradient()
 
         resultView.bringSubview(toFront: resultCardView)
-
     }
 
     
@@ -207,16 +156,6 @@ class WorkController: UIViewController {
 
     /* labelに経過時間を表示 */
     @objc func timerCounter() {
-        // NSDate型を日時文字列に変換するためのNSDateFormatterを生成
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "HH:mm:ss"
-//        let dateStr: String = formatter.string(from: Date(timeIntervalSinceNow: currentTime))
-//        print(dateStr)
-        
-        // %02d： ２桁表示、0で埋める
-//        let dateFormatter = NSDateFormatter()
-//        dateFormatter.timeZone = NSTimeZone(name: "GMT")
-//        dateFormatter.dateFormat = "HH:mm:ss"
         DispatchQueue.main.async {
             self.stopWatchLabel.text = self.getElapsedTime()
         }
@@ -230,18 +169,7 @@ class WorkController: UIViewController {
         }
     }
     
-    /** 計測終了確認アラート */
-    private func confirmWorkEndAlert() {
-        let alert = UIAlertController(title: "計測を終了します", message: "終了してもよろしいですか?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] _ in
-            self?.registWorkResult()
-            self?.dismissModal()
-        })
-        self.present(alert, animated: true, completion: nil)
-    }
 
-    
     /** DBに登録 */
     private func registWorkResult() {
         guard let totalDistance  = self.distanceLabel.text,
@@ -271,6 +199,7 @@ class WorkController: UIViewController {
 
     }
     
+    /** 歩数を取得するためのSetup */
     private func setupPedometer() {
         guard CMPedometer.isStepCountingAvailable() else { return }
         self.pedometer.startUpdates(from: NSDate() as Date) { (data: CMPedometerData?, error) -> Void in
@@ -285,34 +214,7 @@ class WorkController: UIViewController {
             }
         }
     }
-    
-    /* Modalを閉じる */
-    private func dismissModal() {
-        
-        dismiss(animated: true, completion: { [presentingViewController] () -> Void in
-            if self.pin != nil {
-                self.mapView.removeAnnotation(self.pin!)
-            }
-            self.mapView.removeFromSuperview()
 
-//            let tabVC = presentingViewController as! MainTabBarViewController
-//            //Navigation Controllerを取得
-//            let nav = tabVC.viewControllers![0]  as! UINavigationController
-//            
-//            //呼び出し元のView Controllerを遷移履歴から取得しパラメータを渡す
-//            let home = nav.viewControllers[nav.viewControllers.count-1] as! HomeViewController
-//            home.loadView()
-//            home.viewDidLoad()
-//            WorkController.homeDelegate?.dateUpdate()
-            
-            presentingViewController?.loadView()
-            presentingViewController?.viewDidLoad()
-            
-            Utility.showCompleteDialog()
-        })
-
-    }
-    
     
     /** 開始時間から現在の経過時間を返却
      * - return 現在の経過時間 / HH:mm:ss
@@ -320,26 +222,14 @@ class WorkController: UIViewController {
     private func getElapsedTime() -> String {
         // タイマー開始からのインターバル時間
         let currentTime = Date().timeIntervalSince(startTimeDate)
-        
         let hour = (Int)(fmod((currentTime / 60 / 60), 60))
-        
         // fmod() 余りを計算
         let minute = (Int)(fmod((currentTime/60), 60))
-        
         // currentTime/60 の余り
         let second = (Int)(fmod(currentTime, 60))
-        
         return  "\(String(format:"%02d", hour)):\(String(format:"%02d", minute)):\(String(format:"%02", second))"
     }
-    
-    
-    
-    /** Endボタン押し時 */
-    @IBAction func endAction(_ sender: Any) {
-        confirmWorkEndAlert()
-    }
-    
-    
+
 //    /* 時速の計算結果
 //     * return 時速の計算結果 type Double
 //     */
@@ -396,27 +286,98 @@ class WorkController: UIViewController {
 
         totalDistance += dis
         self.previousPoint = location
-        
-//        var isFirst = true
-//        var from: CLLocation?
-//        for i in self.locationArray {
-//            if isFirst {
-//                isFirst = false
-//                from = i
-//                continue
-//            }
-//            guard let fromLocation = from else { continue }
-//
-//            print(fromLocation)
-//            print(i)
-//
-//            totalDistance += fromLocation.distance(from: i)
-//            from = i
-//        }
 
-        print(totalDistance)
         return String(totalDistance)
     }
+    
+    /** 計測終了確認アラート */
+    private func confirmWorkEndAlert() {
+        let alert = UIAlertController(title: "計測を終了します", message: "終了してもよろしいですか?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            self?.registWorkResult()
+            self?.dismissModal()
+        })
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    /* Modalを閉じる */
+    private func dismissModal() {
+        dismiss(animated: true, completion: { [presentingViewController] () -> Void in
+            if self.pin != nil {
+                self.mapView.removeAnnotation(self.pin!)
+            }
+            self.mapView.removeFromSuperview()
+            
+            //            let tabVC = presentingViewController as! MainTabBarViewController
+            //            //Navigation Controllerを取得
+            //            let nav = tabVC.viewControllers![0]  as! UINavigationController
+            //
+            //            //呼び出し元のView Controllerを遷移履歴から取得しパラメータを渡す
+            //            let home = nav.viewControllers[nav.viewControllers.count-1] as! HomeViewController
+            //            home.loadView()
+            //            home.viewDidLoad()
+            //            WorkController.homeDelegate?.dateUpdate()
+            presentingViewController?.loadView()
+            presentingViewController?.viewDidLoad()
+            
+            Utility.showCompleteDialog()
+        })
+    }
+    
+
+    /** Endボタン押し時 */
+    @IBAction func endAction(_ sender: Any) {
+        confirmWorkEndAlert()
+    }
+    
+    /** TapGesture */
+    @IBAction func handleGesture(_ sender: Any) {
+        confirmWorkEndAlert()
+        //        weak var nc = navigationController as? ModalNavigationController
+        //        nc?.handleGesture(sender as! UIPanGestureRecognizer)
+        
+        //        print("----------------------")
+        //        if  isTransform {
+        //
+        //            UIView.animate(withDuration: 0.3) {
+        //                self.map.alpha = 1.0
+        //                //            self.resultView.alpha = 1.0
+        //
+        //                UIView.animate(withDuration: 0.5) {
+        //                    //                self.map.frame = CGRect(x: AppSize.width - 150, y: AppSize.height - 150, width: 150, height: 150)
+        //                    //                self.map.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        //                    self.resultView.frame = CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.height / 2)
+        ////                    self.resultView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        ////
+        ////                    self.isTransform = false
+        ////                }
+        ////            }
+        ////
+        ////        } else {
+        //
+        //            UIView.animate(withDuration: 0.3) {
+        //                self.map.alpha = 0.0
+        //                //            self.resultView.alpha = 0.0
+        //
+        //                UIView.animate(withDuration: 1.0) {
+        ////                    self.map.frame = CGRect(x: AppSize.width - 150, y: AppSize.height - 150, width: 150, height: 150)
+        ////                    self.map.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        //                    self.resultView.frame = CGRect(x: AppSize.width - 150, y: AppSize.height - 150 - AppSize.tabBarHeight, width: 150, height: 150)
+        //                    self.resultView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        //
+        ////                    self.isTransform = true
+        //
+        //                }
+        //            }
+        ////        }
+        //
+
+    }
+    
+
+    
     
 }
 
@@ -469,9 +430,7 @@ extension WorkController: CLLocationManagerDelegate {
     }
     
     
-    
-    /*
-     Location取得の認証に変化があった際に呼ばれる
+    /*  Location取得の認証に変化があった際に呼ばれる
      */
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
@@ -492,13 +451,6 @@ extension WorkController: CLLocationManagerDelegate {
                 locationManager.startUpdatingLocation()
                 locationManager.activityType = .fitness
 
-                /*
-                 other その他（デフォルト値）
-                 automotiveNavigation 自動車ナビゲーション用
-                 fitness 歩行者
-                 otherNavigation その他のナビゲーションケース（ボート、電車、飛行機)
-                 */
-
             case .authorizedWhenInUse:
                 print("起動時のみ、位置情報の取得が許可されています。")
                 locationManager.startUpdatingLocation()
@@ -516,24 +468,12 @@ extension WorkController: CLLocationManagerDelegate {
         // 配列から現在座標を取得.
         guard let location: CLLocation = locations.first else { return }
 
-//        guard let _ = self.previousPoint else {
-//            let _ = self.getDistance(location: location)
-//            self.drawLineToMap(from: firstPoint.coordinate, to: location.coordinate)
-//            return
-//        }
-        
-        // Regionを作成.
-        self.setRegion(coordinate: location.coordinate)
-        
-        // pinをセット
-        self.setPin(title: "現在地", coordinate: location.coordinate)
-        
-        // 直線を引く座標を作成.
-//        self.drawLineToMap(from: previous.coordinate, to: location.coordinate)
+        self.setRegion(coordinate: location.coordinate) // Regionを作成.
+        self.setPin(title: "現在地", coordinate: location.coordinate) // pinをセット
+//        self.drawLineToMap(from: previous.coordinate, to: location.coordinate) // 直線を引く座標を作成.
         
         var calorie: Double = 0.0
         if let weight = UserDefaults.standard.string(forKey: "weight") {
-            
             // タイマー開始からのインターバル時間
             let currentTime = Date().timeIntervalSince(startTimeDate)
             let hour = (Double)(fmod((currentTime / 60 / 60), 60))
@@ -557,7 +497,7 @@ extension WorkController: CLLocationManagerDelegate {
 //            11METS： 水泳（クロール、バタフライ）、ランニング（10.8km/h)
 //            15METS： ランニング(14.5km/h)、階段ダッシュ
         }
-        
+        // UIの更新
         DispatchQueue.main.async {
             self.distanceLabel.text = self.getDistance(location: location)
             
@@ -569,7 +509,6 @@ extension WorkController: CLLocationManagerDelegate {
             if speed < 0 { speedText = "計測不能" }
             self.speedLabel.text = speedText
         }
-
         
     }
     
@@ -604,13 +543,8 @@ extension WorkController: MKMapViewDelegate {
 //        region.span.latitudeDelta = 0.003
 //        region.span.longitudeDelta = 0.003
 //        self.mapView.centerCoordinate = coordinate
-        
-//        DispatchQueue.main.async {
-            self.mapView.setRegion(region, animated: true)  // MapViewに反映
-            self.mapView.setCenter(coordinate, animated: true)
-//        }
-
-        
+        self.mapView.setRegion(region, animated: true)  // MapViewに反映
+        self.mapView.setCenter(coordinate, animated: true)
     }
     
     
