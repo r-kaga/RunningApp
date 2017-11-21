@@ -208,12 +208,15 @@ class WorkController: UIViewController {
                 else { return }
  
                 let distance = String(round( ( dis / 1000.0 ) * 100) / 100)
-                print(distance)
-                print(data.numberOfSteps)
-                print(data.distance?.doubleValue)
+//                print(distance)
+//                print(data.numberOfSteps)
+//                print(data.distance?.doubleValue)
                 self.distanceLabel.text = distance
                 guard let pace = data.currentPace?.doubleValue else { return }
-                self.speedLabel.text = String(pace)
+//                print(round(pace * 3.6))
+//                print(round((pace * 3.6) * 100) / 100)
+//                print(String(round( ( (pace * 3600) / 1000.0 ) * 100) / 100))
+                self.speedLabel.text = String(round( ( (pace * 3600) / 100.0 ) * 100) / 100)
             }
         }
     }
