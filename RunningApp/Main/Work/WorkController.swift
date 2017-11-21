@@ -201,16 +201,17 @@ class WorkController: UIViewController {
     
     /** 歩数を取得するためのSetup */
     private func setupPedometer() {
-        guard CMPedometer.isStepCountingAvailable() else { return }
+        guard CMPedometer.isDistanceAvailable() else { return }
         self.pedometer.startUpdates(from: NSDate() as Date) { (data: CMPedometerData?, error) -> Void in
             DispatchQueue.main.async {
-                guard let data = data,
-                    error == nil
-                    else { return }
-                let steps = data.numberOfSteps
-                let distance = data.distance
-                self.distanceLabel.text = "steps: \(steps)"
-                print("distance = \(distance)")
+                guard let data = data, let dis = data.distance?.doubleValue, error == nil
+                else { return }
+ 
+                let distance = String(round( ( dis / 1000.0 ) * 100) / 100)
+                print(distance)
+                print(data.numberOfSteps)
+                print(data.distance?.doubleValue)
+                self.distanceLabel.text = distance
             }
         }
     }
@@ -499,7 +500,7 @@ extension WorkController: CLLocationManagerDelegate {
         }
         // UIの更新
         DispatchQueue.main.async {
-            self.distanceLabel.text = self.getDistance(location: location)
+//            self.distanceLabel.text = self.getDistance(location: location)
             
             self.calorieLabel.text = String(calorie)
 
