@@ -212,6 +212,8 @@ class WorkController: UIViewController {
                 print(data.numberOfSteps)
                 print(data.distance?.doubleValue)
                 self.distanceLabel.text = distance
+                guard let pace = data.currentPace?.doubleValue else { return }
+                self.speedLabel.text = String(pace)
             }
         }
     }
