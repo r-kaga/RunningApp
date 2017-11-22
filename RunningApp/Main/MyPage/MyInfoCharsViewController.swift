@@ -35,7 +35,7 @@ class MyInfoCharsViewController: UIViewController, ChartViewDelegate, UIScrollVi
     
     private func setupScrollView() {
         scrollView = UIScrollView(frame: CGRect(x: 0, y: AppSize.statusBarAndNavigationBarHeight + 40, width: AppSize.width, height: AppSize.height))
-        scrollView.backgroundColor = .white
+        scrollView.backgroundColor = .black
         scrollView.contentSize = CGSize(width: AppSize.width, height: AppSize.height)
         scrollView.bounces = false
         scrollView.showsVerticalScrollIndicator = false
@@ -46,7 +46,13 @@ class MyInfoCharsViewController: UIViewController, ChartViewDelegate, UIScrollVi
     }
     
     private func setupPieChart() {
-        let rect = CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.height / 2)
+        
+        let uiView = UIView(frame: CGRect(x: 10, y: 10, width: AppSize.width - 20, height: AppSize.height / 2))
+        uiView.backgroundColor = .white
+        uiView.layer.cornerRadius = 10.0
+        uiView.clipsToBounds = true
+        
+        let rect = CGRect(x: 0, y: 0, width: uiView.frame.width, height: uiView.frame.height)
         let chartView = PieChartView(frame: rect)
 
         var runCount: CGFloat = 0
@@ -78,12 +84,21 @@ class MyInfoCharsViewController: UIViewController, ChartViewDelegate, UIScrollVi
         chartView.chartDescription?.textColor = .white
         chartView.entryLabelColor = .white
         chartView.chartDescription?.text = "運動のタイプ別割合"
-        scrollView.addSubview(chartView)
+
+        uiView.addSubview(chartView)
+        
+        scrollView.addSubview(uiView)
     }
     
     func setChart() {
         
-        let rect = CGRect(x: 0, y: AppSize.height / 2 + 50, width: AppSize.width, height: AppSize.height / 2)
+        let uiView = UIView(frame: CGRect(x: 10, y: AppSize.height / 2 + 40, width: AppSize.width - 20, height: AppSize.height / 2))
+        uiView.backgroundColor = .white
+        uiView.layer.cornerRadius = 10.0
+        uiView.clipsToBounds = true
+        
+        let rect = CGRect(x: 0, y: 0, width: uiView.frame.width, height: uiView.frame.height)
+        
         barChartView = BarChartView(frame: rect)
 //        barChartView.xAxis.enabled = false
         barChartView.noDataText = "You need to provide data for the chart."
@@ -185,8 +200,11 @@ class MyInfoCharsViewController: UIViewController, ChartViewDelegate, UIScrollVi
         let chartData = BarChartData(dataSet: chartDataSet)
         barChartView.data = chartData
         
-        scrollView.contentSize.height += barChartView.frame.height - 50
-        scrollView.addSubview(barChartView)
+        scrollView.contentSize.height += barChartView.frame.height - 60
+        
+        uiView.addSubview(barChartView)
+        scrollView.addSubview(uiView)
+        
     }
     
 //    /** 初期設定 */
