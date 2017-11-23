@@ -25,7 +25,8 @@ class WorkController: UIViewController {
     private var isStarted = false
     
     let pedometer = CMPedometer()
-    
+    let cmAltimeter = CMAltimeter()
+
     var locationManager: CLLocationManager!
     var pin: MKPointAnnotation?
     
@@ -35,6 +36,11 @@ class WorkController: UIViewController {
     
     var firstPoint: CLLocation!
     var previousPoint: CLLocation?
+    
+//    var minAltitude: CLLocationDistance?
+//    var maxAltitude: CLLocationDistance?
+    var minAltitude: Double?
+    var maxAltitude: Double?
     
     var totalDistance: Double = 0.0
     
@@ -176,9 +182,10 @@ class WorkController: UIViewController {
               let speed    = self.speedLabel.text,
               let time     = self.stopWatchLabel.text,
               let calorie  = self.calorieLabel.text,
-              let type     = WorkController.workType
+              let type     = WorkController.workType,
+              let minAlt   = self.minAltitude,
+              let maxAlt   = self.maxAltitude
         else { return }
-
         
         let realm = try! Realm()
         let dataSet = RealmDataSet()
@@ -186,13 +193,15 @@ class WorkController: UIViewController {
         if let id = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false).first?.id {
             dataSet.id = id + 1
         }
-        dataSet.date = Utility.getNowClockString()
-        dataSet.calorie = calorie
-        dataSet.distance = totalDistance
-        dataSet.speed = speed
-        dataSet.time = time
-        dataSet.workType = type
-        
+        dataSet.date        = Utility.getNowClockString()
+        dataSet.calorie     = calorie
+        dataSet.distance    = totalDistance
+        dataSet.speed       = speed
+        dataSet.time        = time
+        dataSet.workType    = type
+//        dataSet.minAlt      = minAlt
+//        dataSet.maxAlt      = maxAlt
+
         try! realm.write {
             realm.add(dataSet)
         }
@@ -208,17 +217,47 @@ class WorkController: UIViewController {
                 else { return }
  
                 let distance = String(round( ( dis / 1000.0 ) * 100) / 100)
-//                print(distance)
-//                print(data.numberOfSteps)
-//                print(data.distance?.doubleValue)
                 self.distanceLabel.text = distance
+                
                 guard let pace = data.currentPace?.doubleValue else { return }
-//                print(round(pace * 3.6))
-//                print(round((pace * 3.6) * 100) / 100)
-//                print(String(round( ( (pace * 3600) / 1000.0 ) * 100) / 100))
                 self.speedLabel.text = String(round( ( (pace * 3600) / 100.0 ) * 100) / 100)
+                
+//                data.floorsAscended
+//                data.floorsDescended
+                
             }
         }
+    }
+    
+    /** 高度を取得するためのSetup */
+    private func setupAltitude() {
+        // Altimeterのモニタリングのスタート.
+        guard CMAltimeter.isRelativeAltitudeAvailable() else { return }
+        self.cmAltimeter.startRelativeAltitudeUpdates(to: OperationQueue.main, withHandler: {(altimeterData, error) in
+            guard error == nil else {
+                //                    print(error?.localizedDescription)
+                return
+            }
+            guard let altitude = altimeterData?.relativeAltitude.doubleValue
+                else { return }
+            
+            if self.minAltitude == nil || self.maxAltitude == nil {
+                self.minAltitude = altitude
+                self.maxAltitude = altitude
+            }
+            
+            guard let minAlt = self.minAltitude, let maxAlt = self.maxAltitude
+                else { return }
+            
+            if minAlt > altitude {
+                self.minAltitude = altitude
+            }
+            
+            if maxAlt < altitude {
+                self.maxAltitude = altitude
+            }
+            
+        })
     }
 
     
@@ -477,6 +516,13 @@ extension WorkController: CLLocationManagerDelegate {
         self.setRegion(coordinate: location.coordinate) // Regionを作成.
         self.setPin(title: "現在地", coordinate: location.coordinate) // pinをセット
 //        self.drawLineToMap(from: previous.coordinate, to: location.coordinate) // 直線を引く座標を作成.
+        
+        
+//        if self.minAltitude > location {
+//            self.minAltitude = location.altitude
+//        }
+//        self.minAltitude = location.altitude
+//        self.maxAltitude = location.altitude
         
         var calorie: Double = 0.0
         if let weight = UserDefaults.standard.string(forKey: "weight") {

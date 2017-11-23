@@ -16,7 +16,10 @@ class infoDetailViewController: UIViewController {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var speedLabel: UILabel!
-
+    @IBOutlet weak var maxAltLabel: UILabel!
+    @IBOutlet weak var minAltLabel: UILabel!
+    
+    
     var myInfo: RealmDataSet? = nil
 
     weak var delegate: MyPageDelegate?
@@ -48,6 +51,8 @@ class infoDetailViewController: UIViewController {
         distanceLabel.text = myInfo?.distance
         timeLabel.text = myInfo?.time
         speedLabel.text = myInfo?.speed
+//        minAltLabel.text = myInfo?.minAlt
+//        maxAltLabel.text = myInfo?.maxAlt
     }
     
     @objc private func moreButtonAction(_ sender: UIButton) {

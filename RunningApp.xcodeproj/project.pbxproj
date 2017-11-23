@@ -193,6 +193,14 @@
 			path = infoDetail;
 			sourceTree = "<group>";
 		};
+		E32754F11FC69AD40077504D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E38F7FB11F9B0BF00036CEE0 /* Realm */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		E328FB801F866FEC00E1D4BC /* SettingForm */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,8 +324,8 @@
 			isa = PBXGroup;
 			children = (
 				E38F7FAF1F9B0B460036CEE0 /* Main */,
-				E38F7FB11F9B0BF00036CEE0 /* Realm */,
 				E341882B1F793D5E000AB961 /* Resources */,
+				E32754F11FC69AD40077504D /* Model */,
 				E3762A741F8FA1F100B0B501 /* Service */,
 				E380AB301F23735F0034EA8F /* AppDelegate.swift */,
 				E3034EA31F87BFBF00FCB026 /* Const.swift */,

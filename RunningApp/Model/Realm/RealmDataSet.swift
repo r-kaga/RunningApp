@@ -22,7 +22,8 @@ class RealmDataSet: Object {
     @objc dynamic var calorie  = String()
     @objc dynamic var time     = String()
     @objc dynamic var workType = String()
-    
+//    @objc dynamic var minAlt   = String()
+//    @objc dynamic var maxAlt   = String()
     
 //    func save() {
 //        let realm = try! Realm()
@@ -40,7 +41,6 @@ class RealmDataSet: Object {
 //            }
 //        }
 //    }
-    
     
 //    // 新しいIDを採番します。
 //    func createNewId() -> Int {
