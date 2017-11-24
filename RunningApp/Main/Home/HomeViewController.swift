@@ -28,6 +28,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var collectionOutlet: UIView!
     @IBOutlet weak var distanceCharts: UIView!
     
+    // 初回表示かどうか.アプリ立ち上げ時のみLoadingを表示
+    var isFirstAppear: Bool =  false
+    var loading = Loading.make()
+    
     var resultOutletHeight: CGFloat {
         return AppSize.height - (self.distanceCharts.frame.maxY + self.collectionOutlet.frame.height + AppSize.tabBarHeight + 20)
     }
@@ -41,6 +45,20 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
 
         setupCollectionView()
         setUpResultView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if self.isFirstAppear {
+            loading?.startLoading()
+            self.isFirstAppear = false
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                self.loading?.close()
+            })
+        }
+        
     }
     
     
