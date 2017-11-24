@@ -29,7 +29,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var distanceCharts: UIView!
     
     // 初回表示かどうか.アプリ立ち上げ時のみLoadingを表示
-    var isFirstAppear: Bool =  false
+    var isFirstAppear: Bool = true
     var loading = Loading.make()
     
     var resultOutletHeight: CGFloat {
