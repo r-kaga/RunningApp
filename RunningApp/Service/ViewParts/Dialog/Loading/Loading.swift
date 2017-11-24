@@ -10,8 +10,6 @@ import UIKit
 
 class Loading: UIView, DialogProtocol {
 
-    static let STOROKE_LINE_COLOR = UIColor(red: 65/255, green: 67/255, blue: 69/255, alpha: 0.15).cgColor // プログレスバーカラー
-    static let BASE_LINE_COLOR = UIColor(red: 65/255, green: 67/255, blue: 69/255, alpha: 1.0).cgColor // ラインバックグランドカラー
     static let CIRCLE_RATE: CGFloat = 80 // メインのビューのサイズから何パーセンの大きさにするか
     
     @IBOutlet weak var panelOutlet: UIView!
@@ -75,7 +73,7 @@ class Loading: UIView, DialogProtocol {
         )
         
         clayer.fillColor = UIColor.clear.cgColor
-        clayer.strokeColor = Loading.BASE_LINE_COLOR
+        clayer.strokeColor = UIColor(red: 65/255, green: 67/255, blue: 69/255, alpha: 0.15).cgColor
         clayer.lineWidth = 4.0
         self.fix_rect = CGRect(
             x: (self.panelOutlet.frame.width / 2.0) - radius,
@@ -92,7 +90,7 @@ class Loading: UIView, DialogProtocol {
         self.progress_layer.frame = clayer.frame
         
         self.progress_layer.fillColor = clayer.fillColor
-        self.progress_layer.strokeColor = Loading.STOROKE_LINE_COLOR
+        self.progress_layer.strokeColor = UIColor(red: 65/255, green: 67/255, blue: 69/255, alpha: 1.0).cgColor
         self.progress_layer.lineWidth = clayer.lineWidth
         self.progress_layer.lineCap = kCALineCapRound
         
@@ -122,7 +120,7 @@ class Loading: UIView, DialogProtocol {
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         animation.fromValue = 0
         animation.toValue = 1
-        animation.duration = CFTimeInterval(1.0)
+        animation.duration = CFTimeInterval(1.5)
         animation.autoreverses = true
         animation.repeatCount = MAXFLOAT
         
