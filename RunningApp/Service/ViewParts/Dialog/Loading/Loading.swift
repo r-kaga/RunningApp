@@ -120,7 +120,7 @@ class Loading: UIView, DialogProtocol {
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         animation.fromValue = 0
         animation.toValue = 1
-        animation.duration = CFTimeInterval(1.5)
+        animation.duration = CFTimeInterval(1.2)
         animation.autoreverses = true
         animation.repeatCount = MAXFLOAT
         
