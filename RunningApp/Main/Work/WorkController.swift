@@ -22,10 +22,15 @@ class WorkController: UIViewController {
     weak var timer: Timer!
     var startTimeDate: Date!
     
+    weak var pausedTimer: Timer?
+    var pausedTime: Int = 0
+    
     private var isStarted = false
     
     let pedometer = CMPedometer()
     let cmAltimeter = CMAltimeter()
+    let activityManager = CMMotionActivityManager()
+
 
     var locationManager: CLLocationManager!
     var pin: MKPointAnnotation?
@@ -132,7 +137,7 @@ class WorkController: UIViewController {
                     self.countImageView.removeFromSuperview()
                     self.isStarted = true
                     self.startTimer()
-
+                    self.startPausedTime()
                 })
 
             })
@@ -158,7 +163,6 @@ class WorkController: UIViewController {
         
         startTimeDate = Date()
     }
-    
 
     /* labelに経過時間を表示 */
     @objc func timerCounter() {
@@ -175,16 +179,41 @@ class WorkController: UIViewController {
         }
     }
     
+    
+    private func startPausedTime()  {
+        print("startPauseTimer")
+        pausedTimer = Timer.scheduledTimer(
+            timeInterval: 1.0,
+            target: self,
+            selector: #selector(self.countPausedTimer),
+            userInfo: nil,
+            repeats: true)
+    }
+    
+    @objc private func countPausedTimer(_ pause: Bool) {
+        print(self.pausedTime)
+        self.pausedTime += 1
+    }
+    
+    private func pausedTimer(pause: Bool) {
+        switch pause {
+            case true:
+                self.startPausedTime()
+            case false:
+                self.pausedTimer?.invalidate()
+        }
+    }
 
+    
     /** DBに登録 */
     private func registWorkResult() {
         guard let totalDistance  = self.distanceLabel.text,
-              let speed    = self.speedLabel.text,
-              let time     = self.stopWatchLabel.text,
-              let calorie  = self.calorieLabel.text,
-              let type     = WorkController.workType,
-              let minAlt   = self.minAltitude,
-              let maxAlt   = self.maxAltitude
+              let speed      = self.speedLabel.text,
+              let time       = self.stopWatchLabel.text,
+              let calorie    = self.calorieLabel.text,
+              let type       = WorkController.workType,
+              let minAlt     = self.minAltitude,
+              let maxAlt     = self.maxAltitude
         else { return }
         
         let realm = try! Realm()
@@ -201,6 +230,7 @@ class WorkController: UIViewController {
         dataSet.workType    = type
 //        dataSet.minAlt      = minAlt
 //        dataSet.maxAlt      = maxAlt
+//        dataSet.pausedTime = self.pausedTime
 
         try! realm.write {
             realm.add(dataSet)
@@ -227,6 +257,20 @@ class WorkController: UIViewController {
                 
             }
         }
+        
+        self.pedometer.startEventUpdates { (event: CMPedometerEvent?, error: Error?) in
+            guard let event = event, error == nil else { return }
+            
+            print(event.type.hashValue)
+            
+            switch event.type {
+                case .pause:
+                    self.pausedTimer(pause: true)
+                case .resume:
+                    self.pausedTimer(pause: false)
+            }
+        }
+        
     }
     
     /** 高度を取得するためのSetup */
@@ -259,6 +303,28 @@ class WorkController: UIViewController {
             
         })
     }
+    
+//    private func setupActivityType() {
+//        guard CMMotionActivityManager.isActivityAvailable() else { return }
+//
+//        self.activityManager.startActivityUpdates(to: OperationQueue.current!,withHandler: { (data: CMMotionActivity?) in
+//
+//            guard let isWalking = data?.walking,
+//                  let isRunning = data?.running,
+//                  let isStatinary = data?.stationary
+//            else { return }
+//
+//            if isWalking {
+////                self.walkingTime =
+//            } else if isStatinary {
+//                self.pausedTimer(pause: true)
+//            } else if isRunning {
+//                self.pausedTimer(pause: false)
+//            }
+//    
+//        })
+//    }
+
 
     
     /** 開始時間から現在の経過時間を返却
