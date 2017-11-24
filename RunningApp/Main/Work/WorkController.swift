@@ -207,6 +207,10 @@ class WorkController: UIViewController {
     
     /** DBに登録 */
     private func registWorkResult() {
+        
+        print(self.minAltitude)
+        print(self.maxAltitude)
+        
         guard let totalDistance  = self.distanceLabel.text,
               let speed      = self.speedLabel.text,
               let time       = self.stopWatchLabel.text,
@@ -430,8 +434,9 @@ class WorkController: UIViewController {
             //            home.loadView()
             //            home.viewDidLoad()
             //            WorkController.homeDelegate?.dateUpdate()
-            presentingViewController?.loadView()
-            presentingViewController?.viewDidLoad()
+//            presentingViewController?.loadView()
+//            presentingViewController?.viewDidLoad()
+//            presentingViewController?.viewWillAppear()
             
             Utility.showCompleteDialog()
         })
