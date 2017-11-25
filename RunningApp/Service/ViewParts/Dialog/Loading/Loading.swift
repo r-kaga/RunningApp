@@ -130,6 +130,17 @@ class Loading: UIView, DialogProtocol {
         self.progress_layer.add(animation, forKey: "progress")
     }
     
+    
+    func open() {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        self.frame = (app.window?.frame)!
+        app.window?.addSubview(self)
+        
+        self.alpha = 0.0
+        UIView.animate(withDuration: 0.5, animations: {
+            self.alpha = 1.0
+        }, completion: nil)
+    }
 
 }
 
