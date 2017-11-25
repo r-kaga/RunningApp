@@ -32,6 +32,10 @@ struct AppSize {
 //    }
  
     static var statusBarAndNavigationBarHeight: CGFloat { return statusBarHeight + navigationBarHeight }
+    
+    static var backgroundColor: UIColor {
+        return UIColor(red: 0/255, green: 158/255, blue: 254/255, alpha: 1.0)
+    }
 
     
     
