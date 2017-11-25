@@ -42,6 +42,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         
         navigationItem.title = "Home"
+        self.view.backgroundColor = AppSize.backgroundColor
 
         setupCollectionView()
         setUpResultView()
@@ -65,7 +66,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     private func setUpResultView() {
 
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.height))
-        scrollView.backgroundColor = UIColor.black
+        scrollView.backgroundColor = AppSize.backgroundColor
         scrollView.contentSize = CGSize(width: AppSize.width, height: ressultOutlet.frame.height) // 中身の大きさを設定
         scrollView.isPagingEnabled = true
         scrollView.bounces = false
@@ -93,7 +94,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                                                 width: 200,
                                                 height: 20))
         Latestlabel.text = "Latest Date"
-        Latestlabel.textColor = .white
+        Latestlabel.textColor = .black
         Latestlabel.textAlignment = .center
         scrollView.addSubview(Latestlabel)
 
@@ -129,7 +130,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                                                 height: 20))
         
         secondlabel.text = "Seconde Date"
-        secondlabel.textColor = .white
+        secondlabel.textColor = .black
         secondlabel.textAlignment = .center
         scrollView.contentSize.width += AppSize.width
         scrollView.addSubview(secondlabel)
@@ -161,7 +162,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         //        thirdlabel.center = CGPoint(x: (third.frame.maxX - third.frame.width / 2), y: 0)
         thirdlabel.text = "third Date"
-        thirdlabel.textColor = .white
+        thirdlabel.textColor = AppSize.navigationAndTabBarColor
         thirdlabel.textAlignment = .center
         scrollView.addSubview(thirdlabel)
         
@@ -224,6 +225,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
 //        collectionView.bounces = false
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.backgroundColor = AppSize.backgroundColor
         
         self.collectionOutlet.addSubview(collectionView)
     }

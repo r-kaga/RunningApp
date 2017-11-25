@@ -13,6 +13,8 @@ class MyInfoCharsViewController: UIViewController, ChartViewDelegate, UIScrollVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = AppSize.backgroundColor
+        
         let realm = try! Realm()
         myInfo = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
         guard !myInfo.isEmpty else {
@@ -35,7 +37,7 @@ class MyInfoCharsViewController: UIViewController, ChartViewDelegate, UIScrollVi
     
     private func setupScrollView() {
         scrollView = UIScrollView(frame: CGRect(x: 0, y: AppSize.statusBarAndNavigationBarHeight + 40, width: AppSize.width, height: AppSize.height))
-        scrollView.backgroundColor = .black
+        scrollView.backgroundColor = .clear
         scrollView.contentSize = CGSize(width: AppSize.width, height: AppSize.height)
         scrollView.bounces = false
         scrollView.showsVerticalScrollIndicator = false

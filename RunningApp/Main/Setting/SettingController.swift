@@ -86,12 +86,12 @@ class SettingController: UIViewController {
         tableView.bounces = false
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorColor = .black
+        tableView.separatorColor = .clear
         tableView.register(UINib(nibName: "SettingCell", bundle: nil), forCellReuseIdentifier: "cell")
         tableView.estimatedRowHeight = 60
         tableView.rowHeight = 60
         tableView.sectionIndexColor = .black
-        
+        tableView.separatorInset = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0)
         /* cellの上下に出来る横線を消す。高さがゼロのUIViewで上書き */
         //        tableView.tableFooterView = UIView()
         //        tableView.rowHeight = UITableViewAutomaticDimension
@@ -173,7 +173,7 @@ extension SettingController: UITableViewDataSource {
                 Utility.setLocalPushTime(setTime: Int(value)!)
             }
         }
-        cell.backgroundColor = AppSize.backgroundColor
+        cell.backgroundColor = .white
         
         /* セレクトされた時に何もしない */
         cell.selectionStyle = .none
