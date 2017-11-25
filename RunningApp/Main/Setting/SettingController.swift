@@ -82,7 +82,7 @@ class SettingController: UIViewController {
     /** tableViewのセットアップ */
     private func setupTableView() {
         tableView = UITableView(frame: self.view.frame, style: .grouped)
-        tableView.backgroundColor = .clear
+        tableView.backgroundColor = AppSize.backgroundColor
         tableView.bounces = false
         tableView.delegate = self
         tableView.dataSource = self
@@ -173,7 +173,7 @@ extension SettingController: UITableViewDataSource {
                 Utility.setLocalPushTime(setTime: Int(value)!)
             }
         }
-        cell.backgroundColor = .black
+        cell.backgroundColor = AppSize.backgroundColor
         
         /* セレクトされた時に何もしない */
         cell.selectionStyle = .none
