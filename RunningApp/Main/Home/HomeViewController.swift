@@ -94,7 +94,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                                                 width: 200,
                                                 height: 20))
         Latestlabel.text = "Latest Date"
-        Latestlabel.textColor = .black
+        Latestlabel.textColor = .gray
         Latestlabel.textAlignment = .center
         scrollView.addSubview(Latestlabel)
 
@@ -130,7 +130,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                                                 height: 20))
         
         secondlabel.text = "Seconde Date"
-        secondlabel.textColor = .black
+        secondlabel.textColor = .gray
         secondlabel.textAlignment = .center
         scrollView.contentSize.width += AppSize.width
         scrollView.addSubview(secondlabel)
@@ -162,7 +162,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         //        thirdlabel.center = CGPoint(x: (third.frame.maxX - third.frame.width / 2), y: 0)
         thirdlabel.text = "third Date"
-        thirdlabel.textColor = AppSize.navigationAndTabBarColor
+        thirdlabel.textColor = .gray
         thirdlabel.textAlignment = .center
         scrollView.addSubview(thirdlabel)
         

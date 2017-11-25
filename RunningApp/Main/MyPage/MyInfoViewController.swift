@@ -42,6 +42,7 @@ class MyInfoViewController: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.title = "MyPage"
+        self.view.backgroundColor = AppSize.backgroundColor
     }
 
     private func setupTableView() {
@@ -54,8 +55,9 @@ class MyInfoViewController: UIViewController, UIScrollViewDelegate {
 //        self.view.addSubview(label)
 
         tableView = UITableView(frame: CGRect(x: 15, y: AppSize.statusBarAndNavigationBarHeight + 15 + 40, width: AppSize.width - 30, height: AppSize.height - (AppSize.height / 3)), style: .plain)
-        tableView.backgroundColor = .black
+        tableView.backgroundColor = AppSize.backgroundColor
         tableView.bounces = false
+        tableView.showsVerticalScrollIndicator = false
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorColor = .clear
@@ -131,7 +133,10 @@ extension MyInfoViewController: UITableViewDataSource {
         cell.frame = CGRect(x: 15, y: 0, width: AppSize.width - 30, height: 60)
         cell.layer.cornerRadius = 10.0
         cell.clipsToBounds = true
-        cell.backgroundColor = .black
+        cell.backgroundColor = AppSize.backgroundColor
+        cell.dateLabel.textColor = .gray
+        cell.timeLabel.textColor = .black
+        cell.distanceLabel.textColor = .black
 
         let item = self.myInfo[indexPath.row]
         cell.typeImageView?.image = UIImage(named: item.workType)!
@@ -139,7 +144,6 @@ extension MyInfoViewController: UITableViewDataSource {
         cell.timeLabel.text = item.time
         cell.distanceLabel.text = item.distance + "km"
 
-//        cell.backgroundColor = .black
         /* セレクトされた時に何もしない */
         cell.selectionStyle = .none
 
@@ -153,10 +157,10 @@ extension MyInfoViewController: UITableViewDataSource {
     /** hearderのViewを設定 */
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView:UIView = UIView(frame: CGRect(x: 0, y: 0, width: 150, height: 30))
-        headerView.backgroundColor = .black
+        headerView.backgroundColor = AppSize.backgroundColor
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: headerView.frame.width, height: headerView.frame.height))
         label.text = self.headerItem[section]
-        label.textColor = .white
+        label.textColor = .black
         headerView.addSubview(label)
         return headerView
     }
