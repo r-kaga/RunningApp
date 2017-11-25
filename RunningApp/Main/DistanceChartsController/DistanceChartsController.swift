@@ -19,9 +19,11 @@ class DistanceChartsController: UIViewController, ChartViewDelegate {
 
     /** 初期設定 */
     private func initSetUp() {
-        self.view.layer.cornerRadius = 10.0
+        self.view.layer.cornerRadius = 5.0
         self.view.clipsToBounds = true
         
+        self.view.addBorder(color: .gray, width: 0.5)
+
         let realm = try! Realm()
         let motionDate = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: true)
         
@@ -59,6 +61,8 @@ class DistanceChartsController: UIViewController, ChartViewDelegate {
         //        set.circleColors = ChartColorTemplates.material()
         
         chartView.data = LineChartData(dataSet: set)
+
+        
         self.view.addSubview(chartView)
     }
 

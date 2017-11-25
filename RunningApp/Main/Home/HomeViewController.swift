@@ -113,6 +113,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                                   calorie: latestData[0].calorie
         )
         view.typeImageView.image = UIImage(named: latestData[0].workType)!
+        view.addBorder(color: .gray, width: 0.5)
         
 //        view.indexPath = latestData[0].id
 //        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(Home.longPressed(_:)))
@@ -146,6 +147,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                                     calorie: latestData[1].calorie
         )
         second.typeImageView.image = UIImage(named: latestData[1].workType)!
+        second.addBorder(color: .gray, width: 0.5)
         
 //        second.indexPath = latestData[1].id
 //        second.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(Home.longPressed(_:))))
@@ -179,6 +181,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                                    calorie: latestData[2].calorie
         )
         third.typeImageView.image = UIImage(named: latestData[2].workType)!
+        third.addBorder(color: .gray, width: 0.5)
         
 //        third.indexPath = latestData[2].id
 //        third.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(Home.longPressed(_:))))

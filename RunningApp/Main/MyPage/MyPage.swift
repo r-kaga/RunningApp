@@ -17,6 +17,8 @@ class MyPage: UIPageViewController, UIPageViewControllerDataSource, UIScrollView
         super.viewDidLoad()
         
         self.dataSource = self
+        self.view.backgroundColor = AppSize.backgroundColor
+
         
         let myInfoViewController: MyInfoViewController = MyInfoViewController()
         let myInfoCharsViewController: MyInfoCharsViewController = MyInfoCharsViewController()

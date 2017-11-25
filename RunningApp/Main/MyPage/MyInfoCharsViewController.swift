@@ -53,7 +53,8 @@ class MyInfoCharsViewController: UIViewController, ChartViewDelegate, UIScrollVi
         uiView.backgroundColor = .white
         uiView.layer.cornerRadius = 10.0
         uiView.clipsToBounds = true
-        
+        uiView.addBorder(color: .gray, width: 0.5)
+
         let rect = CGRect(x: 0, y: 0, width: uiView.frame.width, height: uiView.frame.height)
         let chartView = PieChartView(frame: rect)
 
@@ -98,7 +99,8 @@ class MyInfoCharsViewController: UIViewController, ChartViewDelegate, UIScrollVi
         uiView.backgroundColor = .white
         uiView.layer.cornerRadius = 10.0
         uiView.clipsToBounds = true
-        
+        uiView.addBorder(color: .gray, width: 0.5)
+
         let rect = CGRect(x: 0, y: 0, width: uiView.frame.width, height: uiView.frame.height)
         
         barChartView = BarChartView(frame: rect)
