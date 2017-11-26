@@ -33,6 +33,14 @@ class MyInfoViewController: UIViewController, UIScrollViewDelegate {
     private let headerItem = [ "MyInfo" ]
     private var myInfo: Results<RealmDataSet>!
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh(_:)), for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor.gray
+        return refreshControl
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,20 +62,18 @@ class MyInfoViewController: UIViewController, UIScrollViewDelegate {
 //        label.textColor = .white
 //        self.view.addSubview(label)
 
-        tableView = UITableView(frame: CGRect(x: 15, y: AppSize.statusBarAndNavigationBarHeight + 15 + 40, width: AppSize.width - 30, height: AppSize.height - (AppSize.height / 3)), style: .plain)
+        tableView = UITableView(frame: CGRect(x: 15, y: AppSize.statusBarAndNavigationBarHeight + 40 + 15, width: AppSize.width - 30, height: AppSize.height - (AppSize.height / 3)), style: .grouped)
         tableView.backgroundColor = AppSize.backgroundColor
-        tableView.bounces = false
+//        tableView.bounces = false
         tableView.showsVerticalScrollIndicator = false
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorColor = .clear
         tableView.register(UINib(nibName: "MyPageCell", bundle: nil), forCellReuseIdentifier: "myPageCell")
-        tableView.estimatedRowHeight = 60
-        tableView.rowHeight = 60
-        tableView.sectionIndexColor = .black
-        tableView.sectionIndexBackgroundColor = .black
-        tableView.sectionIndexTrackingBackgroundColor = .black
-        tableView.sectionHeaderHeight = 30
+//        tableView.estimatedRowHeight = 60
+//        tableView.rowHeight = 60
+//        tableView.sectionIndexColor = .black
+//        tableView.separatorInset = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0)
 
         let realm = try! Realm()
         myInfo = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
@@ -77,10 +83,19 @@ class MyInfoViewController: UIViewController, UIScrollViewDelegate {
             return
         }
 
+        tableView.refreshControl = refreshControl
         self.view.addSubview(tableView)
 
     }
-
+    
+    /** Pull Action Reload method */
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        //        let newHotel = Hotels(name: "Montage Laguna Beach", place: "California south")
+        //        hotels.append(newHotel)
+        //        hotels.sort() { $0.name < $1.place }
+        self.tableView.reloadData()
+        self.tableView.refreshControl?.endRefreshing()
+    }
 
     private func setupNoDate() {
         let noDateView = NoDateView(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.height / 2.5))
@@ -150,7 +165,7 @@ extension MyInfoViewController: UITableViewDataSource {
         return cell
     }
 
-//    /** hearderを設定*/
+//    /*+ hearderを設定 */
 //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 //        return self.headerItem[0]
 //    }
@@ -158,7 +173,7 @@ extension MyInfoViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView:UIView = UIView(frame: CGRect(x: 0, y: 0, width: 150, height: 30))
         headerView.backgroundColor = AppSize.backgroundColor
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: headerView.frame.width, height: headerView.frame.height))
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: headerView.frame.width, height: headerView.frame.height / 2))
         label.text = self.headerItem[section]
         label.textColor = .black
         headerView.addSubview(label)
