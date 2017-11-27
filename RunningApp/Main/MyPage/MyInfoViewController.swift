@@ -55,13 +55,6 @@ class MyInfoViewController: UIViewController, UIScrollViewDelegate {
 
     private func setupTableView() {
 
-//        let label = UILabel(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: 15))
-//        label.textAlignment = .center
-//        label.center = CGPoint(x: AppSize.width / 2, y:  AppSize.statusBarAndNavigationBarHeight + 15 + 40)
-//        label.text = "Your Fitness All Date"
-//        label.textColor = .white
-//        self.view.addSubview(label)
-
         tableView = UITableView(frame: CGRect(x: 15, y: AppSize.statusBarAndNavigationBarHeight + 40 + 15, width: AppSize.width - 30, height: AppSize.height - (AppSize.height / 3)), style: .grouped)
         tableView.backgroundColor = AppSize.backgroundColor
 //        tableView.bounces = false

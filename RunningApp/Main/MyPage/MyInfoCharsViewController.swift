@@ -26,6 +26,10 @@ class MyInfoCharsViewController: UIViewController, ChartViewDelegate, UIScrollVi
         setupPieChart()
         setChart()
         
+        let button = RoundButton(frame: CGRect(x: AppSize.width / 2 - AppSize.width / 2, y: AppSize.statusBarAndNavigationBarHeight + 40, width: AppSize.width, height: 65))
+        scrollView.contentSize.height += 80
+        self.view.addSubview(button)
+
         self.view.addSubview(scrollView)
     }
     
@@ -36,7 +40,7 @@ class MyInfoCharsViewController: UIViewController, ChartViewDelegate, UIScrollVi
     }
     
     private func setupScrollView() {
-        scrollView = UIScrollView(frame: CGRect(x: 0, y: AppSize.statusBarAndNavigationBarHeight + 40, width: AppSize.width, height: AppSize.height))
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: AppSize.statusBarAndNavigationBarHeight + 110, width: AppSize.width, height: AppSize.height))
         scrollView.backgroundColor = .clear
         scrollView.contentSize = CGSize(width: AppSize.width, height: AppSize.height)
         scrollView.bounces = false
@@ -204,7 +208,7 @@ class MyInfoCharsViewController: UIViewController, ChartViewDelegate, UIScrollVi
         let chartData = BarChartData(dataSet: chartDataSet)
         barChartView.data = chartData
         
-        scrollView.contentSize.height += barChartView.frame.height - 60
+        scrollView.contentSize.height += barChartView.frame.height / 2
         
         uiView.addSubview(barChartView)
         scrollView.addSubview(uiView)

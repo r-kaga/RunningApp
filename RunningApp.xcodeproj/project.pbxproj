@@ -21,6 +21,8 @@
 		E30AE0481F8A4FF7002FEFAA /* ModalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30AE0471F8A4FF7002FEFAA /* ModalNavigationController.swift */; };
 		E312644F1FA22C0100F2B23D /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E312644E1FA22C0100F2B23D /* Home.storyboard */; };
 		E31264511FA22F5D00F2B23D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31264501FA22F5D00F2B23D /* HomeViewController.swift */; };
+		E32A70BE1FCBB7500011390E /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A70BD1FCBB7500011390E /* RoundButton.swift */; };
+		E32A70C01FCBB75F0011390E /* RoundButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E32A70BF1FCBB75F0011390E /* RoundButton.xib */; };
 		E33802941F852A76007EB199 /* SettingForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33802931F852A76007EB199 /* SettingForm.swift */; };
 		E33802961F852AD1007EB199 /* SettingForm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E33802951F852AD1007EB199 /* SettingForm.storyboard */; };
 		E341882E1F794073000AB961 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E341882D1F794073000AB961 /* MainTabBarController.swift */; };
@@ -84,6 +86,8 @@
 		E30AE0471F8A4FF7002FEFAA /* ModalNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalNavigationController.swift; sourceTree = "<group>"; };
 		E312644E1FA22C0100F2B23D /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		E31264501FA22F5D00F2B23D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E32A70BD1FCBB7500011390E /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		E32A70BF1FCBB75F0011390E /* RoundButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoundButton.xib; sourceTree = "<group>"; };
 		E33802931F852A76007EB199 /* SettingForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingForm.swift; sourceTree = "<group>"; };
 		E33802951F852AD1007EB199 /* SettingForm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingForm.storyboard; sourceTree = "<group>"; };
 		E341882D1F794073000AB961 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -208,6 +212,15 @@
 				E33802931F852A76007EB199 /* SettingForm.swift */,
 			);
 			path = SettingForm;
+			sourceTree = "<group>";
+		};
+		E32A70C11FCBB76B0011390E /* RoundButton */ = {
+			isa = PBXGroup;
+			children = (
+				E32A70BD1FCBB7500011390E /* RoundButton.swift */,
+				E32A70BF1FCBB75F0011390E /* RoundButton.xib */,
+			);
+			path = RoundButton;
 			sourceTree = "<group>";
 		};
 		E341882B1F793D5E000AB961 /* Resources */ = {
@@ -382,6 +395,7 @@
 		E38F7FB01F9B0BBF0036CEE0 /* ViewParts */ = {
 			isa = PBXGroup;
 			children = (
+				E32A70C11FCBB76B0011390E /* RoundButton */,
 				E37631861FBEE6F000D027E5 /* Picker */,
 				E3049B051FBB548E0050897E /* PageMenuButton */,
 				E365A13B1F9255E00008D475 /* Dialog */,
@@ -523,6 +537,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E32A70C01FCBB75F0011390E /* RoundButton.xib in Resources */,
 				E3D259A61FAAA5BF00978399 /* NoDateView.xib in Resources */,
 				E3049B021FBB54730050897E /* PageMenuButton.xib in Resources */,
 				E312644F1FA22C0100F2B23D /* Home.storyboard in Resources */,
@@ -604,6 +619,7 @@
 				E368B0E11FADC7690021985F /* Gradation.swift in Sources */,
 				E3CAC8321FAC458200AE1B55 /* MyInfoActionDialog.swift in Sources */,
 				E31264511FA22F5D00F2B23D /* HomeViewController.swift in Sources */,
+				E32A70BE1FCBB7500011390E /* RoundButton.swift in Sources */,
 				E3CA14EC1F5D98C90053468D /* HomeCustomCell.swift in Sources */,
 				E3D6F2741FA5F6BC00241D07 /* DistanceChartsController.swift in Sources */,
 				E355F1961F9F7ADD00509CA1 /* UIViewController+.swift in Sources */,
