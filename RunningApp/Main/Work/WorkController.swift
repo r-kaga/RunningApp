@@ -208,17 +208,18 @@ class WorkController: UIViewController {
     /** DBに登録 */
     private func registWorkResult() {
         
-        print(self.minAltitude)
-        print(self.maxAltitude)
+//        print(self.minAltitude)
+//        print(self.maxAltitude)
         
         guard let totalDistance  = self.distanceLabel.text,
               let speed      = self.speedLabel.text,
               let time       = self.stopWatchLabel.text,
               let calorie    = self.calorieLabel.text,
-              let type       = WorkController.workType,
-              let minAlt     = self.minAltitude,
-              let maxAlt     = self.maxAltitude
+              let type       = WorkController.workType
+//              let minAlt     = self.minAltitude,
+//              let maxAlt     = self.maxAltitude
         else { return }
+        
         
         let realm = try! Realm()
         let dataSet = RealmDataSet()
@@ -532,11 +533,11 @@ extension WorkController: CLLocationManagerDelegate {
      * Work開始時に行う必要のある処理
      */
     private func markCurrentLocation() {
-        let coordinate = locationManager.location?.coordinate
-        self.setRegion(coordinate: coordinate!)
+        guard let coordinate = locationManager.location?.coordinate else { return }
+        self.setRegion(coordinate: coordinate)
 
         let firstPin: MKPointAnnotation = MKPointAnnotation() // ピンを生成.
-        firstPin.coordinate =  coordinate! // 座標を設定.
+        firstPin.coordinate =  coordinate // 座標を設定.
         firstPin.title = "開始位置" // タイトルを設定.
         mapView.addAnnotation(firstPin)
         
