@@ -28,12 +28,46 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var collectionOutlet: UIView!
     @IBOutlet weak var distanceCharts: UIView!
     
+    @IBOutlet weak var menuView: UIView!
+    
+    @IBOutlet weak var toggleButton: UIButton!
+    
+    @IBOutlet weak var darkFillView: UIView!
+    
+    @IBAction func toggleMenu(_ sender: Any) {
+        print("ijiji")
+        if darkFillView.transform == .identity {
+            UIView.animate(withDuration: 1.0, animations: {
+                self.darkFillView.transform = CGAffineTransform(scaleX: 25, y: 11)
+                self.menuView.transform = CGAffineTransform(translationX: 0, y: -30)
+                self.toggleButton.transform = CGAffineTransform(rotationAngle: self.radians(180))
+            }) { _ in
+                
+            }
+        } else {
+            UIView.animate(withDuration: 1.0, animations: {
+                self.darkFillView.transform = .identity
+                self.menuView.transform = .identity
+                self.toggleButton.transform = .identity
+            }, completion: { _ in
+                
+            })
+        }
+        
+
+    }
+    
+    func radians(_ degress: Double) -> CGFloat {
+        return CGFloat(degress * .pi / degress)
+    }
+    
+    
     // 初回表示かどうか.アプリ立ち上げ時のみLoadingを表示
     var isFirstAppear: Bool = true
     var loading = Loading.make()
     
     var resultOutletHeight: CGFloat {
-        return AppSize.height - (self.distanceCharts.frame.maxY + self.collectionOutlet.frame.height + AppSize.tabBarHeight + 20)
+        return AppSize.height - (self.distanceCharts.frame.maxY + 80 + AppSize.tabBarHeight + 15)
     }
     
     let interactor = Interactor()
@@ -44,8 +78,11 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         navigationItem.title = "Home"
         self.view.backgroundColor = AppSize.backgroundColor
 
-        setupCollectionView()
+//        setupCollectionView()
         setUpResultView()
+        
+        self.darkFillView.layer.cornerRadius = self.darkFillView.frame.width / 2
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -206,32 +243,32 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         self.view.addSubview(noDateView)
     }
     
-    private func setupCollectionView() {
-        
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: AppSize.width / 2, height: collectionOutlet.frame.height)
-        layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
-        layout.minimumLineSpacing = 1.0
-        layout.minimumInteritemSpacing = 1.0
-        layout.scrollDirection = .horizontal
-        
-        // セクション毎のヘッダーサイズ.
-        //        layout.headerReferenceSize = CGSize(width: 5, height: AppSize.height / 5)
-        
-        let collectionView = UICollectionView(frame: CGRect(x: 0,
-                                                         y: 0,
-                                                         width: AppSize.width,
-                                                         height: layout.itemSize.height), collectionViewLayout: layout)
-        collectionView.register(HomeCustomCell.self, forCellWithReuseIdentifier: "MyCell")
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.showsHorizontalScrollIndicator = false
-//        collectionView.bounces = false
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.backgroundColor = AppSize.backgroundColor
-        
-        self.collectionOutlet.addSubview(collectionView)
-    }
+//    private func setupCollectionView() {
+//
+//        let layout = UICollectionViewFlowLayout()
+//        layout.itemSize = CGSize(width: AppSize.width / 2, height: collectionOutlet.frame.height)
+//        layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
+//        layout.minimumLineSpacing = 1.0
+//        layout.minimumInteritemSpacing = 1.0
+//        layout.scrollDirection = .horizontal
+//
+//        // セクション毎のヘッダーサイズ.
+//        //        layout.headerReferenceSize = CGSize(width: 5, height: AppSize.height / 5)
+//
+//        let collectionView = UICollectionView(frame: CGRect(x: 0,
+//                                                         y: 0,
+//                                                         width: AppSize.width,
+//                                                         height: layout.itemSize.height), collectionViewLayout: layout)
+//        collectionView.register(HomeCustomCell.self, forCellWithReuseIdentifier: "MyCell")
+//        collectionView.showsVerticalScrollIndicator = false
+//        collectionView.showsHorizontalScrollIndicator = false
+////        collectionView.bounces = false
+//        collectionView.delegate = self
+//        collectionView.dataSource = self
+//        collectionView.backgroundColor = AppSize.backgroundColor
+//
+//        self.collectionOutlet.addSubview(collectionView)
+//    }
     
 
     /** fitness画面の表示 */
