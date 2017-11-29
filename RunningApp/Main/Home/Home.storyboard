@@ -49,6 +49,7 @@
                                     </view>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GT5-OE-NTU">
                                         <rect key="frame" x="85" y="25" width="40" height="40"/>
+                                        <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="9UN-uF-duK"/>
                                             <constraint firstAttribute="height" constant="40" id="ytO-50-06V"/>
@@ -65,6 +66,7 @@
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VpW-Vm-R5v">
                                         <rect key="frame" x="193" y="25" width="40" height="40"/>
+                                        <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="SNW-QN-O1t"/>
                                             <constraint firstAttribute="height" constant="40" id="iIX-Q8-Zti"/>

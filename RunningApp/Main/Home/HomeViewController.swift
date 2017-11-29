@@ -25,21 +25,15 @@ extension HomeViewController: HomeDelegate {
 class HomeViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var ressultOutlet: UIView!
-    @IBOutlet weak var collectionOutlet: UIView!
     @IBOutlet weak var distanceCharts: UIView!
     
     @IBOutlet weak var menuView: UIView!
-    
     @IBOutlet weak var toggleButton: UIButton!
-    
     @IBOutlet weak var darkFillView: UIView!
-    
     @IBOutlet weak var firstRoundButton: UIButton!
     @IBOutlet weak var secondRoundButton: UIButton!
     
-    
     @IBAction func toggleMenu(_ sender: Any) {
-        print("ijiji")
         if darkFillView.transform == .identity {
             UIView.animate(withDuration: 1.0, animations: {
                 self.darkFillView.transform = CGAffineTransform(scaleX: 25, y: 11)
@@ -47,8 +41,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                 self.toggleButton.transform = CGAffineTransform(rotationAngle: self.radians(180))
             }) { _ in
                 UIView.animate(withDuration: 0.5, animations: {
-//                    self.firstRoundButton.alpha = 1.0
-//                    self.secondRoundButton.alpha = 1.0
                     self.toggleButtonStatus()
                 })
 
@@ -59,14 +51,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                 self.menuView.transform = .identity
                 self.toggleButton.transform = .identity
                 self.toggleButtonStatus()
-
-//                self.firstRoundButton.alpha = 0.0
-//                self.secondRoundButton.alpha = 0.0
-
-            }, completion: { _ in
-
-//                self.firstRoundButton.alpha = 0.0
-//                self.secondRoundButton.alpha = 0.0
             })
         }
         
