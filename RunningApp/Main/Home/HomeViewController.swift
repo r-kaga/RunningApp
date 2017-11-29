@@ -34,6 +34,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var darkFillView: UIView!
     
+    @IBOutlet weak var firstRoundButton: UIButton!
+    @IBOutlet weak var secondRoundButton: UIButton!
+    
+    
     @IBAction func toggleMenu(_ sender: Any) {
         print("ijiji")
         if darkFillView.transform == .identity {
@@ -42,15 +46,27 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                 self.menuView.transform = CGAffineTransform(translationX: 0, y: -30)
                 self.toggleButton.transform = CGAffineTransform(rotationAngle: self.radians(180))
             }) { _ in
-                
+                UIView.animate(withDuration: 0.5, animations: {
+//                    self.firstRoundButton.alpha = 1.0
+//                    self.secondRoundButton.alpha = 1.0
+                    self.toggleButtonStatus()
+                })
+
             }
         } else {
             UIView.animate(withDuration: 1.0, animations: {
                 self.darkFillView.transform = .identity
                 self.menuView.transform = .identity
                 self.toggleButton.transform = .identity
+                self.toggleButtonStatus()
+
+//                self.firstRoundButton.alpha = 0.0
+//                self.secondRoundButton.alpha = 0.0
+
             }, completion: { _ in
-                
+
+//                self.firstRoundButton.alpha = 0.0
+//                self.secondRoundButton.alpha = 0.0
             })
         }
         
@@ -61,6 +77,11 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         return CGFloat(degress * .pi / degress)
     }
     
+    func toggleButtonStatus() {
+        let alpha: CGFloat = firstRoundButton.alpha == 0.0 ? 1.0 : 0.0
+        firstRoundButton.alpha = alpha
+        secondRoundButton.alpha = alpha
+    }
     
     // 初回表示かどうか.アプリ立ち上げ時のみLoadingを表示
     var isFirstAppear: Bool = true
@@ -82,6 +103,11 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         setUpResultView()
         
         self.darkFillView.layer.cornerRadius = self.darkFillView.frame.width / 2
+        self.firstRoundButton.layer.cornerRadius = self.firstRoundButton.frame.width / 2
+        self.secondRoundButton.layer.cornerRadius = self.secondRoundButton.frame.width / 2
+        
+        self.firstRoundButton.alpha = 0.0
+        self.secondRoundButton.alpha = 0.0
     
     }
     
