@@ -67,7 +67,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     var loading = Loading.make()
     
     var resultOutletHeight: CGFloat {
-        return AppSize.height - (self.distanceCharts.frame.maxY + 80 + AppSize.tabBarHeight + 15)
+        return AppSize.height - (self.distanceCharts.frame.maxY + 80 + AppSize.tabBarHeight + 17)
     }
     
     let interactor = Interactor()
