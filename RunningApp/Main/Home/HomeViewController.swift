@@ -35,22 +35,37 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func toggleMenu(_ sender: Any) {
         if darkFillView.transform == .identity {
+
+            self.firstRoundButton.transform = CGAffineTransform(translationX: 0, y: 30)
+            self.secondRoundButton.transform = CGAffineTransform(translationX: 0, y: 30)
+//            self.firstRoundButton.transform = CGAffineTransform(rotationAngle: self.radians(180))
+//            self.secondRoundButton.transform = CGAffineTransform(rotationAngle: self.radians(180))
+            
             UIView.animate(withDuration: 1.0, animations: {
                 self.darkFillView.transform = CGAffineTransform(scaleX: 25, y: 11)
                 self.menuView.transform = CGAffineTransform(translationX: 0, y: -30)
                 self.toggleButton.transform = CGAffineTransform(rotationAngle: self.radians(180))
             }) { _ in
+
                 UIView.animate(withDuration: 0.5, animations: {
                     self.toggleButtonStatus()
+//                    self.firstRoundButton.transform = CGAffineTransform(translationX: 0, y: 30)
+//                    self.secondRoundButton.transform = CGAffineTransform(translationX: 0, y: 30)
+                    self.firstRoundButton.transform = .identity
+                    self.secondRoundButton.transform = .identity
+
                 })
 
             }
         } else {
+            
             UIView.animate(withDuration: 1.0, animations: {
                 self.darkFillView.transform = .identity
                 self.menuView.transform = .identity
                 self.toggleButton.transform = .identity
                 self.toggleButtonStatus()
+                self.firstRoundButton.transform = CGAffineTransform(rotationAngle: self.radians(180))
+                self.secondRoundButton.transform = CGAffineTransform(rotationAngle: self.radians(180))
             })
         }
         
@@ -72,7 +87,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     var loading = Loading.make()
     
     var resultOutletHeight: CGFloat {
-        return AppSize.height - (self.distanceCharts.frame.maxY + 80 + AppSize.tabBarHeight + 17)
+        return AppSize.height - (self.distanceCharts.frame.maxY + 100 + AppSize.tabBarHeight + 20)
     }
     
     let interactor = Interactor()
@@ -92,6 +107,9 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         self.firstRoundButton.alpha = 0.0
         self.secondRoundButton.alpha = 0.0
+        
+        firstRoundButton.layer.cornerRadius = firstRoundButton.frame.width / 2
+        secondRoundButton.layer.cornerRadius = secondRoundButton.frame.width / 2
     
     }
     
@@ -292,12 +310,18 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         self.present(sb, animated: true, completion: nil)
     }
     
-
+    @IBAction func runningRoundButton(_ sender: Any) {
+        self.onSender(Const.WorkType.running.rawValue)
+    }
+    
+    @IBAction func walkingRoundButton(_ sender: Any) {
+        self.onSender(Const.WorkType.wallking.rawValue)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
 }
 

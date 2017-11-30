@@ -533,7 +533,10 @@ extension WorkController: CLLocationManagerDelegate {
      * Work開始時に行う必要のある処理
      */
     private func markCurrentLocation() {
-        guard let coordinate = locationManager.location?.coordinate else { return }
+        guard let coordinate = locationManager.location?.coordinate else {
+            print("current is nil")
+            return
+        }
         self.setRegion(coordinate: coordinate)
 
         let firstPin: MKPointAnnotation = MKPointAnnotation() // ピンを生成.
