@@ -38,8 +38,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
 
             self.firstRoundButton.transform = CGAffineTransform(translationX: 0, y: 30)
             self.secondRoundButton.transform = CGAffineTransform(translationX: 0, y: 30)
-//            self.firstRoundButton.transform = CGAffineTransform(rotationAngle: self.radians(180))
-//            self.secondRoundButton.transform = CGAffineTransform(rotationAngle: self.radians(180))
             
             UIView.animate(withDuration: 1.0, animations: {
                 self.darkFillView.transform = CGAffineTransform(scaleX: 25, y: 11)
@@ -49,8 +47,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
 
                 UIView.animate(withDuration: 0.5, animations: {
                     self.toggleButtonStatus()
-//                    self.firstRoundButton.transform = CGAffineTransform(translationX: 0, y: 30)
-//                    self.secondRoundButton.transform = CGAffineTransform(translationX: 0, y: 30)
                     self.firstRoundButton.transform = .identity
                     self.secondRoundButton.transform = .identity
 

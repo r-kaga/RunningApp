@@ -86,6 +86,7 @@ class SettingForm: UIViewController, PickerDelegate {
 
     /** PickerでOKボタンを押された際のデリゲート */
     func acceptAction(value: String) {
+        
         textField.text = value
     }
     
