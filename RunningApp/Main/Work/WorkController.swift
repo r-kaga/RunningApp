@@ -51,8 +51,6 @@ class WorkController: UIViewController {
     
     var interactor: Interactor!
     
-//    var isTransform: Bool = false
-    
     /* カウントダウンのImageViewを生成 */
     lazy var countImageView: UIImageView = {
         let countImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: AppSize.width / 3, height: AppSize.height / 3))
@@ -208,9 +206,6 @@ class WorkController: UIViewController {
     /** DBに登録 */
     private func registWorkResult() {
         
-//        print(self.minAltitude)
-//        print(self.maxAltitude)
-        
         guard let totalDistance  = self.distanceLabel.text,
               let speed      = self.speedLabel.text,
               let time       = self.stopWatchLabel.text,
@@ -256,10 +251,6 @@ class WorkController: UIViewController {
                 
                 guard let pace = data.currentPace?.doubleValue else { return }
                 self.speedLabel.text = String(round( ( (pace * 3600) / 100.0 ) * 100) / 100)
-                
-//                data.floorsAscended
-//                data.floorsDescended
-                
             }
         }
         
@@ -330,7 +321,6 @@ class WorkController: UIViewController {
 //        })
 //    }
 
-
     
     /** 開始時間から現在の経過時間を返却
      * - return 現在の経過時間 / HH:mm:ss
@@ -346,42 +336,6 @@ class WorkController: UIViewController {
         return  "\(String(format:"%02d", hour)):\(String(format:"%02d", minute)):\(String(format:"%02", second))"
     }
 
-//    /* 時速の計算結果
-//     * return 時速の計算結果 type Double
-//     */
-//    private func getCalculateSpeed() -> Double {
-//
-////        let time = Date().timeIntervalSince(startTimeDate)
-////        // fmod() 余りを計算
-////        let minute = (Int)(fmod((time/60), 60))
-////        // currentTime/60 の余り
-////        let second = (Int)(fmod(time, 60))
-////
-////        let elapsedTime = Double((minute * 60) + second)
-////        print(elapsedTime)
-////
-////        // タイマー開始からのインターバル時間
-////        let currentTime = Date().timeIntervalSince(startTimeDate)
-////
-////        let hour = (Int)(fmod((currentTime / 60 / 60), 60))
-////
-////        // fmod() 余りを計算
-////        let minutes = (Int)(fmod((currentTime/60), 60))
-////
-////        // currentTime/60 の余り
-////        let seconds = (Int)(fmod(currentTime, 60))
-////        print(hour + (minutes / 60) + (seconds / 60 / 60) )
-//
-////        guard totalDistance != 0.0  else {
-////            return 0.0
-////        }
-//
-////        let speed =  totalDistance / elapsedTime * 60 * 60
-//        print(totalDistance / elapsedTime)
-//
-//        return speed
-//    }
-    
     /* 距離を取得
      * @param location - 現在地のCLLocation
      * @return 開始位置とlocationとの距離
@@ -425,20 +379,6 @@ class WorkController: UIViewController {
                 self.mapView.removeAnnotation(self.pin!)
             }
             self.mapView.removeFromSuperview()
-            
-            //            let tabVC = presentingViewController as! MainTabBarViewController
-            //            //Navigation Controllerを取得
-            //            let nav = tabVC.viewControllers![0]  as! UINavigationController
-            //
-            //            //呼び出し元のView Controllerを遷移履歴から取得しパラメータを渡す
-            //            let home = nav.viewControllers[nav.viewControllers.count-1] as! HomeViewController
-            //            home.loadView()
-            //            home.viewDidLoad()
-            //            WorkController.homeDelegate?.dateUpdate()
-//            presentingViewController?.loadView()
-//            presentingViewController?.viewDidLoad()
-//            presentingViewController?.viewWillAppear()
-            
             Utility.showCompleteDialog()
         })
     }
@@ -452,49 +392,8 @@ class WorkController: UIViewController {
     /** TapGesture */
     @IBAction func handleGesture(_ sender: Any) {
         confirmWorkEndAlert()
-        //        weak var nc = navigationController as? ModalNavigationController
-        //        nc?.handleGesture(sender as! UIPanGestureRecognizer)
-        
-        //        print("----------------------")
-        //        if  isTransform {
-        //
-        //            UIView.animate(withDuration: 0.3) {
-        //                self.map.alpha = 1.0
-        //                //            self.resultView.alpha = 1.0
-        //
-        //                UIView.animate(withDuration: 0.5) {
-        //                    //                self.map.frame = CGRect(x: AppSize.width - 150, y: AppSize.height - 150, width: 150, height: 150)
-        //                    //                self.map.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-        //                    self.resultView.frame = CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.height / 2)
-        ////                    self.resultView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-        ////
-        ////                    self.isTransform = false
-        ////                }
-        ////            }
-        ////
-        ////        } else {
-        //
-        //            UIView.animate(withDuration: 0.3) {
-        //                self.map.alpha = 0.0
-        //                //            self.resultView.alpha = 0.0
-        //
-        //                UIView.animate(withDuration: 1.0) {
-        ////                    self.map.frame = CGRect(x: AppSize.width - 150, y: AppSize.height - 150, width: 150, height: 150)
-        ////                    self.map.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-        //                    self.resultView.frame = CGRect(x: AppSize.width - 150, y: AppSize.height - 150 - AppSize.tabBarHeight, width: 150, height: 150)
-        //                    self.resultView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-        //
-        ////                    self.isTransform = true
-        //
-        //                }
-        //            }
-        ////        }
-        //
-
     }
-    
 
-    
     
 }
 
@@ -591,7 +490,6 @@ extension WorkController: CLLocationManagerDelegate {
         self.setRegion(coordinate: location.coordinate) // Regionを作成.
         self.setPin(title: "現在地", coordinate: location.coordinate) // pinをセット
 //        self.drawLineToMap(from: previous.coordinate, to: location.coordinate) // 直線を引く座標を作成.
-        
         
 //        if self.minAltitude > location {
 //            self.minAltitude = location.altitude
@@ -713,7 +611,6 @@ extension WorkController: MKMapViewDelegate {
         
     }
     
-    
     /** addOverlayした際に呼ばれるデリゲートメソッド. */
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         // rendererを生成.
@@ -723,8 +620,7 @@ extension WorkController: MKMapViewDelegate {
         
         return myPolyLineRendere
     }
-    
-    
+
     
     
 }
