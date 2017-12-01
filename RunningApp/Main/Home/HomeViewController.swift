@@ -39,7 +39,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             self.firstRoundButton.transform = CGAffineTransform(translationX: 0, y: 30)
             self.secondRoundButton.transform = CGAffineTransform(translationX: 0, y: 30)
             
-            UIView.animate(withDuration: 1.0, animations: {
+            UIView.animate(withDuration: 0.7, animations: {
                 self.darkFillView.transform = CGAffineTransform(scaleX: 25, y: 11)
                 self.menuView.transform = CGAffineTransform(translationX: 0, y: -30)
                 self.toggleButton.transform = CGAffineTransform(rotationAngle: self.radians(180))
@@ -55,7 +55,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             }
         } else {
             
-            UIView.animate(withDuration: 1.0, animations: {
+            UIView.animate(withDuration: 0.7, animations: {
                 self.darkFillView.transform = .identity
                 self.menuView.transform = .identity
                 self.toggleButton.transform = .identity
@@ -104,8 +104,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         self.firstRoundButton.alpha = 0.0
         self.secondRoundButton.alpha = 0.0
         
-        firstRoundButton.layer.cornerRadius = firstRoundButton.frame.width / 2
-        secondRoundButton.layer.cornerRadius = secondRoundButton.frame.width / 2
+        firstRoundButton.layer.cornerRadius = 10.0
+        secondRoundButton.layer.cornerRadius = 10.0
     
     }
     

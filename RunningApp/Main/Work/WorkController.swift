@@ -378,6 +378,9 @@ class WorkController: UIViewController {
             if self.pin != nil {
                 self.mapView.removeAnnotation(self.pin!)
             }
+            self.timer.invalidate()
+            self.pausedTimer?.invalidate()
+            
             self.mapView.removeFromSuperview()
             Utility.showCompleteDialog()
         })

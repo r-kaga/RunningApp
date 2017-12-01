@@ -43,35 +43,35 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GT5-OE-NTU">
-                                        <rect key="frame" x="81" y="35" width="44" height="44"/>
+                                        <rect key="frame" x="60" y="40" width="80" height="40"/>
                                         <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="9UN-uF-duK"/>
-                                            <constraint firstAttribute="height" constant="44" id="ytO-50-06V"/>
+                                            <constraint firstAttribute="width" constant="80" id="9UN-uF-duK"/>
+                                            <constraint firstAttribute="height" constant="40" id="ytO-50-06V"/>
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="directionsRun"/>
+                                        <state key="normal" title="Run"/>
                                         <connections>
                                             <action selector="runningRoundButton:" destination="agd-nW-Aut" eventType="touchUpInside" id="QmD-5j-3rX"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wGs-LQ-I41">
-                                        <rect key="frame" x="135" y="35.5" width="50" height="30"/>
+                                        <rect key="frame" x="150" y="35.5" width="20" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="RYE-wQ-5jA"/>
+                                            <constraint firstAttribute="width" constant="20" id="RYE-wQ-5jA"/>
                                             <constraint firstAttribute="height" constant="30" id="Upk-X9-tyK"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VpW-Vm-R5v">
-                                        <rect key="frame" x="193" y="35" width="44" height="44"/>
+                                        <rect key="frame" x="178" y="40" width="80" height="40"/>
                                         <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="SNW-QN-O1t"/>
-                                            <constraint firstAttribute="height" constant="44" id="iIX-Q8-Zti"/>
+                                            <constraint firstAttribute="width" constant="80" id="SNW-QN-O1t"/>
+                                            <constraint firstAttribute="height" constant="40" id="iIX-Q8-Zti"/>
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="directionsWalk"/>
+                                        <state key="normal" title="Walk"/>
                                         <connections>
                                             <action selector="walkingRoundButton:" destination="agd-nW-Aut" eventType="touchUpInside" id="dOQ-qI-3sC"/>
                                         </connections>
@@ -84,7 +84,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="GT5-OE-NTU" firstAttribute="top" secondItem="GUt-I2-VI8" secondAttribute="top" constant="35" id="5ei-tI-WUT"/>
+                                    <constraint firstItem="GT5-OE-NTU" firstAttribute="top" secondItem="GUt-I2-VI8" secondAttribute="top" constant="40" id="5ei-tI-WUT"/>
                                     <constraint firstItem="hGT-bt-Tkh" firstAttribute="top" secondItem="GUt-I2-VI8" secondAttribute="top" constant="5" id="Fdg-RR-6Zu"/>
                                     <constraint firstItem="wGs-LQ-I41" firstAttribute="leading" secondItem="GT5-OE-NTU" secondAttribute="trailing" constant="10" id="G9Y-nB-CdY"/>
                                     <constraint firstItem="VpW-Vm-R5v" firstAttribute="leading" secondItem="wGs-LQ-I41" secondAttribute="trailing" constant="8" id="IIb-Zq-Mw5"/>
@@ -92,7 +92,7 @@
                                     <constraint firstAttribute="height" constant="100" id="ZjN-VQ-Vab"/>
                                     <constraint firstItem="wGs-LQ-I41" firstAttribute="centerX" secondItem="GUt-I2-VI8" secondAttribute="centerX" id="lbE-Bd-C4w"/>
                                     <constraint firstItem="wGs-LQ-I41" firstAttribute="centerY" secondItem="GUt-I2-VI8" secondAttribute="centerY" id="rJf-xU-JbA"/>
-                                    <constraint firstItem="VpW-Vm-R5v" firstAttribute="top" secondItem="GUt-I2-VI8" secondAttribute="top" constant="35" id="sEE-5n-SvI"/>
+                                    <constraint firstItem="VpW-Vm-R5v" firstAttribute="top" secondItem="GUt-I2-VI8" secondAttribute="top" constant="40" id="sEE-5n-SvI"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -148,8 +148,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="directionsRun" width="48" height="48"/>
-        <image name="directionsWalk" width="48" height="48"/>
         <image name="up" width="36" height="36"/>
         <namedColor name="AppBackGroundColor">
             <color red="0.94900000095367432" green="0.94900000095367432" blue="0.94900000095367432" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
