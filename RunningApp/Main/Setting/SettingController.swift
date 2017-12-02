@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 protocol SettingDelegate: class {
     func reload()
 }
@@ -31,45 +30,7 @@ class SettingController: UIViewController {
     ]
 
     private var tableTitle = [ "weight", "height", Const.PUSH_TIME ]
-    
-//    enum tableItem {
-//
-//        mutating func setType(indexPath: Int) {
-//            switch indexPath {
-//                case 1:
-//                    return tableItem.weight
-//                case 2:
-//                    return tableItem.height
-//                case 3:
-//                    return tableItem.pushTime
-//                default:
-//                    return
-//            }
-//        }
-//
-//        static var count: Int {
-//          return 3
-//        }
-//
-//
-//        enum weight: String {
-//            case unit = "Kg"
-//            case image = "pushTime"
-//        }
-//
-//        enum height: String {
-//            case unit = "cm"
-//            case image = "pushTime"
-//        }
-//
-//        enum pushTime: String {
-//            case unit = "時"
-//            case image = "pushTime"
-//        }
-//
-//    }
-    
-    
+
     private var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -165,11 +126,8 @@ extension SettingController: UITableViewDataSource {
         cell.imageCell.image = UIImage(named: item["image"]!)!
         
         if let value = UserDefaults.standard.string(forKey: item["type"]!) {
-//            cell.detailTextLabel?.text = value + TableUnit[indexPath.section][indexPath.row + 1]
             cell.settingValueLabel.text = value + item["unit"]!
-        
             if Const.PUSH_TIME == item["type"] {
-                print("setLocalPushTime")
                 Utility.setLocalPushTime(setTime: Int(value)!)
             }
         }

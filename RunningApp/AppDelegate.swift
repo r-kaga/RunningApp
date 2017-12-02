@@ -34,17 +34,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // iOS 10
             let center = UNUserNotificationCenter.current()
             center.requestAuthorization(options: [.badge, .sound, .alert], completionHandler: { (granted, error) in
-                if error != nil {
-                    return
-                }
+
+                guard error == nil { return }
                 
                 if granted {
-                    print("通知許可")
-                    
                     let center = UNUserNotificationCenter.current()
                     center.delegate = self
-                } else {
-                    print("通知拒否")
                 }
             })
             

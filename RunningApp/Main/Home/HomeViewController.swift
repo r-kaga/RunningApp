@@ -15,68 +15,20 @@ protocol HomeDelegate: class {
 
 extension HomeViewController: HomeDelegate {
     func dateUpdate() {
-//        self.setUpResultView()
         self.loadView()
     }
-    
-    
 }
 
 class HomeViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var ressultOutlet: UIView!
     @IBOutlet weak var distanceCharts: UIView!
-    
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var toggleButton: UIButton!
     @IBOutlet weak var darkFillView: UIView!
     @IBOutlet weak var firstRoundButton: UIButton!
     @IBOutlet weak var secondRoundButton: UIButton!
-    
-    @IBAction func toggleMenu(_ sender: Any) {
-        if darkFillView.transform == .identity {
 
-            self.firstRoundButton.transform = CGAffineTransform(translationX: 0, y: 30)
-            self.secondRoundButton.transform = CGAffineTransform(translationX: 0, y: 30)
-            
-            UIView.animate(withDuration: 0.7, animations: {
-                self.darkFillView.transform = CGAffineTransform(scaleX: 25, y: 11)
-                self.menuView.transform = CGAffineTransform(translationX: 0, y: -30)
-                self.toggleButton.transform = CGAffineTransform(rotationAngle: self.radians(180))
-            }) { _ in
-
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.toggleButtonStatus()
-                    self.firstRoundButton.transform = .identity
-                    self.secondRoundButton.transform = .identity
-
-                })
-
-            }
-        } else {
-            
-            UIView.animate(withDuration: 0.7, animations: {
-                self.darkFillView.transform = .identity
-                self.menuView.transform = .identity
-                self.toggleButton.transform = .identity
-                self.toggleButtonStatus()
-                self.firstRoundButton.transform = CGAffineTransform(rotationAngle: self.radians(180))
-                self.secondRoundButton.transform = CGAffineTransform(rotationAngle: self.radians(180))
-            })
-        }
-        
-
-    }
-    
-    func radians(_ degress: Double) -> CGFloat {
-        return CGFloat(degress * .pi / degress)
-    }
-    
-    func toggleButtonStatus() {
-        let alpha: CGFloat = firstRoundButton.alpha == 0.0 ? 1.0 : 0.0
-        firstRoundButton.alpha = alpha
-        secondRoundButton.alpha = alpha
-    }
     
     // 初回表示かどうか.アプリ立ち上げ時のみLoadingを表示
     var isFirstAppear: Bool = true
@@ -94,21 +46,11 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         navigationItem.title = "Home"
         self.view.backgroundColor = AppSize.backgroundColor
 
-//        setupCollectionView()
         setUpResultView()
-        
-        self.darkFillView.layer.cornerRadius = self.darkFillView.frame.width / 2
-        self.firstRoundButton.layer.cornerRadius = self.firstRoundButton.frame.width / 2
-        self.secondRoundButton.layer.cornerRadius = self.secondRoundButton.frame.width / 2
-        
-        self.firstRoundButton.alpha = 0.0
-        self.secondRoundButton.alpha = 0.0
-        
-        firstRoundButton.layer.cornerRadius = 10.0
-        secondRoundButton.layer.cornerRadius = 10.0
+        setupTogglerButton()
     
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -123,7 +65,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
     }
     
-    
+    /** resultViewのsetup */
     private func setUpResultView() {
 
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.height))
@@ -254,47 +196,75 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         self.ressultOutlet.addSubview(scrollView)
     }
     
+    /** toggleButtonのsetup */
+    private func setupTogglerButton() {
+        self.darkFillView.layer.cornerRadius = self.darkFillView.frame.width / 2
+        self.firstRoundButton.layer.cornerRadius = self.firstRoundButton.frame.width / 2
+        self.secondRoundButton.layer.cornerRadius = self.secondRoundButton.frame.width / 2
+        
+        self.firstRoundButton.alpha = 0.0
+        self.secondRoundButton.alpha = 0.0
+        
+        firstRoundButton.layer.cornerRadius = 10.0
+        secondRoundButton.layer.cornerRadius = 10.0
+    }
     
+    /**  No Date Viewの表示 */
     private func setupNoDate(date: Bool) {
         guard date else { return }
-//        self.distanceCharts.removeFromSuperview()
         self.distanceCharts.isHidden = true
         
         let noDateView = NoDateView(frame: CGRect(x: 0, y: 0, width: AppSize.width - 100, height: AppSize.height / 2.5))
         noDateView.center = self.view.center
-//        noDateView.layer.cornerRadius = 15.0
-//        noDateView.clipsToBounds = true
         self.view.addSubview(noDateView)
     }
-    
-//    private func setupCollectionView() {
-//
-//        let layout = UICollectionViewFlowLayout()
-//        layout.itemSize = CGSize(width: AppSize.width / 2, height: collectionOutlet.frame.height)
-//        layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
-//        layout.minimumLineSpacing = 1.0
-//        layout.minimumInteritemSpacing = 1.0
-//        layout.scrollDirection = .horizontal
-//
-//        // セクション毎のヘッダーサイズ.
-//        //        layout.headerReferenceSize = CGSize(width: 5, height: AppSize.height / 5)
-//
-//        let collectionView = UICollectionView(frame: CGRect(x: 0,
-//                                                         y: 0,
-//                                                         width: AppSize.width,
-//                                                         height: layout.itemSize.height), collectionViewLayout: layout)
-//        collectionView.register(HomeCustomCell.self, forCellWithReuseIdentifier: "MyCell")
-//        collectionView.showsVerticalScrollIndicator = false
-//        collectionView.showsHorizontalScrollIndicator = false
-////        collectionView.bounces = false
-//        collectionView.delegate = self
-//        collectionView.dataSource = self
-//        collectionView.backgroundColor = AppSize.backgroundColor
-//
-//        self.collectionOutlet.addSubview(collectionView)
-//    }
-    
 
+    @IBAction func toggleMenu(_ sender: Any) {
+        if darkFillView.transform == .identity {
+            
+            self.firstRoundButton.transform = CGAffineTransform(translationX: 0, y: 30)
+            self.secondRoundButton.transform = CGAffineTransform(translationX: 0, y: 30)
+            
+            UIView.animate(withDuration: 0.7, animations: {
+                self.darkFillView.transform = CGAffineTransform(scaleX: 25, y: 11)
+                self.menuView.transform = CGAffineTransform(translationX: 0, y: -30)
+                self.toggleButton.transform = CGAffineTransform(rotationAngle: self.radians(180))
+            }) { _ in
+                
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.toggleButtonStatus()
+                    self.firstRoundButton.transform = .identity
+                    self.secondRoundButton.transform = .identity
+                    
+                })
+                
+            }
+        } else {
+            
+            UIView.animate(withDuration: 0.7, animations: {
+                self.darkFillView.transform = .identity
+                self.menuView.transform = .identity
+                self.toggleButton.transform = .identity
+                self.toggleButtonStatus()
+                self.firstRoundButton.transform = CGAffineTransform(rotationAngle: self.radians(180))
+                self.secondRoundButton.transform = CGAffineTransform(rotationAngle: self.radians(180))
+            })
+        }
+        
+    }
+    
+    /** CGAffineTransform(rotationAngle)に渡す値の変換 */
+    func radians(_ degress: Double) -> CGFloat {
+        return CGFloat(degress * .pi / degress)
+    }
+    
+    /** ボタンの開閉 */
+    func toggleButtonStatus() {
+        let alpha: CGFloat = firstRoundButton.alpha == 0.0 ? 1.0 : 0.0
+        firstRoundButton.alpha = alpha
+        secondRoundButton.alpha = alpha
+    }
+    
     /** fitness画面の表示 */
     func onSender(_ path: Int) {
         let sb = UIStoryboard(name: "WorkController", bundle: nil).instantiateInitialViewController() as! ModalNavigationController
@@ -322,42 +292,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
 }
 
 
-
-/** collectionViewセットアップ */
-extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    /* Cellが選択時 */
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.onSender(indexPath.row)
-    }
-    
-    /* Cellに値を設定 */
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell: HomeCustomCell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "MyCell",
-            for: indexPath) as! HomeCustomCell
-        
-        let path = indexPath[1]
-        let type = Utility.pathConvertWorkType(path: path)
-        let cellImage = UIImage(named: type.1)!
-        cell.imageView?.image = cellImage
-        cell.textLabel?.text = type.1
-        
-        return cell
-    }
-    
-    
-    /* Cellの総数 */
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
-    }
-    
-    
-    
-}
-
-
 /** PullCloseモーダルのセットアップ */
 extension HomeViewController: UIViewControllerTransitioningDelegate {
     
@@ -370,16 +304,13 @@ extension HomeViewController: UIViewControllerTransitioningDelegate {
         AppDelegate.getTopMostViewController().present(sb, animated: true, completion: nil)
     }
     
-    
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return DismissAnimator()
     }
     
-    
     func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return interactor.hasStarted ? interactor : nil
     }
-    
     
 }
 

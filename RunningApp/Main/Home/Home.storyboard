@@ -35,6 +35,11 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GUt-I2-VI8">
                                 <rect key="frame" x="0.0" y="453" width="320" height="100"/>
                                 <subviews>
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bji-p2-Vhq">
+                                        <rect key="frame" x="270" y="6" width="35" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" name="navigationColor"/>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hGT-bt-Tkh">
                                         <rect key="frame" x="269" y="5" width="36" height="36"/>
                                         <state key="normal" image="up"/>
@@ -76,11 +81,6 @@
                                             <action selector="walkingRoundButton:" destination="agd-nW-Aut" eventType="touchUpInside" id="dOQ-qI-3sC"/>
                                         </connections>
                                     </button>
-                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bji-p2-Vhq">
-                                        <rect key="frame" x="270" y="6" width="35" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -151,6 +151,9 @@
         <image name="up" width="36" height="36"/>
         <namedColor name="AppBackGroundColor">
             <color red="0.94900000095367432" green="0.94900000095367432" blue="0.94900000095367432" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="navigationColor">
+            <color red="0.0" green="0.63899999856948853" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

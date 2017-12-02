@@ -17,7 +17,6 @@ class SettingForm: UIViewController, PickerDelegate {
     @IBOutlet weak var SettingCategoryLabel: UILabel!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var settingButton: ActionAcceptButton!
-    
     @IBOutlet weak var closeButton: UIButton!
     
     @IBAction func ScreenTapAction(_ sender: Any) {
@@ -86,7 +85,6 @@ class SettingForm: UIViewController, PickerDelegate {
 
     /** PickerでOKボタンを押された際のデリゲート */
     func acceptAction(value: String) {
-        
         textField.text = value
     }
     
@@ -128,8 +126,13 @@ class SettingForm: UIViewController, PickerDelegate {
     }
     
     @IBAction func closeButton(_ sender: Any) {
-        dismiss(animated: true) {
-        }
+        let transition: CATransition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionReveal
+        transition.subtype = kCATransitionFromRight
+        self.view.window!.layer.add(transition, forKey: nil)
+        dismiss(animated: false, completion: nil)
     }
     
     

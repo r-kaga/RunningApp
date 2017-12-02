@@ -172,7 +172,6 @@
 		E3031D011F80E041002C5739 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				E38F7FAE1F9B0B310036CEE0 /* SettingCell */,
 				E328FB801F866FEC00E1D4BC /* SettingForm */,
 				E3031D021F80E05A002C5739 /* SettingController.swift */,
 			);
@@ -214,6 +213,16 @@
 			path = SettingForm;
 			sourceTree = "<group>";
 		};
+		E32962F11FD295DE0096174A /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				E38F7FAE1F9B0B310036CEE0 /* SettingCell */,
+				E3CAC82D1FAB22B300AE1B55 /* MyPageCell */,
+				E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */,
+			);
+			path = CustomCell;
+			sourceTree = "<group>";
+		};
 		E32A70C11FCBB76B0011390E /* RoundButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,7 +245,6 @@
 			children = (
 				E312644E1FA22C0100F2B23D /* Home.storyboard */,
 				E31264501FA22F5D00F2B23D /* HomeViewController.swift */,
-				E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -244,7 +252,6 @@
 		E36106111F243225004F56EC /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
-				E3CAC82D1FAB22B300AE1B55 /* MyPageCell */,
 				E30530281FACC9830097D9A3 /* infoDetail */,
 				E3049AF81FBB36860050897E /* MyInfoViewController.swift */,
 				E3049AF91FBB36860050897E /* MyInfoCharsViewController.swift */,
@@ -395,6 +402,7 @@
 		E38F7FB01F9B0BBF0036CEE0 /* ViewParts */ = {
 			isa = PBXGroup;
 			children = (
+				E32962F11FD295DE0096174A /* CustomCell */,
 				E32A70C11FCBB76B0011390E /* RoundButton */,
 				E37631861FBEE6F000D027E5 /* Picker */,
 				E3049B051FBB548E0050897E /* PageMenuButton */,
