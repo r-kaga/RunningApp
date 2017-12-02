@@ -51,8 +51,9 @@ class infoDetailViewController: UIViewController {
         distanceLabel.text = myInfo?.distance
         timeLabel.text = myInfo?.time
         speedLabel.text = myInfo?.speed
-//        minAltLabel.text = myInfo?.minAlt
-//        maxAltLabel.text = myInfo?.maxAlt
+        minAltLabel.text = myInfo?.minAlt
+        maxAltLabel.text = myInfo?.maxAlt
+        speedLabel.text = myInfo?.speed
     }
     
     @objc private func moreButtonAction(_ sender: UIButton) {
