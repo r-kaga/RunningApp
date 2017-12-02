@@ -22,7 +22,7 @@ class WorkController: UIViewController {
     weak var timer: Timer!
     var startTimeDate: Date!
     
-    weak var pausedTimer: Timer?
+    weak var pausedTimer: Timer!
     var pausedTime: Int = 0
     
     private var isStarted = false
