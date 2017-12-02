@@ -44,8 +44,10 @@ class WorkController: UIViewController {
     
 //    var minAltitude: CLLocationDistance?
 //    var maxAltitude: CLLocationDistance?
-    var minAltitude: Double?
-    var maxAltitude: Double?
+    var minAltitude: Double = 0.0
+    var maxAltitude: Double = 0.0
+    
+    var maxSpeed: String = "0.0"
     
     var totalDistance: Double = 0.0
     
@@ -186,6 +188,7 @@ class WorkController: UIViewController {
             selector: #selector(self.countPausedTimer),
             userInfo: nil,
             repeats: true)
+        pausedTimer?.fire()
     }
     
     @objc private func countPausedTimer(_ pause: Bool) {
@@ -194,6 +197,7 @@ class WorkController: UIViewController {
     }
     
     private func pausedTimer(pause: Bool) {
+        print("pausedTimer")
         switch pause {
             case true:
                 self.startPausedTime()
@@ -211,10 +215,7 @@ class WorkController: UIViewController {
               let time       = self.stopWatchLabel.text,
               let calorie    = self.calorieLabel.text,
               let type       = WorkController.workType
-//              let minAlt     = self.minAltitude,
-//              let maxAlt     = self.maxAltitude
         else { return }
-        
         
         let realm = try! Realm()
         let dataSet = RealmDataSet()
@@ -228,9 +229,10 @@ class WorkController: UIViewController {
         dataSet.speed       = speed
         dataSet.time        = time
         dataSet.workType    = type
-//        dataSet.minAlt      = minAlt
-//        dataSet.maxAlt      = maxAlt
-//        dataSet.pausedTime = self.pausedTime
+        dataSet.minAlt      = String(self.minAltitude)
+        dataSet.maxAlt      = String(self.maxAltitude)
+        dataSet.pausedTime  = String(self.pausedTime)
+        dataSet.speed      = self.maxSpeed
 
         try! realm.write {
             realm.add(dataSet)
@@ -257,8 +259,6 @@ class WorkController: UIViewController {
         self.pedometer.startEventUpdates { (event: CMPedometerEvent?, error: Error?) in
             guard let event = event, error == nil else { return }
             
-            print(event.type.hashValue)
-            
             switch event.type {
                 case .pause:
                     self.pausedTimer(pause: true)
@@ -280,22 +280,17 @@ class WorkController: UIViewController {
             }
             guard let altitude = altimeterData?.relativeAltitude.doubleValue
                 else { return }
-            
-            if self.minAltitude == nil || self.maxAltitude == nil {
-                self.minAltitude = altitude
-                self.maxAltitude = altitude
-            }
-            
-            guard let minAlt = self.minAltitude, let maxAlt = self.maxAltitude
-                else { return }
-            
-            if minAlt > altitude {
+
+            if self.minAltitude > altitude {
                 self.minAltitude = altitude
             }
             
-            if maxAlt < altitude {
+            if self.maxAltitude < altitude {
                 self.maxAltitude = altitude
             }
+            
+            print(self.minAltitude)
+            print(self.maxAltitude)
             
         })
     }
@@ -374,12 +369,14 @@ class WorkController: UIViewController {
     
     /* Modalを閉じる */
     private func dismissModal() {
+        
+        self.timer.invalidate()
+        self.pausedTimer?.invalidate()
+        
         dismiss(animated: true, completion: { [presentingViewController] () -> Void in
             if self.pin != nil {
                 self.mapView.removeAnnotation(self.pin!)
             }
-            self.timer.invalidate()
-            self.pausedTimer?.invalidate()
             
             self.mapView.removeFromSuperview()
             Utility.showCompleteDialog()
@@ -499,6 +496,8 @@ extension WorkController: CLLocationManagerDelegate {
 //        }
 //        self.minAltitude = location.altitude
 //        self.maxAltitude = location.altitude
+        
+        self.maxSpeed = "".appendingFormat("%.2f", location.speed * 3.6)
         
         var calorie: Double = 0.0
         if let weight = UserDefaults.standard.string(forKey: "weight") {

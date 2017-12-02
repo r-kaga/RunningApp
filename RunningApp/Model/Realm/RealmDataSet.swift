@@ -22,9 +22,10 @@ class RealmDataSet: Object {
     @objc dynamic var calorie  = String()
     @objc dynamic var time     = String()
     @objc dynamic var workType = String()
-//    @objc dynamic var minAlt   = String()
-//    @objc dynamic var maxAlt   = String()
-    
+    @objc dynamic var minAlt   = String()
+    @objc dynamic var maxAlt   = String()
+    @objc dynamic var pausedTime   = String()
+
 //    func save() {
 //        let realm = try! Realm()
 //        if realm.isInWriteTransaction {
