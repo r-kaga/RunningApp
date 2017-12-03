@@ -52,7 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UIApplication.shared.applicationIconBadgeNumber = 0
         
         UINavigationBar.appearance().tintColor = .white  // アイテムの色
-        
         // 文字の色を変更
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         UINavigationBar.appearance().barTintColor = AppSize.navigationAndTabBarColor
