@@ -216,8 +216,8 @@
 		E32962F11FD295DE0096174A /* CustomCell */ = {
 			isa = PBXGroup;
 			children = (
-				E38F7FAE1F9B0B310036CEE0 /* SettingCell */,
 				E3CAC82D1FAB22B300AE1B55 /* MyPageCell */,
+				E38F7FAE1F9B0B310036CEE0 /* SettingCell */,
 				E3CA14EB1F5D98C90053468D /* HomeCustomCell.swift */,
 			);
 			path = CustomCell;
@@ -262,10 +262,10 @@
 			isa = PBXGroup;
 			children = (
 				E30530281FACC9830097D9A3 /* infoDetail */,
-				E3049AF81FBB36860050897E /* MyInfoViewController.swift */,
 				E3049AF91FBB36860050897E /* MyInfoCharsViewController.swift */,
-				E36106121F243225004F56EC /* MyPage.swift */,
+				E3049AF81FBB36860050897E /* MyInfoViewController.swift */,
 				E3049AFF1FBB38980050897E /* MyPage.storyboard */,
+				E36106121F243225004F56EC /* MyPage.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -293,8 +293,8 @@
 		E368B0DF1FADC7550021985F /* Gradation */ = {
 			isa = PBXGroup;
 			children = (
-				E3CE4ABD1FA8AB3F0074200A /* Gradiate.swift */,
 				E368B0E01FADC7690021985F /* Gradation.swift */,
+				E3CE4ABD1FA8AB3F0074200A /* Gradiate.swift */,
 				E368B0E21FADCC7F0021985F /* GradiateView.swift */,
 			);
 			path = Gradation;
@@ -303,10 +303,10 @@
 		E3762A741F8FA1F100B0B501 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				E3894FCD1F8CF607000313CC /* Extension */,
+				E368B0DF1FADC7550021985F /* Gradation */,
 				E3A84C521FC15F6400540812 /* Transition */,
 				E38F7FB01F9B0BBF0036CEE0 /* ViewParts */,
-				E368B0DF1FADC7550021985F /* Gradation */,
-				E3894FCD1F8CF607000313CC /* Extension */,
 				E34188351F794AE6000AB961 /* AppSize.swift */,
 				E35580141F8B2347000CE75E /* Utility.swift */,
 			);
@@ -353,15 +353,15 @@
 			isa = PBXGroup;
 			children = (
 				E38F7FAF1F9B0B460036CEE0 /* Main */,
-				E341882B1F793D5E000AB961 /* Resources */,
 				E32754F11FC69AD40077504D /* Model */,
+				E341882B1F793D5E000AB961 /* Resources */,
 				E3762A741F8FA1F100B0B501 /* Service */,
 				E380AB301F23735F0034EA8F /* AppDelegate.swift */,
 				E3034EA31F87BFBF00FCB026 /* Const.swift */,
-				E341882D1F794073000AB961 /* MainTabBarController.swift */,
 				E380AB3C1F23735F0034EA8F /* Info.plist */,
 				E380AB391F23735F0034EA8F /* LaunchScreen.storyboard */,
 				E380AB341F23735F0034EA8F /* Main.storyboard */,
+				E341882D1F794073000AB961 /* MainTabBarController.swift */,
 			);
 			path = RunningApp;
 			sourceTree = "<group>";
@@ -400,8 +400,8 @@
 			isa = PBXGroup;
 			children = (
 				E3D6F26E1FA5F31500241D07 /* DistanceChartsController */,
-				E36106111F243225004F56EC /* MyPage */,
 				E361060E1F243225004F56EC /* Home */,
+				E36106111F243225004F56EC /* MyPage */,
 				E3031D011F80E041002C5739 /* Setting */,
 				E3F4032C1F88C6CF0073DC45 /* Work */,
 			);
@@ -413,9 +413,9 @@
 			children = (
 				E32962F21FD29D1E0096174A /* Button */,
 				E32962F11FD295DE0096174A /* CustomCell */,
-				E37631861FBEE6F000D027E5 /* Picker */,
 				E365A13B1F9255E00008D475 /* Dialog */,
 				E3D259A41FAAA5AC00978399 /* NoDateView */,
+				E37631861FBEE6F000D027E5 /* Picker */,
 				E38F7FA91F9AF3C40036CEE0 /* ResultView */,
 			);
 			path = ViewParts;
