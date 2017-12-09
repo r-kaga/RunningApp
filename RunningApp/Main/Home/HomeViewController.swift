@@ -39,15 +39,55 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     let interactor = Interactor()
     
+//    var collectionView: UICollectionView = {
+//        let collection = UICollectionView()
+//    }()
+
+    var collectionView: UICollectionView!
+    
+    private func setupCollectionView() {
+    
+        let realm = try! Realm()
+        let latestData = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
+
+        guard !latestData.isEmpty else {
+            setupNoDate(date: true)
+            return
+        }
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: AppSize.width, height: ressultOutlet.frame.height)
+        layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        layout.minimumLineSpacing = 1.0
+        layout.minimumInteritemSpacing = 1.0
+        layout.scrollDirection = .horizontal
+
+        //        layout.headerReferenceSize = CGSize(width: 5, height: AppSize.height / 5) // セクション毎のヘッダーサイズ.
+
+        let collectionView = UICollectionView(frame: CGRect(x: 0,
+                                                         y: 0,
+                                                         width: AppSize.width,
+                                                         height: layout.itemSize.height), collectionViewLayout: layout)
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "MyCell")
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.isPagingEnabled = true
+        collectionView.bounces = false
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = AppSize.backgroundColor
+
+        self.ressultOutlet.addSubview(collectionView)
+    }
+
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = "Home"
         self.view.backgroundColor = AppSize.backgroundColor
 
-        setUpResultView()
-        setupTogglerButton()
-    
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -61,9 +101,17 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                 self.loading?.close()
             })
         }
-        
+
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        setupCollectionView()
+        setupTogglerButton()
+    }
+    
+  
     /** resultViewのsetup */
     private func setUpResultView() {
 
@@ -199,7 +247,9 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     /**  No Date Viewの表示 */
     private func setupNoDate(date: Bool) {
         guard date else { return }
-        self.distanceCharts.isHidden = true
+        
+        distanceCharts.isHidden = true
+        ressultOutlet.isHidden = true
         
         let noDateView = NoDateView(frame: CGRect(x: 0, y: 0, width: AppSize.width - 100, height: AppSize.height / 2.5))
         noDateView.center = self.view.center
@@ -228,8 +278,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             self.secondRoundButton.transform = CGAffineTransform(translationX: 0, y: 30)
             
             UIView.animate(withDuration: 0.7, animations: {
-                self.darkFillView.transform = CGAffineTransform(scaleX: 25, y: 11)
-                self.menuView.transform = CGAffineTransform(translationX: 0, y: -30)
+                self.darkFillView.transform = CGAffineTransform(scaleX: 25, y: 10)
+                self.menuView.transform = CGAffineTransform(translationX: 0, y: -20)
                 self.toggleButton.transform = CGAffineTransform(rotationAngle: self.radians(180))
             }) { _ in
                 
@@ -286,6 +336,50 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         self.onSender(Const.WorkType.wallking.rawValue)
     }
     
+
+}
+
+
+/** collectionViewセットアップ */
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    /* Cellが選択時 */
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        self.onSender(indexPath.row)
+    }
+
+    /* Cellに値を設定 */
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell: UICollectionViewCell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: "MyCell",
+            for: indexPath)
+        
+        cell.backgroundColor = {
+           
+            switch indexPath.row {
+                case 1:
+                    return .black
+                case 2:
+                    return .blue
+                case 3:
+                    return .red
+                default:
+                    return .yellow
+            }
+            
+        }()
+        
+        
+        return cell
+    }
+
+
+    /* Cellの総数 */
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+
 
 }
 
