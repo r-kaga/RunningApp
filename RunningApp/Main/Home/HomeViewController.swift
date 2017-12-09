@@ -39,11 +39,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     let interactor = Interactor()
     
-//    var collectionView: UICollectionView = {
-//        let collection = UICollectionView()
-//    }()
-
-    var collectionView: UICollectionView!
     
     private func setupCollectionView() {
     
@@ -56,7 +51,9 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         }
         
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: AppSize.width, height: ressultOutlet.frame.height)
+//        layout.itemSize = CGSize(width: AppSize.width, height: ressultOutlet.frame.height)
+        layout.itemSize = CGSize(width: AppSize.width, height: resultOutletHeight)
+
         layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
         layout.minimumLineSpacing = 1.0
         layout.minimumInteritemSpacing = 1.0
@@ -68,7 +65,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                                                          y: 0,
                                                          width: AppSize.width,
                                                          height: layout.itemSize.height), collectionViewLayout: layout)
-        let nib: UINib = UINib(nibName: "HomeCollectionViewCell", bundle: nil)
+        
+        let nib = UINib(nibName: "HomeCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "cell")
 //        collectionView.register(UINib(nibName: "HomeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
 
@@ -80,6 +78,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         collectionView.dataSource = self
         collectionView.backgroundColor = AppSize.backgroundColor
 
+        collectionView.removeFromSuperview()
         self.ressultOutlet.addSubview(collectionView)
     }
 
@@ -90,7 +89,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         navigationItem.title = "Home"
         self.view.backgroundColor = AppSize.backgroundColor
-
+        setupCollectionView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -110,7 +109,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        setupCollectionView()
+//        setupCollectionView()
         setupTogglerButton()
     }
     
@@ -354,9 +353,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     /* Cellに値を設定 */
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(
+        let cell: HomeCollectionViewCell = collectionView.dequeueReusableCell(
             withReuseIdentifier: "cell",
-            for: indexPath)
+            for: indexPath) as! HomeCollectionViewCell
         
 //        cell.backgroundColor = {
 //            switch indexPath.row {

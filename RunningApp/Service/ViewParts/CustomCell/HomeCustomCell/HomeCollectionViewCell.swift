@@ -10,10 +10,28 @@ import UIKit
 
 class HomeCollectionViewCell: UICollectionViewCell {
 
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
     
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//        loadFromNib()
+//    }
+//    
+//    required init?(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)!
+//        loadFromNib()
+//    }
+//
+//    private func loadFromNib() {
+//        if let view = Bundle.main.loadNibNamed("HomeCollectionViewCell", owner: self, options: nil)?.first as? UIView {
+//            view.frame = self.bounds
+//            self.addSubview(view)
+//        }
+//    }
+//    
 }
