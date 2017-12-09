@@ -33,6 +33,11 @@ class MyInfoViewController: UIViewController, UIScrollViewDelegate {
     private let headerItem = [ "MyInfo" ]
     private var myInfo: Results<RealmDataSet>!
     
+    enum Section: Int {
+        case MyInfo = 0
+    }
+    
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh(_:)), for: UIControlEvents.valueChanged)
@@ -132,7 +137,13 @@ extension MyInfoViewController: UITableViewDataSource {
 
     /** cellの数を設定 */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.myInfo.count
+//        return self.myInfo.count
+        switch Section(rawValue: section) {
+            case .some(.MyInfo):
+                return myInfo.count
+            case .none:
+                return 0
+        }
     }
 
     /** cellの生成 */

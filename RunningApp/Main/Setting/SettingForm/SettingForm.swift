@@ -126,13 +126,14 @@ class SettingForm: UIViewController, PickerDelegate {
     }
     
     @IBAction func closeButton(_ sender: Any) {
-        let transition: CATransition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionReveal
-        transition.subtype = kCATransitionFromRight
-        self.view.window!.layer.add(transition, forKey: nil)
-        dismiss(animated: false, completion: nil)
+//        let transition: CATransition = CATransition()
+//        transition.duration = 0.5
+//        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+//        transition.type = kCATransitionReveal
+//        transition.subtype = kCATransitionFromRight
+//        self.view.window!.layer.add(transition, forKey: nil)
+//        dismiss(animated: false, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     

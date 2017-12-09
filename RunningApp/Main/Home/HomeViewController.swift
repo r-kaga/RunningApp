@@ -29,7 +29,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var firstRoundButton: UIButton!
     @IBOutlet weak var secondRoundButton: UIButton!
 
-    
     // 初回表示かどうか.アプリ立ち上げ時のみLoadingを表示
     var isFirstAppear: Bool = true
     var loading = Loading.make()
@@ -196,6 +195,17 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         self.ressultOutlet.addSubview(scrollView)
     }
     
+    
+    /**  No Date Viewの表示 */
+    private func setupNoDate(date: Bool) {
+        guard date else { return }
+        self.distanceCharts.isHidden = true
+        
+        let noDateView = NoDateView(frame: CGRect(x: 0, y: 0, width: AppSize.width - 100, height: AppSize.height / 2.5))
+        noDateView.center = self.view.center
+        self.view.addSubview(noDateView)
+    }
+    
     /** toggleButtonのsetup */
     private func setupTogglerButton() {
         self.darkFillView.layer.cornerRadius = self.darkFillView.frame.width / 2
@@ -208,17 +218,9 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         firstRoundButton.layer.cornerRadius = 10.0
         secondRoundButton.layer.cornerRadius = 10.0
     }
-    
-    /**  No Date Viewの表示 */
-    private func setupNoDate(date: Bool) {
-        guard date else { return }
-        self.distanceCharts.isHidden = true
-        
-        let noDateView = NoDateView(frame: CGRect(x: 0, y: 0, width: AppSize.width - 100, height: AppSize.height / 2.5))
-        noDateView.center = self.view.center
-        self.view.addSubview(noDateView)
-    }
 
+
+    /** Buttonの開閉 */
     @IBAction func toggleMenu(_ sender: Any) {
         if darkFillView.transform == .identity {
             
@@ -284,10 +286,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         self.onSender(Const.WorkType.wallking.rawValue)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
 }
 
@@ -300,8 +298,7 @@ extension HomeViewController: UIViewControllerTransitioningDelegate {
         let sb = UIStoryboard(name: "ModalViewController", bundle: nil).instantiateInitialViewController() as! ModalNavigationController
         sb.interactor = interactor
         sb.transitioningDelegate = self
-        //        sb.
-        AppDelegate.getTopMostViewController().present(sb, animated: true, completion: nil)
+        present(sb, animated: true, completion: nil)
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
