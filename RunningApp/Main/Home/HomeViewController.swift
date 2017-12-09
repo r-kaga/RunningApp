@@ -68,7 +68,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                                                          y: 0,
                                                          width: AppSize.width,
                                                          height: layout.itemSize.height), collectionViewLayout: layout)
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "MyCell")
+        let nib: UINib = UINib(nibName: "HomeCollectionViewCell", bundle: nil)
+        collectionView.register(nib, forCellWithReuseIdentifier: "cell")
+//        collectionView.register(UINib(nibName: "HomeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
+
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
@@ -351,25 +354,22 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     /* Cellに値を設定 */
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell: UICollectionViewCell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "MyCell",
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: "cell",
             for: indexPath)
         
-        cell.backgroundColor = {
-           
-            switch indexPath.row {
-                case 1:
-                    return .black
-                case 2:
-                    return .blue
-                case 3:
-                    return .red
-                default:
-                    return .yellow
-            }
-            
-        }()
-        
+//        cell.backgroundColor = {
+//            switch indexPath.row {
+//                case 1:
+//                    return .black
+//                case 2:
+//                    return .blue
+//                case 3:
+//                    return .red
+//                default:
+//                    return .yellow
+//            }
+//        }()
         
         return cell
     }
