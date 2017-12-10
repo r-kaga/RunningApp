@@ -33,6 +33,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     var isFirstAppear: Bool = true
     var loading = Loading.make()
     
+    private var latestData: Results<RealmDataSet>!
+
     var resultOutletHeight: CGFloat {
         return AppSize.height - (self.distanceCharts.frame.maxY + 100 + AppSize.tabBarHeight + 20)
     }
@@ -43,7 +45,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     private func setupCollectionView() {
     
         let realm = try! Realm()
-        let latestData = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
+        latestData = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
 
         guard !latestData.isEmpty else {
             setupNoDate(date: true)
@@ -357,6 +359,21 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             withReuseIdentifier: "cell",
             for: indexPath) as! HomeCollectionViewCell
         
+//        let path = indexPath[1]
+//        let type = Utility.pathConvertWorkType(path: path)
+//        let cellImage = UIImage(named: type.1)!
+//        cell.imageView?.image = cellImage
+//        cell.textLabel?.text = type.1
+
+        
+        let data = latestData[indexPath.row]
+        cell.carorieLabel.text = data.calorie
+        cell.distanceLabel.text = data.distance
+        cell.endTimeLabel.text = data.date
+        cell.speedLabel.text = data.speed
+        cell.timeLabel.text = data.time
+        cell.typeImageView.image = UIImage(named: data.workType)!
+        
 //        cell.backgroundColor = {
 //            switch indexPath.row {
 //                case 1:
@@ -376,7 +393,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
     /* Cellの総数 */
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return latestData.count
     }
 
 
