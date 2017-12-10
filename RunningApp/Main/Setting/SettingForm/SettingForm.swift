@@ -44,7 +44,7 @@ class SettingForm: UIViewController, PickerDelegate {
         
         self.view.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
 
-        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: [], animations: {
+        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: [], animations: {
 //            self.view.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
             self.view.transform = .identity
         }) { _ in
