@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wx2-ZU-8fI">
-                                <rect key="frame" x="0.0" y="249" width="320" height="154"/>
+                                <rect key="frame" x="0.0" y="244" width="320" height="159"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nrv-TM-ULR">
@@ -101,7 +101,7 @@
                             <constraint firstItem="nrv-TM-ULR" firstAttribute="leading" secondItem="SZe-J7-h9d" secondAttribute="leading" constant="10" id="4yB-hi-Wrl"/>
                             <constraint firstItem="GUt-I2-VI8" firstAttribute="leading" secondItem="SZe-J7-h9d" secondAttribute="leading" id="5hy-Tj-xdV"/>
                             <constraint firstItem="nrv-TM-ULR" firstAttribute="top" secondItem="SZe-J7-h9d" secondAttribute="top" constant="15" id="AgC-ht-1tJ"/>
-                            <constraint firstItem="wx2-ZU-8fI" firstAttribute="top" secondItem="nrv-TM-ULR" secondAttribute="bottom" constant="10" id="FCB-Bf-W1T"/>
+                            <constraint firstItem="wx2-ZU-8fI" firstAttribute="top" secondItem="nrv-TM-ULR" secondAttribute="bottom" constant="5" id="FCB-Bf-W1T"/>
                             <constraint firstItem="GUt-I2-VI8" firstAttribute="top" secondItem="wx2-ZU-8fI" secondAttribute="bottom" constant="40" id="O8X-oV-Oqa"/>
                             <constraint firstItem="GUt-I2-VI8" firstAttribute="trailing" secondItem="SZe-J7-h9d" secondAttribute="trailing" id="P6E-Gx-5VL"/>
                             <constraint firstItem="wx2-ZU-8fI" firstAttribute="leading" secondItem="SZe-J7-h9d" secondAttribute="leading" id="YJF-Iy-tsf"/>

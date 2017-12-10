@@ -33,6 +33,27 @@ class SettingForm: UIViewController, PickerDelegate {
         super.viewDidLoad()
         initSetup()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        view.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.view.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+
+        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: [], animations: {
+//            self.view.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+            self.view.transform = .identity
+        }) { _ in
+//            UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: [], animations: {
+//                self.view.transform = .identity
+//            })
+        }
+
+    }
 
     private func initSetup() {
         
@@ -133,7 +154,12 @@ class SettingForm: UIViewController, PickerDelegate {
 //        transition.subtype = kCATransitionFromRight
 //        self.view.window!.layer.add(transition, forKey: nil)
 //        dismiss(animated: false, completion: nil)
-        dismiss(animated: true, completion: nil)
+        
+        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {
+            self.view.transform = CGAffineTransform(scaleX: 0.2, y: 0.2 )
+        }) { _ in
+            self.dismiss(animated: false, completion: nil)
+        }
     }
     
     

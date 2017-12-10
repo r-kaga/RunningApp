@@ -69,7 +69,32 @@ class SettingController: UIViewController {
         let form = UIStoryboard(name: "SettingForm", bundle: nil).instantiateInitialViewController() as! SettingForm
         form.type = type
         form.delegate = self
-        self.present(form, animated: true, completion: nil)
+//        form.view.alpha = 0.0
+//        form.view.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+//        form.view.center = view.center
+        
+//        let transition: CATransition = CATransition()
+//        transition.duration = 0.5
+//        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+//        transition.type = kCATransitionReveal
+//        transition.subtype = kCATransitionFromRight
+//        self.view.window!.layer.add(transition, forKey: nil)
+//        present(form, animated: false)
+    
+        present(form, animated: false) {
+//            UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {
+//                form.view.alpha = 1.0
+//                form.view.transform = .identity
+//            })
+        }
+//        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {
+//
+//        })
+
+        //            form.view.alpha = 1.0
+//            UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {
+//                form.view.transform = .identity
+//            })
     }
     
 
