@@ -35,16 +35,6 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgE-p9-7vk">
-                                                <rect key="frame" x="330" y="0.0" width="30" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="stA-Ct-O1X"/>
-                                                    <constraint firstAttribute="width" constant="30" id="wc6-Hb-Zgp"/>
-                                                </constraints>
-                                                <state key="normal" title="❌">
-                                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-10-24 10:24:24" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaK-2l-6MW">
                                                 <rect key="frame" x="108" y="21" width="145.5" height="58.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -62,11 +52,8 @@
                                         <constraints>
                                             <constraint firstItem="gaK-2l-6MW" firstAttribute="top" secondItem="bK3-E6-Y1W" secondAttribute="bottom" id="6Lj-tY-EuO"/>
                                             <constraint firstItem="gaK-2l-6MW" firstAttribute="centerX" secondItem="PVr-2h-dfj" secondAttribute="centerX" id="7aH-82-vS5"/>
-                                            <constraint firstItem="tgE-p9-7vk" firstAttribute="top" secondItem="PVr-2h-dfj" secondAttribute="top" id="Hsd-Xt-pO4"/>
-                                            <constraint firstItem="tgE-p9-7vk" firstAttribute="top" secondItem="PVr-2h-dfj" secondAttribute="top" id="J3K-tX-bqn"/>
                                             <constraint firstItem="fmT-6d-bJh" firstAttribute="leading" secondItem="PVr-2h-dfj" secondAttribute="leading" id="MXz-FL-ma5"/>
                                             <constraint firstItem="fmT-6d-bJh" firstAttribute="top" secondItem="PVr-2h-dfj" secondAttribute="top" id="QHw-DX-V5N"/>
-                                            <constraint firstAttribute="trailing" secondItem="tgE-p9-7vk" secondAttribute="trailing" id="UQh-l9-RRa"/>
                                             <constraint firstAttribute="bottom" secondItem="gaK-2l-6MW" secondAttribute="bottom" id="W0L-zI-ss3"/>
                                             <constraint firstAttribute="bottom" secondItem="fmT-6d-bJh" secondAttribute="bottom" id="Yfx-Fk-qNl"/>
                                             <constraint firstItem="bK3-E6-Y1W" firstAttribute="top" secondItem="PVr-2h-dfj" secondAttribute="top" constant="5" id="bYt-6X-yhO"/>
@@ -214,6 +201,15 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="400" height="280"/>
+            <connections>
+                <outlet property="cardView" destination="hbh-lr-otp" id="to3-ma-BZu"/>
+                <outlet property="carorieLabel" destination="8kP-CL-MN3" id="5KS-CO-tdU"/>
+                <outlet property="distanceLabel" destination="KGN-gO-EBx" id="tWF-Ym-vN8"/>
+                <outlet property="endTimeLabel" destination="gaK-2l-6MW" id="Mr9-Xx-PPT"/>
+                <outlet property="speedLabel" destination="h25-yr-gRo" id="XuU-7j-8jO"/>
+                <outlet property="timeLabel" destination="f7J-7a-F1X" id="ysQ-kw-1Pe"/>
+                <outlet property="typeImageView" destination="fmT-6d-bJh" id="Ry3-NO-W2A"/>
+            </connections>
             <point key="canvasLocation" x="-13" y="81"/>
         </collectionViewCell>
     </objects>

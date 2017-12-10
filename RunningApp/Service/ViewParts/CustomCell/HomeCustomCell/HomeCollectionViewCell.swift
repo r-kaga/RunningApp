@@ -10,28 +10,18 @@ import UIKit
 
 class HomeCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var cardView: UIView!
+    @IBOutlet weak var typeImageView: UIImageView!
+    @IBOutlet weak var endTimeLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var speedLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var carorieLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        cardView.layer.cornerRadius = 7.5
+        cardView.clipsToBounds = true
     }
 
-    
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        loadFromNib()
-//    }
-//    
-//    required init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)!
-//        loadFromNib()
-//    }
-//
-//    private func loadFromNib() {
-//        if let view = Bundle.main.loadNibNamed("HomeCollectionViewCell", owner: self, options: nil)?.first as? UIView {
-//            view.frame = self.bounds
-//            self.addSubview(view)
-//        }
-//    }
-//    
 }
