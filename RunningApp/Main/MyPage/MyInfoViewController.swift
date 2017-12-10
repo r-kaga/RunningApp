@@ -60,7 +60,7 @@ class MyInfoViewController: UIViewController, UIScrollViewDelegate {
 
     private func setupTableView() {
 
-        tableView = UITableView(frame: CGRect(x: 15, y: AppSize.statusBarAndNavigationBarHeight + 40 + 15, width: AppSize.width - 30, height: AppSize.height - (AppSize.height / 3)), style: .grouped)
+        tableView = UITableView(frame: CGRect(x: 0, y: AppSize.statusBarAndNavigationBarHeight + 40 + 15, width: AppSize.width, height: AppSize.height - (AppSize.height / 3)), style: .grouped)
         tableView.backgroundColor = AppSize.backgroundColor
 //        tableView.bounces = false
         tableView.showsVerticalScrollIndicator = false
@@ -68,8 +68,8 @@ class MyInfoViewController: UIViewController, UIScrollViewDelegate {
         tableView.dataSource = self
         tableView.separatorColor = .clear
         tableView.register(UINib(nibName: "MyPageCell", bundle: nil), forCellReuseIdentifier: "myPageCell")
-//        tableView.estimatedRowHeight = 60
-//        tableView.rowHeight = 60
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = 100
 //        tableView.sectionIndexColor = .black
 //        tableView.separatorInset = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0)
 
@@ -149,9 +149,9 @@ extension MyInfoViewController: UITableViewDataSource {
     /** cellの生成 */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myPageCell") as! MyPageCell
-        cell.frame = CGRect(x: 15, y: 0, width: AppSize.width - 30, height: 60)
-        cell.layer.cornerRadius = 10.0
-        cell.clipsToBounds = true
+//        cell.frame = CGRect(x: 0, y: 0, width: AppSize.width, height: 100)
+//        cell.layer.cornerRadius = 10.0
+//        cell.clipsToBounds = true
         cell.backgroundColor = AppSize.backgroundColor
         cell.dateLabel.textColor = .gray
         cell.timeLabel.textColor = .black
