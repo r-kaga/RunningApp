@@ -60,7 +60,7 @@ class MyInfoViewController: UIViewController, UIScrollViewDelegate {
 
     private func setupTableView() {
 
-        tableView = UITableView(frame: CGRect(x: 0, y: AppSize.statusBarAndNavigationBarHeight + 40 + 15, width: AppSize.width, height: AppSize.height - (AppSize.height / 3)), style: .grouped)
+        tableView = UITableView(frame: CGRect(x: 0, y: AppSize.statusBarAndNavigationBarHeight + 40 + 15, width: AppSize.width, height: AppSize.height - (AppSize.statusBarAndNavigationBarHeight + AppSize.tabBarHeight + 40)), style: .grouped)
         tableView.backgroundColor = AppSize.backgroundColor
 //        tableView.bounces = false
         tableView.showsVerticalScrollIndicator = false
