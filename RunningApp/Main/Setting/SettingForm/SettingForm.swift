@@ -156,7 +156,7 @@ class SettingForm: UIViewController, PickerDelegate {
 //        dismiss(animated: false, completion: nil)
         
         UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {
-            self.view.transform = CGAffineTransform(scaleX: 0.2, y: 0.2 )
+            self.view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         }) { _ in
             self.dismiss(animated: false, completion: nil)
         }
