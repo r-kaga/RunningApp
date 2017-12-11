@@ -19,7 +19,7 @@ class WorkController: UIViewController {
     static var workType: String?
     static var homeDelegate: HomeDelegate?
 
-    weak var timer: Timer!
+    weak var timer: Timer?
     var startTimeDate: Date!
     
     weak var pausedTimer: Timer!
@@ -151,7 +151,7 @@ class WorkController: UIViewController {
     private func startTimer() {
         if timer != nil{
             // timerが起動中なら一旦破棄する
-            timer.invalidate()
+            timer?.invalidate()
         }
 
         timer = Timer.scheduledTimer(
@@ -174,7 +174,7 @@ class WorkController: UIViewController {
     /* タイマーの終了時処理 */
     private func stopTimer() {
         if timer != nil{
-            timer.invalidate()
+            timer?.invalidate()
             stopWatchLabel.text = "00::00:00"
         }
     }
@@ -370,7 +370,7 @@ class WorkController: UIViewController {
     /* Modalを閉じる */
     private func dismissModal() {
         
-        self.timer.invalidate()
+        self.timer?.invalidate()
         self.pausedTimer?.invalidate()
         
         dismiss(animated: true, completion: { [presentingViewController] () -> Void in
@@ -497,7 +497,12 @@ extension WorkController: CLLocationManagerDelegate {
 //        self.minAltitude = location.altitude
 //        self.maxAltitude = location.altitude
         
-        self.maxSpeed = "".appendingFormat("%.2f", location.speed * 3.6)
+        if maxSpeed < "".appendingFormat("%.2f", location.speed * 3.6) {
+            print("-----------------")
+            print(maxSpeed)
+            self.maxSpeed = "".appendingFormat("%.2f", location.speed * 3.6)
+        }
+        
         
         var calorie: Double = 0.0
         if let weight = UserDefaults.standard.string(forKey: "weight") {
@@ -529,9 +534,9 @@ extension WorkController: CLLocationManagerDelegate {
 //            self.distanceLabel.text = self.getDistance(location: location)
             
             self.calorieLabel.text = String(calorie)
-
+   
             // 時速の計算結果をlabelに反映
-            let speed = round((location.speed * 3.6) * 10.0) / 10.0
+            let speed = round((location.speed * 3.6) * 100) / 100
             var speedText = String(speed)
             if speed < 0 { speedText = "計測不能" }
             self.speedLabel.text = speedText
