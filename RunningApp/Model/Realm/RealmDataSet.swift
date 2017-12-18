@@ -15,6 +15,16 @@ class RealmDataSet: Object {
 //        return try! Realm().objects(type(of: self).self).sorted(byKeyPath: "id").last?.id ?? 0
 //    }
     
+    static let shared = RealmDataSet()
+    static let realm = try! Realm()
+
+    
+    var getNewI: Int {
+        let maxId = RealmDataSet.realm.objects(type(of: self).self).sorted(byKeyPath: "id").last?.id ?? 0
+        return maxId + 1
+    }
+
+    
     @objc dynamic var id       = 1 // PrimartKey
     @objc dynamic var date     = String()
     @objc dynamic var distance = String()
