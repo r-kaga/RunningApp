@@ -19,11 +19,15 @@ class RealmDataSet: Object {
     static let realm = try! Realm()
 
     
-    var getNewI: Int {
+    var getNewId: Int {
         let maxId = RealmDataSet.realm.objects(type(of: self).self).sorted(byKeyPath: "id").last?.id ?? 0
         return maxId + 1
     }
 
+    
+    func getAllData(ascending: Bool = false) -> Results<RealmDataSet> {
+        return RealmDataSet.realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: ascending)
+    }
     
     @objc dynamic var id       = 1 // PrimartKey
     @objc dynamic var date     = String()

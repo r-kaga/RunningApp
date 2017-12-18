@@ -15,8 +15,7 @@ class MyInfoCharsViewController: UIViewController, ChartViewDelegate, UIScrollVi
         
         self.view.backgroundColor = AppSize.backgroundColor
         
-        let realm = try! Realm()
-        myInfo = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
+        myInfo = RealmDataSet.shared.getAllData()
         guard !myInfo.isEmpty else {
             setupNoDate()
             return

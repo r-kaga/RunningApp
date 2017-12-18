@@ -44,8 +44,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     private func setupCollectionView() {
     
-        let realm = try! Realm()
-        latestData = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
+        latestData = RealmDataSet.shared.getAllData()
 
         guard !latestData.isEmpty else {
             setupNoDate(date: true)

@@ -24,8 +24,7 @@ class DistanceChartsController: UIViewController, ChartViewDelegate {
         
         self.view.addBorder(color: .gray, width: 0.5)
 
-        let realm = try! Realm()
-        let motionDate = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: true)
+        let motionDate = RealmDataSet.shared.getAllData(ascending: true)
         
         guard !motionDate.isEmpty else {
             return

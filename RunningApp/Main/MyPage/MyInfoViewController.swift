@@ -74,7 +74,7 @@ class MyInfoViewController: UIViewController, UIScrollViewDelegate {
 //        tableView.separatorInset = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0)
 
         let realm = try! Realm()
-        myInfo = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
+        myInfo = RealmDataSet.shared.getAllData()
 
         guard !myInfo.isEmpty else {
             setupNoDate()

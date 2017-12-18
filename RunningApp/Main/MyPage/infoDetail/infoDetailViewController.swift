@@ -19,7 +19,6 @@ class infoDetailViewController: UIViewController {
     @IBOutlet weak var maxAltLabel: UILabel!
     @IBOutlet weak var minAltLabel: UILabel!
     
-    
     var myInfo: RealmDataSet? = nil
 
     weak var delegate: MyPageDelegate?
