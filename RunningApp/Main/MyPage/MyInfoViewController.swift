@@ -169,20 +169,20 @@ extension MyInfoViewController: UITableViewDataSource {
         return cell
     }
 
-//    /*+ hearderを設定 */
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return self.headerItem[0]
-//    }
-    /** hearderのViewを設定 */
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView:UIView = UIView(frame: CGRect(x: 0, y: 0, width: 150, height: 30))
-        headerView.backgroundColor = AppSize.backgroundColor
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: headerView.frame.width, height: headerView.frame.height / 2))
-        label.text = self.headerItem[section]
-        label.textColor = .black
-        headerView.addSubview(label)
-        return headerView
+    /*+ hearderを設定 */
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.headerItem[0]
     }
+//    /** hearderのViewを設定 */
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let headerView:UIView = UIView(frame: CGRect(x: 0, y: 0, width: 150, height: 30))
+//        headerView.backgroundColor = AppSize.backgroundColor
+//        let label = UILabel(frame: CGRect(x: 0, y: 0, width: headerView.frame.width, height: headerView.frame.height / 2))
+//        label.text = self.headerItem[section]
+//        label.textColor = .black
+//        headerView.addSubview(label)
+//        return headerView
+//    }
 
  
     /** cellが選択された時 */
