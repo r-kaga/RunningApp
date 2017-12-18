@@ -217,12 +217,10 @@ class WorkController: UIViewController {
               let type       = WorkController.workType
         else { return }
         
-        let realm = try! Realm()
-        let dataSet = RealmDataSet()
-        
-        if let id = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false).first?.id {
-            dataSet.id = id + 1
-        }
+        let realm = RealmDataSet.realm
+        let dataSet = RealmDataSet.shared
+
+        dataSet.id          = dataSet.getNewId
         dataSet.date        = Utility.getNowClockString()
         dataSet.calorie     = calorie
         dataSet.distance    = totalDistance

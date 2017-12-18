@@ -83,11 +83,10 @@ class resultView: UIView {
 
             guard let path = self.indexPath else { return }
 
-            let realm = try! Realm()
-            let data = realm.objects(RealmDataSet.self).filter("id = \(path)")
+            let data = RealmDataSet.realm.objects(RealmDataSet.self).filter("id = \(path)")
             
-            try! realm.write() {
-                realm.delete(data)
+            try! RealmDataSet.realm.write() {
+                RealmDataSet.realm.delete(data)
             }
             
             self.removeFromSuperview()
