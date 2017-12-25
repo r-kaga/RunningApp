@@ -71,7 +71,6 @@ class resultView: UIView {
     }
  
     private func delete() {
-
         let alert = UIAlertController(title: "削除してよろしいですか", message: "データは残りません", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { _ in
 

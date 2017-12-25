@@ -5,19 +5,13 @@ import RealmSwift
 
 class RealmDataSet: Object {
     
-//    var maxId: Int {
-//        return try! Realm().objects(type(of: self).self).sorted(byKeyPath: "id").last?.id ?? 0
-//    }
-    
     static let shared = RealmDataSet()
     static let realm = try! Realm()
-
     
     var getNewId: Int {
         let maxId = RealmDataSet.realm.objects(type(of: self).self).sorted(byKeyPath: "id").last?.id ?? 0
         return maxId + 1
     }
-
     
     func getAllData(ascending: Bool = false) -> Results<RealmDataSet> {
         return RealmDataSet.realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: ascending)
@@ -51,11 +45,6 @@ class RealmDataSet: Object {
 //        }
 //    }
     
-//    // 新しいIDを採番します。
-//    func createNewId() -> Int {
-//        let realm = try! Realm()
-//        return (realm.objects(type(of: self).self).sorted(byKeyPath: "id", ascending: false).first?.id ?? 0) + 1
-//    }
     
     // プライマリーキーの設定
     override static func primaryKey() -> String? {

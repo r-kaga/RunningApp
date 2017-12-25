@@ -10,15 +10,15 @@ class Picker: UIView,  UIPickerViewDelegate, UIPickerViewDataSource, DialogProto
 
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var acceptButton: UIButton!
-    
     @IBOutlet weak var buttonViewOutlet: UIStackView!
     @IBOutlet weak var picker: UIPickerView!
     
-    public var dataList = [String]()
 
-    var selectedValue: String?
     weak var delegate: PickerDelegate?
-    
+
+    var dataList = [String]()
+    var selectedValue: String?
+
     /** ビュー作成
      * @return Parts
      */
@@ -35,7 +35,6 @@ class Picker: UIView,  UIPickerViewDelegate, UIPickerViewDataSource, DialogProto
         picker.delegate = self
         picker.dataSource = self
 
-        
         buttonViewOutlet.addBorder(types: [.Bottom], color: UIColor(red: 215/255, green: 215/255, blue: 219/255, alpha: 0.8))
         acceptButton.addBorder(types: [.Left], color: UIColor(red: 215/255, green: 215/255, blue: 219/255, alpha: 0.8))
         

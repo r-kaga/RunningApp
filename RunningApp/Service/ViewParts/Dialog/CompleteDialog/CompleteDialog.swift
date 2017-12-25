@@ -30,10 +30,7 @@ class CompleteDialog: UIView, DialogProtocol {
         let angle = -15 * CGFloat.pi / 180
         self.completeImageView.transform = CGAffineTransform(rotationAngle: CGFloat(angle))
     }
-    
-//    override func didMoveToWindow() {
-//        self.doStamp()
-//    }
+
     
     /** 表示
      */
