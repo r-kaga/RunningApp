@@ -29,9 +29,7 @@ struct Const {
         case empty
     }
     
-    
 
-    
     static let PUSH_TIME = "pushTime"
     
 }

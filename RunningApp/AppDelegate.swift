@@ -54,6 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UINavigationBar.appearance().tintColor = .white  // アイテムの色
         // 文字の色を変更
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        // 背景の色を変更
         UINavigationBar.appearance().barTintColor = AppSize.navigationAndTabBarColor
         
         window = UIWindow(frame: UIScreen.main.bounds)

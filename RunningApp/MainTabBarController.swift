@@ -11,7 +11,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         /** barTintColor -> tabBarのbackgroundColor
           *  tintColor    -> 選択されてるTabのColor
           */
-        UITabBar.appearance().barTintColor = .black
+        UITabBar.appearance().barTintColor = AppSize.navigationAndTabBarColor
         UITabBar.appearance().tintColor = .white
 
         // MARK: - Home
