@@ -1,10 +1,4 @@
-//
-//  AppSize.swift
-//  RunningApp
-//
-//  Created by 加賀谷諒 on 2017/09/25.
-//  Copyright © 2017年 ryo kagaya. All rights reserved.
-//
+
 
 import Foundation
 import UIKit
@@ -26,10 +20,6 @@ struct AppSize {
     static let statusBarHeight = UIApplication.shared.statusBarFrame.height
     
     static var navigationBarHeight: CGFloat { return 44 }
-
-//    static let navigationBarHeight = { (navigationController: UINavigationController) -> CGFloat in
-//        return navigationController.navigationBar.frame.size.height
-//    }
  
     static var statusBarAndNavigationBarHeight: CGFloat { return statusBarHeight + navigationBarHeight }
     

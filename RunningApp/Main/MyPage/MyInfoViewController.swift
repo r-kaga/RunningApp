@@ -1,10 +1,4 @@
-//
-//  MyPageViewController.swift
-//  sampleUIViewApp
-//
-//  Created by 加賀谷諒 on 2017/07/16.
-//  Copyright © 2017年 ryo kagaya. All rights reserved.
-//
+
 
 import UIKit
 import RealmSwift

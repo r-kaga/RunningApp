@@ -1,10 +1,4 @@
-//
-//  DistanceChartsController.swift
-//  RunningApp
-//
-//  Created by 加賀谷諒 on 2017/10/29.
-//  Copyright © 2017年 ryo kagaya. All rights reserved.
-//
+
 
 import UIKit
 import Charts
