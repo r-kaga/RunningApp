@@ -51,6 +51,7 @@ extension UIView {
     }
   
     
+    /** 震わすアニメーション */
     func Vibrate() {
         
         self.layer.removeAllAnimations()

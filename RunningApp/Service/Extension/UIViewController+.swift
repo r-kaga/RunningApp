@@ -14,19 +14,6 @@ extension UIViewController {
         view.indexPath = sender.view?.tag
  
         view.Vibrate()
-        
-//        switch sender.state {
-//            case .began:
-//                sender.view?.touchStartAnimation()
-//                view.Vibrate()
-//
-//            case .ended, .cancelled:
-//                sender.view?.touchEndAnimation()
-//                self.view.layer.removeAllAnimations()
-//            
-//            case .changed, .failed, .possible:
-//                break
-//        }
     }
     
     @objc func tapGesture(_ sender: UITapGestureRecognizer) {
