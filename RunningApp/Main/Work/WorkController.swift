@@ -5,8 +5,18 @@ import CoreLocation
 import MapKit
 import RealmSwift
 import CoreMotion
+import AVFoundation
 
-class WorkController: UIViewController {
+
+enum currentSpeedType {
+    case up
+    case down
+    case maintain
+    case notMatched
+}
+
+
+class WorkController: UIViewController, AVAudioPlayerDelegate {
     
     @IBOutlet weak var resultView: UIView!
     @IBOutlet weak var resultCardView: UIView!
@@ -18,31 +28,32 @@ class WorkController: UIViewController {
     
     static var homeDelegate: HomeDelegate?
 
-    weak var timer: Timer?
-    var startTimeDate: Date!
-
+    weak private var timer: Timer?
+    private var startTimeDate: Date!
     private var isStarted = false
     
-    let pedometer = CMPedometer()
-    let cmAltimeter = CMAltimeter()
-    let activityManager = CMMotionActivityManager()
+    private let pedometer = CMPedometer()
+    private let cmAltimeter = CMAltimeter()
+    private let activityManager = CMMotionActivityManager()
 
-    var locationManager: CLLocationManager!
-    var pin: MKPointAnnotation?
+    private var locationManager: CLLocationManager!
+    private var pin: MKPointAnnotation?
+    
+    private var audioPlayer: AVAudioPlayer!
     
     // 縮尺
-    var latDist : CLLocationDistance = 500
-    var lonDist : CLLocationDistance = 500
+    private var latDist : CLLocationDistance = 500
+    private var lonDist : CLLocationDistance = 500
     
-    var firstPoint: CLLocation!
-    var previousPoint: CLLocation?
+    private var firstPoint: CLLocation!
+    private var previousPoint: CLLocation?
     
-    var totalDistance: Double = 0.0
+    private var totalDistance: Double = 0.0
     
-    var interactor: Interactor!
+    private var interactor: Interactor!
     
     /* カウントダウンのImageViewを生成 */
-    lazy var countImageView: UIImageView = {
+    lazy private var countImageView: UIImageView = {
         let countImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: AppSize.width / 3, height: AppSize.height / 3))
         countImageView.center = CGPoint(x: AppSize.width / 2, y: AppSize.height / 2)
         countImageView.image = UIImage(named: "num3")!
@@ -52,7 +63,7 @@ class WorkController: UIViewController {
     }()
     
     /* 現在地を表示するMapKitを生成 */
-    lazy var mapView: MKMapView = {
+    lazy private var mapView: MKMapView = {
         // MapViewの生成
         let mapView = MKMapView()
         mapView.frame = CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.height / 2)
@@ -78,6 +89,7 @@ class WorkController: UIViewController {
         gradient.animateGradient()
 
         resultView.bringSubview(toFront: resultCardView)
+
     }
 
     
@@ -134,7 +146,6 @@ class WorkController: UIViewController {
     /* ストップウォッチ */
     private func startTimer() {
         if timer != nil{
-            // timerが起動中なら一旦破棄する
             timer?.invalidate()
         }
 
@@ -162,7 +173,6 @@ class WorkController: UIViewController {
             stopWatchLabel.text = "00::00:00"
         }
     }
-    
  
     /** DBに登録 */
     private func registWorkResult() {
@@ -200,13 +210,23 @@ class WorkController: UIViewController {
                 let distance = String(round( ( dis / 1000.0 ) * 100) / 100)
                 self.distanceLabel.text = distance
                 
-                guard let pace = data.currentPace?.doubleValue else { return }
-                self.speedLabel.text = String(round( ( (pace * 3600) / 100.0 ) * 100) / 100)
+//                guard let spped = data.currentPace?.doubleValue else { return }
+//                let pace = round( ( (spped * 3600) / 100.0 ) * 100) / 100
+//                self.speedLabel.text = String(pace)
+//                switch self.checkCurrentSpeedIsPaceable(currentSpeed: pace) {
+//                    case .up:
+//                        self.audioPlay(url: "speedUp")
+//                    case .down:
+//                        self.audioPlay(url: "speedDown")
+//                    case .maintain:
+//                        self.audioPlay(url: "maintain")
+//                    case .notMatched: break
+//                }
+                
             }
         }
         
     }
-
     
     /** 開始時間から現在の経過時間を返却
      * - return 現在の経過時間 / HH:mm:ss
@@ -222,30 +242,6 @@ class WorkController: UIViewController {
         return  "\(String(format:"%02d", hour)):\(String(format:"%02d", minute)):\(String(format:"%02", second))"
     }
 
-    /* 距離を取得
-     * @param location - 現在地のCLLocation
-     * @return 開始位置とlocationとの距離
-     */
-    private func getDistance(location: CLLocation) -> String {
-        
-        var distance: Double
-        if let previous = self.previousPoint {
-            distance = previous.distance(from: location)
-        } else {
-            distance = self.firstPoint.distance(from: location)
-        }
-
-        /** まずdistanceがメートルで返ってくるので、1000.0で割り、Kmに変換
-         *   小数点2桁にしたいので、まずは100をかけて、round(四捨五入)してから、100で割り、元の桁に戻す
-         */
-        let dis = round( (distance / 1000.0) * 100) / 100
-
-        totalDistance += dis
-        self.previousPoint = location
-
-        return String(totalDistance)
-    }
-    
     /** 計測終了確認アラート */
     private func confirmWorkEndAlert() {
         let alert = UIAlertController(title: "計測を終了します", message: "終了してもよろしいですか?", preferredStyle: .alert)
@@ -284,6 +280,30 @@ class WorkController: UIViewController {
         confirmWorkEndAlert()
     }
 
+    /* 距離を取得
+     * @param location - 現在地のCLLocation
+     * @return 開始位置とlocationとの距離
+     */
+    private func getDistance(location: CLLocation) -> String {
+        
+        var distance: Double
+        if let previous = self.previousPoint {
+            distance = previous.distance(from: location)
+        } else {
+            distance = self.firstPoint.distance(from: location)
+        }
+        
+        /** まずdistanceがメートルで返ってくるので、1000.0で割り、Kmに変換
+         *   小数点2桁にしたいので、まずは100をかけて、round(四捨五入)してから、100で割り、元の桁に戻す
+         */
+        let dis = round( (distance / 1000.0) * 100) / 100
+        
+        totalDistance += dis
+        self.previousPoint = location
+        
+        return String(totalDistance)
+    }
+    
     
 }
 
@@ -298,7 +318,7 @@ extension WorkController: CLLocationManagerDelegate {
         self.locationManager = CLLocationManager() // インスタンスの生成
         self.locationManager.delegate = self // CLLocationManagerDelegateプロトコルを実装するクラスを指定する
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest // 取得精度の設定
-        self.locationManager.distanceFilter = 10  // 取得頻度の設定.
+        self.locationManager.distanceFilter = 100  // 取得頻度の設定.
         self.locationManager.activityType = .fitness
         self.locationManager.pausesLocationUpdatesAutomatically = false
         
@@ -339,33 +359,81 @@ extension WorkController: CLLocationManagerDelegate {
     }
     
     
-    /*  Location取得の認証に変化があった際に呼ばれる
-     */
+    /**  Location取得の認証に変化があった際に呼ばれる */
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
             case .notDetermined:
                 print("ユーザーはこのアプリケーションに関してまだ選択を行っていません")
 //                locationManager.requestWhenInUseAuthorization() // 起動中のみの取得許可を求める
-
             case .denied:
                 print("ローケーションサービスの設定が「無効」になっています (ユーザーによって、明示的に拒否されています）")
                 // 「設定 > プライバシー > 位置情報サービス で、位置情報サービスの利用を許可して下さい」を表示する
-            
             case .restricted:
                 print("このアプリケーションは位置情報サービスを使用できません(ユーザによって拒否されたわけではありません)")
                 // 「このアプリは、位置情報を取得できないために、正常に動作できません」を表示する
-            
-            case .authorizedAlways:
-                print("常時、位置情報の取得が許可されています。")
-                locationManager.startUpdatingLocation()
-                locationManager.activityType = .fitness
-
-            case .authorizedWhenInUse:
+            case .authorizedWhenInUse, .authorizedAlways:
                 print("起動時のみ、位置情報の取得が許可されています。")
                 locationManager.startUpdatingLocation()
                 locationManager.activityType = .fitness
                 self.markCurrentLocation()
         }
+    }
+
+    /** 音声を再生 */
+    private func audioPlay(url: String) {
+        let audioPath = URL(fileURLWithPath: Bundle.main.path(forResource: url, ofType:"mp3")!)
+
+        // auido を再生するプレイヤーを作成する
+        var audioError: NSError?
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: audioPath)
+        } catch let error as NSError {
+            audioError = error
+            audioPlayer = nil
+        }
+        if let error = audioError {
+            print("Error \(error.localizedDescription)")
+        }
+        
+        audioPlayer.delegate = self
+//        audioPlayer.prepareToPlay()
+
+        audioPlayer.play()
+    }
+    
+    /** 現在のスピードと設定した理想のペースを比較する */
+    private func checkCurrentSpeedIsPaceable(currentSpeed: Double) -> currentSpeedType{
+        var type: currentSpeedType?
+        switch currentSpeed {
+            case let e where e < 24.0:
+                type = .up
+            case let e where e > 26.0:
+                type = .down
+            case 24.0...26.0:
+                type = .maintain
+            default:
+                type = .notMatched
+        }
+        return type!
+    }
+    
+    /** カロリー計算 */
+    private func getCurrentCalorieBurned() -> Double {
+        
+        var calorie: Double = 0.0
+        if let weight = UserDefaults.standard.string(forKey: "weight") {
+            // タイマー開始からのインターバル時間
+            let currentTime = Date().timeIntervalSince(startTimeDate)
+            let hour = (Double)(fmod((currentTime / 60 / 60), 60))
+            let minute = (Double)(fmod((currentTime/60), 60))
+            let second = (Double)(fmod(currentTime, 60))
+            
+            let time = hour + (minute / 60) + (second / 60 / 60)
+            
+            let calcu = (1.05 * 8.0 * time * Double(weight)!)
+            calorie = round(calcu * 10.0) / 10.0
+        }
+        return calorie
     }
     
     
@@ -379,45 +447,25 @@ extension WorkController: CLLocationManagerDelegate {
 
         self.setRegion(coordinate: location.coordinate) // Regionを作成.
         self.setPin(title: "現在地", coordinate: location.coordinate) // pinをセット
-//        self.drawLineToMap(from: previous.coordinate, to: location.coordinate) // 直線を引く座標を作成.
 
-//        if maxSpeed < "".appendingFormat("%.2f", location.speed * 3.6) {
-//            print("-----------------")
-//            print(maxSpeed)
-//            self.maxSpeed = "".appendingFormat("%.2f", location.speed * 3.6)
-//        }
-        
-        
-        var calorie: Double = 0.0
-        if let weight = UserDefaults.standard.string(forKey: "weight") {
-            // タイマー開始からのインターバル時間
-            let currentTime = Date().timeIntervalSince(startTimeDate)
-            let hour = (Double)(fmod((currentTime / 60 / 60), 60))
-            let minute = (Double)(fmod((currentTime/60), 60))
-            let second = (Double)(fmod(currentTime, 60))
-
-            let time = hour + (minute / 60) + (second / 60 / 60)
-
-            let calcu = (1.05 * 8.0 * time * Double(weight)!)
-            calorie = round(calcu * 10.0) / 10.0
-//            【例　散歩：2.5METsの運動を1時間　体重52kgの場合】
-//            1.05×2.5×1.0(時間)×52(kg)＝136.5（kcal）
-//            1METS： 睡眠、TV鑑賞、安静時等
-//            3METS： ウォーキング(少し遅い)
-//            4METS： ウォーキング(少し速い)
-//            5METS： 野球
-//            7METS： テニス
-//            8METS： サイクリング、ジョギング
-//            9METS： 上の階へ荷物を運ぶ
-//            10METS： ランニング（9.7km/h)、水泳（平泳ぎ）、サッカー
-//            11METS： 水泳（クロール、バタフライ）、ランニング（10.8km/h)
-//            15METS： ランニング(14.5km/h)、階段ダッシュ
+        //MARK: - ペースメーカー
+        let currentSpeed = round((location.speed * 3.6) * 10) / 10
+        switch checkCurrentSpeedIsPaceable(currentSpeed: currentSpeed) {
+            case .up:
+                print("speedUp")
+                audioPlay(url: "speedUp")
+            case .down:
+                print("speedDown")
+                audioPlay(url: "speedDown")
+            case .maintain:
+                print("maintain")
+                audioPlay(url: "maintain")
+            case .notMatched: break
         }
+
         // UIの更新
         DispatchQueue.main.async {
-//            self.distanceLabel.text = self.getDistance(location: location)
-            
-            self.calorieLabel.text = String(calorie)
+            self.calorieLabel.text = String(self.getCurrentCalorieBurned())
    
             // 時速の計算結果をlabelに反映
             let speed = round((location.speed * 3.6) * 100) / 100
@@ -442,10 +490,6 @@ extension WorkController: MKMapViewDelegate {
     
     // Regionが変更された時に呼び出されるメソッド
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-//        print("regionDidChangeAnimated")
-//        let center = self.mapView.coordina
-//        print(center)
-//        self.mapView.setCenter(center, animated: true)
     }
     
     /* 現在の位置でMapを更新
@@ -454,11 +498,6 @@ extension WorkController: MKMapViewDelegate {
     private func setRegion(coordinate: CLLocationCoordinate2D) {
         // 表示領域を作成
         let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate, self.latDist, self.lonDist)
-//        let region = MKCoordinateRegionMake(coordinate, span)
-//        region.center = coordinate
-//        region.span.latitudeDelta = 0.003
-//        region.span.longitudeDelta = 0.003
-//        self.mapView.centerCoordinate = coordinate
         self.mapView.setRegion(region, animated: true)  // MapViewに反映
         self.mapView.setCenter(coordinate, animated: true)
     }
@@ -482,25 +521,7 @@ extension WorkController: MKMapViewDelegate {
             self.mapView.addAnnotation(self.pin!)  // MapViewにピンを追加.
         }
     }
-    
-    
-    /*
-     * Mapに直線を引く
-     * @param from - 線の開始位置 type CLLocationCoordinate2D
-     * @param to - 線の終了位置 type CLLocationCoordinate2D
-     */
-    private func drawLineToMap(from: CLLocationCoordinate2D, to: CLLocationCoordinate2D) {
-        // 座標を配列に格納.
-        var line = [CLLocationCoordinate2D]()
-        line.append(from)
-        line.append(to)
-        let polyLine: MKPolyline = MKPolyline(coordinates: &line, count: line.count)
-        
-        DispatchQueue.main.async {
-            self.mapView.add(polyLine)  // mapViewにcircleを追加.
-        }
-        
-    }
+
     
     /** addOverlayした際に呼ばれるデリゲートメソッド. */
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
