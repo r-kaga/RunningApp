@@ -15,7 +15,7 @@ class MyInfoCharsViewController: UIViewController, ChartViewDelegate, UIScrollVi
         
         self.view.backgroundColor = AppSize.backgroundColor
         
-        myInfo = RealmDataSet.shared.getAllData()
+        myInfo = RealmDataSet.getAllData()
         guard !myInfo.isEmpty else {
             setupNoDate()
             return

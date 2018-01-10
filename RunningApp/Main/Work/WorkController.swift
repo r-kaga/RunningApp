@@ -15,7 +15,6 @@ enum currentSpeedType {
     case notMatched
 }
 
-
 class WorkController: UIViewController, AVAudioPlayerDelegate {
     
     @IBOutlet weak var resultView: UIView!
@@ -33,8 +32,6 @@ class WorkController: UIViewController, AVAudioPlayerDelegate {
     private var isStarted = false
     
     private let pedometer = CMPedometer()
-    private let cmAltimeter = CMAltimeter()
-    private let activityManager = CMMotionActivityManager()
 
     private var locationManager: CLLocationManager!
     private var pin: MKPointAnnotation?
@@ -44,11 +41,6 @@ class WorkController: UIViewController, AVAudioPlayerDelegate {
     // 縮尺
     private var latDist : CLLocationDistance = 500
     private var lonDist : CLLocationDistance = 500
-    
-    private var firstPoint: CLLocation!
-    private var previousPoint: CLLocation?
-    
-    private var totalDistance: Double = 0.0
     
     private var interactor: Interactor!
     
@@ -184,7 +176,7 @@ class WorkController: UIViewController, AVAudioPlayerDelegate {
         else { return }
         
         let realm = RealmDataSet.realm
-        let dataSet = RealmDataSet.shared
+        let dataSet = RealmDataSet()
 
         dataSet.id          = dataSet.getNewId
         dataSet.date        = Utility.getNowClockString()
@@ -280,29 +272,31 @@ class WorkController: UIViewController, AVAudioPlayerDelegate {
         confirmWorkEndAlert()
     }
 
+//    private var previousPoint: CLLocation?
+//    private var totalDistance: Double = 0.0
     /* 距離を取得
      * @param location - 現在地のCLLocation
      * @return 開始位置とlocationとの距離
      */
-    private func getDistance(location: CLLocation) -> String {
-        
-        var distance: Double
-        if let previous = self.previousPoint {
-            distance = previous.distance(from: location)
-        } else {
-            distance = self.firstPoint.distance(from: location)
-        }
-        
-        /** まずdistanceがメートルで返ってくるので、1000.0で割り、Kmに変換
-         *   小数点2桁にしたいので、まずは100をかけて、round(四捨五入)してから、100で割り、元の桁に戻す
-         */
-        let dis = round( (distance / 1000.0) * 100) / 100
-        
-        totalDistance += dis
-        self.previousPoint = location
-        
-        return String(totalDistance)
-    }
+//    private func getDistance(location: CLLocation) -> String {
+//
+//        var distance: Double
+//        if let previous = previousPoint {
+//            distance = previous.distance(from: location)
+//        } else {
+//            distance = self.firstPoint.distance(from: location)
+//        }
+//
+//        /** まずdistanceがメートルで返ってくるので、1000.0で割り、Kmに変換
+//         *   小数点2桁にしたいので、まずは100をかけて、round(四捨五入)してから、100で割り、元の桁に戻す
+//         */
+//        let dis = round( (distance / 1000.0) * 100) / 100
+//
+//        totalDistance += dis
+//        self.previousPoint = location
+//
+//        return String(totalDistance)
+//    }
     
     
 }
@@ -315,24 +309,22 @@ extension WorkController: CLLocationManagerDelegate {
      * 画面の表示時に行う必要のある処理
      */
     private func setupLocationManager() {
-        self.locationManager = CLLocationManager() // インスタンスの生成
-        self.locationManager.delegate = self // CLLocationManagerDelegateプロトコルを実装するクラスを指定する
+        self.locationManager = CLLocationManager()
+        self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest // 取得精度の設定
-        self.locationManager.distanceFilter = 100  // 取得頻度の設定.
+        self.locationManager.distanceFilter = 100  // 取得頻度の設定
         self.locationManager.activityType = .fitness
         self.locationManager.pausesLocationUpdatesAutomatically = false
         
         // セキュリティ認証のステータスを取得.
         let status = CLLocationManager.authorizationStatus()
         switch status {
-            // まだ認証が得られていない場合は、認証ダイアログを表示
-        // (このAppの使用中のみ許可の設定) 説明を共通の項目を参照
-        case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-        case .denied, .restricted:
-            print("設定から許可して下さい")
-        case .authorizedAlways, .authorizedWhenInUse:
-            self.markCurrentLocation()
+            case .notDetermined:
+                locationManager.requestWhenInUseAuthorization()
+            case .denied, .restricted:
+                print("設定から許可して下さい")
+            case .authorizedAlways, .authorizedWhenInUse:
+                self.markCurrentLocation()
         }
         
     }
@@ -342,19 +334,14 @@ extension WorkController: CLLocationManagerDelegate {
      * Work開始時に行う必要のある処理
      */
     private func markCurrentLocation() {
-        guard let coordinate = locationManager.location?.coordinate else {
-            print("current is nil")
-            return
-        }
+        guard let coordinate = locationManager.location?.coordinate else { return }
         self.setRegion(coordinate: coordinate)
 
         let firstPin: MKPointAnnotation = MKPointAnnotation() // ピンを生成.
         firstPin.coordinate =  coordinate // 座標を設定.
         firstPin.title = "開始位置" // タイトルを設定.
         mapView.addAnnotation(firstPin)
-        
-        firstPoint = CLLocation(latitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!)
-//        self.mapView.centerCoordinate = firstPoint.coordinate // mapViewのcenterを現在地に
+
         setupPedometer()
     }
     

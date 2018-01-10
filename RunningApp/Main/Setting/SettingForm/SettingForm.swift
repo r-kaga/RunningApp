@@ -27,25 +27,14 @@ class SettingForm: UIViewController, PickerDelegate {
         super.viewDidLoad()
         initSetup()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        view.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-    }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         self.view.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
-
         UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: [], animations: {
-//            self.view.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
             self.view.transform = .identity
-        }) { _ in
-//            UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: [], animations: {
-//                self.view.transform = .identity
-//            })
-        }
+        })
 
     }
 
@@ -81,16 +70,7 @@ class SettingForm: UIViewController, PickerDelegate {
             settingValue = timeNum
         }
         SettingCategoryLabel.text = categoryName
-        
-        let gradient = Gradiate(frame: self.view.frame)
-        self.view.layer.addSublayer(gradient.setUpGradiate())
-        gradient.animateGradient()
-        
-        self.view.bringSubview(toFront: logoImageView)
-        self.view.bringSubview(toFront: SettingCategoryLabel)
-        self.view.bringSubview(toFront: textField)
-        self.view.bringSubview(toFront: settingButton)
-        self.view.bringSubview(toFront: closeButton)
+
     }
 
     @IBAction func settingButton(_ sender: Any) {
@@ -102,7 +82,6 @@ class SettingForm: UIViewController, PickerDelegate {
     func acceptAction(value: String) {
         textField.text = value
     }
-    
     
     private func settingNewValue() {
         
@@ -141,19 +120,7 @@ class SettingForm: UIViewController, PickerDelegate {
     }
     
     @IBAction func closeButton(_ sender: Any) {
-//        let transition: CATransition = CATransition()
-//        transition.duration = 0.5
-//        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-//        transition.type = kCATransitionReveal
-//        transition.subtype = kCATransitionFromRight
-//        self.view.window!.layer.add(transition, forKey: nil)
-//        dismiss(animated: false, completion: nil)
-        
-        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {
-            self.view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-        }) { _ in
-            self.dismiss(animated: false, completion: nil)
-        }
+        self.dismiss(animated: false, completion: nil)
     }
     
     

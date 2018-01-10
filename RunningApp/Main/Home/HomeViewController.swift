@@ -26,7 +26,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     var isFirstAppear: Bool = true
     var loading = Loading.make()
     
-    private var latestData: Results<RealmDataSet> = RealmDataSet.shared.getAllData()
+    private var latestData: Results<RealmDataSet> = RealmDataSet.getAllData()
 
     var resultOutletHeight: CGFloat {
         return AppSize.height - (self.distanceCharts.frame.maxY + 100 + AppSize.tabBarHeight + 20)
@@ -34,12 +34,11 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     let interactor = Interactor()
  
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = "Home"
-        self.view.backgroundColor = AppSize.backgroundColor
+        view.backgroundColor = AppSize.backgroundColor
         setupCollectionView()
     }
 
@@ -59,11 +58,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-//        setupCollectionView()
         setupTogglerButton()
     }
-    
-    
     
     private func setupCollectionView() {
         
@@ -73,15 +69,12 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         }
         
         let layout = UICollectionViewFlowLayout()
-        //        layout.itemSize = CGSize(width: AppSize.width, height: ressultOutlet.frame.height)
         layout.itemSize = CGSize(width: AppSize.width, height: resultOutletHeight)
         
         layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
         layout.minimumLineSpacing = 1.0
         layout.minimumInteritemSpacing = 1.0
         layout.scrollDirection = .horizontal
-        
-        //        layout.headerReferenceSize = CGSize(width: 5, height: AppSize.height / 5) // セクション毎のヘッダーサイズ.
         
         let collectionView = UICollectionView(frame: CGRect(x: 0,
                                                             y: 0,
@@ -90,7 +83,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         let nib = UINib(nibName: "HomeCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "cell")
-        //        collectionView.register(UINib(nibName: "HomeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
         
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false

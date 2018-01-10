@@ -60,7 +60,7 @@ class CompleteDialog: UIView, DialogProtocol {
                        animations:{
 
                         // サイズを大きくする
-//                        self.completeImageView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+                        self.completeImageView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
         }, completion: nil)
 
         UIView.animate(withDuration: 0.05,
@@ -69,7 +69,7 @@ class CompleteDialog: UIView, DialogProtocol {
                        initialSpringVelocity: 90,
                        options: [], animations: {
 //                        // サイズを元に戻す
-//                        self.completeImageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                        self.completeImageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
                         // 透過度を元に戻す
                         self.completeImageView.alpha = 1.0
         }, completion:{ finished in

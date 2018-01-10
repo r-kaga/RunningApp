@@ -55,7 +55,7 @@ class infoDetailViewController: UIViewController {
             loading?.close()
         }
         
-        guard self.myInfo != nil else { return }
+        guard myInfo != nil else { return }
         let realm = try! Realm()
         
         try! realm.write() {

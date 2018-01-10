@@ -10,7 +10,7 @@ protocol MyPageDelegate: class {
 
 extension MyInfoViewController: MyPageDelegate {
     func reload() {
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
 
     func setNavigationTitle(title: String) {
@@ -18,43 +18,42 @@ extension MyInfoViewController: MyPageDelegate {
     }
 }
 
+enum Section: Int {
+    case MyInfo = 0
+}
+
 
 class MyInfoViewController: UIViewController, UIScrollViewDelegate {
     
-    //    var loading: Loading?
     private var tableView: UITableView!
-    
     private let headerItem = [ "MyInfo" ]
-    private var myInfo: Results<RealmDataSet>!
     
-    enum Section: Int {
-        case MyInfo = 0
-    }
-    
-    
-    lazy var refreshControl: UIRefreshControl = {
+    lazy private var myInfo: Results<RealmDataSet> = {
+        return RealmDataSet.getAllData()
+    }()
+
+    lazy private var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh(_:)), for: UIControlEvents.valueChanged)
         refreshControl.tintColor = UIColor.gray
         return refreshControl
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "MyPage"
         
+        view.backgroundColor = AppSize.backgroundColor
         setupTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.title = "MyPage"
-        self.view.backgroundColor = AppSize.backgroundColor
     }
 
     private func setupTableView() {
 
-        tableView = UITableView(frame: CGRect(x: 0, y: AppSize.statusBarAndNavigationBarHeight + 40 + 15, width: AppSize.width, height: AppSize.height - (AppSize.statusBarAndNavigationBarHeight + AppSize.tabBarHeight + 40)), style: .grouped)
+        tableView = UITableView(frame: CGRect(x: 0, y: AppSize.statusBarAndNavigationBarHeight, width: AppSize.width, height: AppSize.height - (AppSize.statusBarAndNavigationBarHeight + AppSize.tabBarHeight)), style: .plain)
         tableView.backgroundColor = AppSize.backgroundColor
 //        tableView.bounces = false
         tableView.showsVerticalScrollIndicator = false
@@ -67,31 +66,25 @@ class MyInfoViewController: UIViewController, UIScrollViewDelegate {
 //        tableView.sectionIndexColor = .black
 //        tableView.separatorInset = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0)
 
-        myInfo = RealmDataSet.shared.getAllData()
-
         guard !myInfo.isEmpty else {
             setupNoDate()
             return
         }
 
         tableView.refreshControl = refreshControl
-        self.view.addSubview(tableView)
-
+        view.addSubview(tableView)
     }
     
     /** Pull Action Reload method */
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        //        let newHotel = Hotels(name: "Montage Laguna Beach", place: "California south")
-        //        hotels.append(newHotel)
-        //        hotels.sort() { $0.name < $1.place }
-        self.tableView.reloadData()
-        self.tableView.refreshControl?.endRefreshing()
+        tableView.reloadData()
+        tableView.refreshControl?.endRefreshing()
     }
 
     private func setupNoDate() {
         let noDateView = NoDateView(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.height / 2.5))
         noDateView.center = self.view.center
-        self.view.addSubview(noDateView)
+        view.addSubview(noDateView)
     }
     
 }
@@ -125,12 +118,12 @@ extension MyInfoViewController: UITableViewDataSource {
 
     /** sectionの数を規定 */
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.headerItem.count
+        return headerItem.count
     }
 
     /** cellの数を設定 */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return self.myInfo.count
+
         switch Section(rawValue: section) {
             case .some(.MyInfo):
                 return myInfo.count
@@ -142,15 +135,13 @@ extension MyInfoViewController: UITableViewDataSource {
     /** cellの生成 */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myPageCell") as! MyPageCell
-//        cell.frame = CGRect(x: 0, y: 0, width: AppSize.width, height: 100)
-//        cell.layer.cornerRadius = 10.0
-//        cell.clipsToBounds = true
+
         cell.backgroundColor = AppSize.backgroundColor
         cell.dateLabel.textColor = .gray
         cell.timeLabel.textColor = .black
         cell.distanceLabel.textColor = .black
 
-        let item = self.myInfo[indexPath.row]
+        let item = myInfo[indexPath.row]
         cell.dateLabel.text = item.date
         cell.timeLabel.text = item.time
         cell.distanceLabel.text = item.distance + "km"
@@ -162,9 +153,9 @@ extension MyInfoViewController: UITableViewDataSource {
     }
 
     /*+ hearderを設定 */
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.headerItem[0]
-    }
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return self.headerItem[0]
+//    }
 //    /** hearderのViewを設定 */
 //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 //        let headerView:UIView = UIView(frame: CGRect(x: 0, y: 0, width: 150, height: 30))
@@ -176,7 +167,6 @@ extension MyInfoViewController: UITableViewDataSource {
 //        return headerView
 //    }
 
- 
     /** cellが選択された時 */
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
@@ -185,7 +175,7 @@ extension MyInfoViewController: UITableViewDataSource {
         infoDetail.myInfo = myInfo[indexPath.row]
         infoDetail.delegate = self
 
-        self.navigationController?.pushViewController(infoDetail, animated: true)
+        navigationController?.pushViewController(infoDetail, animated: true)
     }
 
     /** tableView表示された時 */

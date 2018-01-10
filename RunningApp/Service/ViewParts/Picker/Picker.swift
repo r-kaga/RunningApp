@@ -13,7 +13,6 @@ class Picker: UIView,  UIPickerViewDelegate, UIPickerViewDataSource, DialogProto
     @IBOutlet weak var buttonViewOutlet: UIStackView!
     @IBOutlet weak var picker: UIPickerView!
     
-
     weak var delegate: PickerDelegate?
 
     var dataList = [String]()

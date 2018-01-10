@@ -5,7 +5,6 @@ import RealmSwift
 
 class RealmDataSet: Object {
     
-    static let shared = RealmDataSet()
     static let realm = try! Realm()
     
     var getNewId: Int {
@@ -13,7 +12,7 @@ class RealmDataSet: Object {
         return maxId + 1
     }
     
-    func getAllData(ascending: Bool = false) -> Results<RealmDataSet> {
+    static func getAllData(ascending: Bool = false) -> Results<RealmDataSet> {
         return RealmDataSet.realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: ascending)
     }
     

@@ -5,6 +5,19 @@ import UIKit
 
 
 extension UIAlertController {
+    
+    /** 前面にあるUIViewControllerを取得
+     * @return
+     */
+    static func getTopMostViewController() -> UIViewController {
+        var controller = UIApplication.shared.keyWindow?.rootViewController
+        while ((controller!.presentedViewController) != nil) {
+            controller = controller!.presentedViewController
+        }
+        
+        return controller!
+    }
+    
 
     /** 削除ボタン付きのアクションシートを表示
      * @param deleteAction - 削除が選択された時のclosure () -> ()
@@ -26,7 +39,7 @@ extension UIAlertController {
         alert.addAction(destory)
         alert.addAction(myAction_3)
         
-        AppDelegate.getTopMostViewController().present(alert, animated: true, completion: nil)
+        UIAlertController.getTopMostViewController().present(alert, animated: true, completion: nil)
     }
 
     

@@ -5,7 +5,6 @@ import UserNotifications
 
 struct Utility {
 
-    
     /**
      * ローカル通知の時間をセットする
      * @param setTime :Int - 通知したい時間
@@ -54,20 +53,6 @@ struct Utility {
         view?.startLoading()
     }
     
-    /** collectionViewのpathから、運動のタイプをタプルで返却
-     *  ("Category Image", "CollectionView Image")
-     */
-    static func pathConvertWorkType(path: Int) -> (String, String) {
-        switch path {
-        case Const.WorkType.running.rawValue:
-            return ("directionsRun", "running")
-        case Const.WorkType.wallking.rawValue:
-            return ("directionsWalk", "walking")
-        default:
-            return ("directionsRun", "running")
-        }
-    }
-    
-    
+
     
 }

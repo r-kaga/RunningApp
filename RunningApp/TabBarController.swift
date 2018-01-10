@@ -1,7 +1,7 @@
 
 import UIKit
 
-class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
+class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
 
         super.viewDidLoad()
@@ -20,7 +20,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         let homeNv = UINavigationController(rootViewController: home)
         
         // MARK: - MyPage
-        let myPage = UIStoryboard(name: "MyPage", bundle: nil).instantiateInitialViewController() as! MyPage
+        let myPage = MyInfoViewController()
         myPage.tabBarItem = UITabBarItem(title: "MyPage", image: UIImage(named: "account")!, selectedImage: UIImage(named: "account")!)
         let myPageNv = UINavigationController(rootViewController: myPage)
     

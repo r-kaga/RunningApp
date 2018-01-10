@@ -8,19 +8,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     var window: UIWindow?
 
-    /** 前面にあるUIViewControllerを取得
-     * @return
-     */
-    static func getTopMostViewController() -> UIViewController {
-        var controller = UIApplication.shared.keyWindow?.rootViewController
-        while ((controller!.presentedViewController) != nil) {
-            controller = controller!.presentedViewController
-        }
-        
-        return controller!
-    }
-    
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -52,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UINavigationBar.appearance().barTintColor = AppSize.navigationAndTabBarColor
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = MainTabBarViewController()
+        window?.rootViewController = TabBarViewController()
         window?.makeKeyAndVisible()
 
         return true
