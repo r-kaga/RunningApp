@@ -29,21 +29,19 @@ class WorkController: UIViewController, AVAudioPlayerDelegate {
 
     weak private var timer: Timer?
     private var startTimeDate: Date!
-    private var isStarted = false
     
     private let pedometer = CMPedometer()
-
     private var locationManager: CLLocationManager!
     private var pin: MKPointAnnotation?
     
     private var audioPlayer: AVAudioPlayer!
     
     // 縮尺
-    private var latDist : CLLocationDistance = 500
-    private var lonDist : CLLocationDistance = 500
-    
-    private var interactor: Interactor!
-    
+    private var latDist: CLLocationDistance = 500
+    private var lonDist: CLLocationDistance = 500
+
+    private var isStarted = false
+
     /* カウントダウンのImageViewを生成 */
     lazy private var countImageView: UIImageView = {
         let countImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: AppSize.width / 3, height: AppSize.height / 3))
