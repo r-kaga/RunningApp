@@ -5,13 +5,10 @@ import RealmSwift
 
 class infoDetailViewController: UIViewController {
 
-    @IBOutlet weak var workTypeLabel: UILabel!
     @IBOutlet weak var calorieLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var speedLabel: UILabel!
-    @IBOutlet weak var maxAltLabel: UILabel!
-    @IBOutlet weak var minAltLabel: UILabel!
     
     var myInfo: RealmDataSet? = nil
 
@@ -39,13 +36,10 @@ class infoDetailViewController: UIViewController {
     
     /** 表示する情報のセットアップ*/
     private func setupMyInfo() {
-        workTypeLabel.text = myInfo?.workType == "directionsRun" ? "ランニング" : "ウォーキング"
         calorieLabel.text = myInfo?.calorie
         distanceLabel.text = myInfo?.distance
         timeLabel.text = myInfo?.time
         speedLabel.text = myInfo?.speed
-        minAltLabel.text = myInfo?.minAlt
-        maxAltLabel.text = myInfo?.maxAlt
         speedLabel.text = myInfo?.speed
     }
     
