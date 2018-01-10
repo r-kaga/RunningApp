@@ -26,57 +26,14 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     var isFirstAppear: Bool = true
     var loading = Loading.make()
     
-    private var latestData: Results<RealmDataSet>!
+    private var latestData: Results<RealmDataSet> = RealmDataSet.shared.getAllData()
 
     var resultOutletHeight: CGFloat {
         return AppSize.height - (self.distanceCharts.frame.maxY + 100 + AppSize.tabBarHeight + 20)
     }
     
     let interactor = Interactor()
-    
-    
-    private func setupCollectionView() {
-    
-        latestData = RealmDataSet.shared.getAllData()
-
-        guard !latestData.isEmpty else {
-            setupNoDate(date: true)
-            return
-        }
-        
-        let layout = UICollectionViewFlowLayout()
-//        layout.itemSize = CGSize(width: AppSize.width, height: ressultOutlet.frame.height)
-        layout.itemSize = CGSize(width: AppSize.width, height: resultOutletHeight)
-
-        layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
-        layout.minimumLineSpacing = 1.0
-        layout.minimumInteritemSpacing = 1.0
-        layout.scrollDirection = .horizontal
-
-        //        layout.headerReferenceSize = CGSize(width: 5, height: AppSize.height / 5) // セクション毎のヘッダーサイズ.
-
-        let collectionView = UICollectionView(frame: CGRect(x: 0,
-                                                         y: 0,
-                                                         width: AppSize.width,
-                                                         height: layout.itemSize.height), collectionViewLayout: layout)
-        
-        let nib = UINib(nibName: "HomeCollectionViewCell", bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: "cell")
-//        collectionView.register(UINib(nibName: "HomeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
-
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.isPagingEnabled = true
-        collectionView.bounces = false
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.backgroundColor = AppSize.backgroundColor
-
-        collectionView.removeFromSuperview()
-        self.ressultOutlet.addSubview(collectionView)
-    }
-
-    
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,143 +59,51 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
 //        setupCollectionView()
         setupTogglerButton()
     }
     
-  
-    /** resultViewのsetup */
-    private func setUpResultView() {
-
-        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.height))
-        scrollView.backgroundColor = AppSize.backgroundColor
-        scrollView.contentSize = CGSize(width: AppSize.width, height: ressultOutlet.frame.height) // 中身の大きさを設定
-        scrollView.isPagingEnabled = true
-        scrollView.bounces = false
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.showsHorizontalScrollIndicator = false
-        //        scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        scrollView.delegate = self
-        
-        defer {
-            self.ressultOutlet.addSubview(scrollView)
-        }
- 
-        let realm = try! Realm()
-        
-        let latestData = realm.objects(RealmDataSet.self).sorted(byKeyPath: "id", ascending: false)
-        print(latestData)
+    
+    
+    private func setupCollectionView() {
         
         guard !latestData.isEmpty else {
             setupNoDate(date: true)
             return
         }
         
-        let Latestlabel = UILabel(frame: CGRect(x: AppSize.width / 2 - 100,
-                                                y: 0,
-                                                width: 200,
-                                                height: 20))
-        Latestlabel.text = "Latest Date"
-        Latestlabel.textColor = .gray
-        Latestlabel.textAlignment = .center
-        scrollView.addSubview(Latestlabel)
-
-        let view = resultView(frame: CGRect(x: 15,
-                                            y: 5,
-                                            width: AppSize.width - 30,
-                                            height: resultOutletHeight - (Latestlabel.frame.maxY + 5))
-
-        )
-        view.center = CGPoint(x: AppSize.width / 2, y: Latestlabel.frame.maxY + view.frame.height / 2 + 5)
+        let layout = UICollectionViewFlowLayout()
+        //        layout.itemSize = CGSize(width: AppSize.width, height: ressultOutlet.frame.height)
+        layout.itemSize = CGSize(width: AppSize.width, height: resultOutletHeight)
         
-        view.setValueToResultView(dateTime: latestData[0].date,
-                                  timeValue: latestData[0].time,
-                                  distance: latestData[0].distance,
-                                  speed: latestData[0].speed,
-                                  calorie: latestData[0].calorie
-        )
-        view.typeImageView.image = UIImage(named: latestData[0].workType)!
-        view.addBorder(color: .gray, width: 0.5)
+        layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        layout.minimumLineSpacing = 1.0
+        layout.minimumInteritemSpacing = 1.0
+        layout.scrollDirection = .horizontal
         
-//        view.indexPath = latestData[0].id
-//        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(Home.longPressed(_:)))
-//        view.addGestureRecognizer(longPress)
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(Home.tapGesture(_:)))
-//        view.addGestureRecognizer(tapGesture)
+        //        layout.headerReferenceSize = CGSize(width: 5, height: AppSize.height / 5) // セクション毎のヘッダーサイズ.
         
-        scrollView.addSubview(view)
+        let collectionView = UICollectionView(frame: CGRect(x: 0,
+                                                            y: 0,
+                                                            width: AppSize.width,
+                                                            height: layout.itemSize.height), collectionViewLayout: layout)
         
-        guard latestData.count >= 2 else { return }
+        let nib = UINib(nibName: "HomeCollectionViewCell", bundle: nil)
+        collectionView.register(nib, forCellWithReuseIdentifier: "cell")
+        //        collectionView.register(UINib(nibName: "HomeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
         
-        let secondlabel = UILabel(frame: CGRect(x: (AppSize.width + AppSize.width / 2) - 100,
-                                                y: 0,
-                                                width: 200,
-                                                height: 20))
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.isPagingEnabled = true
+        collectionView.bounces = false
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = AppSize.backgroundColor
         
-        secondlabel.text = "Seconde Date"
-        secondlabel.textColor = .gray
-        secondlabel.textAlignment = .center
-        scrollView.contentSize.width += AppSize.width
-        scrollView.addSubview(secondlabel)
-        
-        let second = resultView(frame: CGRect(x: AppSize.width + 15,
-                                              y: secondlabel.frame.maxY + 5,
-                                              width: AppSize.width - 30,
-                                              height: resultOutletHeight - (secondlabel.frame.maxY + 5)))
-        second.setValueToResultView(dateTime: latestData[1].date,
-                                    timeValue: latestData[1].time,
-                                    distance: latestData[1].distance,
-                                    speed: latestData[1].speed,
-                                    calorie: latestData[1].calorie
-        )
-        second.typeImageView.image = UIImage(named: latestData[1].workType)!
-        second.addBorder(color: .gray, width: 0.5)
-        
-//        second.indexPath = latestData[1].id
-//        second.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(Home.longPressed(_:))))
-//        second.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(Home.tapGesture(_:))))
-        
-        scrollView.addSubview(second)
-        
-        guard latestData.count >= 3 else { return }
-        
-        let thirdlabel = UILabel(frame: CGRect(x: (AppSize.width * 2 + AppSize.width / 2) - 100,
-                                               y: 0,
-                                               width: 200,
-                                               height: 20))
-        
-        //        thirdlabel.center = CGPoint(x: (third.frame.maxX - third.frame.width / 2), y: 0)
-        thirdlabel.text = "third Date"
-        thirdlabel.textColor = .gray
-        thirdlabel.textAlignment = .center
-        scrollView.addSubview(thirdlabel)
-        
-        let third = resultView(frame: CGRect(x: (AppSize.width * 2) + 15,
-                                             y: thirdlabel.frame.maxY + 5,
-                                             width: AppSize.width - 30,
-                                             height: resultOutletHeight - (thirdlabel.frame.maxY + 5))
-        )
-        
-        third.setValueToResultView(dateTime: latestData[2].date,
-                                   timeValue: latestData[2].time,
-                                   distance: latestData[2].distance,
-                                   speed: latestData[2].speed,
-                                   calorie: latestData[2].calorie
-        )
-        third.typeImageView.image = UIImage(named: latestData[2].workType)!
-        third.addBorder(color: .gray, width: 0.5)
-        
-//        third.indexPath = latestData[2].id
-//        third.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(Home.longPressed(_:))))
-//        third.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(Home.tapGesture(_:))))
-        
-        scrollView.contentSize.width += AppSize.width
-        scrollView.addSubview(third)
-
-        self.ressultOutlet.addSubview(scrollView)
+        collectionView.removeFromSuperview()
+        self.ressultOutlet.addSubview(collectionView)
     }
-    
+
     
     /**  No Date Viewの表示 */
     private func setupNoDate(date: Bool) {
@@ -318,7 +183,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         let sb = UIStoryboard(name: "WorkController", bundle: nil).instantiateInitialViewController() as! ModalNavigationController
         sb.interactor = interactor
         sb.transitioningDelegate = self
-        WorkController.workType = Utility.pathConvertWorkType(path: path).0
         WorkController.homeDelegate = self
         
         self.present(sb, animated: true, completion: nil)
@@ -341,7 +205,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     /* Cellが選択時 */
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        self.onSender(indexPath.row)
     }
 
     /* Cellに値を設定 */
@@ -351,41 +214,20 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             withReuseIdentifier: "cell",
             for: indexPath) as! HomeCollectionViewCell
         
-//        let path = indexPath[1]
-//        let type = Utility.pathConvertWorkType(path: path)
-//        let cellImage = UIImage(named: type.1)!
-//        cell.imageView?.image = cellImage
-//        cell.textLabel?.text = type.1
-
-        
         let data = latestData[indexPath.row]
         cell.carorieLabel.text = data.calorie
         cell.distanceLabel.text = data.distance
         cell.endTimeLabel.text = data.date
         cell.speedLabel.text = data.speed
         cell.timeLabel.text = data.time
-        cell.typeImageView.image = UIImage(named: data.workType)!
-        
-//        cell.backgroundColor = {
-//            switch indexPath.row {
-//                case 1:
-//                    return .black
-//                case 2:
-//                    return .blue
-//                case 3:
-//                    return .red
-//                default:
-//                    return .yellow
-//            }
-//        }()
-        
+
         return cell
     }
 
 
     /* Cellの総数 */
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return latestData.count
+        return 3
     }
 
 

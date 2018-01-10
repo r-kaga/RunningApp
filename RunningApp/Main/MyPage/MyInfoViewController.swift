@@ -152,7 +152,6 @@ extension MyInfoViewController: UITableViewDataSource {
         cell.distanceLabel.textColor = .black
 
         let item = self.myInfo[indexPath.row]
-        cell.typeImageView?.image = UIImage(named: item.workType)!
         cell.dateLabel.text = item.date
         cell.timeLabel.text = item.time
         cell.distanceLabel.text = item.distance + "km"

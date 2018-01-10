@@ -16,21 +16,16 @@ class WorkController: UIViewController {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var calorieLabel: UILabel!
     
-    static var workType: String?
     static var homeDelegate: HomeDelegate?
 
     weak var timer: Timer?
     var startTimeDate: Date!
-    
-    weak var pausedTimer: Timer!
-    var pausedTime: Int = 0
-    
+
     private var isStarted = false
     
     let pedometer = CMPedometer()
     let cmAltimeter = CMAltimeter()
     let activityManager = CMMotionActivityManager()
-
 
     var locationManager: CLLocationManager!
     var pin: MKPointAnnotation?
@@ -41,13 +36,6 @@ class WorkController: UIViewController {
     
     var firstPoint: CLLocation!
     var previousPoint: CLLocation?
-    
-//    var minAltitude: CLLocationDistance?
-//    var maxAltitude: CLLocationDistance?
-    var minAltitude: Double = 0.0
-    var maxAltitude: Double = 0.0
-    
-    var maxSpeed: String = "0.0"
     
     var totalDistance: Double = 0.0
     
@@ -128,16 +116,12 @@ class WorkController: UIViewController {
                 self.countImageView.image = UIImage(named: "num1")!
 
                 UIView.animate(withDuration: 0.8, delay: 0.0, options: .curveEaseOut, animations: {
-
                     self.countImageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-
                 }, completion: { _ in
-
                     self.countImageView.isHidden = true
                     self.countImageView.removeFromSuperview()
                     self.isStarted = true
                     self.startTimer()
-                    self.startPausedTime()
                 })
 
             })
@@ -179,42 +163,14 @@ class WorkController: UIViewController {
         }
     }
     
-    
-    private func startPausedTime()  {
-        print("startPauseTimer")
-        pausedTimer = Timer.scheduledTimer(
-            timeInterval: 1.0,
-            target: self,
-            selector: #selector(self.countPausedTimer),
-            userInfo: nil,
-            repeats: true)
-        pausedTimer?.fire()
-    }
-    
-    @objc private func countPausedTimer(_ pause: Bool) {
-        print(self.pausedTime)
-        self.pausedTime += 1
-    }
-    
-    private func pausedTimer(pause: Bool) {
-        print("pausedTimer")
-        switch pause {
-            case true:
-                self.startPausedTime()
-            case false:
-                self.pausedTimer?.invalidate()
-        }
-    }
-
-    
+ 
     /** DBに登録 */
     private func registWorkResult() {
         
         guard let totalDistance  = self.distanceLabel.text,
               let speed      = self.speedLabel.text,
               let time       = self.stopWatchLabel.text,
-              let calorie    = self.calorieLabel.text,
-              let type       = WorkController.workType
+              let calorie    = self.calorieLabel.text
         else { return }
         
         let realm = RealmDataSet.realm
@@ -226,11 +182,6 @@ class WorkController: UIViewController {
         dataSet.distance    = totalDistance
         dataSet.speed       = speed
         dataSet.time        = time
-        dataSet.workType    = type
-        dataSet.minAlt      = String(self.minAltitude)
-        dataSet.maxAlt      = String(self.maxAltitude)
-        dataSet.pausedTime  = String(self.pausedTime)
-        dataSet.speed      = self.maxSpeed
 
         try! realm.write {
             realm.add(dataSet)
@@ -254,65 +205,7 @@ class WorkController: UIViewController {
             }
         }
         
-        self.pedometer.startEventUpdates { (event: CMPedometerEvent?, error: Error?) in
-            guard let event = event, error == nil else { return }
-            
-            switch event.type {
-                case .pause:
-                    self.pausedTimer(pause: true)
-                case .resume:
-                    self.pausedTimer(pause: false)
-            }
-        }
-        
     }
-    
-    /** 高度を取得するためのSetup */
-    private func setupAltitude() {
-        // Altimeterのモニタリングのスタート.
-        guard CMAltimeter.isRelativeAltitudeAvailable() else { return }
-        self.cmAltimeter.startRelativeAltitudeUpdates(to: OperationQueue.main, withHandler: {(altimeterData, error) in
-            guard error == nil else {
-                //                    print(error?.localizedDescription)
-                return
-            }
-            guard let altitude = altimeterData?.relativeAltitude.doubleValue
-                else { return }
-
-            if self.minAltitude > altitude {
-                self.minAltitude = altitude
-            }
-            
-            if self.maxAltitude < altitude {
-                self.maxAltitude = altitude
-            }
-            
-            print(self.minAltitude)
-            print(self.maxAltitude)
-            
-        })
-    }
-    
-//    private func setupActivityType() {
-//        guard CMMotionActivityManager.isActivityAvailable() else { return }
-//
-//        self.activityManager.startActivityUpdates(to: OperationQueue.current!,withHandler: { (data: CMMotionActivity?) in
-//
-//            guard let isWalking = data?.walking,
-//                  let isRunning = data?.running,
-//                  let isStatinary = data?.stationary
-//            else { return }
-//
-//            if isWalking {
-////                self.walkingTime =
-//            } else if isStatinary {
-//                self.pausedTimer(pause: true)
-//            } else if isRunning {
-//                self.pausedTimer(pause: false)
-//            }
-//    
-//        })
-//    }
 
     
     /** 開始時間から現在の経過時間を返却
@@ -369,7 +262,6 @@ class WorkController: UIViewController {
     private func dismissModal() {
         
         self.timer?.invalidate()
-        self.pausedTimer?.invalidate()
         
         dismiss(animated: true, completion: { [presentingViewController] () -> Void in
             if self.pin != nil {
@@ -488,18 +380,12 @@ extension WorkController: CLLocationManagerDelegate {
         self.setRegion(coordinate: location.coordinate) // Regionを作成.
         self.setPin(title: "現在地", coordinate: location.coordinate) // pinをセット
 //        self.drawLineToMap(from: previous.coordinate, to: location.coordinate) // 直線を引く座標を作成.
-        
-//        if self.minAltitude > location {
-//            self.minAltitude = location.altitude
+
+//        if maxSpeed < "".appendingFormat("%.2f", location.speed * 3.6) {
+//            print("-----------------")
+//            print(maxSpeed)
+//            self.maxSpeed = "".appendingFormat("%.2f", location.speed * 3.6)
 //        }
-//        self.minAltitude = location.altitude
-//        self.maxAltitude = location.altitude
-        
-        if maxSpeed < "".appendingFormat("%.2f", location.speed * 3.6) {
-            print("-----------------")
-            print(maxSpeed)
-            self.maxSpeed = "".appendingFormat("%.2f", location.speed * 3.6)
-        }
         
         
         var calorie: Double = 0.0
