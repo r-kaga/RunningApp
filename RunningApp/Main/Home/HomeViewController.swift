@@ -20,7 +20,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var toggleButton: UIButton!
     @IBOutlet weak var darkFillView: UIView!
     @IBOutlet weak var firstRoundButton: UIButton!
-    @IBOutlet weak var secondRoundButton: UIButton!
 
     // 初回表示かどうか.アプリ立ち上げ時のみLoadingを表示
     var isFirstAppear: Bool = true
@@ -113,13 +112,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     private func setupTogglerButton() {
         self.darkFillView.layer.cornerRadius = self.darkFillView.frame.width / 2
         self.firstRoundButton.layer.cornerRadius = self.firstRoundButton.frame.width / 2
-        self.secondRoundButton.layer.cornerRadius = self.secondRoundButton.frame.width / 2
         
         self.firstRoundButton.alpha = 0.0
-        self.secondRoundButton.alpha = 0.0
         
         firstRoundButton.layer.cornerRadius = 10.0
-        secondRoundButton.layer.cornerRadius = 10.0
     }
 
 
@@ -128,7 +124,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         if darkFillView.transform == .identity {
             
             self.firstRoundButton.transform = CGAffineTransform(translationX: 0, y: 30)
-            self.secondRoundButton.transform = CGAffineTransform(translationX: 0, y: 30)
             
             UIView.animate(withDuration: 0.7, animations: {
                 self.darkFillView.transform = CGAffineTransform(scaleX: 25, y: 10)
@@ -139,7 +134,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                 UIView.animate(withDuration: 0.5, animations: {
                     self.toggleButtonStatus()
                     self.firstRoundButton.transform = .identity
-                    self.secondRoundButton.transform = .identity
                     
                 })
                 
@@ -152,7 +146,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                 self.toggleButton.transform = .identity
                 self.toggleButtonStatus()
                 self.firstRoundButton.transform = CGAffineTransform(rotationAngle: self.radians(180))
-                self.secondRoundButton.transform = CGAffineTransform(rotationAngle: self.radians(180))
             })
         }
         
@@ -167,11 +160,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     func toggleButtonStatus() {
         let alpha: CGFloat = firstRoundButton.alpha == 0.0 ? 1.0 : 0.0
         firstRoundButton.alpha = alpha
-        secondRoundButton.alpha = alpha
     }
     
     /** fitness画面の表示 */
-    func onSender(_ path: Int) {
+    func onSender() {
         let sb = UIStoryboard(name: "WorkController", bundle: nil).instantiateInitialViewController() as! ModalNavigationController
         sb.interactor = interactor
         sb.transitioningDelegate = self
@@ -181,13 +173,9 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func runningRoundButton(_ sender: Any) {
-        self.onSender(Const.WorkType.running.rawValue)
+        self.onSender()
     }
-    
-    @IBAction func walkingRoundButton(_ sender: Any) {
-        self.onSender(Const.WorkType.wallking.rawValue)
-    }
-    
+
 
 }
 
@@ -219,7 +207,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
     /* Cellの総数 */
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return latestData.count > 3 ? 3 : latestData.count
     }
 
 

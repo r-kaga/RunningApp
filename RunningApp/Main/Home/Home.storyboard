@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="agd-nW-Aut">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="agd-nW-Aut">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -48,7 +47,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GT5-OE-NTU">
-                                        <rect key="frame" x="60" y="40" width="80" height="40"/>
+                                        <rect key="frame" x="120" y="40" width="80" height="40"/>
                                         <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="9UN-uF-duK"/>
@@ -60,39 +59,23 @@
                                             <action selector="runningRoundButton:" destination="agd-nW-Aut" eventType="touchUpInside" id="QmD-5j-3rX"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wGs-LQ-I41">
-                                        <rect key="frame" x="150" y="45.5" width="20" height="30"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wGs-LQ-I41">
+                                        <rect key="frame" x="210" y="45.5" width="20" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="20" id="RYE-wQ-5jA"/>
                                             <constraint firstAttribute="height" constant="30" id="Upk-X9-tyK"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VpW-Vm-R5v">
-                                        <rect key="frame" x="178" y="40" width="80" height="40"/>
-                                        <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="SNW-QN-O1t"/>
-                                            <constraint firstAttribute="height" constant="40" id="iIX-Q8-Zti"/>
-                                        </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Walk"/>
-                                        <connections>
-                                            <action selector="walkingRoundButton:" destination="agd-nW-Aut" eventType="touchUpInside" id="dOQ-qI-3sC"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="GT5-OE-NTU" firstAttribute="top" secondItem="GUt-I2-VI8" secondAttribute="top" constant="40" id="5ei-tI-WUT"/>
                                     <constraint firstItem="hGT-bt-Tkh" firstAttribute="top" secondItem="GUt-I2-VI8" secondAttribute="top" constant="5" id="Fdg-RR-6Zu"/>
-                                    <constraint firstItem="wGs-LQ-I41" firstAttribute="leading" secondItem="GT5-OE-NTU" secondAttribute="trailing" constant="10" id="G9Y-nB-CdY"/>
-                                    <constraint firstItem="VpW-Vm-R5v" firstAttribute="leading" secondItem="wGs-LQ-I41" secondAttribute="trailing" constant="8" id="IIb-Zq-Mw5"/>
                                     <constraint firstAttribute="trailing" secondItem="hGT-bt-Tkh" secondAttribute="trailing" constant="15" id="MnP-XC-mAQ"/>
                                     <constraint firstAttribute="height" constant="120" id="ZjN-VQ-Vab"/>
+                                    <constraint firstItem="GT5-OE-NTU" firstAttribute="centerX" secondItem="GUt-I2-VI8" secondAttribute="centerX" id="hG7-st-ZeC"/>
                                     <constraint firstItem="wGs-LQ-I41" firstAttribute="centerX" secondItem="GUt-I2-VI8" secondAttribute="centerX" id="lbE-Bd-C4w"/>
                                     <constraint firstItem="wGs-LQ-I41" firstAttribute="centerY" secondItem="GUt-I2-VI8" secondAttribute="centerY" id="rJf-xU-JbA"/>
-                                    <constraint firstItem="VpW-Vm-R5v" firstAttribute="top" secondItem="GUt-I2-VI8" secondAttribute="top" constant="40" id="sEE-5n-SvI"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -123,7 +106,6 @@
                         <outlet property="firstRoundButton" destination="GT5-OE-NTU" id="brW-Ng-Q4Y"/>
                         <outlet property="menuView" destination="GUt-I2-VI8" id="qEa-wc-MIU"/>
                         <outlet property="ressultOutlet" destination="wx2-ZU-8fI" id="UZ3-wv-edB"/>
-                        <outlet property="secondRoundButton" destination="VpW-Vm-R5v" id="MvJ-dS-MK0"/>
                         <outlet property="toggleButton" destination="hGT-bt-Tkh" id="5sE-l5-v50"/>
                     </connections>
                 </viewController>
