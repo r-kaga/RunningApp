@@ -49,7 +49,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             loading?.startLoading()
             self.isFirstAppear = false
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
                 self.loading?.close()
             })
         }

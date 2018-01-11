@@ -42,16 +42,6 @@ class WorkController: UIViewController, AVAudioPlayerDelegate {
 
     private var isStarted = false
 
-    /* カウントダウンのImageViewを生成 */
-    lazy private var countImageView: UIImageView = {
-        let countImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: AppSize.width / 3, height: AppSize.height / 3))
-        countImageView.center = CGPoint(x: AppSize.width / 2, y: AppSize.height / 2)
-        countImageView.image = UIImage(named: "num3")!
-        countImageView.contentMode = .scaleAspectFit
-        countImageView.isHidden = true
-        return countImageView
-    }()
-    
     /* 現在地を表示するMapKitを生成 */
     lazy private var mapView: MKMapView = {
         // MapViewの生成
@@ -95,7 +85,106 @@ class WorkController: UIViewController, AVAudioPlayerDelegate {
         self.stopTimer()
     }
     
+    
+    /** 歩数を取得するためのSetup */
+    private func setupPedometer() {
+        guard CMPedometer.isDistanceAvailable() else { return }
+        self.pedometer.startUpdates(from: NSDate() as Date) { (data: CMPedometerData?, error) -> Void in
+            DispatchQueue.main.async {
+                guard let data = data, let dis = data.distance?.doubleValue, error == nil
+                    else { return }
+                
+                let distance = String(round( ( dis / 1000.0 ) * 100) / 100)
+                self.distanceLabel.text = distance
+                
+                //                guard let spped = data.currentPace?.doubleValue else { return }
+                //                let pace = round( ( (spped * 3600) / 100.0 ) * 100) / 100
+                //                self.speedLabel.text = String(pace)
+                //                switch self.checkCurrentSpeedIsPaceable(currentSpeed: pace) {
+                //                    case .up:
+                //                        self.audioPlay(url: "speedUp")
+                //                    case .down:
+                //                        self.audioPlay(url: "speedDown")
+                //                    case .maintain:
+                //                        self.audioPlay(url: "maintain")
+                //                    case .notMatched: break
+                //                }
+                
+            }
+        }
+        
+    }
 
+    
+    /** 音声を再生 */
+    private func audioPlay(url: String) {
+        let audioPath = URL(fileURLWithPath: Bundle.main.path(forResource: url, ofType:"mp3")!)
+        
+        // auido を再生するプレイヤーを作成する
+        var audioError: NSError?
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: audioPath)
+        } catch let error as NSError {
+            audioError = error
+            audioPlayer = nil
+        }
+        if let error = audioError {
+            print("Error \(error.localizedDescription)")
+        }
+        
+        audioPlayer.delegate = self
+        //        audioPlayer.prepareToPlay()
+        
+        audioPlayer.play()
+    }
+    
+    /** 現在のスピードと設定した理想のペースを比較する */
+    private func checkCurrentSpeedIsPaceable(currentSpeed: Double) -> currentSpeedType{
+        var type: currentSpeedType?
+        switch currentSpeed {
+        case let e where e < 24.0:
+            type = .up
+        case let e where e > 26.0:
+            type = .down
+        case 24.0...26.0:
+            type = .maintain
+        default:
+            type = .notMatched
+        }
+        return type!
+    }
+    
+    /** カロリー計算 */
+    private func getCurrentCalorieBurned() -> Double {
+        
+        var calorie: Double = 0.0
+        if let weight = UserDefaults.standard.string(forKey: "weight") {
+            // タイマー開始からのインターバル時間
+            let currentTime = Date().timeIntervalSince(startTimeDate)
+            let hour = (Double)(fmod((currentTime / 60 / 60), 60))
+            let minute = (Double)(fmod((currentTime/60), 60))
+            let second = (Double)(fmod(currentTime, 60))
+            
+            let time = hour + (minute / 60) + (second / 60 / 60)
+            
+            let calcu = (1.05 * 8.0 * time * Double(weight)!)
+            calorie = round(calcu * 10.0) / 10.0
+        }
+        return calorie
+    }
+    
+    //MARK: - CountDownImageView
+    /* カウントダウンのImageViewを生成 */
+    lazy private var countImageView: UIImageView = {
+        let countImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: AppSize.width / 3, height: AppSize.height / 3))
+        countImageView.center = CGPoint(x: AppSize.width / 2, y: AppSize.height / 2)
+        countImageView.image = UIImage(named: "num3")!
+        countImageView.contentMode = .scaleAspectFit
+        countImageView.isHidden = true
+        return countImageView
+    }()
+    
+    
     /** countImageViewのアニメーション */
     @objc func countImageAnimation() {
 
@@ -132,7 +221,7 @@ class WorkController: UIViewController, AVAudioPlayerDelegate {
 
     }
 
-    
+    //MARK: - ElapsedTimer
     /* ストップウォッチ */
     private func startTimer() {
         if timer != nil{
@@ -164,6 +253,22 @@ class WorkController: UIViewController, AVAudioPlayerDelegate {
         }
     }
  
+    
+    /** 開始時間から現在の経過時間を返却
+     * - return 現在の経過時間 / HH:mm:ss
+     */
+    private func getElapsedTime() -> String {
+        // タイマー開始からのインターバル時間
+        let currentTime = Date().timeIntervalSince(startTimeDate)
+        let hour = (Int)(fmod((currentTime / 60 / 60), 60))
+        // fmod() 余りを計算
+        let minute = (Int)(fmod((currentTime/60), 60))
+        // currentTime/60 の余り
+        let second = (Int)(fmod(currentTime, 60))
+        return  "\(String(format:"%02d", hour)):\(String(format:"%02d", minute)):\(String(format:"%02", second))"
+    }
+
+    
     /** DBに登録 */
     private func registWorkResult() {
         
@@ -187,49 +292,6 @@ class WorkController: UIViewController, AVAudioPlayerDelegate {
             realm.add(dataSet)
         }
 
-    }
-    
-    /** 歩数を取得するためのSetup */
-    private func setupPedometer() {
-        guard CMPedometer.isDistanceAvailable() else { return }
-        self.pedometer.startUpdates(from: NSDate() as Date) { (data: CMPedometerData?, error) -> Void in
-            DispatchQueue.main.async {
-                guard let data = data, let dis = data.distance?.doubleValue, error == nil
-                else { return }
- 
-                let distance = String(round( ( dis / 1000.0 ) * 100) / 100)
-                self.distanceLabel.text = distance
-                
-//                guard let spped = data.currentPace?.doubleValue else { return }
-//                let pace = round( ( (spped * 3600) / 100.0 ) * 100) / 100
-//                self.speedLabel.text = String(pace)
-//                switch self.checkCurrentSpeedIsPaceable(currentSpeed: pace) {
-//                    case .up:
-//                        self.audioPlay(url: "speedUp")
-//                    case .down:
-//                        self.audioPlay(url: "speedDown")
-//                    case .maintain:
-//                        self.audioPlay(url: "maintain")
-//                    case .notMatched: break
-//                }
-                
-            }
-        }
-        
-    }
-    
-    /** 開始時間から現在の経過時間を返却
-     * - return 現在の経過時間 / HH:mm:ss
-     */
-    private func getElapsedTime() -> String {
-        // タイマー開始からのインターバル時間
-        let currentTime = Date().timeIntervalSince(startTimeDate)
-        let hour = (Int)(fmod((currentTime / 60 / 60), 60))
-        // fmod() 余りを計算
-        let minute = (Int)(fmod((currentTime/60), 60))
-        // currentTime/60 の余り
-        let second = (Int)(fmod(currentTime, 60))
-        return  "\(String(format:"%02d", hour)):\(String(format:"%02d", minute)):\(String(format:"%02", second))"
     }
 
     /** 計測終了確認アラート */
@@ -364,63 +426,6 @@ extension WorkController: CLLocationManagerDelegate {
         }
     }
 
-    /** 音声を再生 */
-    private func audioPlay(url: String) {
-        let audioPath = URL(fileURLWithPath: Bundle.main.path(forResource: url, ofType:"mp3")!)
-
-        // auido を再生するプレイヤーを作成する
-        var audioError: NSError?
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: audioPath)
-        } catch let error as NSError {
-            audioError = error
-            audioPlayer = nil
-        }
-        if let error = audioError {
-            print("Error \(error.localizedDescription)")
-        }
-        
-        audioPlayer.delegate = self
-//        audioPlayer.prepareToPlay()
-
-        audioPlayer.play()
-    }
-    
-    /** 現在のスピードと設定した理想のペースを比較する */
-    private func checkCurrentSpeedIsPaceable(currentSpeed: Double) -> currentSpeedType{
-        var type: currentSpeedType?
-        switch currentSpeed {
-            case let e where e < 24.0:
-                type = .up
-            case let e where e > 26.0:
-                type = .down
-            case 24.0...26.0:
-                type = .maintain
-            default:
-                type = .notMatched
-        }
-        return type!
-    }
-    
-    /** カロリー計算 */
-    private func getCurrentCalorieBurned() -> Double {
-        
-        var calorie: Double = 0.0
-        if let weight = UserDefaults.standard.string(forKey: "weight") {
-            // タイマー開始からのインターバル時間
-            let currentTime = Date().timeIntervalSince(startTimeDate)
-            let hour = (Double)(fmod((currentTime / 60 / 60), 60))
-            let minute = (Double)(fmod((currentTime/60), 60))
-            let second = (Double)(fmod(currentTime, 60))
-            
-            let time = hour + (minute / 60) + (second / 60 / 60)
-            
-            let calcu = (1.05 * 8.0 * time * Double(weight)!)
-            calorie = round(calcu * 10.0) / 10.0
-        }
-        return calorie
-    }
-    
     
     /* 位置情報取得に成功したときに呼び出されるデリゲート. */
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

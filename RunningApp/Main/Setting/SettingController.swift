@@ -14,16 +14,112 @@ extension SettingController: SettingDelegate {
 }
 
 
+enum headerItem: String {
+    case selfMonitoring = "self monitoring"
+    
+    static var count = 1
+    
+}
+
+
+/* 設定項目
+ */
+enum SettingType: Int {
+    case weight     = 0
+    case height
+    case pushTime
+    case pace
+
+    static let count: Int = {
+        var i = 0
+        while let _ = SettingType(rawValue: i) {
+            i = i + 1
+        }
+        return i
+    }()
+}
+
+
+enum tableItem {
+    
+    enum weight {
+        static var type: String {
+            return "weight"
+        }
+        static var unit: String {
+            return "Kg"
+        }
+        
+        static var descriptino: String {
+            return "カロリー計算で使用します"
+        }
+        
+        static var image: UIImage {
+            return UIImage(named: "assignment")!
+        }
+    }
+    enum height {
+        static var type: String {
+            return "height"
+        }
+        static var unit: String {
+            return "cm"
+        }
+        
+        static var descriptino: String {
+            return "カロリー計算で使用します"
+        }
+        
+        static var image: UIImage {
+            return UIImage(named: "assignment")!
+        }
+
+    }
+    enum pushTime {
+        static var type: String {
+            return Const.PUSH_TIME
+        }
+        static var unit: String {
+            return "時"
+        }
+        static var descriptino: String {
+            return "指定した時間にリマインドします"
+        }
+        
+        static var image: UIImage {
+            return UIImage(named: "pushTime")!
+        }
+
+    }
+    enum pace {
+        static var type: String {
+            return "Pace"
+        }
+        static var unit: String {
+            return "Km/h"
+        }
+        static var descriptino: String {
+            return "理想のペースを設定します"
+        }
+        
+        static var image: UIImage {
+            return UIImage(named: "pushTime")!
+        }
+
+    }
+
+    
+}
+
+
 class SettingController: UIViewController {
     
-    private var headerItem = ["self monitoring"]
-    
-    private var tableItem = [ 0 : [ "type": "weight", "unit" : "Kg", "image" : "assignment", "descriptino" : "カロリー計算で使用します" ],
-                             1 : [ "type": "height", "unit" : "cm", "image" : "assignment", "descriptino" : "カロリー計算で使用します" ],
-                             2 : [ "type": Const.PUSH_TIME, "unit" : "時", "image" : "pushTime", "descriptino" : "指定した時間にリマインドします"],
-    ]
-
-    private var tableTitle = [ "weight", "height", Const.PUSH_TIME ]
+//    private var tableItem = [ [ "type": "weight", "unit" : "Kg", "image" : "assignment", "descriptino" : "カロリー計算で使用します" ],
+//                             [ "type": "height", "unit" : "cm", "image" : "assignment", "descriptino" : "カロリー計算で使用します" ],
+//                             [ "type": Const.PUSH_TIME, "unit" : "時", "image" : "pushTime", "descriptino" : "指定した時間にリマインドします"],
+//                             [ "type": "Pace",   "unit" : "Km/h", "image" : "pushTime", "descriptino" : "理想のペースを設定します"],
+//
+//    ]
 
     private var tableView: UITableView!
     
@@ -58,7 +154,7 @@ class SettingController: UIViewController {
      *  @param path -> Int - 押されたCellのIndexPath
      */
     private func presentSettingForm(path: IndexPath) {
-        guard let type = Const.SettingType(rawValue: path.row) else { return }
+        guard let type = SettingType(rawValue: path.row) else { return }
         
         let form = UIStoryboard(name: "SettingForm", bundle: nil).instantiateInitialViewController() as! SettingForm
         form.type = type
@@ -98,12 +194,22 @@ extension SettingController: UITableViewDataSource {
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.headerItem.count
+        return headerItem.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 1:
+            return headerItem.selfMonitoring.rawValue
+        default:
+            return headerItem.selfMonitoring.rawValue
+        }
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.tableTitle.count
+        return SettingType.count
     }
     
     
@@ -112,15 +218,28 @@ extension SettingController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! SettingCell
         cell.frame = CGRect(x: 0, y: 0, width: AppSize.width, height: 60)
 
-        guard let item = self.tableItem[indexPath.row] else { return cell }
+        var unit: String
+        (cell.titleLabel.text, cell.descriptionLabel.text, cell.imageCell.image, unit) = {
+            switch indexPath.row {
+                case 0:
+                    return (tableItem.weight.type, tableItem.weight.descriptino, tableItem.weight.image, tableItem.weight.unit)
+                case 1:
+                    return (tableItem.height.type, tableItem.height.descriptino, tableItem.height.image, tableItem.height.unit)
+                case 2:
+                    return (tableItem.pushTime.type, tableItem.pushTime.descriptino, tableItem.pushTime.image, tableItem.pushTime.unit)
+
+                case 3:
+                    return (tableItem.pace.type, tableItem.pace.descriptino, tableItem.pace.image, tableItem.pace.unit)
+
+                default:
+                    return (tableItem.weight.type, tableItem.weight.descriptino, tableItem.weight.image, tableItem.weight.unit)
+            }
+        }()
+
         
-        cell.titleLabel.text = item["type"]
-        cell.descriptionLabel.text = item["descriptino"]
-        cell.imageCell.image = UIImage(named: item["image"]!)!
-        
-        if let value = UserDefaults.standard.string(forKey: item["type"]!) {
-            cell.settingValueLabel.text = value + item["unit"]!
-            if Const.PUSH_TIME == item["type"] {
+        if let value = UserDefaults.standard.string(forKey: cell.titleLabel.text!) {
+            cell.settingValueLabel.text = value + unit
+            if Const.PUSH_TIME == cell.titleLabel.text {
                 Utility.setLocalPushTime(setTime: Int(value)!)
             }
         }
@@ -132,11 +251,7 @@ extension SettingController: UITableViewDataSource {
         return cell
     }
     
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.headerItem[0]
-    }
-    
+
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)

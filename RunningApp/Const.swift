@@ -3,15 +3,7 @@
 import Foundation
 
 struct Const {
-    
-    /* 設定項目
-     */
-    enum SettingType: Int {
-        case weight     = 0
-        case height     = 1
-        case pushTime   = 2
-    }
-    
+
     /** 運動の種類のタイプ */
     enum WorkType: Int {
         case wallking = 0

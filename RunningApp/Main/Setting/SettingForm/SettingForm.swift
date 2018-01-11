@@ -17,7 +17,7 @@ class SettingForm: UIViewController, PickerDelegate {
         self.textField.endEditing(true)
     }
     
-    var type: Const.SettingType?
+    var type: SettingType?
     var categoryName: String!
     weak var delegate: SettingDelegate?
 
@@ -68,7 +68,15 @@ class SettingForm: UIViewController, PickerDelegate {
                 timeNum.append(String(i))
             }
             settingValue = timeNum
+        case .pace:
+            categoryName = "pace"
+            var paceNum = [String]()
+            for i in 1..<10 {
+                paceNum.append(String(i))
+            }
+            settingValue = paceNum
         }
+        
         SettingCategoryLabel.text = categoryName
 
     }

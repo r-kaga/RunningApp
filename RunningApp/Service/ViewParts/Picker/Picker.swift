@@ -84,7 +84,6 @@ class Picker: UIView,  UIPickerViewDelegate, UIPickerViewDataSource, DialogProto
         UIView.animate(withDuration: 0.5) {
             self.alpha = 1.0
             self.selectedValue = self.dataList[0]
-
         }
     }
     
