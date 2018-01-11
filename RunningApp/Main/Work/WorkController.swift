@@ -447,6 +447,7 @@ extension WorkController: CLLocationManagerDelegate {
         }
         print(currentSpeed)
         print(pace)
+        pace = Double(25)
         switch checkCurrentSpeedIsPaceable(currentSpeed: currentSpeed, pace: pace) {
             case .up:
                 print("speedUp")
@@ -465,9 +466,8 @@ extension WorkController: CLLocationManagerDelegate {
             self.calorieLabel.text = String(self.getCurrentCalorieBurned())
    
             // 時速の計算結果をlabelに反映
-            let speed = round((location.speed * 3.6) * 100) / 100
-            var speedText = String(speed)
-            if speed < 0 { speedText = "計測不能" }
+            var speedText = String(currentSpeed)
+            if currentSpeed < 0 { speedText = "計測不能" }
             self.speedLabel.text = speedText
         }
         
