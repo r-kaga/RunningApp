@@ -139,14 +139,15 @@ class WorkController: UIViewController, AVAudioPlayerDelegate {
     }
     
     /** 現在のスピードと設定した理想のペースを比較する */
-    private func checkCurrentSpeedIsPaceable(currentSpeed: Double) -> currentSpeedType{
+    private func checkCurrentSpeedIsPaceable(currentSpeed: Double, pace: Double) -> currentSpeedType{
         var type: currentSpeedType?
+        
         switch currentSpeed {
-        case let e where e < 24.0:
+        case let e where e < pace:
             type = .up
-        case let e where e > 26.0:
+        case let e where e > pace + 1.0:
             type = .down
-        case 24.0...26.0:
+        case pace + 0.0...pace + 0.9:
             type = .maintain
         default:
             type = .notMatched
@@ -440,7 +441,13 @@ extension WorkController: CLLocationManagerDelegate {
 
         //MARK: - ペースメーカー
         let currentSpeed = round((location.speed * 3.6) * 10) / 10
-        switch checkCurrentSpeedIsPaceable(currentSpeed: currentSpeed) {
+        var pace: Double = Const.defaulPaceSpeed
+        if let value = UserDefaults.standard.object(forKey: "pace") as? Int {
+            pace = Double(value)
+        }
+        print(currentSpeed)
+        print(pace)
+        switch checkCurrentSpeedIsPaceable(currentSpeed: currentSpeed, pace: pace) {
             case .up:
                 print("speedUp")
                 audioPlay(url: "speedUp")

@@ -15,7 +15,8 @@ struct Const {
         case empty
     }
     
-
+    static let defaulPaceSpeed = 5.0
+    
     static let PUSH_TIME = "pushTime"
     
 }

@@ -71,8 +71,11 @@ class SettingForm: UIViewController, PickerDelegate {
         case .pace:
             categoryName = "pace"
             var paceNum = [String]()
-            for i in 1..<10 {
+            for i in 1...10 {
                 paceNum.append(String(i))
+//                for j in 0..<10 {
+//                    paceNum.append(String(i) + ".\(j)")
+//                }
             }
             settingValue = paceNum
         }

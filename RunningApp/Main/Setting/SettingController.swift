@@ -9,6 +9,7 @@ protocol SettingDelegate: class {
 
 extension SettingController: SettingDelegate {
     func reload() {
+        print("reload")
         self.tableView.reloadData()
     }
 }
@@ -93,7 +94,7 @@ enum tableItem {
     }
     enum pace {
         static var type: String {
-            return "Pace"
+            return "pace"
         }
         static var unit: String {
             return "Km/h"
@@ -107,7 +108,6 @@ enum tableItem {
         }
 
     }
-
     
 }
 
