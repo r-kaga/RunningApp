@@ -2,15 +2,6 @@
 import UIKit
 import RealmSwift
 
-protocol HomeDelegate: class {
-    func dateUpdate()
-}
-
-extension HomeViewController: HomeDelegate {
-    func dateUpdate() {
-        self.loadView()
-    }
-}
 
 class HomeViewController: UIViewController, UIScrollViewDelegate {
 
@@ -21,17 +12,21 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var darkFillView: UIView!
     @IBOutlet weak var firstRoundButton: UIButton!
 
+    private var collectionView: UICollectionView?
+    
+    static var shouldDateUpdate = false
+
     // 初回表示かどうか.アプリ立ち上げ時のみLoadingを表示
-    var isFirstAppear: Bool = true
-    var loading = Loading.make()
+    private var isFirstAppear: Bool = true
+    private var loading = Loading.make()
     
     private var latestData: Results<RealmDataSet> = RealmDataSet.getAllData()
 
-    var resultOutletHeight: CGFloat {
+    private var resultOutletHeight: CGFloat {
         return AppSize.height - (self.distanceCharts.frame.maxY + 100 + AppSize.tabBarHeight + 20)
     }
     
-    let interactor = Interactor()
+    private let interactor = Interactor()
  
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +47,11 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                 self.loading?.close()
             })
         }
+        
+        if HomeViewController.shouldDateUpdate {
+            collectionView?.reloadData()
+            HomeViewController.shouldDateUpdate = false
+        }
 
     }
     
@@ -61,12 +61,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     }
     
     private func setupCollectionView() {
-        
-        guard !latestData.isEmpty else {
-            setupNoDate(date: true)
-            return
-        }
-        
+
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: AppSize.width, height: resultOutletHeight)
         
@@ -75,24 +70,31 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         layout.minimumInteritemSpacing = 1.0
         layout.scrollDirection = .horizontal
         
-        let collectionView = UICollectionView(frame: CGRect(x: 0,
+        collectionView = UICollectionView(frame: CGRect(x: 0,
                                                             y: 0,
                                                             width: AppSize.width,
                                                             height: layout.itemSize.height), collectionViewLayout: layout)
         
         let nib = UINib(nibName: "HomeCollectionViewCell", bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: "cell")
+        collectionView?.register(nib, forCellWithReuseIdentifier: "cell")
         
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.isPagingEnabled = true
-        collectionView.bounces = false
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.backgroundColor = AppSize.backgroundColor
+        collectionView?.showsVerticalScrollIndicator = false
+        collectionView?.showsHorizontalScrollIndicator = false
+        collectionView?.isPagingEnabled = true
+        collectionView?.bounces = false
+        collectionView?.delegate = self
+        collectionView?.dataSource = self
+        collectionView?.backgroundColor = AppSize.backgroundColor
         
-        collectionView.removeFromSuperview()
-        self.ressultOutlet.addSubview(collectionView)
+        collectionView?.removeFromSuperview()
+        self.ressultOutlet.addSubview(collectionView!)
+        
+        
+        guard !latestData.isEmpty else {
+            setupNoDate(date: true)
+            return
+        }
+        
     }
 
     
@@ -167,7 +169,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         let sb = UIStoryboard(name: "WorkController", bundle: nil).instantiateInitialViewController() as! ModalNavigationController
         sb.interactor = interactor
         sb.transitioningDelegate = self
-        WorkController.homeDelegate = self
         
         self.present(sb, animated: true, completion: nil)
     }
@@ -209,7 +210,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return latestData.count > 3 ? 3 : latestData.count
     }
-
 
 }
 

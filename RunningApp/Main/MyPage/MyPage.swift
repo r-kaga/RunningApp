@@ -9,7 +9,9 @@ class MyPage: UIPageViewController, UIPageViewControllerDataSource, UIScrollView
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        navigationItem.title = "MyPage"
+
         self.dataSource = self
         self.view.backgroundColor = AppSize.backgroundColor
 
@@ -31,7 +33,6 @@ class MyPage: UIPageViewController, UIPageViewControllerDataSource, UIScrollView
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.title = "MyPage"
     }
 
 

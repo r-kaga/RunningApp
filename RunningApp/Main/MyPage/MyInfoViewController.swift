@@ -28,6 +28,8 @@ class MyInfoViewController: UIViewController, UIScrollViewDelegate {
     private var tableView: UITableView!
     private let headerItem = [ "MyInfo" ]
     
+    static var shouldDateUpdate = false
+    
     lazy private var myInfo: Results<RealmDataSet> = {
         return RealmDataSet.getAllData()
     }()
@@ -49,6 +51,11 @@ class MyInfoViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if MyInfoViewController.shouldDateUpdate {
+            tableView.reloadData()
+            MyInfoViewController.shouldDateUpdate = false
+        }
     }
 
     private func setupTableView() {

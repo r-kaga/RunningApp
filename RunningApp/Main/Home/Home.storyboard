@@ -59,13 +59,6 @@
                                             <action selector="runningRoundButton:" destination="agd-nW-Aut" eventType="touchUpInside" id="QmD-5j-3rX"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wGs-LQ-I41">
-                                        <rect key="frame" x="210" y="45.5" width="20" height="30"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="Upk-X9-tyK"/>
-                                        </constraints>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -74,8 +67,6 @@
                                     <constraint firstAttribute="trailing" secondItem="hGT-bt-Tkh" secondAttribute="trailing" constant="15" id="MnP-XC-mAQ"/>
                                     <constraint firstAttribute="height" constant="120" id="ZjN-VQ-Vab"/>
                                     <constraint firstItem="GT5-OE-NTU" firstAttribute="centerX" secondItem="GUt-I2-VI8" secondAttribute="centerX" id="hG7-st-ZeC"/>
-                                    <constraint firstItem="wGs-LQ-I41" firstAttribute="centerX" secondItem="GUt-I2-VI8" secondAttribute="centerX" id="lbE-Bd-C4w"/>
-                                    <constraint firstItem="wGs-LQ-I41" firstAttribute="centerY" secondItem="GUt-I2-VI8" secondAttribute="centerY" id="rJf-xU-JbA"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -111,7 +102,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VUo-S2-Svl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="414.375" y="34.859154929577464"/>
+            <point key="canvasLocation" x="414" y="34"/>
         </scene>
         <!--Distance Charts Controller-->
         <scene sceneID="MZH-lk-Qwn">

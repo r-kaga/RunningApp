@@ -64,6 +64,9 @@ class infoDetailViewController: UIViewController {
         
         self.navigationController?.popViewController(animated: true)
         self.delegate?.reload()
+        
+        MyInfoViewController.shouldDateUpdate = true
+        HomeViewController.shouldDateUpdate = true
     }
     
 

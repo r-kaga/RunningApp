@@ -25,8 +25,6 @@ class WorkController: UIViewController, AVAudioPlayerDelegate {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var calorieLabel: UILabel!
     
-    static var homeDelegate: HomeDelegate?
-
     weak private var timer: Timer?
     private var startTimeDate: Date!
     
@@ -319,6 +317,14 @@ class WorkController: UIViewController, AVAudioPlayerDelegate {
             
             self.mapView.removeFromSuperview()
             Utility.showCompleteDialog()
+            
+//            presentingViewController
+//            WorkController.homeDelegate?.dateUpdate()
+            
+            HomeViewController.shouldDateUpdate = true
+            MyInfoViewController.shouldDateUpdate = true
+
+            presentingViewController?.viewWillAppear(true)
         })
     }
     
