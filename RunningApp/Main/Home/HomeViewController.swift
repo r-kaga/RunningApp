@@ -9,8 +9,6 @@ class HomeViewController: UIViewController, ChartViewDelegate {
     @IBOutlet weak var ressultOutlet: UIView!
     @IBOutlet weak var distanceCharts: UIView!
     @IBOutlet weak var menuView: UIView!
-    @IBOutlet weak var toggleButton: UIButton!
-    @IBOutlet weak var darkFillView: UIView!
     @IBOutlet weak var firstRoundButton: UIButton!
 
     private var latestData: Results<RealmDataSet> = RealmDataSet.getAllData()
@@ -34,6 +32,9 @@ class HomeViewController: UIViewController, ChartViewDelegate {
         setupCollectionView()
         distanceChatsSetUp()
         setupNoDate()
+        
+        firstRoundButton.layer.cornerRadius = 25
+        firstRoundButton.clipsToBounds = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -54,11 +55,6 @@ class HomeViewController: UIViewController, ChartViewDelegate {
             updateLatestChartsDate()
         }
 
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        setupTogglerButton()
     }
     
     private func setupCollectionView() {
@@ -146,61 +142,6 @@ class HomeViewController: UIViewController, ChartViewDelegate {
         chartView?.data = LineChartData(dataSet: set)
     }
 
-    
-    /** toggleButtonのsetup */
-    private func setupTogglerButton() {
-        self.darkFillView.layer.cornerRadius = self.darkFillView.frame.width / 2
-        self.firstRoundButton.layer.cornerRadius = self.firstRoundButton.frame.width / 2
-        
-        self.firstRoundButton.alpha = 0.0
-        
-        firstRoundButton.layer.cornerRadius = 10.0
-    }
-
-
-    /** Buttonの開閉 */
-    @IBAction func toggleMenu(_ sender: Any) {
-        if darkFillView.transform == .identity {
-            
-            self.firstRoundButton.transform = CGAffineTransform(translationX: 0, y: 30)
-            
-            UIView.animate(withDuration: 0.7, animations: {
-                self.darkFillView.transform = CGAffineTransform(scaleX: 25, y: 10)
-                self.menuView.transform = CGAffineTransform(translationX: 0, y: -20)
-                self.toggleButton.transform = CGAffineTransform(rotationAngle: self.radians(180))
-            }) { _ in
-                
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.toggleButtonStatus()
-                    self.firstRoundButton.transform = .identity
-                    
-                })
-                
-            }
-        } else {
-            
-            UIView.animate(withDuration: 0.7, animations: {
-                self.darkFillView.transform = .identity
-                self.menuView.transform = .identity
-                self.toggleButton.transform = .identity
-                self.toggleButtonStatus()
-                self.firstRoundButton.transform = CGAffineTransform(rotationAngle: self.radians(180))
-            })
-        }
-        
-    }
-    
-    /** CGAffineTransform(rotationAngle)に渡す値の変換 */
-    func radians(_ degress: Double) -> CGFloat {
-        return CGFloat(degress * .pi / degress)
-    }
-    
-    /** ボタンの開閉 */
-    func toggleButtonStatus() {
-        let alpha: CGFloat = firstRoundButton.alpha == 0.0 ? 1.0 : 0.0
-        firstRoundButton.alpha = alpha
-    }
-    
     /** fitness画面の表示 */
     func onSender() {
         let sb = UIStoryboard(name: "WorkController", bundle: nil).instantiateInitialViewController() as! ModalNavigationController

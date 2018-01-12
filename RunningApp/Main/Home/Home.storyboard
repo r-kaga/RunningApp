@@ -18,10 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wx2-ZU-8fI">
-                                <rect key="frame" x="0.0" y="244" width="320" height="159"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nrv-TM-ULR">
                                 <rect key="frame" x="10" y="79" width="300" height="160"/>
                                 <constraints>
@@ -31,78 +27,63 @@
                                     <segue destination="cvF-SG-dNn" kind="embed" id="6OA-fn-IOx"/>
                                 </connections>
                             </containerView>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GUt-I2-VI8">
-                                <rect key="frame" x="0.0" y="433" width="320" height="120"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="pTS-Lf-djK">
+                                <rect key="frame" x="0.0" y="239" width="320" height="280"/>
                                 <subviews>
-                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bji-p2-Vhq">
-                                        <rect key="frame" x="270" y="6" width="35" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" name="navigationColor"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wx2-ZU-8fI">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hGT-bt-Tkh">
-                                        <rect key="frame" x="269" y="5" width="36" height="36"/>
-                                        <state key="normal" image="up"/>
-                                        <connections>
-                                            <action selector="toggleMenu:" destination="agd-nW-Aut" eventType="touchUpInside" id="K3d-Pu-4hS"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GT5-OE-NTU">
-                                        <rect key="frame" x="120" y="40" width="80" height="40"/>
-                                        <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GUt-I2-VI8">
+                                        <rect key="frame" x="0.0" y="140" width="320" height="140"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GT5-OE-NTU">
+                                                <rect key="frame" x="135" y="45" width="50" height="50"/>
+                                                <color key="backgroundColor" name="navigationColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="Avf-LQ-OIF"/>
+                                                    <constraint firstAttribute="width" constant="50" id="lBt-OI-opf"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" image="up"/>
+                                                <connections>
+                                                    <action selector="runningRoundButton:" destination="agd-nW-Aut" eventType="touchUpInside" id="QmD-5j-3rX"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="9UN-uF-duK"/>
-                                            <constraint firstAttribute="height" constant="40" id="ytO-50-06V"/>
+                                            <constraint firstItem="GT5-OE-NTU" firstAttribute="centerY" secondItem="GUt-I2-VI8" secondAttribute="centerY" id="DgB-of-GQ9"/>
+                                            <constraint firstItem="GT5-OE-NTU" firstAttribute="centerX" secondItem="GUt-I2-VI8" secondAttribute="centerX" id="ZNf-jD-DWg"/>
                                         </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Run"/>
-                                        <connections>
-                                            <action selector="runningRoundButton:" destination="agd-nW-Aut" eventType="touchUpInside" id="QmD-5j-3rX"/>
-                                        </connections>
-                                    </button>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="GT5-OE-NTU" firstAttribute="top" secondItem="GUt-I2-VI8" secondAttribute="top" constant="40" id="5ei-tI-WUT"/>
-                                    <constraint firstItem="hGT-bt-Tkh" firstAttribute="top" secondItem="GUt-I2-VI8" secondAttribute="top" constant="5" id="Fdg-RR-6Zu"/>
-                                    <constraint firstAttribute="trailing" secondItem="hGT-bt-Tkh" secondAttribute="trailing" constant="15" id="MnP-XC-mAQ"/>
-                                    <constraint firstAttribute="height" constant="120" id="ZjN-VQ-Vab"/>
-                                    <constraint firstItem="GT5-OE-NTU" firstAttribute="centerX" secondItem="GUt-I2-VI8" secondAttribute="centerX" id="hG7-st-ZeC"/>
-                                </constraints>
-                            </view>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" name="AppBackGroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="nrv-TM-ULR" firstAttribute="leading" secondItem="SZe-J7-h9d" secondAttribute="leading" constant="10" id="4yB-hi-Wrl"/>
-                            <constraint firstItem="GUt-I2-VI8" firstAttribute="leading" secondItem="SZe-J7-h9d" secondAttribute="leading" id="5hy-Tj-xdV"/>
                             <constraint firstItem="nrv-TM-ULR" firstAttribute="top" secondItem="SZe-J7-h9d" secondAttribute="top" constant="15" id="AgC-ht-1tJ"/>
-                            <constraint firstItem="wx2-ZU-8fI" firstAttribute="top" secondItem="nrv-TM-ULR" secondAttribute="bottom" constant="5" id="FCB-Bf-W1T"/>
-                            <constraint firstItem="GUt-I2-VI8" firstAttribute="top" secondItem="wx2-ZU-8fI" secondAttribute="bottom" constant="30" id="O8X-oV-Oqa"/>
-                            <constraint firstItem="GUt-I2-VI8" firstAttribute="trailing" secondItem="SZe-J7-h9d" secondAttribute="trailing" id="P6E-Gx-5VL"/>
-                            <constraint firstItem="wx2-ZU-8fI" firstAttribute="leading" secondItem="SZe-J7-h9d" secondAttribute="leading" id="YJF-Iy-tsf"/>
+                            <constraint firstItem="SZe-J7-h9d" firstAttribute="bottom" secondItem="pTS-Lf-djK" secondAttribute="bottom" id="Oef-XP-l0M"/>
+                            <constraint firstItem="pTS-Lf-djK" firstAttribute="top" secondItem="nrv-TM-ULR" secondAttribute="bottom" id="Qwo-iy-XSJ"/>
                             <constraint firstItem="SZe-J7-h9d" firstAttribute="trailing" secondItem="nrv-TM-ULR" secondAttribute="trailing" constant="10" id="aOL-le-7kE"/>
-                            <constraint firstItem="GUt-I2-VI8" firstAttribute="trailing" secondItem="SZe-J7-h9d" secondAttribute="trailing" id="dYS-6K-I6B"/>
-                            <constraint firstItem="GUt-I2-VI8" firstAttribute="leading" secondItem="SZe-J7-h9d" secondAttribute="leading" id="icn-e9-X8E"/>
-                            <constraint firstItem="SZe-J7-h9d" firstAttribute="trailing" secondItem="GUt-I2-VI8" secondAttribute="trailing" id="mav-Ma-lXz"/>
-                            <constraint firstItem="GUt-I2-VI8" firstAttribute="leading" secondItem="SZe-J7-h9d" secondAttribute="leading" id="uHu-sN-byJ"/>
-                            <constraint firstItem="SZe-J7-h9d" firstAttribute="trailing" secondItem="wx2-ZU-8fI" secondAttribute="trailing" id="uia-Zb-tQ9"/>
-                            <constraint firstAttribute="bottom" secondItem="GUt-I2-VI8" secondAttribute="bottom" constant="15" id="yEe-iM-Ozk"/>
+                            <constraint firstItem="pTS-Lf-djK" firstAttribute="trailing" secondItem="SZe-J7-h9d" secondAttribute="trailing" id="dqq-WA-eZd"/>
+                            <constraint firstItem="pTS-Lf-djK" firstAttribute="leading" secondItem="SZe-J7-h9d" secondAttribute="leading" id="zBk-eV-YGY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SZe-J7-h9d"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="darkFillView" destination="bji-p2-Vhq" id="QKg-NC-I6a"/>
                         <outlet property="distanceCharts" destination="nrv-TM-ULR" id="XWZ-Re-uMw"/>
                         <outlet property="firstRoundButton" destination="GT5-OE-NTU" id="brW-Ng-Q4Y"/>
                         <outlet property="menuView" destination="GUt-I2-VI8" id="qEa-wc-MIU"/>
                         <outlet property="ressultOutlet" destination="wx2-ZU-8fI" id="UZ3-wv-edB"/>
-                        <outlet property="toggleButton" destination="hGT-bt-Tkh" id="5sE-l5-v50"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VUo-S2-Svl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="414" y="34"/>
+            <point key="canvasLocation" x="412.5" y="33.802816901408448"/>
         </scene>
         <!--Distance Charts Controller-->
         <scene sceneID="MZH-lk-Qwn">
@@ -122,9 +103,6 @@
     </scenes>
     <resources>
         <image name="up" width="36" height="36"/>
-        <namedColor name="AppBackGroundColor">
-            <color red="0.94900000095367432" green="0.94900000095367432" blue="0.94900000095367432" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="navigationColor">
             <color red="0.0" green="0.63899999856948853" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
