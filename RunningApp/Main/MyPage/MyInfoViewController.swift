@@ -25,9 +25,11 @@ enum Section: Int {
 
 class MyInfoViewController: UIViewController, UIScrollViewDelegate {
     
-    private var tableView: UITableView!
     private let headerItem = [ "MyInfo" ]
-    
+
+    private var tableView: UITableView!
+    private var noDateView: NoDateView?
+
     static var shouldDateUpdate = false
     
     lazy private var myInfo: Results<RealmDataSet> = {
@@ -47,15 +49,26 @@ class MyInfoViewController: UIViewController, UIScrollViewDelegate {
         
         view.backgroundColor = AppSize.backgroundColor
         setupTableView()
+        setupNoDate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if MyInfoViewController.shouldDateUpdate {
+            defer {
+                MyInfoViewController.shouldDateUpdate = false
+            }
+            
+            if myInfo.isEmpty {
+                noDateView?.isHidden = false
+            } else {
+                noDateView?.isHidden = true
+            }
+            
             tableView.reloadData()
-            MyInfoViewController.shouldDateUpdate = false
         }
+        
     }
 
     private func setupTableView() {
@@ -73,11 +86,6 @@ class MyInfoViewController: UIViewController, UIScrollViewDelegate {
 //        tableView.sectionIndexColor = .black
 //        tableView.separatorInset = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0)
 
-        guard !myInfo.isEmpty else {
-            setupNoDate()
-            return
-        }
-
         tableView.refreshControl = refreshControl
         view.addSubview(tableView)
     }
@@ -89,9 +97,13 @@ class MyInfoViewController: UIViewController, UIScrollViewDelegate {
     }
 
     private func setupNoDate() {
-        let noDateView = NoDateView(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.height / 2.5))
-        noDateView.center = self.view.center
-        view.addSubview(noDateView)
+        noDateView = NoDateView(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.height / 2.5))
+        noDateView?.center = self.view.center
+        view.addSubview(noDateView!)
+        
+        if !myInfo.isEmpty {
+            noDateView?.isHidden = true
+        }
     }
     
 }

@@ -1,9 +1,10 @@
 
 import UIKit
 import RealmSwift
+import Charts
 
 
-class HomeViewController: UIViewController, UIScrollViewDelegate {
+class HomeViewController: UIViewController, ChartViewDelegate {
 
     @IBOutlet weak var ressultOutlet: UIView!
     @IBOutlet weak var distanceCharts: UIView!
@@ -12,45 +13,45 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var darkFillView: UIView!
     @IBOutlet weak var firstRoundButton: UIButton!
 
-    private var collectionView: UICollectionView?
-    
-    static var shouldDateUpdate = false
-
-    // 初回表示かどうか.アプリ立ち上げ時のみLoadingを表示
-    private var isFirstAppear: Bool = true
-    private var loading = Loading.make()
-    
     private var latestData: Results<RealmDataSet> = RealmDataSet.getAllData()
 
     private var resultOutletHeight: CGFloat {
         return AppSize.height - (self.distanceCharts.frame.maxY + 100 + AppSize.tabBarHeight + 20)
     }
     
+    private var collectionView: UICollectionView?
+    private var noDateView: NoDateView?
+    private var chartView: LineChartView?
     private let interactor = Interactor()
- 
+
+    static var shouldDateUpdate = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = "Home"
         view.backgroundColor = AppSize.backgroundColor
         setupCollectionView()
+        distanceChatsSetUp()
+        setupNoDate()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if self.isFirstAppear {
-            loading?.startLoading()
-            self.isFirstAppear = false
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-                self.loading?.close()
-            })
-        }
-        
+
         if HomeViewController.shouldDateUpdate {
+            defer {
+                HomeViewController.shouldDateUpdate = false
+            }
+            
+            if latestData.isEmpty {
+                noDateView?.isHidden = false
+            } else {
+                noDateView?.isHidden = true
+            }
+            
             collectionView?.reloadData()
-            HomeViewController.shouldDateUpdate = false
+            updateLatestChartsDate()
         }
 
     }
@@ -88,27 +89,63 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         collectionView?.removeFromSuperview()
         self.ressultOutlet.addSubview(collectionView!)
-        
-        
-        guard !latestData.isEmpty else {
-            setupNoDate(date: true)
-            return
-        }
-        
     }
 
-    
     /**  No Date Viewの表示 */
-    private func setupNoDate(date: Bool) {
-        guard date else { return }
+    private func setupNoDate() {
+        noDateView = NoDateView(frame: CGRect(x: 0, y: 0, width: AppSize.width - 100, height: AppSize.height / 2.5))
+        noDateView?.center = self.view.center
+        self.view.addSubview(noDateView!)
         
-        distanceCharts.isHidden = true
-        ressultOutlet.isHidden = true
-        
-        let noDateView = NoDateView(frame: CGRect(x: 0, y: 0, width: AppSize.width - 100, height: AppSize.height / 2.5))
-        noDateView.center = self.view.center
-        self.view.addSubview(noDateView)
+        if !latestData.isEmpty {
+            noDateView?.isHidden = true
+        }
     }
+    
+    
+    /** 初期設定 */
+    private func distanceChatsSetUp() {
+
+        distanceCharts.layer.cornerRadius = 5.0
+        distanceCharts.clipsToBounds = true
+        
+        distanceCharts.addBorder(color: .gray, width: 0.5)
+        distanceCharts.backgroundColor = .clear
+
+        let rect = CGRect(x: 0, y: 0 , width: AppSize.width - 20, height: 160)
+        
+        chartView = LineChartView(frame: rect)
+        chartView?.chartDescription?.text = ""
+        chartView?.xAxis.enabled = false
+        chartView?.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
+
+        updateLatestChartsDate()
+    
+        distanceCharts.addSubview(chartView!)
+    }
+    
+    private func updateLatestChartsDate() {
+        
+        var chartsShouldShowFlg: Bool
+        if latestData.isEmpty {
+            chartsShouldShowFlg = true
+        } else {
+            chartsShouldShowFlg = false
+        }
+        distanceCharts.isHidden = chartsShouldShowFlg
+
+        var entries = [BarChartDataEntry]()
+        var count = 0.0
+        
+        let roop = latestData.count >= 15 ? 15 : latestData.count
+        for i in 0..<roop {
+            entries.append(BarChartDataEntry(x: count, y: Double(latestData[i].distance)!))
+            count += 0.1
+        }
+        let set = LineChartDataSet(values: entries, label: "走行距離")
+        chartView?.data = LineChartData(dataSet: set)
+    }
+
     
     /** toggleButtonのsetup */
     private func setupTogglerButton() {

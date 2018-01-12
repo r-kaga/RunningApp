@@ -16,10 +16,10 @@ class MyInfoCharsViewController: UIViewController, ChartViewDelegate, UIScrollVi
         self.view.backgroundColor = AppSize.backgroundColor
         
         myInfo = RealmDataSet.getAllData()
-        guard !myInfo.isEmpty else {
-            setupNoDate()
-            return
-        }
+//        guard !myInfo.isEmpty else {
+//            setupNoDate()
+//            return
+//        }
         
         setupScrollView()
         setupPieChart()

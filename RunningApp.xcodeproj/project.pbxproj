@@ -58,7 +58,6 @@
 		E3D2EBD020065DDF0024BAFC /* speedDown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3D2EBCF20065DDF0024BAFC /* speedDown.mp3 */; };
 		E3D2EBD220065DF30024BAFC /* speedUp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3D2EBD120065DF30024BAFC /* speedUp.mp3 */; };
 		E3D2EBD4200664AD0024BAFC /* maintain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3D2EBD3200664AC0024BAFC /* maintain.mp3 */; };
-		E3D6F2741FA5F6BC00241D07 /* DistanceChartsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D6F2731FA5F6BC00241D07 /* DistanceChartsController.swift */; };
 		E3F4032E1F88C6EC0073DC45 /* DismissAnimator.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F4032D1F88C6EC0073DC45 /* DismissAnimator.swift.swift */; };
 		E3FE60C31F9CE3FB0080E378 /* Animation+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FE60C21F9CE3FB0080E378 /* Animation+.swift */; };
 /* End PBXBuildFile section */
@@ -119,7 +118,6 @@
 		E3D2EBCF20065DDF0024BAFC /* speedDown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = speedDown.mp3; sourceTree = "<group>"; };
 		E3D2EBD120065DF30024BAFC /* speedUp.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = speedUp.mp3; sourceTree = "<group>"; };
 		E3D2EBD3200664AC0024BAFC /* maintain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = maintain.mp3; sourceTree = "<group>"; };
-		E3D6F2731FA5F6BC00241D07 /* DistanceChartsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceChartsController.swift; sourceTree = "<group>"; };
 		E3F4032D1F88C6EC0073DC45 /* DismissAnimator.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift.swift; sourceTree = "<group>"; };
 		E3FE60C21F9CE3FB0080E378 /* Animation+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -360,7 +358,6 @@
 		E38F7FAF1F9B0B460036CEE0 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				E3D6F26E1FA5F31500241D07 /* DistanceChartsController */,
 				E361060E1F243225004F56EC /* Home */,
 				E36106111F243225004F56EC /* MyPage */,
 				E3031D011F80E041002C5739 /* Setting */,
@@ -404,14 +401,6 @@
 				E3D259A51FAAA5BF00978399 /* NoDateView.xib */,
 			);
 			path = NoDateView;
-			sourceTree = "<group>";
-		};
-		E3D6F26E1FA5F31500241D07 /* DistanceChartsController */ = {
-			isa = PBXGroup;
-			children = (
-				E3D6F2731FA5F6BC00241D07 /* DistanceChartsController.swift */,
-			);
-			path = DistanceChartsController;
 			sourceTree = "<group>";
 		};
 		E3F4032C1F88C6CF0073DC45 /* Work */ = {
@@ -575,7 +564,6 @@
 				E3031D031F80E05A002C5739 /* SettingController.swift in Sources */,
 				E368B0E11FADC7690021985F /* Gradation.swift in Sources */,
 				E31264511FA22F5D00F2B23D /* HomeViewController.swift in Sources */,
-				E3D6F2741FA5F6BC00241D07 /* DistanceChartsController.swift in Sources */,
 				E355F1961F9F7ADD00509CA1 /* UIViewController+.swift in Sources */,
 				E30530271FACC8C10097D9A3 /* Alert+.swift in Sources */,
 				E34188361F794AE6000AB961 /* AppSize.swift in Sources */,
