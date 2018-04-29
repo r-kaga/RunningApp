@@ -133,7 +133,7 @@ class SettingController: UIViewController {
     /** tableViewのセットアップ */
     private func setupTableView() {
         tableView = UITableView(frame: self.view.frame, style: .grouped)
-        tableView.backgroundColor = AppSize.backgroundColor
+        tableView.backgroundColor = AppColor.backgroundColor
         tableView.bounces = false
         tableView.delegate = self
         tableView.dataSource = self

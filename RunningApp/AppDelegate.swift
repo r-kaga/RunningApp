@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // 文字の色を変更
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         // 背景の色を変更
-        UINavigationBar.appearance().barTintColor = AppSize.navigationAndTabBarColor
+        UINavigationBar.appearance().barTintColor = AppColor.navigationAndTabBarColor
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = TabBarViewController()

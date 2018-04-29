@@ -66,7 +66,7 @@ class infoDetailViewController: UIViewController {
         self.delegate?.reload()
         
         MyInfoViewController.shouldDateUpdate = true
-        HomeViewController.shouldDateUpdate = true
+//        HomeViewController.shouldDateUpdate = true
     }
     
 

@@ -17,6 +17,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         
         // MARK: - Home
         let home = HomeViewController()
+//        let home = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as! TopViewController
         home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home")!, selectedImage: UIImage(named: "home")!)
         let homeNv = UINavigationController(rootViewController: home)
 

@@ -47,7 +47,7 @@ class MyInfoViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         navigationItem.title = "MyPage"
         
-        view.backgroundColor = AppSize.backgroundColor
+        view.backgroundColor = AppColor.backgroundColor
         setupTableView()
         setupNoDate()
     }
@@ -74,7 +74,7 @@ class MyInfoViewController: UIViewController, UIScrollViewDelegate {
     private func setupTableView() {
 
         tableView = UITableView(frame: CGRect(x: 0, y: AppSize.statusBarAndNavigationBarHeight, width: AppSize.width, height: AppSize.height - (AppSize.statusBarAndNavigationBarHeight + AppSize.tabBarHeight)), style: .plain)
-        tableView.backgroundColor = AppSize.backgroundColor
+        tableView.backgroundColor = AppColor.backgroundColor
 //        tableView.bounces = false
         tableView.showsVerticalScrollIndicator = false
         tableView.delegate = self
@@ -155,7 +155,7 @@ extension MyInfoViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myPageCell") as! MyPageCell
 
-        cell.backgroundColor = AppSize.backgroundColor
+        cell.backgroundColor = AppColor.backgroundColor
         cell.dateLabel.textColor = .gray
         cell.timeLabel.textColor = .black
         cell.distanceLabel.textColor = .black

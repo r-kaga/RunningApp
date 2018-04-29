@@ -2,8 +2,6 @@
 
 import Foundation
 import UIKit
-import Pastel
-
 
 class SettingForm: UIViewController, PickerDelegate {
     

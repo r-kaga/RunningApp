@@ -13,7 +13,7 @@ class MyPage: UIPageViewController, UIPageViewControllerDataSource, UIScrollView
         navigationItem.title = "MyPage"
 
         self.dataSource = self
-        self.view.backgroundColor = AppSize.backgroundColor
+        self.view.backgroundColor = AppColor.backgroundColor
 
         
         let myInfoViewController: MyInfoViewController = MyInfoViewController()

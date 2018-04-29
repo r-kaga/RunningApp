@@ -18,7 +18,7 @@ class HomePresenter: HomePresenterProtocol {
     }
     
     deinit {
-        model.removeObserver()
+        model.removeObserver(self)
     }
     
     @objc func updateView() {

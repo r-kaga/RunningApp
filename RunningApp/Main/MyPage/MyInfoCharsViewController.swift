@@ -13,7 +13,7 @@ class MyInfoCharsViewController: UIViewController, ChartViewDelegate, UIScrollVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = AppSize.backgroundColor
+        self.view.backgroundColor = AppColor.backgroundColor
         
         myInfo = RealmDataSet.getAllData()
 //        guard !myInfo.isEmpty else {
