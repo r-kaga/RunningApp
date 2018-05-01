@@ -33,9 +33,9 @@ class HomeViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: AppSize.width / 3, height: AppSize.height / 4)
         layout.scrollDirection = .horizontal
-//        layout.minimumLineSpacing = 5.0
-        layout.minimumInteritemSpacing = 5.0
-        layout.sectionInset = UIEdgeInsetsMake(2.0, 1.0, 0, 1.0)
+        layout.minimumLineSpacing = 10.0
+//        layout.minimumInteritemSpacing = 5.0
+//        layout.sectionInset = UIEdgeInsetsMake(0, 2.0, 0, 2.0)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(UINib(nibName: "RunDataInfoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "RunDataInfoCollectionViewCell")
@@ -86,9 +86,9 @@ class HomeViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.topAnchor.constraint(equalTo: distanceChartView.bottomAnchor, constant: 20).isActive = true
-        collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
-        collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
-        collectionView.heightAnchor.constraint(equalToConstant: AppSize.height / 5).isActive = true
+        collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
+        collectionView.heightAnchor.constraint(equalToConstant: AppSize.height / 4).isActive = true
     }
 
 }
@@ -117,6 +117,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 //        cell.nameLabel.text = model.guides[indexPath.row].name
         return cell
     }
+
+//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+//        let width: CGFloat = view.frame.width / 3 - 2
+//        let height: CGFloat = width
+//        print("collectionViewLayout")
+//        return CGSize(width: width, height: height)
+//    }
     
 }
 
