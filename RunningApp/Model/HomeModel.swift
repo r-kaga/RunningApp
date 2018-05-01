@@ -1,5 +1,6 @@
 
 import Foundation
+import RealmSwift
 
 protocol HomeModelNotify: class {
     var notificationName: Notification.Name { get }
@@ -9,12 +10,14 @@ protocol HomeModelNotify: class {
 }
 
 protocol HomeModelProtocol: HomeModelNotify {
-//    init()
     func didFinishRunning()
+    var latestData: Results<RealmDataSet> { get }
 }
 
 class HomeModel: HomeModelProtocol {
     
+    var latestData: Results<RealmDataSet> = RealmDataSet.getAllData()
+
     var notificationName: Notification.Name {
         return Notification.Name("Home")
     }
@@ -35,9 +38,5 @@ class HomeModel: HomeModelProtocol {
         print("didFinishRunning")
     }
     
-    
-}
-
-extension HomeModel {
     
 }

@@ -16,22 +16,27 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         
         
         // MARK: - Home
-        let home = HomeViewController()
-//        let home = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as! TopViewController
+        let home = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as! TopViewController
         home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home")!, selectedImage: UIImage(named: "home")!)
         let homeNv = UINavigationController(rootViewController: home)
 
+        // MARK: - Home
+        let home2 = HomeViewController()
+        //        let home = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as! TopViewController
+        home2.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home")!, selectedImage: UIImage(named: "home")!)
+        let homeNv2 = UINavigationController(rootViewController: home2)
+        
 //        // MARK: - MyPage
-//        let myPage = MyInfoViewController()
-//        myPage.tabBarItem = UITabBarItem(title: "MyPage", image: UIImage(named: "account")!, selectedImage: UIImage(named: "account")!)
-//        let myPageNv = UINavigationController(rootViewController: myPage)
+        let myPage = MyInfoViewController()
+        myPage.tabBarItem = UITabBarItem(title: "MyPage", image: UIImage(named: "account")!, selectedImage: UIImage(named: "account")!)
+        let myPageNv = UINavigationController(rootViewController: myPage)
 
         // MARK: - Setting
         let setting = SettingController()
         setting.tabBarItem = UITabBarItem(title: "Setting", image: UIImage(named: "setting")!, selectedImage: UIImage(named: "setting")!)
         let settingNv = UINavigationController(rootViewController: setting)
 
-        setViewControllers([homeNv, settingNv], animated: false)
+        setViewControllers([homeNv, homeNv2, myPageNv, settingNv], animated: false)
     }
 
 
