@@ -6,9 +6,10 @@ protocol HomeViewProtocol {
     func startRunning()
 }
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, HomeViewProtocol {
     
     private(set) var presenter: HomePresenterProtocol!
+    private let interactor = Interactor()
 
     lazy private var chartViewOutlet: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: AppSize.width - 20, height: 160))
@@ -24,6 +25,7 @@ class HomeViewController: UIViewController {
     lazy private var distanceChartView: LineChartView = {
         let chartView = LineChartView(frame: CGRect(x: 0, y: 0, width: AppSize.width - 20, height: 160))
         chartView.chartDescription?.text = ""
+        chartView.backgroundColor = .white
         chartView.xAxis.enabled = false
         chartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
         return chartView
@@ -46,6 +48,24 @@ class HomeViewController: UIViewController {
         collectionView.dataSource = self
         return collectionView
     }()
+    
+    lazy private var startRunButton: UIButton = {
+        let btn = UIButton(frame: .zero)
+        btn.setTitle("ランニングを始める", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.backgroundColor = AppColor.navigationAndTabBarColor
+        btn.layer.cornerRadius = 10.0
+        btn.clipsToBounds = true
+        btn.addTarget(self, action: #selector(startRunning), for: .touchUpInside)
+        return btn
+    }()
+    
+    func startRunning() {
+        let sb = UIStoryboard(name: "WorkController", bundle: nil).instantiateInitialViewController() as! ModalNavigationController
+        sb.interactor = interactor
+        sb.transitioningDelegate = self
+        self.present(sb, animated: true, completion: nil)
+    }
 
     private func updateLatestChartsDate() {
         var chartsShouldShowFlg: Bool
@@ -81,6 +101,7 @@ class HomeViewController: UIViewController {
         chartViewOutlet.addSubview(distanceChartView)
         view.addSubview(chartViewOutlet)
         view.addSubview(collectionView)
+        view.addSubview(startRunButton)
     }
     
     override func viewWillLayoutSubviews() {
@@ -89,17 +110,14 @@ class HomeViewController: UIViewController {
         collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         collectionView.heightAnchor.constraint(equalToConstant: AppSize.height / 4).isActive = true
-    }
-
-}
-
-
-extension HomeViewController: HomeViewProtocol {
-    
-    func startRunning() {
         
+        startRunButton.translatesAutoresizingMaskIntoConstraints = false
+        startRunButton.bottomAnchor.constraint(equalTo: (tabBarController?.tabBar.topAnchor)!, constant: -30).isActive = true
+        startRunButton.widthAnchor.constraint(equalToConstant: AppSize.width - 50).isActive = true
+        startRunButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        startRunButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
-    
+
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -128,6 +146,26 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 }
 
 
+/** PullCloseモーダルのセットアップ */
+extension HomeViewController: UIViewControllerTransitioningDelegate {
+    
+    /** PullModalの表示 */
+    func onPullModalShow() {
+        let sb = UIStoryboard(name: "ModalViewController", bundle: nil).instantiateInitialViewController() as! ModalNavigationController
+        sb.interactor = interactor
+        sb.transitioningDelegate = self
+        present(sb, animated: true, completion: nil)
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissAnimator()
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
+    }
+    
+}
 
 
 
