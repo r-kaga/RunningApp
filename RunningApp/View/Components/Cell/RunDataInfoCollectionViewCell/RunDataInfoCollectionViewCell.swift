@@ -22,5 +22,11 @@ class RunDataInfoCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        layer.cornerRadius = 15.0
+        clipsToBounds = true
+    }
 
 }
