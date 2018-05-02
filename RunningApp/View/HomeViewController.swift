@@ -33,7 +33,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     
     lazy private var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: AppSize.width / 3, height: AppSize.height / 4)
+        layout.itemSize = CGSize(width: AppSize.width / 2, height: AppSize.height / 3)
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 10.0
 //        layout.minimumInteritemSpacing = 5.0
@@ -109,10 +109,14 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         collectionView.topAnchor.constraint(equalTo: distanceChartView.bottomAnchor, constant: 20).isActive = true
         collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-        collectionView.heightAnchor.constraint(equalToConstant: AppSize.height / 4).isActive = true
+        collectionView.heightAnchor.constraint(equalToConstant: AppSize.height / 3).isActive = true
         
         startRunButton.translatesAutoresizingMaskIntoConstraints = false
-        startRunButton.bottomAnchor.constraint(equalTo: (tabBarController?.tabBar.topAnchor)!, constant: -30).isActive = true
+//        let ramainHeight = ((tabBarController?.tabBar.frame.minY)! - collectionView.frame.maxY) / 2
+//        let remainHeight = AppSize.height - (collectionView.frame.maxY + (tabBarController?.tabBar.frame.height)!)
+//        print(remainHeight)
+//        startRunButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: remainHeight).isActive = true
+        startRunButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 30).isActive = true
         startRunButton.widthAnchor.constraint(equalToConstant: AppSize.width - 50).isActive = true
         startRunButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         startRunButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -132,7 +136,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RunDataInfoCollectionViewCell", for: indexPath) as! RunDataInfoCollectionViewCell
-//        cell.nameLabel.text = model.guides[indexPath.row].name
+        let runData = presenter.latestData[indexPath.row]
+        cell.dateLabel.text = runData.date
+        cell.distanceLabel.text = runData.distance
+        cell.timeLabel.text = runData.time
         return cell
     }
 
