@@ -33,6 +33,9 @@
 		E34188361F794AE6000AB961 /* AppSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34188351F794AE6000AB961 /* AppSize.swift */; };
 		E34188381F794E5B000AB961 /* WorkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34188371F794E5B000AB961 /* WorkController.swift */; };
 		E341883B1F795520000AB961 /* WorkController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E341883A1F795520000AB961 /* WorkController.storyboard */; };
+		E3463BA4209AA25C00A518C4 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3463BA3209AA25C00A518C4 /* MyPageViewController.swift */; };
+		E3463BA6209AA27C00A518C4 /* MyPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3463BA5209AA27C00A518C4 /* MyPageModel.swift */; };
+		E3463BA8209AA28900A518C4 /* MyPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3463BA7209AA28900A518C4 /* MyPagePresenter.swift */; };
 		E35580151F8B2347000CE75E /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35580141F8B2347000CE75E /* Utility.swift */; };
 		E355F1961F9F7ADD00509CA1 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355F1951F9F7ADD00509CA1 /* UIViewController+.swift */; };
 		E355F1981F9F7ED300509CA1 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355F1971F9F7ED300509CA1 /* UIView+.swift */; };
@@ -97,6 +100,9 @@
 		E34188351F794AE6000AB961 /* AppSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSize.swift; sourceTree = "<group>"; };
 		E34188371F794E5B000AB961 /* WorkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkController.swift; sourceTree = "<group>"; };
 		E341883A1F795520000AB961 /* WorkController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WorkController.storyboard; sourceTree = "<group>"; };
+		E3463BA3209AA25C00A518C4 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		E3463BA5209AA27C00A518C4 /* MyPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageModel.swift; sourceTree = "<group>"; };
+		E3463BA7209AA28900A518C4 /* MyPagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePresenter.swift; sourceTree = "<group>"; };
 		E35580141F8B2347000CE75E /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		E355F1951F9F7ADD00509CA1 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		E355F1971F9F7ED300509CA1 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
@@ -199,6 +205,7 @@
 			children = (
 				E38F7FB11F9B0BF00036CEE0 /* Realm */,
 				E33A4F022095A3530002D92E /* HomeModel.swift */,
+				E3463BA5209AA27C00A518C4 /* MyPageModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -252,6 +259,7 @@
 			children = (
 				E3363D49209892E20018B88E /* Components */,
 				E33A4F002095A3410002D92E /* HomeViewController.swift */,
+				E3463BA3209AA25C00A518C4 /* MyPageViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -260,6 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				E33A4F042095A3600002D92E /* HomePresenter.swift */,
+				E3463BA7209AA28900A518C4 /* MyPagePresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -644,6 +653,7 @@
 				E33A4F012095A3410002D92E /* HomeViewController.swift in Sources */,
 				E368B0E11FADC7690021985F /* Gradation.swift in Sources */,
 				E31264511FA22F5D00F2B23D /* HomevvvvvViewController.swift in Sources */,
+				E3463BA4209AA25C00A518C4 /* MyPageViewController.swift in Sources */,
 				E355F1961F9F7ADD00509CA1 /* UIViewController+.swift in Sources */,
 				E30530271FACC8C10097D9A3 /* Alert+.swift in Sources */,
 				E34188361F794AE6000AB961 /* AppSize.swift in Sources */,
@@ -660,12 +670,14 @@
 				E3049AFC1FBB36870050897E /* MyInfoCharsViewController.swift in Sources */,
 				E3034EA41F87BFBF00FCB026 /* Const.swift in Sources */,
 				E34188381F794E5B000AB961 /* WorkController.swift in Sources */,
+				E3463BA6209AA27C00A518C4 /* MyPageModel.swift in Sources */,
 				E3D259A31FAAA59F00978399 /* NoDateView.swift in Sources */,
 				E36106191F243225004F56EC /* MyPage.swift in Sources */,
 				E3FE60C31F9CE3FB0080E378 /* Animation+.swift in Sources */,
 				E355F1981F9F7ED300509CA1 /* UIView+.swift in Sources */,
 				E365A13F1F9257770008D475 /* Dialog.swift in Sources */,
 				E37DDE251FAA1B2100EC61E5 /* Loading.swift in Sources */,
+				E3463BA8209AA28900A518C4 /* MyPagePresenter.swift in Sources */,
 				E341882E1F794073000AB961 /* TabBarController.swift in Sources */,
 				E3363D4E209893200018B88E /* RunDataInfoCollectionViewCell.swift in Sources */,
 				E38F7FAB1F9AF3ED0036CEE0 /* SettingCell.swift in Sources */,
