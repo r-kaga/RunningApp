@@ -26,7 +26,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         let homeNv = UINavigationController(rootViewController: home)
         
 //        // MARK: - MyPage
-        let myPage = MyInfoViewController()
+        let myPage = MyPageViewController()
         myPage.tabBarItem = UITabBarItem(title: "MyPage", image: UIImage(named: "account")!, selectedImage: UIImage(named: "account")!)
         let myPageNv = UINavigationController(rootViewController: myPage)
 
