@@ -11,10 +11,17 @@ protocol MyPageModelNotify: class {
 
 protocol MyPageModelProtocol: MyPageModelNotify {
     var myInfo: Results<RealmDataSet> { get }
+    var headerItem: [String] { get }
+}
+
+enum Section: Int {
+    case MyInfo = 0
 }
 
 class MyPageModel: MyPageModelProtocol {
-    
+
+    let headerItem = [ "MyInfo" ]
+
     lazy var myInfo: Results<RealmDataSet> = {
         return RealmDataSet.getAllData()
     }()

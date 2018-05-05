@@ -18,14 +18,8 @@ extension MyPageViewController: MyPageProtocol {
     }
 }
 
-enum Section: Int {
-    case MyInfo = 0
-}
-
 class MyPageViewController: UIViewController {
     
-    private let headerItem = [ "MyInfo" ]
-
     private(set) var presenter: MyPagePresenterProtocol!
 
     lazy private var refreshControl: UIRefreshControl = {
@@ -73,12 +67,12 @@ class MyPageViewController: UIViewController {
 extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return headerItem.count
+        return presenter.headerItem.count
     }
 
     /** cellの数を設定 */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+    
         switch Section(rawValue: section) {
         case .some(.MyInfo):
             return presenter.myInfo.count
