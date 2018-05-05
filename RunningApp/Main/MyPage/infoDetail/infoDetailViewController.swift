@@ -12,7 +12,7 @@ class infoDetailViewController: UIViewController {
     
     var myInfo: RealmDataSet? = nil
 
-    weak var delegate: MyPageDelegate?
+    weak var delegate: MyPageProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +65,7 @@ class infoDetailViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
         self.delegate?.reload()
         
-        MyInfoViewController.shouldDateUpdate = true
+//        MyInfoViewController.shouldDateUpdate = true
 //        HomeViewController.shouldDateUpdate = true
     }
     

@@ -3,16 +3,31 @@ import Foundation
 import UIKit
 import RealmSwift
 
-protocol MyPageViewControllerProtocol {
-    func reloadData()
+protocol MyPageProtocol: class {
+    func reload()
+    func setNavigationTitle(title: String)
 }
 
-class MyPageViewController: UIViewController, MyPageViewControllerProtocol {
+extension MyPageViewController: MyPageProtocol {
+    func reload() {
+        tableView.reloadData()
+    }
     
-    lazy private var myInfo: Results<RealmDataSet> = {
-        return RealmDataSet.getAllData()
-    }()
+    func setNavigationTitle(title: String) {
+        navigationItem.title = title
+    }
+}
+
+enum Section: Int {
+    case MyInfo = 0
+}
+
+class MyPageViewController: UIViewController {
     
+    private let headerItem = [ "MyInfo" ]
+
+    private(set) var presenter: MyPagePresenterProtocol!
+
     lazy private var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh(_:)), for: UIControlEvents.valueChanged)
@@ -45,6 +60,8 @@ class MyPageViewController: UIViewController, MyPageViewControllerProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
+        
+        presenter = MyPagePresenter(view: self)
     }
     
     func reloadData() {
@@ -56,12 +73,20 @@ class MyPageViewController: UIViewController, MyPageViewControllerProtocol {
 extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return headerItem.count
     }
-    
+
+    /** cellの数を設定 */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        
+        switch Section(rawValue: section) {
+        case .some(.MyInfo):
+            return presenter.myInfo.count
+        case .none:
+            return 0
+        }
     }
+
     
     /** cellの生成 */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -72,7 +97,7 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
         cell.timeLabel.textColor = .black
         cell.distanceLabel.textColor = .black
         
-        let item = myInfo[indexPath.row]
+        let item = presenter.myInfo[indexPath.row]
         cell.dateLabel.text = item.date
         cell.timeLabel.text = item.time
         cell.distanceLabel.text = item.distance + "km"
@@ -81,6 +106,39 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
         cell.selectionStyle = .none
         
         return cell
+    }
+    
+    /** cellが選択された時 */
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        
+        let infoDetail = UIStoryboard(name: "infoDetailViewController", bundle: nil).instantiateInitialViewController() as! infoDetailViewController
+        infoDetail.myInfo = presenter.myInfo[indexPath.row]
+        infoDetail.delegate = self
+        
+        navigationController?.pushViewController(infoDetail, animated: true)
+    }
+    
+    /*
+     * 各indexPathのcellがハイライトされた際に呼ばれます．
+     * あるcellがタップされた際は，didHighlight → didUnhighlight → willSelect → didSelectの順に呼び出されます．
+     * さらにその状態で別のcellがタップされた際は，didHighlight → didUnhighlight → willSelect → willDeselect → didDeselect → didSelectの順に呼び出されます．
+     */
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.contentView.touchStartAnimation()
+    }
+    
+    /*
+     * 各indexPathのcellがアンハイライトされた際に呼ばれます．
+     * 基本的にtableView(_:didHighlightRowAt:)が呼ばれた直後に呼ばれます．
+     */
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.contentView.touchEndAnimation()
+    }
+    
+    /** tableView表示された時 */
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        //        self.loading?.close()
     }
     
 }

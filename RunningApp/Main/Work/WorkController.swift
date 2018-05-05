@@ -322,7 +322,7 @@ class WorkController: UIViewController, AVAudioPlayerDelegate {
 //            WorkController.homeDelegate?.dateUpdate()
             
 //            HomeViewController.shouldDateUpdate = true
-            MyInfoViewController.shouldDateUpdate = true
+//            MyInfoViewController.shouldDateUpdate = true
 
             presentingViewController?.viewWillAppear(true)
         })
