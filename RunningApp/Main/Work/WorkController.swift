@@ -7,7 +7,6 @@ import RealmSwift
 import CoreMotion
 import AVFoundation
 
-
 enum currentSpeedType {
     case up
     case down
@@ -113,7 +112,6 @@ class WorkController: UIViewController, AVAudioPlayerDelegate {
         
     }
 
-    
     /** 音声を再生 */
     private func audioPlay(url: String) {
         let audioPath = URL(fileURLWithPath: Bundle.main.path(forResource: url, ofType:"mp3")!)
