@@ -9,7 +9,6 @@ protocol HomeViewProtocol {
 class HomeViewController: UIViewController, HomeViewProtocol {
     
     private(set) var presenter: HomePresenterProtocol!
-    private let interactor = Interactor()
 
     lazy private var chartViewOutlet: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: AppSize.width - 20, height: 160))
@@ -60,11 +59,9 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         return btn
     }()
     
-    func startRunning() {
-        let sb = UIStoryboard(name: "WorkController", bundle: nil).instantiateInitialViewController() as! ModalNavigationController
-        sb.interactor = interactor
-        sb.transitioningDelegate = self
-        self.present(sb, animated: true, completion: nil)
+    @objc func startRunning() {
+        let vc = RunManageViewController()
+        present(vc, animated: true, completion: nil)
     }
 
     private func updateLatestChartsDate() {
@@ -151,28 +148,4 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 //    }
     
 }
-
-
-/** PullCloseモーダルのセットアップ */
-extension HomeViewController: UIViewControllerTransitioningDelegate {
-    
-    /** PullModalの表示 */
-    func onPullModalShow() {
-        let sb = UIStoryboard(name: "ModalViewController", bundle: nil).instantiateInitialViewController() as! ModalNavigationController
-        sb.interactor = interactor
-        sb.transitioningDelegate = self
-        present(sb, animated: true, completion: nil)
-    }
-    
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return DismissAnimator()
-    }
-    
-    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        return interactor.hasStarted ? interactor : nil
-    }
-    
-}
-
-
 
