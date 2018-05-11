@@ -1,9 +1,29 @@
-//
-//  BaseUIButton.swift
-//  RunningApp
-//
-//  Created by 加賀谷諒 on 2018/05/12.
-//  Copyright © 2018年 ryo kagaya. All rights reserved.
-//
 
 import Foundation
+import UIKit
+
+protocol BaseUIButton where Self:UIButton {
+    var cornerRadius: CGFloat { get }
+    var isRound: Bool{ get }
+    var borderColor: UIColor { get }
+    var borderWidth: CGFloat { get }
+}
+
+extension BaseUIButton {
+    var cornerRadius: CGFloat {
+        return 5.0
+    }
+    
+    var isRound: Bool {
+        return false
+    }
+    
+    var borderColor: UIColor {
+        return .clear
+    }
+    
+    var borderWidth: CGFloat {
+        return 0.0
+    }
+}
+
