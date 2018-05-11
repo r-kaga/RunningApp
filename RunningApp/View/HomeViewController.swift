@@ -49,7 +49,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     }()
     
     lazy private var startRunButton: TappableButton = {
-        let btn = UIButton(frame: .zero)
+        let btn = TappableButton(frame: .zero)
         btn.setTitle("ランニングを始める", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.backgroundColor = AppColor.appConceptColor

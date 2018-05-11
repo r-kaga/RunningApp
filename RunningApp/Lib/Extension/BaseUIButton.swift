@@ -19,11 +19,12 @@ extension BaseUIButton {
     }
     
     var borderColor: UIColor {
-        return .clear
+        return .lightGray
     }
     
     var borderWidth: CGFloat {
-        return 0.0
+        return 0.3
     }
+
 }
 

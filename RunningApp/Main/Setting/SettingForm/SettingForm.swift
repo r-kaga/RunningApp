@@ -8,7 +8,7 @@ class SettingForm: UIViewController, PickerDelegate {
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var SettingCategoryLabel: UILabel!
     @IBOutlet weak var textField: UITextField!
-    @IBOutlet weak var settingButton: ActionAcceptButton!
+    @IBOutlet weak var settingButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
     
     @IBAction func ScreenTapAction(_ sender: Any) {

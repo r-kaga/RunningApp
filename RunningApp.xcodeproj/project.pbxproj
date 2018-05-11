@@ -57,7 +57,7 @@
 		E380AB311F23735F0034EA8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E380AB301F23735F0034EA8F /* AppDelegate.swift */; };
 		E380AB381F23735F0034EA8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E380AB371F23735F0034EA8F /* Assets.xcassets */; };
 		E380AB3B1F23735F0034EA8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E380AB391F23735F0034EA8F /* LaunchScreen.storyboard */; };
-		E3894FCF1F8CF62A000313CC /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3894FCE1F8CF62A000313CC /* UIButton+.swift */; };
+		E3894FCF1F8CF62A000313CC /* TappableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3894FCE1F8CF62A000313CC /* TappableButton.swift */; };
 		E38F7FAB1F9AF3ED0036CEE0 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38F7FAA1F9AF3ED0036CEE0 /* SettingCell.swift */; };
 		E38F7FAD1F9AF4CA0036CEE0 /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E38F7FAC1F9AF4CA0036CEE0 /* SettingCell.xib */; };
 		E39594071F30C574004AEB27 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39594021F30C574004AEB27 /* Interactor.swift */; };
@@ -130,7 +130,7 @@
 		E380AB371F23735F0034EA8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E380AB3A1F23735F0034EA8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E380AB3C1F23735F0034EA8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E3894FCE1F8CF62A000313CC /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
+		E3894FCE1F8CF62A000313CC /* TappableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableButton.swift; sourceTree = "<group>"; };
 		E38F7FAA1F9AF3ED0036CEE0 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		E38F7FAC1F9AF4CA0036CEE0 /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		E39594021F30C574004AEB27 /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
@@ -426,7 +426,7 @@
 			children = (
 				E30530261FACC8C10097D9A3 /* Alert+.swift */,
 				E3FE60C21F9CE3FB0080E378 /* Animation+.swift */,
-				E3894FCE1F8CF62A000313CC /* UIButton+.swift */,
+				E3894FCE1F8CF62A000313CC /* TappableButton.swift */,
 				E355F1971F9F7ED300509CA1 /* UIView+.swift */,
 				E355F1951F9F7ADD00509CA1 /* UIViewController+.swift */,
 				E344D6E120A5FD1C000ABB33 /* BaseUIButton.swift */,
@@ -672,7 +672,7 @@
 				E30530271FACC8C10097D9A3 /* Alert+.swift in Sources */,
 				E34188361F794AE6000AB961 /* AppSize.swift in Sources */,
 				E37631881FBEE70600D027E5 /* Picker.swift in Sources */,
-				E3894FCF1F8CF62A000313CC /* UIButton+.swift in Sources */,
+				E3894FCF1F8CF62A000313CC /* TappableButton.swift in Sources */,
 				E39594071F30C574004AEB27 /* Interactor.swift in Sources */,
 				E32243671FDC255000477320 /* HomeCollectionViewCell.swift in Sources */,
 				E36B804220A1EE9100C6E615 /* RunManageModel.swift in Sources */,
