@@ -17,8 +17,12 @@ struct AppColor {
         return UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1.0)
     }
     
-    static var selectedTabBarColor: UIColor {
+    static var appConceptColor: UIColor {
         return UIColor(red: 250/255, green: 90/255, blue: 96/255, alpha: 1.0)
+    }
+    
+    static var selectedTabBarColor: UIColor {
+        return AppColor.appConceptColor
     }
     
 }

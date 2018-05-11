@@ -26,7 +26,16 @@ class RunDataInfoCollectionViewCell: UICollectionViewCell {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         layer.cornerRadius = 15.0
-        clipsToBounds = true
+        clipsToBounds = false
+
+        layer.borderColor = UIColor.lightGray.cgColor
+        layer.borderWidth = 0.3
+
+//        layer.shadowColor = UIColor.lightGray.cgColor
+//        layer.shadowOpacity = 0.5 // 透明度
+//        layer.shadowOffset = CGSize(width: 5, height: 5) // 距離
+//        layer.shadowRadius = 5 // ぼかし量
+
     }
 
 }

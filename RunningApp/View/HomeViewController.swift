@@ -52,7 +52,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         let btn = UIButton(frame: .zero)
         btn.setTitle("ランニングを始める", for: .normal)
         btn.setTitleColor(.white, for: .normal)
-        btn.backgroundColor = AppColor.navigationAndTabBarColor
+        btn.backgroundColor = AppColor.appConceptColor
         btn.layer.cornerRadius = 10.0
         btn.clipsToBounds = true
         btn.addTarget(self, action: #selector(startRunning), for: .touchUpInside)
