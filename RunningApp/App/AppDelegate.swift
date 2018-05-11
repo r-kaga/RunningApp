@@ -15,9 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // iOS 10
             let center = UNUserNotificationCenter.current()
             center.requestAuthorization(options: [.badge, .sound, .alert], completionHandler: { (granted, error) in
-
                 guard error == nil else { return }
-                
                 if granted {
                     let center = UNUserNotificationCenter.current()
                     center.delegate = self
@@ -31,10 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         UIApplication.shared.applicationIconBadgeNumber = 0
-        
-        UINavigationBar.appearance().tintColor = .white  // アイテムの色
+        UINavigationBar.appearance().tintColor = .black  // アイテムの色
         // 文字の色を変更
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
         // 背景の色を変更
         UINavigationBar.appearance().barTintColor = AppColor.navigationAndTabBarColor
         

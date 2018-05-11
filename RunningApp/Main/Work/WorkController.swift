@@ -7,12 +7,6 @@ import RealmSwift
 import CoreMotion
 import AVFoundation
 
-enum currentSpeedType {
-    case up
-    case down
-    case maintain
-    case notMatched
-}
 
 class WorkController: UIViewController, AVAudioPlayerDelegate {
     

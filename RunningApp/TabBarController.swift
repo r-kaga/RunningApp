@@ -10,14 +10,11 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
  
         /** barTintColor -> tabBarのbackgroundColor
           *  tintColor    -> 選択されてるTabのColor
+          *  unselectedItemTintColor -> 選択されていないアイテムのColor
           */
         UITabBar.appearance().barTintColor = AppColor.navigationAndTabBarColor
-        UITabBar.appearance().tintColor = .white
-        
-        // MARK: - Home
-//        let home = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as! TopViewController
-//        home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home")!, selectedImage: UIImage(named: "home")!)
-//        let homeNv = UINavigationController(rootViewController: home)
+        UITabBar.appearance().tintColor = AppColor.selectedTabBarColor
+        UITabBar.appearance().unselectedItemTintColor = UIColor.black.withAlphaComponent(0.5)
 
         // MARK: - Home
         let home = HomeViewController()
@@ -36,7 +33,10 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
         setViewControllers([homeNv, settingNv], animated: false)
     }
+    
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
 
+    }
 
 }
 

@@ -3,12 +3,20 @@ import Foundation
 import UIKit
 import MapKit
 import CoreLocation
+import AVFoundation
+
+enum currentSpeedType {
+    case up
+    case down
+    case maintain
+    case notMatched
+}
 
 protocol RunManageViewProtocol {
     
 }
 
-class RunManageViewController: UIViewController, RunManageViewProtocol {
+class RunManageViewController: UIViewController, AVAudioPlayerDelegate, RunManageViewProtocol {
     
     private(set) var presenter: RunManagePresenterProtocol!
     
@@ -19,20 +27,53 @@ class RunManageViewController: UIViewController, RunManageViewProtocol {
     private var latDist: CLLocationDistance = 500
     private var lonDist: CLLocationDistance = 500
     
+    private var audioPlayer: AVAudioPlayer!
+
+    weak private var timer: Timer?
+    private var startTimeDate: Date!
+    
     /* 現在地を表示するMapKitを生成 */
-    lazy private var mapView: MKMapView = {
+    private lazy var mapView: MKMapView = {
         // MapViewの生成
         let mapView = MKMapView()
         mapView.delegate = self
         return mapView
     }()
     
+    private lazy var calorieLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.textAlignment = .center
+        return label
+    }()
+
+    private lazy var speedLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private lazy var stopWatchLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.textAlignment = .center
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .blue
+        
+        view.addSubview(calorieLabel)
+        view.addSubview(speedLabel)
+        view.addSubview(stopWatchLabel)
         view.addSubview(mapView)
+        
         presenter = RunManagePresenter(view: self)
         setupLocationManager()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.startTimer()
     }
     
     override func viewWillLayoutSubviews() {
@@ -43,6 +84,129 @@ class RunManageViewController: UIViewController, RunManageViewProtocol {
         mapView.widthAnchor.constraint(equalToConstant: AppSize.width).isActive = true
         mapView.heightAnchor.constraint(equalToConstant: AppSize.height / 2).isActive = true
         mapView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        calorieLabel.translatesAutoresizingMaskIntoConstraints = false
+        calorieLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
+        calorieLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
+        calorieLabel.widthAnchor.constraint(equalToConstant: AppSize.width / 2).isActive = true
+        calorieLabel.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        
+        speedLabel.translatesAutoresizingMaskIntoConstraints = false
+        speedLabel.topAnchor.constraint(equalTo: calorieLabel.bottomAnchor, constant: 30).isActive = true
+        speedLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
+        speedLabel.widthAnchor.constraint(equalToConstant: AppSize.width / 2).isActive = true
+        speedLabel.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        
+        stopWatchLabel.translatesAutoresizingMaskIntoConstraints = false
+        stopWatchLabel.topAnchor.constraint(equalTo: speedLabel.bottomAnchor, constant: 30).isActive = true
+        stopWatchLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
+        stopWatchLabel.widthAnchor.constraint(equalToConstant: AppSize.width / 2).isActive = true
+        stopWatchLabel.heightAnchor.constraint(equalToConstant: 44).isActive = true
+    }
+    
+    /** 現在のスピードと設定した理想のペースを比較する */
+    private func checkCurrentSpeedIsPaceable(currentSpeed: Double, pace: Double) -> currentSpeedType {
+        var type: currentSpeedType?
+        
+        switch currentSpeed {
+        case let e where e < pace:
+            type = .up
+        case let e where e > pace + 1.0:
+            type = .down
+        case pace + 0.0...pace + 0.9:
+            type = .maintain
+        default:
+            type = .notMatched
+        }
+        return type!
+    }
+    
+    //MARK: - ElapsedTimer
+    /* ストップウォッチ */
+    private func startTimer() {
+        if timer != nil{
+            timer?.invalidate()
+        }
+        
+        timer = Timer.scheduledTimer(
+            timeInterval: 1.0,
+            target: self,
+            selector: #selector(self.timerCounter),
+            userInfo: nil,
+            repeats: true)
+        
+        startTimeDate = Date()
+    }
+    
+    /* labelに経過時間を表示 */
+    @objc func timerCounter() {
+        DispatchQueue.main.async {
+            self.stopWatchLabel.text = self.getElapsedTime()
+        }
+    }
+    
+    /* タイマーの終了時処理 */
+    private func stopTimer() {
+        if timer != nil{
+            timer?.invalidate()
+            stopWatchLabel.text = "00::00:00"
+        }
+    }
+    
+    
+    /** 開始時間から現在の経過時間を返却
+     * - return 現在の経過時間 / HH:mm:ss
+     */
+    private func getElapsedTime() -> String {
+        // タイマー開始からのインターバル時間
+        let currentTime = Date().timeIntervalSince(startTimeDate)
+        let hour = (Int)(fmod((currentTime / 60 / 60), 60))
+        // fmod() 余りを計算
+        let minute = (Int)(fmod((currentTime/60), 60))
+        // currentTime/60 の余り
+        let second = (Int)(fmod(currentTime, 60))
+        return  "\(String(format:"%02d", hour)):\(String(format:"%02d", minute)):\(String(format:"%02", second))"
+    }
+    
+    /** 音声を再生 */
+    private func audioPlay(url: String) {
+        let audioPath = URL(fileURLWithPath: Bundle.main.path(forResource: url, ofType:"mp3")!)
+        
+        // auido を再生するプレイヤーを作成する
+        var audioError: NSError?
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: audioPath)
+        } catch let error as NSError {
+            audioError = error
+            audioPlayer = nil
+        }
+        if let error = audioError {
+            print("Error \(error.localizedDescription)")
+        }
+        
+        audioPlayer.delegate = self
+        //        audioPlayer.prepareToPlay()
+        
+        audioPlayer.play()
+    }
+    
+    /** カロリー計算 */
+    private func getCurrentCalorieBurned() -> Double {
+        
+        var calorie: Double = 0.0
+        if let weight = UserDefaults.standard.string(forKey: "weight") {
+            // タイマー開始からのインターバル時間
+            let currentTime = Date().timeIntervalSince(startTimeDate)
+            let hour = (Double)(fmod((currentTime / 60 / 60), 60))
+            let minute = (Double)(fmod((currentTime/60), 60))
+            let second = (Double)(fmod(currentTime, 60))
+            
+            let time = hour + (minute / 60) + (second / 60 / 60)
+            
+            let calcu = (1.05 * 8.0 * time * Double(weight)!)
+            calorie = round(calcu * 10.0) / 10.0
+        }
+        return calorie
     }
     
 }
