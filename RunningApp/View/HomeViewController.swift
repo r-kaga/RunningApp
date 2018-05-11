@@ -48,7 +48,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         return collectionView
     }()
     
-    lazy private var startRunButton: UIButton = {
+    lazy private var startRunButton: TappableButton = {
         let btn = UIButton(frame: .zero)
         btn.setTitle("ランニングを始める", for: .normal)
         btn.setTitleColor(.white, for: .normal)
