@@ -25,8 +25,8 @@ class RunDataInfoCollectionViewCell: UICollectionViewCell {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        layer.cornerRadius = 15.0
-        clipsToBounds = false
+        layer.cornerRadius = 10.0
+        clipsToBounds = true
 
         layer.borderColor = UIColor.lightGray.cgColor
         layer.borderWidth = 0.3
