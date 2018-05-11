@@ -48,6 +48,21 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         return collectionView
     }()
     
+    private lazy var moreShowButton: UIButton = {
+        let btn = TappableButton(frame: .zero)
+        btn.backgroundColor = .clear
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        btn.setTitleColor(.black, for: .normal)
+        btn.setTitle("もっと見る", for: .normal)
+        btn.addTarget(self, action: #selector(moreShowRunData), for: .touchUpInside)
+        return btn
+    }()
+    
+    @objc func moreShowRunData() {
+        let vc = RunManageViewController()
+        present(vc, animated: true, completion: nil)
+    }
+    
     lazy private var startRunButton: TappableButton = {
         let btn = TappableButton(frame: .zero)
         btn.setTitle("ランニングを始める", for: .normal)
@@ -98,16 +113,22 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         chartViewOutlet.addSubview(distanceChartView)
         view.addSubview(chartViewOutlet)
         view.addSubview(collectionView)
+        view.addSubview(moreShowButton)
         view.addSubview(startRunButton)
     }
     
     override func viewWillLayoutSubviews() {
+        moreShowButton.translatesAutoresizingMaskIntoConstraints = false
+        moreShowButton.topAnchor.constraint(equalTo: distanceChartView.bottomAnchor, constant: 15).isActive = true
+        moreShowButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
+        moreShowButton.sizeToFit()
+        
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.topAnchor.constraint(equalTo: distanceChartView.bottomAnchor, constant: 20).isActive = true
+        collectionView.topAnchor.constraint(equalTo: moreShowButton.bottomAnchor, constant: 0).isActive = true
         collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         collectionView.heightAnchor.constraint(equalToConstant: AppSize.height / 3).isActive = true
-        
+
         startRunButton.translatesAutoresizingMaskIntoConstraints = false
 //        let ramainHeight = ((tabBarController?.tabBar.frame.minY)! - collectionView.frame.maxY) / 2
 //        let remainHeight = AppSize.height - (collectionView.frame.maxY + (tabBarController?.tabBar.frame.height)!)
