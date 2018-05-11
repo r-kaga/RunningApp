@@ -66,7 +66,6 @@ class WorkController: UIViewController, AVAudioPlayerDelegate {
         gradient.animateGradient()
 
         resultView.bringSubview(toFront: resultCardView)
-
     }
 
     
@@ -135,7 +134,7 @@ class WorkController: UIViewController, AVAudioPlayerDelegate {
     }
     
     /** 現在のスピードと設定した理想のペースを比較する */
-    private func checkCurrentSpeedIsPaceable(currentSpeed: Double, pace: Double) -> currentSpeedType{
+    private func checkCurrentSpeedIsPaceable(currentSpeed: Double, pace: Double) -> currentSpeedType {
         var type: currentSpeedType?
         
         switch currentSpeed {

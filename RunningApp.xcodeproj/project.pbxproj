@@ -285,6 +285,8 @@
 		E33A4F062095A6990002D92E /* App */ = {
 			isa = PBXGroup;
 			children = (
+				E380AB301F23735F0034EA8F /* AppDelegate.swift */,
+				E3034EA31F87BFBF00FCB026 /* Const.swift */,
 				E34188351F794AE6000AB961 /* AppSize.swift */,
 				E33A4F072095A6A30002D92E /* AppColor.swift */,
 			);
@@ -410,8 +412,6 @@
 				E32754F11FC69AD40077504D /* Model */,
 				E341882B1F793D5E000AB961 /* Resources */,
 				E3762A741F8FA1F100B0B501 /* Service */,
-				E380AB301F23735F0034EA8F /* AppDelegate.swift */,
-				E3034EA31F87BFBF00FCB026 /* Const.swift */,
 				E380AB3C1F23735F0034EA8F /* Info.plist */,
 				E380AB391F23735F0034EA8F /* LaunchScreen.storyboard */,
 				E341882D1F794073000AB961 /* TabBarController.swift */,

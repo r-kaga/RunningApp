@@ -14,7 +14,6 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         UITabBar.appearance().barTintColor = AppColor.navigationAndTabBarColor
         UITabBar.appearance().tintColor = .white
         
-        
         // MARK: - Home
 //        let home = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as! TopViewController
 //        home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home")!, selectedImage: UIImage(named: "home")!)
@@ -25,17 +24,17 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home")!, selectedImage: UIImage(named: "home")!)
         let homeNv = UINavigationController(rootViewController: home)
         
-//        // MARK: - MyPage
-        let myPage = MyPageViewController()
-        myPage.tabBarItem = UITabBarItem(title: "MyPage", image: UIImage(named: "account")!, selectedImage: UIImage(named: "account")!)
-        let myPageNv = UINavigationController(rootViewController: myPage)
+////        // MARK: - MyPage
+//        let myPage = MyPageViewController()
+//        myPage.tabBarItem = UITabBarItem(title: "MyPage", image: UIImage(named: "account")!, selectedImage: UIImage(named: "account")!)
+//        let myPageNv = UINavigationController(rootViewController: myPage)
 
         // MARK: - Setting
         let setting = SettingController()
         setting.tabBarItem = UITabBarItem(title: "Setting", image: UIImage(named: "setting")!, selectedImage: UIImage(named: "setting")!)
         let settingNv = UINavigationController(rootViewController: setting)
 
-        setViewControllers([homeNv, myPageNv, settingNv], animated: false)
+        setViewControllers([homeNv, settingNv], animated: false)
     }
 
 
