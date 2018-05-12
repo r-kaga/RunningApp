@@ -19,7 +19,7 @@ class HomePresenter: HomePresenterProtocol {
     }
     
     var showRunDataCount: Int {
-        return 5
+        return model.showRunDataCount
     }
     
     required init(view: HomeViewProtocol) {

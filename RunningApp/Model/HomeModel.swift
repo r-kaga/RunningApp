@@ -12,12 +12,17 @@ protocol HomeModelNotify: class {
 protocol HomeModelProtocol: HomeModelNotify {
     func didFinishRunning()
     var latestData: Results<RealmDataSet> { get }
+    var showRunDataCount: Int { get }
 }
 
 class HomeModel: HomeModelProtocol {
     
     var latestData: Results<RealmDataSet> {
         return RealmDataSet.getAllData()
+    }
+    
+    var showRunDataCount: Int {
+        return latestData.count > 3 ? 3 : latestData.count
     }
     
     var notificationName: Notification.Name {
