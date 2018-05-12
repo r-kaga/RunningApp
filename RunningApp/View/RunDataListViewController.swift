@@ -37,21 +37,17 @@ class RunDataListViewController: UIViewController, RunDataListViewProtocol {
         super.viewDidLoad()
         presenter = RunDataPresenter(view: self)
         setupView()
+        activateConstraints()
     }
     
     private func setupView() {
         navigationItem.title = "Run Data"
-        view.backgroundColor = AppColor.navigationAndTabBarColor
+        view.backgroundColor = AppColor.backgroundColor
 
         containerView.addSubview(collectionView)
         view.addSubview(containerView)
     }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        activateConstraints()
-    }
-    
+
     private func activateConstraints() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0).isActive = true

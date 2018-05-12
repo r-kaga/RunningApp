@@ -5,18 +5,22 @@ import MapKit
 import CoreLocation
 import AVFoundation
 
-enum currentSpeedType {
+enum currentSpeedType: String {
     case up
     case down
     case maintain
     case notMatched
 }
 
-protocol RunManageViewProtocol {
-    
+protocol RunManageViewProtocol: AVAudioPlayerDelegate {
+    var latDist: CLLocationDistance { get }
+    var lonDist: CLLocationDistance { get }
+    var startTimeDate: Date! { get }
+    var audioPlayer: AVAudioPlayer! { get }
+    func audioPlay(url: String)
 }
 
-class RunManageViewController: UIViewController, AVAudioPlayerDelegate, RunManageViewProtocol {
+class RunManageViewController: UIViewController, RunManageViewProtocol {
     
     private(set) var presenter: RunManagePresenterProtocol!
     
@@ -24,14 +28,15 @@ class RunManageViewController: UIViewController, AVAudioPlayerDelegate, RunManag
     private var locationManager: CLLocationManager!
 
     // 縮尺
-    private var latDist: CLLocationDistance = 500
-    private var lonDist: CLLocationDistance = 500
+    var latDist: CLLocationDistance = 500
+    var lonDist: CLLocationDistance = 500
+    var startTimeDate: Date!
     
-    private var audioPlayer: AVAudioPlayer!
-
     weak private var timer: Timer?
-    private var startTimeDate: Date!
+
     
+    var audioPlayer: AVAudioPlayer!
+
     /* 現在地を表示するMapKitを生成 */
     private lazy var mapView: MKMapView = {
         // MapViewの生成
@@ -69,16 +74,16 @@ class RunManageViewController: UIViewController, AVAudioPlayerDelegate, RunManag
         
         presenter = RunManagePresenter(view: self)
         setupLocationManager()
+        
+        activateConstraints()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.startTimer()
     }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
+
+    private func activateConstraints() {
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         mapView.widthAnchor.constraint(equalToConstant: AppSize.width).isActive = true
@@ -104,22 +109,27 @@ class RunManageViewController: UIViewController, AVAudioPlayerDelegate, RunManag
         stopWatchLabel.heightAnchor.constraint(equalToConstant: 44).isActive = true
     }
     
-    /** 現在のスピードと設定した理想のペースを比較する */
-    private func checkCurrentSpeedIsPaceable(currentSpeed: Double, pace: Double) -> currentSpeedType {
-        var type: currentSpeedType?
+    /** 音声を再生 */
+    func audioPlay(url: String) {
+        guard url != currentSpeedType.notMatched.rawValue else { return }
+        let audioPath = URL(fileURLWithPath: Bundle.main.path(forResource: url, ofType:"mp3")!)
         
-        switch currentSpeed {
-        case let e where e < pace:
-            type = .up
-        case let e where e > pace + 1.0:
-            type = .down
-        case pace + 0.0...pace + 0.9:
-            type = .maintain
-        default:
-            type = .notMatched
+        // auido を再生するプレイヤーを作成する
+        var audioError: NSError?
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: audioPath)
+        } catch let error as NSError {
+            audioError = error
+            audioPlayer = nil
         }
-        return type!
+        if let error = audioError {
+            print("Error \(error.localizedDescription)")
+        }
+        audioPlayer.delegate = self
+        //        audioPlayer.prepareToPlay()
+        audioPlayer.play()
     }
+    
     
     //MARK: - ElapsedTimer
     /* ストップウォッチ */
@@ -141,7 +151,7 @@ class RunManageViewController: UIViewController, AVAudioPlayerDelegate, RunManag
     /* labelに経過時間を表示 */
     @objc func timerCounter() {
         DispatchQueue.main.async {
-            self.stopWatchLabel.text = self.getElapsedTime()
+            self.stopWatchLabel.text = self.presenter.getElapsedTime(startTimeDate: self.startTimeDate)
         }
     }
     
@@ -151,62 +161,6 @@ class RunManageViewController: UIViewController, AVAudioPlayerDelegate, RunManag
             timer?.invalidate()
             stopWatchLabel.text = "00::00:00"
         }
-    }
-    
-    
-    /** 開始時間から現在の経過時間を返却
-     * - return 現在の経過時間 / HH:mm:ss
-     */
-    private func getElapsedTime() -> String {
-        // タイマー開始からのインターバル時間
-        let currentTime = Date().timeIntervalSince(startTimeDate)
-        let hour = (Int)(fmod((currentTime / 60 / 60), 60))
-        // fmod() 余りを計算
-        let minute = (Int)(fmod((currentTime/60), 60))
-        // currentTime/60 の余り
-        let second = (Int)(fmod(currentTime, 60))
-        return  "\(String(format:"%02d", hour)):\(String(format:"%02d", minute)):\(String(format:"%02", second))"
-    }
-    
-    /** 音声を再生 */
-    private func audioPlay(url: String) {
-        let audioPath = URL(fileURLWithPath: Bundle.main.path(forResource: url, ofType:"mp3")!)
-        
-        // auido を再生するプレイヤーを作成する
-        var audioError: NSError?
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: audioPath)
-        } catch let error as NSError {
-            audioError = error
-            audioPlayer = nil
-        }
-        if let error = audioError {
-            print("Error \(error.localizedDescription)")
-        }
-        
-        audioPlayer.delegate = self
-        //        audioPlayer.prepareToPlay()
-        
-        audioPlayer.play()
-    }
-    
-    /** カロリー計算 */
-    private func getCurrentCalorieBurned() -> Double {
-        
-        var calorie: Double = 0.0
-        if let weight = UserDefaults.standard.string(forKey: "weight") {
-            // タイマー開始からのインターバル時間
-            let currentTime = Date().timeIntervalSince(startTimeDate)
-            let hour = (Double)(fmod((currentTime / 60 / 60), 60))
-            let minute = (Double)(fmod((currentTime/60), 60))
-            let second = (Double)(fmod(currentTime, 60))
-            
-            let time = hour + (minute / 60) + (second / 60 / 60)
-            
-            let calcu = (1.05 * 8.0 * time * Double(weight)!)
-            calorie = round(calcu * 10.0) / 10.0
-        }
-        return calorie
     }
     
 }
@@ -296,22 +250,26 @@ extension RunManageViewController: CLLocationManagerDelegate {
         print(currentSpeed)
         print(pace)
         pace = Double(25)
-        switch checkCurrentSpeedIsPaceable(currentSpeed: currentSpeed, pace: pace) {
+        
+        let path: String
+        switch presenter.checkCurrentSpeedIsPaceable(currentSpeed: currentSpeed, pace: pace) {
         case .up:
             print("speedUp")
-            audioPlay(url: "speedUp")
+            path = currentSpeedType.up.rawValue
         case .down:
             print("speedDown")
-            audioPlay(url: "speedDown")
+            path = currentSpeedType.down.rawValue
         case .maintain:
             print("maintain")
-            audioPlay(url: "maintain")
-        case .notMatched: break
+            path = currentSpeedType.maintain.rawValue
+        case .notMatched:
+            path = currentSpeedType.notMatched.rawValue
         }
+        audioPlay(url: path)
         
         // UIの更新
         DispatchQueue.main.async {
-            self.calorieLabel.text = String(self.getCurrentCalorieBurned())
+            self.calorieLabel.text = String(self.presenter.getCurrentCalorieBurned(startTimeDate: self.startTimeDate))
             
             // 時速の計算結果をlabelに反映
             var speedText = String(currentSpeed)
@@ -320,7 +278,6 @@ extension RunManageViewController: CLLocationManagerDelegate {
         }
         
     }
-    
     
     /* 位置情報取得に失敗した時に呼び出されるデリゲート. */
     func locationManager(_ manager: CLLocationManager,didFailWithError error: Error){

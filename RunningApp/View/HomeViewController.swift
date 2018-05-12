@@ -4,6 +4,8 @@ import Charts
 
 protocol HomeViewProtocol {
     func startRunning()
+    func moreShowRunData()
+    func updateLatestChartsDate()
 }
 
 class HomeViewController: UIViewController, HomeViewProtocol {
@@ -57,11 +59,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         btn.addTarget(self, action: #selector(moreShowRunData), for: .touchUpInside)
         return btn
     }()
-    
-    @objc func moreShowRunData() {
-        presenter.getRouting(self, route: .moreRunData, routingType: .push)
-    }
-    
+
     lazy private var startRunButton: TappableButton = {
         let btn = TappableButton(frame: .zero)
         btn.setTitle("ランニングを始める", for: .normal)
@@ -73,11 +71,22 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         return btn
     }()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupView()
+        presenter = HomePresenter(view: self)
+        updateLatestChartsDate()
+    }
+    
     @objc func startRunning() {
         presenter.getRouting(self, route: .startRun, routingType: .present)
     }
-
-    private func updateLatestChartsDate() {
+    
+    @objc func moreShowRunData() {
+        presenter.getRouting(self, route: .moreRunData, routingType: .push)
+    }
+    
+    func updateLatestChartsDate() {
         var chartsShouldShowFlg: Bool
         if presenter.latestData.isEmpty {
             chartsShouldShowFlg = true
@@ -97,14 +106,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         let set = LineChartDataSet(values: entries, label: "走行距離")
         distanceChartView.data = LineChartData(dataSet: set)
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupView()
-        presenter = HomePresenter(view: self)
-        updateLatestChartsDate()
-    }
-    
+
     private func setupView() {
         navigationItem.title = "Home"
         view.backgroundColor = AppColor.backgroundColor
@@ -113,9 +115,10 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         view.addSubview(collectionView)
         view.addSubview(moreShowButton)
         view.addSubview(startRunButton)
+        activateConstraints()
     }
-    
-    override func viewWillLayoutSubviews() {
+
+    private func activateConstraints() {
         moreShowButton.translatesAutoresizingMaskIntoConstraints = false
         moreShowButton.topAnchor.constraint(equalTo: distanceChartView.bottomAnchor, constant: 15).isActive = true
         moreShowButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
@@ -126,12 +129,12 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         collectionView.heightAnchor.constraint(equalToConstant: AppSize.height / 3).isActive = true
-
+        
         startRunButton.translatesAutoresizingMaskIntoConstraints = false
-//        let ramainHeight = ((tabBarController?.tabBar.frame.minY)! - collectionView.frame.maxY) / 2
-//        let remainHeight = AppSize.height - (collectionView.frame.maxY + (tabBarController?.tabBar.frame.height)!)
-//        print(remainHeight)
-//        startRunButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: remainHeight).isActive = true
+        //        let ramainHeight = ((tabBarController?.tabBar.frame.minY)! - collectionView.frame.maxY) / 2
+        //        let remainHeight = AppSize.height - (collectionView.frame.maxY + (tabBarController?.tabBar.frame.height)!)
+        //        print(remainHeight)
+        //        startRunButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: remainHeight).isActive = true
         startRunButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 30).isActive = true
         startRunButton.widthAnchor.constraint(equalToConstant: AppSize.width - 50).isActive = true
         startRunButton.heightAnchor.constraint(equalToConstant: 50).isActive = true

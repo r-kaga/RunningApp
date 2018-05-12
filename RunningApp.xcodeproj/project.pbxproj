@@ -72,8 +72,8 @@
 		E3CE4ABE1FA8AB3F0074200A /* Gradiate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CE4ABD1FA8AB3F0074200A /* Gradiate.swift */; };
 		E3D259A31FAAA59F00978399 /* NoDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D259A21FAAA59F00978399 /* NoDateView.swift */; };
 		E3D259A61FAAA5BF00978399 /* NoDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3D259A51FAAA5BF00978399 /* NoDateView.xib */; };
-		E3D2EBD020065DDF0024BAFC /* speedDown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3D2EBCF20065DDF0024BAFC /* speedDown.mp3 */; };
-		E3D2EBD220065DF30024BAFC /* speedUp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3D2EBD120065DF30024BAFC /* speedUp.mp3 */; };
+		E3D2EBD020065DDF0024BAFC /* down.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3D2EBCF20065DDF0024BAFC /* down.mp3 */; };
+		E3D2EBD220065DF30024BAFC /* up.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3D2EBD120065DF30024BAFC /* up.mp3 */; };
 		E3D2EBD4200664AD0024BAFC /* maintain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3D2EBD3200664AC0024BAFC /* maintain.mp3 */; };
 		E3F4032E1F88C6EC0073DC45 /* DismissAnimator.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F4032D1F88C6EC0073DC45 /* DismissAnimator.swift.swift */; };
 		E3FE60C31F9CE3FB0080E378 /* Animation+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FE60C21F9CE3FB0080E378 /* Animation+.swift */; };
@@ -149,8 +149,8 @@
 		E3CE4ABD1FA8AB3F0074200A /* Gradiate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradiate.swift; sourceTree = "<group>"; };
 		E3D259A21FAAA59F00978399 /* NoDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDateView.swift; sourceTree = "<group>"; };
 		E3D259A51FAAA5BF00978399 /* NoDateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoDateView.xib; sourceTree = "<group>"; };
-		E3D2EBCF20065DDF0024BAFC /* speedDown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = speedDown.mp3; sourceTree = "<group>"; };
-		E3D2EBD120065DF30024BAFC /* speedUp.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = speedUp.mp3; sourceTree = "<group>"; };
+		E3D2EBCF20065DDF0024BAFC /* down.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = down.mp3; sourceTree = "<group>"; };
+		E3D2EBD120065DF30024BAFC /* up.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = up.mp3; sourceTree = "<group>"; };
 		E3D2EBD3200664AC0024BAFC /* maintain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = maintain.mp3; sourceTree = "<group>"; };
 		E3F4032D1F88C6EC0073DC45 /* DismissAnimator.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift.swift; sourceTree = "<group>"; };
 		E3FE60C21F9CE3FB0080E378 /* Animation+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation+.swift"; sourceTree = "<group>"; };
@@ -309,9 +309,9 @@
 		E341882B1F793D5E000AB961 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E3D2EBD120065DF30024BAFC /* speedUp.mp3 */,
+				E3D2EBD120065DF30024BAFC /* up.mp3 */,
 				E3D2EBD3200664AC0024BAFC /* maintain.mp3 */,
-				E3D2EBCF20065DDF0024BAFC /* speedDown.mp3 */,
+				E3D2EBCF20065DDF0024BAFC /* down.mp3 */,
 				E380AB371F23735F0034EA8F /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -595,8 +595,8 @@
 				E3D259A61FAAA5BF00978399 /* NoDateView.xib in Resources */,
 				E312644F1FA22C0100F2B23D /* Home.storyboard in Resources */,
 				E365A13D1F9256020008D475 /* CompleteDialog.xib in Resources */,
-				E3D2EBD220065DF30024BAFC /* speedUp.mp3 in Resources */,
-				E3D2EBD020065DDF0024BAFC /* speedDown.mp3 in Resources */,
+				E3D2EBD220065DF30024BAFC /* up.mp3 in Resources */,
+				E3D2EBD020065DDF0024BAFC /* down.mp3 in Resources */,
 				E376318A1FBEE70C00D027E5 /* Picker.xib in Resources */,
 				E3363D4F209893200018B88E /* RunDataInfoCollectionViewCell.xib in Resources */,
 				E3D2EBD4200664AD0024BAFC /* maintain.mp3 in Resources */,
