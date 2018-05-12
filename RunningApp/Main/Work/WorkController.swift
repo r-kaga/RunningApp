@@ -75,7 +75,6 @@ class WorkController: UIViewController, AVAudioPlayerDelegate {
         self.stopTimer()
     }
     
-    
     /** 歩数を取得するためのSetup */
     private func setupPedometer() {
         guard CMPedometer.isDistanceAvailable() else { return }
@@ -295,7 +294,35 @@ class WorkController: UIViewController, AVAudioPlayerDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
-    
+    /** 歩数を取得するためのSetup */
+    private func setupPedemoter() {
+        guard CMPedometer.isDistanceAvailable() else { return }
+        self.pedometer.startUpdates(from: NSDate() as Date) { (data: CMPedometerData?, error) -> Void in
+            DispatchQueue.main.async {
+                guard let data = data, let dis = data.distance?.doubleValue, error == nil
+                    else { return }
+                
+                let distance = String(round( ( dis / 1000.0 ) * 100) / 100)
+                self.distanceLabel.text = distance
+                
+                //                guard let spped = data.currentPace?.doubleValue else { return }
+                //   setupPedometer             let pace = round( ( (spped * 3600) / 100.0 ) * 100) / 100
+                //                self.speedLabel.text = String(pace)
+                //                switch self.checkCurrentSpeedIsPaceable(currentSpeed: pace) {
+                //                    case .up:
+                //                        self.audioPlay(url: "speedUp")
+                //                    case .down:
+                //                        self.audioPlay(url: "speedDown")
+                //                    case .maintain:
+                //                        self.audioPlay(url: "maintain")
+                //                    case .notMatched: break
+                //                }
+                
+            }
+        }
+        
+    }
+
     /* Modalを閉じる */
     private func dismissModal() {
         

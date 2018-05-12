@@ -3,6 +3,7 @@ import Foundation
 import UIKit
 import MapKit
 import CoreLocation
+import CoreMotion
 import AVFoundation
 import Lottie
 
@@ -18,7 +19,7 @@ protocol RunManageViewProtocol: AVAudioPlayerDelegate, RoutingProtocol {
     var lonDist: CLLocationDistance { get }
     var startTimeDate: Date? { get }
     var audioPlayer: AVAudioPlayer! { get }
-    func audioPlay(url: String)
+    func audioPlay(url: currentSpeedType)
 }
 
 class RunManageViewController: UIViewController, RunManageViewProtocol {
@@ -27,6 +28,8 @@ class RunManageViewController: UIViewController, RunManageViewProtocol {
     
     private var pin: MKPointAnnotation?
     private var locationManager: CLLocationManager!
+    
+    private let pedometer = CMPedometer()
 
     // 縮尺
     var latDist: CLLocationDistance = 500
@@ -102,9 +105,9 @@ class RunManageViewController: UIViewController, RunManageViewProtocol {
     }
     
     /** 音声を再生 */
-    func audioPlay(url: String) {
-        guard url != currentSpeedType.notMatched.rawValue else { return }
-        let audioPath = URL(fileURLWithPath: Bundle.main.path(forResource: url, ofType:"mp3")!)
+    func audioPlay(url: currentSpeedType) {
+        guard url != .notMatched else { return }
+        let audioPath = URL(fileURLWithPath: Bundle.main.path(forResource: url.rawValue, ofType:"mp3")!)
         
         // auido を再生するプレイヤーを作成する
         var audioError: NSError?
@@ -156,6 +159,62 @@ class RunManageViewController: UIViewController, RunManageViewProtocol {
         }
     }
     
+    /** 計測終了確認アラート */
+    private func confirmWorkEndAlert() {
+        let alert = UIAlertController(title: "計測を終了します", message: "終了してもよろしいですか?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            self?.registWorkResult()
+            self?.dismissModal()
+        })
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    /** DBに登録 */
+    private func registWorkResult() {
+        presenter.registResults(view: cardView)
+    }
+
+    /** 歩数を取得するためのSetup */
+    private func setupPedometer() {
+        guard CMPedometer.isDistanceAvailable() else { return }
+        self.pedometer.startUpdates(from: NSDate() as Date) { (data: CMPedometerData?, error) -> Void in
+            DispatchQueue.main.async {
+                guard let data = data, let dis = data.distance?.doubleValue, error == nil
+                    else { return }
+                
+                let distance = String(round( ( dis / 1000.0 ) * 100) / 100)
+                self.cardView.distanceLabel.text = distance
+                //                guard let spped = data.currentPace?.doubleValue else { return }
+                //                let pace = round( ( (spped * 3600) / 100.0 ) * 100) / 100
+                //                self.speedLabel.text = String(pace)
+                //                switch self.checkCurrentSpeedIsPaceable(currentSpeed: pace) {
+                //                    case .up:
+                //                        self.audioPlay(url: "speedUp")
+                //                    case .down:
+                //                        self.audioPlay(url: "speedDown")
+                //                    case .maintain:
+                //                        self.audioPlay(url: "maintain")
+                //                    case .notMatched: break
+                //                }
+            }
+        }
+        
+    }
+    
+    /* Modalを閉じる */
+    private func dismissModal() {
+        self.timer?.invalidate()
+        dismiss(animated: true, completion: { [presentingViewController] () -> Void in
+            if self.pin != nil {
+                self.mapView.removeAnnotation(self.pin!)
+            }
+            self.mapView.removeFromSuperview()
+            Utility.showCompleteDialog()
+            presentingViewController?.viewWillAppear(true)
+        })
+    }
+
 }
 
 
@@ -198,7 +257,6 @@ extension RunManageViewController: CLLocationManagerDelegate {
         firstPin.coordinate =  coordinate // 座標を設定.
         firstPin.title = "開始位置" // タイトルを設定.
         mapView.addAnnotation(firstPin)
-        
     }
     
     
@@ -244,20 +302,8 @@ extension RunManageViewController: CLLocationManagerDelegate {
         print(pace)
         pace = Double(25)
         
-        let path: String
-        switch presenter.checkCurrentSpeedIsPaceable(currentSpeed: currentSpeed, pace: pace) {
-        case .up:
-            print("speedUp")
-            path = currentSpeedType.up.rawValue
-        case .down:
-            print("speedDown")
-            path = currentSpeedType.down.rawValue
-        case .maintain:
-            print("maintain")
-            path = currentSpeedType.maintain.rawValue
-        case .notMatched:
-            path = currentSpeedType.notMatched.rawValue
-        }
+        let path = presenter.checkCurrentSpeedIsPaceable(currentSpeed: currentSpeed, pace: pace)
+        print(path.rawValue)
         audioPlay(url: path)
         
         // UIの更新

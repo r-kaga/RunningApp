@@ -8,6 +8,7 @@ protocol RunManagePresenterProtocol {
     func getElapsedTime(startTimeDate: Date) -> String
     func getCurrentCalorieBurned(startTimeDate: Date) -> Double
     func checkCurrentSpeedIsPaceable(currentSpeed: Double, pace: Double) -> currentSpeedType
+    func registResults(view: RunManageCardView)
 }
 
 class RunManagePresenter: RunManagePresenterProtocol {
@@ -35,6 +36,10 @@ class RunManagePresenter: RunManagePresenterProtocol {
     /** 現在のスピードと設定した理想のペースを比較する */
     func checkCurrentSpeedIsPaceable(currentSpeed: Double, pace: Double) -> currentSpeedType {
         return model.checkCurrentSpeedIsPaceable(currentSpeed: currentSpeed, pace: pace)
+    }
+    
+    func registResults(view: RunManageCardView) {
+        model.registResults(view: view)
     }
     
 }

@@ -7,6 +7,7 @@ protocol RunManageModelProtocol {
     func getElapsedTime(startTimeDate: Date) -> String
     func getCurrentCalorieBurned(startTimeDate: Date) -> Double
     func checkCurrentSpeedIsPaceable(currentSpeed: Double, pace: Double) -> currentSpeedType
+    func registResults(view: RunManageCardView)
 }
 
 
@@ -60,6 +61,30 @@ class RunManageModel: RunManageModelProtocol {
             type = .notMatched
         }
         return type!
+    }
+    
+    
+    /** DBに登録 */
+    func registResults(view: RunManageCardView) {
+        guard let totalDistance  = view.distanceLabel.text,
+            let speed      = view.speedLabel.text,
+            let time       = view.elapsedTimeLabel.text,
+            let calorie    = view.calorieLabel.text
+            else { return }
+        
+        let realm = RealmDataSet.realm
+        let dataSet = RealmDataSet()
+        
+        dataSet.id          = dataSet.getNewId
+        dataSet.date        = Utility.getNowClockString()
+        dataSet.calorie     = calorie
+        dataSet.distance    = totalDistance
+        dataSet.speed       = speed
+        dataSet.time        = time
+        
+        try! realm.write {
+            realm.add(dataSet)
+        }
     }
     
 }
