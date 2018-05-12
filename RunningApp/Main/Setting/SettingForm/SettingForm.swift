@@ -17,7 +17,7 @@ class SettingForm: UIViewController, PickerDelegate {
     
     var type: SettingType?
     var categoryName: String!
-    weak var delegate: SettingDelegate?
+//    weak var delegate: SettingDelegate?
 
     var settingValue = [String]()
     
@@ -99,7 +99,7 @@ class SettingForm: UIViewController, PickerDelegate {
             
             self.dismiss(animated: true, completion: {
                 UserDefaults.standard.set(String(value), forKey: self.categoryName)
-                self.delegate?.reload()
+//                self.delegate?.reload()
             })
             
         } catch Const.ErrorType.empty {

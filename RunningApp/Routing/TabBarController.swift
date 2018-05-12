@@ -27,7 +27,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 //        let myPageNv = UINavigationController(rootViewController: myPage)
 
         // MARK: - Setting
-        let setting = SettingController()
+        let setting = SettingViewController()
         setting.tabBarItem = UITabBarItem(title: "Setting", image: UIImage(named: "setting")!, selectedImage: UIImage(named: "setting")!)
         let settingNv = UINavigationController(rootViewController: setting)
 

@@ -63,7 +63,6 @@ class RunManageModel: RunManageModelProtocol {
         return type!
     }
     
-    
     /** DBに登録 */
     func registResults(view: RunManageCardView) {
         guard let totalDistance  = view.distanceLabel.text,

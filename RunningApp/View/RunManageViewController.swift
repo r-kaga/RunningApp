@@ -57,7 +57,7 @@ class RunManageViewController: UIViewController, RunManageViewProtocol {
     private lazy var closeButton: UIButton = {
         let button = UIButton(frame: .zero)
         button.setImage(UIImage(named: "close"), for: .normal)
-        button.addTarget(self, action: #selector(confirmWorkEndAlert), for: .touchUpInside)
+        button.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
         return button
     }()
 
@@ -211,7 +211,6 @@ class RunManageViewController: UIViewController, RunManageViewProtocol {
                 self.mapView.removeAnnotation(self.pin!)
             }
             self.mapView.removeFromSuperview()
-            Utility.showCompleteDialog()
             presentingViewController?.viewWillAppear(true)
         })
     }
