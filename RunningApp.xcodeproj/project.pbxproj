@@ -38,9 +38,11 @@
 		E344D6E620A67D39000ABB33 /* RunDataPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E344D6E520A67D39000ABB33 /* RunDataPresenter.swift */; };
 		E344D6E820A67DB0000ABB33 /* RunDataListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E344D6E720A67DB0000ABB33 /* RunDataListModel.swift */; };
 		E344D6EA20A69806000ABB33 /* Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E344D6E920A69806000ABB33 /* Routing.swift */; };
-		E344D6EF20A6C03A000ABB33 /* deer.json in Resources */ = {isa = PBXBuildFile; fileRef = E344D6EC20A6C03A000ABB33 /* deer.json */; };
-		E344D6F020A6C03A000ABB33 /* biking_is_cool.json in Resources */ = {isa = PBXBuildFile; fileRef = E344D6ED20A6C03A000ABB33 /* biking_is_cool.json */; };
-		E344D6F120A6C03A000ABB33 /* an_endless_hike_on_a_tiny_world_.json in Resources */ = {isa = PBXBuildFile; fileRef = E344D6EE20A6C03A000ABB33 /* an_endless_hike_on_a_tiny_world_.json */; };
+		E344D6EF20A6C03A000ABB33 /* animation1.json in Resources */ = {isa = PBXBuildFile; fileRef = E344D6EC20A6C03A000ABB33 /* animation1.json */; };
+		E344D6F020A6C03A000ABB33 /* animation2.json in Resources */ = {isa = PBXBuildFile; fileRef = E344D6ED20A6C03A000ABB33 /* animation2.json */; };
+		E344D6F120A6C03A000ABB33 /* animation3.json in Resources */ = {isa = PBXBuildFile; fileRef = E344D6EE20A6C03A000ABB33 /* animation3.json */; };
+		E344D6F520A70243000ABB33 /* RunManageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E344D6F420A70243000ABB33 /* RunManageCardView.swift */; };
+		E344D6F720A70249000ABB33 /* RunManageCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E344D6F620A70249000ABB33 /* RunManageCardView.xib */; };
 		E3463BA4209AA25C00A518C4 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3463BA3209AA25C00A518C4 /* MyPageViewController.swift */; };
 		E3463BA6209AA27C00A518C4 /* MyPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3463BA5209AA27C00A518C4 /* MyPageModel.swift */; };
 		E3463BA8209AA28900A518C4 /* MyPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3463BA7209AA28900A518C4 /* MyPagePresenter.swift */; };
@@ -116,9 +118,11 @@
 		E344D6E520A67D39000ABB33 /* RunDataPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunDataPresenter.swift; sourceTree = "<group>"; };
 		E344D6E720A67DB0000ABB33 /* RunDataListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunDataListModel.swift; sourceTree = "<group>"; };
 		E344D6E920A69806000ABB33 /* Routing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routing.swift; sourceTree = "<group>"; };
-		E344D6EC20A6C03A000ABB33 /* deer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deer.json; sourceTree = "<group>"; };
-		E344D6ED20A6C03A000ABB33 /* biking_is_cool.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = biking_is_cool.json; sourceTree = "<group>"; };
-		E344D6EE20A6C03A000ABB33 /* an_endless_hike_on_a_tiny_world_.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = an_endless_hike_on_a_tiny_world_.json; sourceTree = "<group>"; };
+		E344D6EC20A6C03A000ABB33 /* animation1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animation1.json; sourceTree = "<group>"; };
+		E344D6ED20A6C03A000ABB33 /* animation2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animation2.json; sourceTree = "<group>"; };
+		E344D6EE20A6C03A000ABB33 /* animation3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animation3.json; sourceTree = "<group>"; };
+		E344D6F420A70243000ABB33 /* RunManageCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunManageCardView.swift; sourceTree = "<group>"; };
+		E344D6F620A70249000ABB33 /* RunManageCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RunManageCardView.xib; sourceTree = "<group>"; };
 		E3463BA3209AA25C00A518C4 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		E3463BA5209AA27C00A518C4 /* MyPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageModel.swift; sourceTree = "<group>"; };
 		E3463BA7209AA28900A518C4 /* MyPagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePresenter.swift; sourceTree = "<group>"; };
@@ -256,6 +260,7 @@
 		E3363D49209892E20018B88E /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E344D6F320A7022C000ABB33 /* RunManageCardView */,
 				E3363D4A209892F40018B88E /* Cell */,
 			);
 			path = Components;
@@ -315,9 +320,9 @@
 		E341882B1F793D5E000AB961 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E344D6EE20A6C03A000ABB33 /* an_endless_hike_on_a_tiny_world_.json */,
-				E344D6ED20A6C03A000ABB33 /* biking_is_cool.json */,
-				E344D6EC20A6C03A000ABB33 /* deer.json */,
+				E344D6EE20A6C03A000ABB33 /* animation3.json */,
+				E344D6ED20A6C03A000ABB33 /* animation2.json */,
+				E344D6EC20A6C03A000ABB33 /* animation1.json */,
 				E3D2EBD120065DF30024BAFC /* up.mp3 */,
 				E3D2EBD3200664AC0024BAFC /* maintain.mp3 */,
 				E3D2EBCF20065DDF0024BAFC /* down.mp3 */,
@@ -333,6 +338,15 @@
 				E344D6E920A69806000ABB33 /* Routing.swift */,
 			);
 			path = Routing;
+			sourceTree = "<group>";
+		};
+		E344D6F320A7022C000ABB33 /* RunManageCardView */ = {
+			isa = PBXGroup;
+			children = (
+				E344D6F420A70243000ABB33 /* RunManageCardView.swift */,
+				E344D6F620A70249000ABB33 /* RunManageCardView.xib */,
+			);
+			path = RunManageCardView;
 			sourceTree = "<group>";
 		};
 		E361060E1F243225004F56EC /* Home */ = {
@@ -601,15 +615,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E344D6F120A6C03A000ABB33 /* an_endless_hike_on_a_tiny_world_.json in Resources */,
+				E344D6F120A6C03A000ABB33 /* animation3.json in Resources */,
 				E3D259A61FAAA5BF00978399 /* NoDateView.xib in Resources */,
 				E312644F1FA22C0100F2B23D /* Home.storyboard in Resources */,
 				E365A13D1F9256020008D475 /* CompleteDialog.xib in Resources */,
 				E3D2EBD220065DF30024BAFC /* up.mp3 in Resources */,
+				E344D6F720A70249000ABB33 /* RunManageCardView.xib in Resources */,
 				E3D2EBD020065DDF0024BAFC /* down.mp3 in Resources */,
 				E376318A1FBEE70C00D027E5 /* Picker.xib in Resources */,
 				E3363D4F209893200018B88E /* RunDataInfoCollectionViewCell.xib in Resources */,
-				E344D6EF20A6C03A000ABB33 /* deer.json in Resources */,
+				E344D6EF20A6C03A000ABB33 /* animation1.json in Resources */,
 				E3D2EBD4200664AD0024BAFC /* maintain.mp3 in Resources */,
 				E3049B001FBB38980050897E /* MyPage.storyboard in Resources */,
 				E38F7FAD1F9AF4CA0036CEE0 /* SettingCell.xib in Resources */,
@@ -620,7 +635,7 @@
 				E32243681FDC255000477320 /* HomeCollectionViewCell.xib in Resources */,
 				E305302C1FACC9B20097D9A3 /* infoDetailViewController.storyboard in Resources */,
 				E341883B1F795520000AB961 /* WorkController.storyboard in Resources */,
-				E344D6F020A6C03A000ABB33 /* biking_is_cool.json in Resources */,
+				E344D6F020A6C03A000ABB33 /* animation2.json in Resources */,
 				E33802961F852AD1007EB199 /* SettingForm.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -705,6 +720,7 @@
 				E355F1961F9F7ADD00509CA1 /* UIViewController+.swift in Sources */,
 				E30530271FACC8C10097D9A3 /* Alert+.swift in Sources */,
 				E34188361F794AE6000AB961 /* AppSize.swift in Sources */,
+				E344D6F520A70243000ABB33 /* RunManageCardView.swift in Sources */,
 				E37631881FBEE70600D027E5 /* Picker.swift in Sources */,
 				E3894FCF1F8CF62A000313CC /* TappableButton.swift in Sources */,
 				E39594071F30C574004AEB27 /* Interactor.swift in Sources */,
