@@ -50,16 +50,17 @@ class RunManageViewController: UIViewController, RunManageViewProtocol {
     
     private lazy var cardView: RunManageCardView = {
         let view = RunManageCardView(frame: .zero)
+        view.endButton.addTarget(self, action: #selector(runEnd), for: .touchUpInside)
         return view
     }()
 
     private lazy var closeButton: UIButton = {
         let button = UIButton(frame: .zero)
         button.setImage(UIImage(named: "close"), for: .normal)
-        button.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
+        button.addTarget(self, action: #selector(confirmWorkEndAlert), for: .touchUpInside)
         return button
     }()
-    
+
     @objc private func dismissView() {
         dismissView(self)
     }
@@ -160,7 +161,7 @@ class RunManageViewController: UIViewController, RunManageViewProtocol {
     }
     
     /** 計測終了確認アラート */
-    private func confirmWorkEndAlert() {
+    @objc private func confirmWorkEndAlert() {
         let alert = UIAlertController(title: "計測を終了します", message: "終了してもよろしいですか?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] _ in

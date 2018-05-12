@@ -15,6 +15,7 @@
                 <outlet property="calorieLabel" destination="NlM-GS-VWH" id="Xld-Fe-n9J"/>
                 <outlet property="distanceLabel" destination="lbs-c1-38B" id="vih-0u-2gc"/>
                 <outlet property="elapsedTimeLabel" destination="ffr-Ja-Dcf" id="d6X-9G-xxX"/>
+                <outlet property="endButton" destination="yFd-AO-C46" id="Dwn-38-baJ"/>
                 <outlet property="speedLabel" destination="xkR-oh-9g4" id="qYf-Xc-bre"/>
             </connections>
         </placeholder>

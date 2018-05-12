@@ -9,6 +9,7 @@ class RunManageCardView: UIView {
         return "animation" + String(arc4random_uniform(3) + 1)
     }
 
+    @IBOutlet weak var endButton: TappableButton!
     @IBOutlet weak var animationView: LOTAnimationView! {
         didSet {
             animationView.setAnimation(named: animationName)
