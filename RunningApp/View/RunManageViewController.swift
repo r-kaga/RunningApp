@@ -50,7 +50,7 @@ class RunManageViewController: UIViewController, RunManageViewProtocol {
     
     private lazy var cardView: RunManageCardView = {
         let view = RunManageCardView(frame: .zero)
-        view.endButton.addTarget(self, action: #selector(runEnd), for: .touchUpInside)
+        view.endButton.addTarget(self, action: #selector(confirmWorkEndAlert), for: .touchUpInside)
         return view
     }()
 
