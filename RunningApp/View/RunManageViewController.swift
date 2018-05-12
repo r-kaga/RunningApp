@@ -36,6 +36,9 @@ class RunManageViewController: UIViewController, RunManageViewProtocol {
     var lonDist: CLLocationDistance = 500
     var startTimeDate: Date?
     
+    var startPlace: CLLocation?
+    var firstPin: MKPointAnnotation?
+    
     weak private var timer: Timer?
 
     var audioPlayer: AVAudioPlayer!
@@ -70,6 +73,7 @@ class RunManageViewController: UIViewController, RunManageViewProtocol {
         presenter = RunManagePresenter(view: self)
         setupView()
         setupLocationManager()
+        setupPedometer()
         activateConstraints()
     }
     
@@ -185,7 +189,7 @@ class RunManageViewController: UIViewController, RunManageViewProtocol {
                     else { return }
                 
                 let distance = String(round( ( dis / 1000.0 ) * 100) / 100)
-                self.cardView.distanceLabel.text = distance
+                self.cardView.distanceLabel.text = distance + "Km"
                 //                guard let spped = data.currentPace?.doubleValue else { return }
                 //                let pace = round( ( (spped * 3600) / 100.0 ) * 100) / 100
                 //                self.speedLabel.text = String(pace)
@@ -253,10 +257,10 @@ extension RunManageViewController: CLLocationManagerDelegate {
         guard let coordinate = locationManager.location?.coordinate else { return }
         self.setRegion(coordinate: coordinate)
         
-        let firstPin: MKPointAnnotation = MKPointAnnotation() // ピンを生成.
-        firstPin.coordinate =  coordinate // 座標を設定.
-        firstPin.title = "開始位置" // タイトルを設定.
-        mapView.addAnnotation(firstPin)
+        firstPin = MKPointAnnotation() // ピンを生成.
+        firstPin!.coordinate =  coordinate // 座標を設定.
+        firstPin!.title = "開始位置" // タイトルを設定.
+        mapView.addAnnotation(firstPin!)
     }
     
     
@@ -288,7 +292,17 @@ extension RunManageViewController: CLLocationManagerDelegate {
         
         // 配列から現在座標を取得.
         guard let location: CLLocation = locations.first else { return }
-        
+
+//        let distance = startPlace?.distance(from: location)
+//        print(distance)
+//        print(distance! / 1000.0)
+//        // 1000mを超える場合はキロメートで表示
+//        let distanceText = distance! / 1000.0 > 1.0 ?
+//            "\(floor(distance! / 1000.0)) Km"
+//            :
+//        "\(floor(distance!))m"
+//        print(distanceText)
+
         self.setRegion(coordinate: location.coordinate) // Regionを作成.
         self.setPin(title: "現在地", coordinate: location.coordinate) // pinをセット
         
@@ -298,20 +312,14 @@ extension RunManageViewController: CLLocationManagerDelegate {
         if let value = UserDefaults.standard.object(forKey: "pace") as? Int {
             pace = Double(value)
         }
-        print(currentSpeed)
-        print(pace)
-        pace = Double(25)
         
         let path = presenter.checkCurrentSpeedIsPaceable(currentSpeed: currentSpeed, pace: pace)
-        print(path.rawValue)
         audioPlay(url: path)
         
         // UIの更新
         DispatchQueue.main.async {
             self.cardView.calorieLabel.text = String(self.presenter.getCurrentCalorieBurned(startTimeDate: self.startTimeDate ?? Date()))
-            
-            // 時速の計算結果をlabelに反映
-            var speedText = String(currentSpeed)
+            var speedText = String(currentSpeed) // 時速の計算結果をlabelに反映
             if currentSpeed < 0 { speedText = "計測不能" }
             self.cardView.speedLabel.text = speedText
         }
