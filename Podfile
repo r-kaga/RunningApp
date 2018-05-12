@@ -7,7 +7,7 @@ target 'RunningApp' do
 
   pod 'RealmSwift'
   pod 'Charts'
-
+  pod 'lottie-ios'
   # Pods for RunningApp
 
 end

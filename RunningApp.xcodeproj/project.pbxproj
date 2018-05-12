@@ -38,6 +38,9 @@
 		E344D6E620A67D39000ABB33 /* RunDataPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E344D6E520A67D39000ABB33 /* RunDataPresenter.swift */; };
 		E344D6E820A67DB0000ABB33 /* RunDataListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E344D6E720A67DB0000ABB33 /* RunDataListModel.swift */; };
 		E344D6EA20A69806000ABB33 /* Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E344D6E920A69806000ABB33 /* Routing.swift */; };
+		E344D6EF20A6C03A000ABB33 /* deer.json in Resources */ = {isa = PBXBuildFile; fileRef = E344D6EC20A6C03A000ABB33 /* deer.json */; };
+		E344D6F020A6C03A000ABB33 /* biking_is_cool.json in Resources */ = {isa = PBXBuildFile; fileRef = E344D6ED20A6C03A000ABB33 /* biking_is_cool.json */; };
+		E344D6F120A6C03A000ABB33 /* an_endless_hike_on_a_tiny_world_.json in Resources */ = {isa = PBXBuildFile; fileRef = E344D6EE20A6C03A000ABB33 /* an_endless_hike_on_a_tiny_world_.json */; };
 		E3463BA4209AA25C00A518C4 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3463BA3209AA25C00A518C4 /* MyPageViewController.swift */; };
 		E3463BA6209AA27C00A518C4 /* MyPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3463BA5209AA27C00A518C4 /* MyPageModel.swift */; };
 		E3463BA8209AA28900A518C4 /* MyPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3463BA7209AA28900A518C4 /* MyPagePresenter.swift */; };
@@ -113,6 +116,9 @@
 		E344D6E520A67D39000ABB33 /* RunDataPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunDataPresenter.swift; sourceTree = "<group>"; };
 		E344D6E720A67DB0000ABB33 /* RunDataListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunDataListModel.swift; sourceTree = "<group>"; };
 		E344D6E920A69806000ABB33 /* Routing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routing.swift; sourceTree = "<group>"; };
+		E344D6EC20A6C03A000ABB33 /* deer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deer.json; sourceTree = "<group>"; };
+		E344D6ED20A6C03A000ABB33 /* biking_is_cool.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = biking_is_cool.json; sourceTree = "<group>"; };
+		E344D6EE20A6C03A000ABB33 /* an_endless_hike_on_a_tiny_world_.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = an_endless_hike_on_a_tiny_world_.json; sourceTree = "<group>"; };
 		E3463BA3209AA25C00A518C4 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		E3463BA5209AA27C00A518C4 /* MyPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageModel.swift; sourceTree = "<group>"; };
 		E3463BA7209AA28900A518C4 /* MyPagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePresenter.swift; sourceTree = "<group>"; };
@@ -309,6 +315,9 @@
 		E341882B1F793D5E000AB961 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E344D6EE20A6C03A000ABB33 /* an_endless_hike_on_a_tiny_world_.json */,
+				E344D6ED20A6C03A000ABB33 /* biking_is_cool.json */,
+				E344D6EC20A6C03A000ABB33 /* deer.json */,
 				E3D2EBD120065DF30024BAFC /* up.mp3 */,
 				E3D2EBD3200664AC0024BAFC /* maintain.mp3 */,
 				E3D2EBCF20065DDF0024BAFC /* down.mp3 */,
@@ -592,6 +601,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E344D6F120A6C03A000ABB33 /* an_endless_hike_on_a_tiny_world_.json in Resources */,
 				E3D259A61FAAA5BF00978399 /* NoDateView.xib in Resources */,
 				E312644F1FA22C0100F2B23D /* Home.storyboard in Resources */,
 				E365A13D1F9256020008D475 /* CompleteDialog.xib in Resources */,
@@ -599,6 +609,7 @@
 				E3D2EBD020065DDF0024BAFC /* down.mp3 in Resources */,
 				E376318A1FBEE70C00D027E5 /* Picker.xib in Resources */,
 				E3363D4F209893200018B88E /* RunDataInfoCollectionViewCell.xib in Resources */,
+				E344D6EF20A6C03A000ABB33 /* deer.json in Resources */,
 				E3D2EBD4200664AD0024BAFC /* maintain.mp3 in Resources */,
 				E3049B001FBB38980050897E /* MyPage.storyboard in Resources */,
 				E38F7FAD1F9AF4CA0036CEE0 /* SettingCell.xib in Resources */,
@@ -609,6 +620,7 @@
 				E32243681FDC255000477320 /* HomeCollectionViewCell.xib in Resources */,
 				E305302C1FACC9B20097D9A3 /* infoDetailViewController.storyboard in Resources */,
 				E341883B1F795520000AB961 /* WorkController.storyboard in Resources */,
+				E344D6F020A6C03A000ABB33 /* biking_is_cool.json in Resources */,
 				E33802961F852AD1007EB199 /* SettingForm.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -641,12 +653,14 @@
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

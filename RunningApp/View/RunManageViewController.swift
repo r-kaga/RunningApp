@@ -4,6 +4,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import AVFoundation
+import Lottie
 
 enum currentSpeedType: String {
     case up
@@ -12,10 +13,10 @@ enum currentSpeedType: String {
     case notMatched
 }
 
-protocol RunManageViewProtocol: AVAudioPlayerDelegate {
+protocol RunManageViewProtocol: AVAudioPlayerDelegate, RoutingProtocol {
     var latDist: CLLocationDistance { get }
     var lonDist: CLLocationDistance { get }
-    var startTimeDate: Date! { get }
+    var startTimeDate: Date? { get }
     var audioPlayer: AVAudioPlayer! { get }
     func audioPlay(url: String)
 }
@@ -30,11 +31,10 @@ class RunManageViewController: UIViewController, RunManageViewProtocol {
     // 縮尺
     var latDist: CLLocationDistance = 500
     var lonDist: CLLocationDistance = 500
-    var startTimeDate: Date!
+    var startTimeDate: Date?
     
     weak private var timer: Timer?
 
-    
     var audioPlayer: AVAudioPlayer!
 
     /* 現在地を表示するMapKitを生成 */
@@ -45,42 +45,98 @@ class RunManageViewController: UIViewController, RunManageViewProtocol {
         return mapView
     }()
     
+    private lazy var cardView: UIStackView = {
+//        let view = UIView(frame: .zero)
+//        view.backgroundColor = .white
+//        view.layer.cornerRadius = 10.0
+//        view.clipsToBounds = true
+       
+        let stackView = UIStackView(frame: .zero)
+        stackView.distribution = .fillEqually
+        stackView.axis = .vertical
+        stackView.backgroundColor = .white
+        stackView.addArrangedSubview(animationView)
+        stackView.addArrangedSubview(bottomCardViewOutlet)
+        
+        return stackView
+    }()
+    
+    private lazy var animationView: LOTAnimationView = {
+        let animationView = LOTAnimationView(name: "deer")
+        animationView.backgroundColor = .white
+        animationView.loopAnimation = true
+        animationView.contentMode = .scaleAspectFit
+        animationView.animationSpeed = 1
+        animationView.play()
+        return animationView
+    }()
+    
+    private lazy var bottomCardViewOutlet: UIView = {
+        let view = UIView(frame: .zero)
+        view.backgroundColor = .white
+        
+        let stackView = UIStackView(frame: .zero)
+        stackView.distribution = .fillEqually
+        stackView.axis = .horizontal
+        stackView.addArrangedSubview(calorieLabel)
+        stackView.addArrangedSubview(speedLabel)
+        stackView.addArrangedSubview(stopWatchLabel)
+        return view
+    }()
+    
     private lazy var calorieLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.textAlignment = .center
+        label.text = "0.0"
         return label
     }()
 
     private lazy var speedLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.textAlignment = .center
+        label.text = "計測不可"
         return label
     }()
     
     private lazy var stopWatchLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.textAlignment = .center
+        label.text = "00:00:00"
         return label
     }()
     
+    private lazy var closeButton: UIButton = {
+        let button = UIButton(frame: .zero)
+        button.setImage(UIImage(named: "close"), for: .normal)
+        button.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc private func dismissView() {
+        dismissView(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .blue
-        
-        view.addSubview(calorieLabel)
-        view.addSubview(speedLabel)
-        view.addSubview(stopWatchLabel)
-        view.addSubview(mapView)
-        
         presenter = RunManagePresenter(view: self)
+        setupView()
         setupLocationManager()
-        
         activateConstraints()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.startTimer()
+    }
+    
+    private func setupView() {
+        view.backgroundColor = AppColor.appConceptColor
+        view.addSubview(closeButton)
+        view.addSubview(cardView)
+        view.addSubview(calorieLabel)
+        view.addSubview(speedLabel)
+        view.addSubview(stopWatchLabel)
+        view.addSubview(mapView)
     }
 
     private func activateConstraints() {
@@ -90,6 +146,18 @@ class RunManageViewController: UIViewController, RunManageViewProtocol {
         mapView.heightAnchor.constraint(equalToConstant: AppSize.height / 2).isActive = true
         mapView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
+        closeButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15).isActive = true
+        closeButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
+        closeButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
+
+        cardView.translatesAutoresizingMaskIntoConstraints = false
+        cardView.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 0).isActive = true
+        cardView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15).isActive = true
+        cardView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15).isActive = true
+        cardView.bottomAnchor.constraint(equalTo: mapView.topAnchor, constant: -20).isActive = true
+
         calorieLabel.translatesAutoresizingMaskIntoConstraints = false
         calorieLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
         calorieLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
@@ -151,7 +219,7 @@ class RunManageViewController: UIViewController, RunManageViewProtocol {
     /* labelに経過時間を表示 */
     @objc func timerCounter() {
         DispatchQueue.main.async {
-            self.stopWatchLabel.text = self.presenter.getElapsedTime(startTimeDate: self.startTimeDate)
+            self.stopWatchLabel.text = self.presenter.getElapsedTime(startTimeDate: self.startTimeDate ?? Date())
         }
     }
     
@@ -269,7 +337,7 @@ extension RunManageViewController: CLLocationManagerDelegate {
         
         // UIの更新
         DispatchQueue.main.async {
-            self.calorieLabel.text = String(self.presenter.getCurrentCalorieBurned(startTimeDate: self.startTimeDate))
+            self.calorieLabel.text = String(self.presenter.getCurrentCalorieBurned(startTimeDate: self.startTimeDate ?? Date()))
             
             // 時速の計算結果をlabelに反映
             var speedText = String(currentSpeed)

@@ -22,7 +22,7 @@ class HomeModel: HomeModelProtocol {
     }
     
     var showRunDataCount: Int {
-        return latestData.count > 3 ? 3 : latestData.count
+        return latestData.count > 5 ? 5 : latestData.count
     }
     
     var notificationName: Notification.Name {

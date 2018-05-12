@@ -40,5 +40,9 @@ extension RoutingProtocol {
         }
     }
     
+    func dismissView(_ view: UIViewController) {
+        view.dismiss(animated: true, completion: nil)
+    }
+    
 }
 

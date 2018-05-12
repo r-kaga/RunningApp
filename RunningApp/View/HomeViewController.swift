@@ -54,7 +54,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         let btn = TappableButton(frame: .zero)
         btn.backgroundColor = .clear
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        btn.setTitleColor(.black, for: .normal)
+        btn.setTitleColor(AppColor.appConceptColor, for: .normal)
         btn.setTitle("もっと見る", for: .normal)
         btn.addTarget(self, action: #selector(moreShowRunData), for: .touchUpInside)
         return btn
