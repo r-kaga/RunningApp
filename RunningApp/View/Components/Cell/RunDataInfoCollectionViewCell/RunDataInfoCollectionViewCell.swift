@@ -37,5 +37,11 @@ class RunDataInfoCollectionViewCell: UICollectionViewCell {
 //        layer.shadowRadius = 5 // ぼかし量
 
     }
+    
+    func setRunData(_ runData: RealmDataSet) {
+        dateLabel.text = runData.date
+        distanceLabel.text = runData.distance
+        timeLabel.text = runData.time
+    }
 
 }

@@ -152,10 +152,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RunDataInfoCollectionViewCell", for: indexPath) as! RunDataInfoCollectionViewCell
-        let runData = presenter.latestData[indexPath.row]
-        cell.dateLabel.text = runData.date
-        cell.distanceLabel.text = runData.distance
-        cell.timeLabel.text = runData.time
+        cell.setRunData(presenter.latestData[indexPath.row])
         return cell
     }
 

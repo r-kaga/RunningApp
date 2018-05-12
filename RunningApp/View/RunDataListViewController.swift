@@ -35,6 +35,7 @@ class RunDataListViewController: UIViewController, RunDataListViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter = RunDataPresenter(view: self)
         setupView()
     }
     
@@ -52,12 +53,6 @@ class RunDataListViewController: UIViewController, RunDataListViewProtocol {
     }
     
     private func activateConstraints() {
-//        containerView.translatesAutoresizingMaskIntoConstraints = false
-//        containerView.topAnchor.constraint(equalTo: view.topAnchor, constant: AppSize.statusBarAndNavigationBarHeight).isActive = true
-//        containerView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
-//        containerView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-//        containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
-        
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0).isActive = true
         collectionView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 0).isActive = true
@@ -75,11 +70,12 @@ extension RunDataListViewController: UICollectionViewDelegate, UICollectionViewD
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return presenter.runData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "runDataList", for: indexPath) as! RunDataInfoCollectionViewCell
+        cell.setRunData(presenter.runData[indexPath.row])
         return cell
     }
 

@@ -16,8 +16,10 @@ protocol HomeModelProtocol: HomeModelNotify {
 
 class HomeModel: HomeModelProtocol {
     
-    var latestData: Results<RealmDataSet> = RealmDataSet.getAllData()
-
+    var latestData: Results<RealmDataSet> {
+        return RealmDataSet.getAllData()
+    }
+    
     var notificationName: Notification.Name {
         return Notification.Name("Home")
     }
