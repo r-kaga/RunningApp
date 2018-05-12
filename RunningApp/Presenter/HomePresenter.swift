@@ -2,19 +2,24 @@
 import Foundation
 import RealmSwift
 
-protocol HomePresenterProtocol {
+protocol HomePresenterProtocol: RoutingProtocol {
     var latestData: Results<RealmDataSet> { get }
+    var showRunDataCount: Int { get }
     func didSelectRunningStart()
     init(view: HomeViewProtocol)
 }
 
 class HomePresenter: HomePresenterProtocol {
-    
+
     private let view: HomeViewProtocol
     private let model: HomeModelProtocol
     
     var latestData: Results<RealmDataSet> {
         return model.latestData
+    }
+    
+    var showRunDataCount: Int {
+        return 5
     }
     
     required init(view: HomeViewProtocol) {

@@ -59,8 +59,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     }()
     
     @objc func moreShowRunData() {
-        let vc = RunDataListViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        presenter.getRouting(self, route: .moreRunData, routingType: .push)
     }
     
     lazy private var startRunButton: TappableButton = {
@@ -75,8 +74,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     }()
     
     @objc func startRunning() {
-        let vc = RunManageViewController()
-        present(vc, animated: true, completion: nil)
+        presenter.getRouting(self, route: .startRun, routingType: .present)
     }
 
     private func updateLatestChartsDate() {
@@ -149,7 +147,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter.latestData.count
+        return presenter.showRunDataCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

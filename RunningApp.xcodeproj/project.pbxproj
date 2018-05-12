@@ -37,6 +37,7 @@
 		E344D6E420A67CE2000ABB33 /* RunDataListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E344D6E320A67CE2000ABB33 /* RunDataListViewController.swift */; };
 		E344D6E620A67D39000ABB33 /* RunDataPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E344D6E520A67D39000ABB33 /* RunDataPresenter.swift */; };
 		E344D6E820A67DB0000ABB33 /* RunDataListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E344D6E720A67DB0000ABB33 /* RunDataListModel.swift */; };
+		E344D6EA20A69806000ABB33 /* Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E344D6E920A69806000ABB33 /* Routing.swift */; };
 		E3463BA4209AA25C00A518C4 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3463BA3209AA25C00A518C4 /* MyPageViewController.swift */; };
 		E3463BA6209AA27C00A518C4 /* MyPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3463BA5209AA27C00A518C4 /* MyPageModel.swift */; };
 		E3463BA8209AA28900A518C4 /* MyPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3463BA7209AA28900A518C4 /* MyPagePresenter.swift */; };
@@ -111,6 +112,7 @@
 		E344D6E320A67CE2000ABB33 /* RunDataListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunDataListViewController.swift; sourceTree = "<group>"; };
 		E344D6E520A67D39000ABB33 /* RunDataPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunDataPresenter.swift; sourceTree = "<group>"; };
 		E344D6E720A67DB0000ABB33 /* RunDataListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunDataListModel.swift; sourceTree = "<group>"; };
+		E344D6E920A69806000ABB33 /* Routing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routing.swift; sourceTree = "<group>"; };
 		E3463BA3209AA25C00A518C4 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		E3463BA5209AA27C00A518C4 /* MyPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageModel.swift; sourceTree = "<group>"; };
 		E3463BA7209AA28900A518C4 /* MyPagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePresenter.swift; sourceTree = "<group>"; };
@@ -315,6 +317,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		E344D6EB20A698C4000ABB33 /* Routing */ = {
+			isa = PBXGroup;
+			children = (
+				E341882D1F794073000AB961 /* TabBarController.swift */,
+				E344D6E920A69806000ABB33 /* Routing.swift */,
+			);
+			path = Routing;
+			sourceTree = "<group>";
+		};
 		E361060E1F243225004F56EC /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -416,6 +427,7 @@
 		E380AB2F1F23735F0034EA8F /* RunningApp */ = {
 			isa = PBXGroup;
 			children = (
+				E344D6EB20A698C4000ABB33 /* Routing */,
 				E33A4F062095A6990002D92E /* App */,
 				E33A4EFF2095A30F0002D92E /* Presenter */,
 				E33A4EFD2095A3050002D92E /* View */,
@@ -425,7 +437,6 @@
 				E3762A741F8FA1F100B0B501 /* Lib */,
 				E380AB3C1F23735F0034EA8F /* Info.plist */,
 				E380AB391F23735F0034EA8F /* LaunchScreen.storyboard */,
-				E341882D1F794073000AB961 /* TabBarController.swift */,
 			);
 			path = RunningApp;
 			sourceTree = "<group>";
@@ -704,6 +715,7 @@
 				E365A13F1F9257770008D475 /* Dialog.swift in Sources */,
 				E37DDE251FAA1B2100EC61E5 /* Loading.swift in Sources */,
 				E3463BA8209AA28900A518C4 /* MyPagePresenter.swift in Sources */,
+				E344D6EA20A69806000ABB33 /* Routing.swift in Sources */,
 				E341882E1F794073000AB961 /* TabBarController.swift in Sources */,
 				E3363D4E209893200018B88E /* RunDataInfoCollectionViewCell.swift in Sources */,
 				E344D6E620A67D39000ABB33 /* RunDataPresenter.swift in Sources */,
