@@ -59,8 +59,8 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     }()
     
     @objc func moreShowRunData() {
-        let vc = RunManageViewController()
-        present(vc, animated: true, completion: nil)
+        let vc = RunDataListViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     lazy private var startRunButton: TappableButton = {

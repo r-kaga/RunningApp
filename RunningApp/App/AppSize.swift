@@ -22,6 +22,7 @@ struct AppSize {
     static var navigationBarHeight: CGFloat { return 44 }
  
     static var statusBarAndNavigationBarHeight: CGFloat { return statusBarHeight + navigationBarHeight }
-  
+
+    static var contentViewHeight: CGFloat { return AppSize.height - (AppSize.statusBarAndNavigationBarHeight + AppSize.tabBarHeight) }
     
 }
