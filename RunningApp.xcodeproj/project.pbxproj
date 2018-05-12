@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		E1633205A450704EC5F7B81C /* Pods_RunningApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB4A23F43657309C31FDA106 /* Pods_RunningApp.framework */; };
-		E3031D031F80E05A002C5739 /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3031D021F80E05A002C5739 /* SettingController.swift */; };
 		E3034EA41F87BFBF00FCB026 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3034EA31F87BFBF00FCB026 /* Const.swift */; };
 		E30530271FACC8C10097D9A3 /* Alert+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30530261FACC8C10097D9A3 /* Alert+.swift */; };
 		E30AE0481F8A4FF7002FEFAA /* ModalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30AE0471F8A4FF7002FEFAA /* ModalNavigationController.swift */; };
@@ -80,7 +79,6 @@
 		58F06D7142BEEE9F74DD4C7B /* Pods-RunningApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunningApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RunningApp/Pods-RunningApp.debug.xcconfig"; sourceTree = "<group>"; };
 		AB4A23F43657309C31FDA106 /* Pods_RunningApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunningApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B52ED86E09986E423E72B09E /* Pods-RunningApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunningApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-RunningApp/Pods-RunningApp.release.xcconfig"; sourceTree = "<group>"; };
-		E3031D021F80E05A002C5739 /* SettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		E3034EA31F87BFBF00FCB026 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		E30530261FACC8C10097D9A3 /* Alert+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+.swift"; sourceTree = "<group>"; };
 		E30AE0471F8A4FF7002FEFAA /* ModalNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalNavigationController.swift; sourceTree = "<group>"; };
@@ -183,15 +181,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E3031D011F80E041002C5739 /* Setting */ = {
-			isa = PBXGroup;
-			children = (
-				E328FB801F866FEC00E1D4BC /* SettingForm */,
-				E3031D021F80E05A002C5739 /* SettingController.swift */,
-			);
-			path = Setting;
-			sourceTree = "<group>";
-		};
 		E32243611FDC208800477320 /* HomeCustomCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				E3363D49209892E20018B88E /* Components */,
+				E328FB801F866FEC00E1D4BC /* SettingForm */,
 				E33A4F002095A3410002D92E /* HomeViewController.swift */,
 				E36B803F20A1EE8200C6E615 /* RunManageViewController.swift */,
 				E344D6E320A67CE2000ABB33 /* RunDataListViewController.swift */,
@@ -443,7 +433,6 @@
 		E38F7FAF1F9B0B460036CEE0 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				E3031D011F80E041002C5739 /* Setting */,
 				E3F4032C1F88C6CF0073DC45 /* Work */,
 			);
 			path = Main;
@@ -658,7 +647,6 @@
 			files = (
 				E35580151F8B2347000CE75E /* Utility.swift in Sources */,
 				E36913011F97624500A9B19C /* RealmDataSet.swift in Sources */,
-				E3031D031F80E05A002C5739 /* SettingController.swift in Sources */,
 				E33A4F032095A3530002D92E /* HomeModel.swift in Sources */,
 				E36B804020A1EE8200C6E615 /* RunManageViewController.swift in Sources */,
 				E344D6F920A75739000ABB33 /* SettingViewController.swift in Sources */,
