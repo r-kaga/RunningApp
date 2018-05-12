@@ -3,10 +3,42 @@ import Foundation
 import UIKit
 
 
+@IBDesignable
 class TappableButton: UIButton, BaseUIButton {
     
     override func draw(_ rect: CGRect) {
+        clipsToBounds = true
+        if isRound {
+            layer.cornerRadius = frame.width / 2
+        } else {
+            layer.cornerRadius = cornerRadius
+        }
+        
+        if isBorder {
+            layer.borderColor = borderColor.cgColor
+            layer.borderWidth = borderWidth
+        }
 
+    }
+    
+    @IBInspectable var cornerRadius: CGFloat {
+        return 5.0
+    }
+    
+    @IBInspectable var isRound: Bool {
+        return false
+    }
+    
+    @IBInspectable var isBorder: Bool {
+        return false
+    }
+
+    @IBInspectable var borderColor: UIColor {
+        return .lightGray
+    }
+    
+    @IBInspectable var borderWidth: CGFloat {
+        return 0.3
     }
     
     private var alphaBefore: CGFloat = 1

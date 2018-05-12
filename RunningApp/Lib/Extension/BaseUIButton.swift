@@ -9,7 +9,8 @@ protocol BaseUIButton where Self:UIButton {
     var borderWidth: CGFloat { get }
 }
 
-extension BaseUIButton {
+extension BaseUIButton where Self:UIButton {
+    
     var cornerRadius: CGFloat {
         return 5.0
     }
@@ -28,3 +29,23 @@ extension BaseUIButton {
 
 }
 
+@IBDesignable
+class BaseButton: UIButton, BaseUIButton {
+    
+    @IBInspectable var cornerRadius: CGFloat {
+        return 5.0
+    }
+    
+    @IBInspectable var isRound: Bool {
+        return false
+    }
+    
+    @IBInspectable var borderColor: UIColor {
+        return .lightGray
+    }
+    
+    @IBInspectable var borderWidth: CGFloat {
+        return 0.3
+    }
+    
+}
