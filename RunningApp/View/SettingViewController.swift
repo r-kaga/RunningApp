@@ -28,10 +28,15 @@ class SettingViewController: UIViewController, SettingViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter = SettingPresenter(view: self)
+        
         setupView()
         activateConstraints()
     }
     
+    @objc private func settingUpdated() {
+        print("Setting")
+        tableView.reloadData()
+    }
     
     private func setupView() {
         navigationItem.title = "Setting"
@@ -54,7 +59,8 @@ class SettingViewController: UIViewController, SettingViewProtocol {
         guard let type = SettingType(rawValue: path.row) else { return }
         let form = UIStoryboard(name: "SettingForm", bundle: nil).instantiateInitialViewController() as! SettingForm
         form.type = type
-//        form.delegate = self
+        form.observer = self
+        form.selector = #selector(settingUpdated)
         present(form, animated: false)
     }
     

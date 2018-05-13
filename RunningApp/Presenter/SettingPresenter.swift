@@ -15,5 +15,6 @@ class SettingPresenter: SettingPresenterProtocol {
         self.view = view
         self.model = SettingModel()
     }
+
     
 }

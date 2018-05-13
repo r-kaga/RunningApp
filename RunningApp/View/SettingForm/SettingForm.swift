@@ -3,7 +3,7 @@
 import Foundation
 import UIKit
 
-class SettingForm: UIViewController, PickerDelegate {
+class SettingForm: UIViewController, PickerDelegate, Notify {
     
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var SettingCategoryLabel: UILabel!
@@ -17,15 +17,21 @@ class SettingForm: UIViewController, PickerDelegate {
     
     var type: SettingType?
     var categoryName: String!
-//    weak var delegate: SettingDelegate?
+    var observer: Any?
+    var selector: Selector?
 
     var settingValue = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initSetup()
+        addObserver(observer!, selector: selector!)
     }
 
+    deinit {
+        removeObserver(observer!)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -99,7 +105,7 @@ class SettingForm: UIViewController, PickerDelegate {
             
             self.dismiss(animated: true, completion: {
                 UserDefaults.standard.set(String(value), forKey: self.categoryName)
-//                self.delegate?.reload()
+                self.notify()
             })
             
         } catch Const.ErrorType.empty {

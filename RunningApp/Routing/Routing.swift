@@ -18,16 +18,16 @@ enum RoutingType {
 }
 
 protocol RoutingProtocol {
-    func getRouting(_ view: UIViewController, route: Routing, routingType: RoutingType)
+    func getRouting(_ view: UIViewController, route: Routing, routingType: RoutingType, observer: Any?, selector: Selector?)
 }
 
 extension RoutingProtocol {
     
-    func getRouting(_ view: UIViewController, route: Routing, routingType: RoutingType) {
+    func getRouting(_ view: UIViewController, route: Routing, routingType: RoutingType, observer: Any? = nil, selector: Selector? = nil) {
         let vc: UIViewController
         switch route {
         case .startRun:
-            vc = RunManageViewController()
+            vc = RunManageViewController(observer: observer!, selector: selector!)
         case .moreRunData:
             vc = RunDataListViewController()
         }

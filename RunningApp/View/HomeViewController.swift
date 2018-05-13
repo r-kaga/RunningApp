@@ -79,7 +79,12 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     }
     
     @objc func startRunning() {
-        presenter.getRouting(self, route: .startRun, routingType: .present)
+        presenter.getRouting(self, route: .startRun, routingType: .present, observer: self, selector: #selector(runDataUpdated))
+    }
+    
+    @objc func runDataUpdated() {
+        print("RunDataUPdated")
+        collectionView.reloadData()
     }
     
     @objc func moreShowRunData() {

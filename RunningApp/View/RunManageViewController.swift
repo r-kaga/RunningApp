@@ -14,15 +14,31 @@ enum currentSpeedType: String {
     case notMatched
 }
 
-protocol RunManageViewProtocol: AVAudioPlayerDelegate, RoutingProtocol {
+protocol RunManageViewProtocol: AVAudioPlayerDelegate, RoutingProtocol, Notify {
     var latDist: CLLocationDistance { get }
     var lonDist: CLLocationDistance { get }
     var startTimeDate: Date? { get }
     var audioPlayer: AVAudioPlayer! { get }
     func audioPlay(url: currentSpeedType)
+    var observer: Any { get }
+    var selector: Selector { get }
+    init(observer: Any, selector: Selector)
 }
 
 class RunManageViewController: UIViewController, RunManageViewProtocol {
+
+    var observer: Any
+    var selector: Selector
+    
+    required init(observer: Any, selector: Selector) {
+        self.observer = observer
+        self.selector = selector
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private(set) var presenter: RunManagePresenterProtocol!
     
@@ -75,6 +91,12 @@ class RunManageViewController: UIViewController, RunManageViewProtocol {
         setupLocationManager()
         setupPedometer()
         activateConstraints()
+        
+        addObserver(observer, selector: selector)
+    }
+    
+    deinit {
+        removeObserver(observer)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -215,6 +237,7 @@ class RunManageViewController: UIViewController, RunManageViewProtocol {
                 self.mapView.removeAnnotation(self.pin!)
             }
             self.mapView.removeFromSuperview()
+            self.notify()
             presentingViewController?.viewWillAppear(true)
         })
     }
