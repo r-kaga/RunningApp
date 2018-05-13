@@ -95,16 +95,17 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         presenter.transition(self, route: .moreRunData, routingType: .push)
     }
     
+    private var emptyView: EmptyView?
     func updateLatestChartsDate() {
         var chartsShouldShowFlg: Bool
         if presenter.latestData.isEmpty {
             chartsShouldShowFlg = true
-            
-            let emptyView = EmptyView(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.contentViewHeight / 2))
-            emptyView.center = view.center
-            view.addSubview(emptyView)
+            emptyView = EmptyView(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.contentViewHeight / 2))
+            emptyView?.center = view.center
+            view.addSubview(emptyView!)
             
         } else {
+            emptyView?.removeFromSuperview()
             chartsShouldShowFlg = false
         }
         distanceChartView.isHidden = chartsShouldShowFlg
