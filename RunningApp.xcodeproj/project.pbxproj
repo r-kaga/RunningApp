@@ -53,6 +53,8 @@
 		E36B804020A1EE8200C6E615 /* RunManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36B803F20A1EE8200C6E615 /* RunManageViewController.swift */; };
 		E36B804220A1EE9100C6E615 /* RunManageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36B804120A1EE9100C6E615 /* RunManageModel.swift */; };
 		E36B804420A1EEC200C6E615 /* RunManagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36B804320A1EEC200C6E615 /* RunManagePresenter.swift */; };
+		E36C5DFB20A8190900223E30 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36C5DFA20A8190900223E30 /* EmptyView.swift */; };
+		E36C5DFD20A8190F00223E30 /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E36C5DFC20A8190F00223E30 /* EmptyView.xib */; };
 		E37631881FBEE70600D027E5 /* Picker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37631871FBEE70600D027E5 /* Picker.swift */; };
 		E376318A1FBEE70C00D027E5 /* Picker.xib in Resources */ = {isa = PBXBuildFile; fileRef = E37631891FBEE70C00D027E5 /* Picker.xib */; };
 		E37DDE251FAA1B2100EC61E5 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37DDE241FAA1B2100EC61E5 /* Loading.swift */; };
@@ -125,6 +127,8 @@
 		E36B803F20A1EE8200C6E615 /* RunManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunManageViewController.swift; sourceTree = "<group>"; };
 		E36B804120A1EE9100C6E615 /* RunManageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunManageModel.swift; sourceTree = "<group>"; };
 		E36B804320A1EEC200C6E615 /* RunManagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunManagePresenter.swift; sourceTree = "<group>"; };
+		E36C5DFA20A8190900223E30 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		E36C5DFC20A8190F00223E30 /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
 		E37631871FBEE70600D027E5 /* Picker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picker.swift; sourceTree = "<group>"; };
 		E37631891FBEE70C00D027E5 /* Picker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Picker.xib; sourceTree = "<group>"; };
 		E37DDE241FAA1B2100EC61E5 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
@@ -227,6 +231,7 @@
 		E3363D49209892E20018B88E /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E36C5DF920A818F100223E30 /* EmptyView */,
 				E344D6F320A7022C000ABB33 /* RunManageCardView */,
 				E3363D4A209892F40018B88E /* Cell */,
 			);
@@ -356,6 +361,15 @@
 				E368B0E21FADCC7F0021985F /* GradiateView.swift */,
 			);
 			path = Gradation;
+			sourceTree = "<group>";
+		};
+		E36C5DF920A818F100223E30 /* EmptyView */ = {
+			isa = PBXGroup;
+			children = (
+				E36C5DFA20A8190900223E30 /* EmptyView.swift */,
+				E36C5DFC20A8190F00223E30 /* EmptyView.xib */,
+			);
+			path = EmptyView;
 			sourceTree = "<group>";
 		};
 		E3762A741F8FA1F100B0B501 /* Lib */ = {
@@ -555,6 +569,7 @@
 				E3D259A61FAAA5BF00978399 /* NoDateView.xib in Resources */,
 				E365A13D1F9256020008D475 /* CompleteDialog.xib in Resources */,
 				E3D2EBD220065DF30024BAFC /* up.mp3 in Resources */,
+				E36C5DFD20A8190F00223E30 /* EmptyView.xib in Resources */,
 				E344D70A20A80009000ABB33 /* DetailTableViewCell.xib in Resources */,
 				E344D6F720A70249000ABB33 /* RunManageCardView.xib in Resources */,
 				E3D2EBD020065DDF0024BAFC /* down.mp3 in Resources */,
@@ -644,6 +659,7 @@
 				E36913011F97624500A9B19C /* RealmDataSet.swift in Sources */,
 				E33A4F032095A3530002D92E /* HomeModel.swift in Sources */,
 				E36B804020A1EE8200C6E615 /* RunManageViewController.swift in Sources */,
+				E36C5DFB20A8190900223E30 /* EmptyView.swift in Sources */,
 				E344D6F920A75739000ABB33 /* SettingViewController.swift in Sources */,
 				E344D70120A7EB4C000ABB33 /* DetailViewController.swift in Sources */,
 				E33A4F012095A3410002D92E /* HomeViewController.swift in Sources */,

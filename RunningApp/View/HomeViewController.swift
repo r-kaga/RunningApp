@@ -2,6 +2,7 @@
 import UIKit
 import Charts
 
+
 protocol HomeViewProtocol {
     func startRunning()
     func moreShowRunData()
@@ -18,7 +19,6 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         view.backgroundColor = .white
         view.layer.cornerRadius = 5.0
         view.clipsToBounds = true
-        view.addBorder(color: .gray, width: 0.5)
         view.backgroundColor = .clear
         return view
     }()
@@ -47,6 +47,8 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.delegate = self
         collectionView.dataSource = self
+//        collectionView.emptyDataSetSource = self
+//        collectionView.emptyDataSetDelegate = self
         return collectionView
     }()
     
@@ -76,6 +78,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         setupView()
         presenter = HomePresenter(view: self)
         updateLatestChartsDate()
+
     }
     
     @objc func startRunning() {
@@ -85,6 +88,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     @objc func runDataUpdated() {
         print("RunDataUPdated")
         collectionView.reloadData()
+        updateLatestChartsDate()
     }
     
     @objc func moreShowRunData() {
@@ -95,11 +99,17 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         var chartsShouldShowFlg: Bool
         if presenter.latestData.isEmpty {
             chartsShouldShowFlg = true
+            
+            let emptyView = EmptyView(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.contentViewHeight / 2))
+            emptyView.center = view.center
+            view.addSubview(imageView)
+            
         } else {
             chartsShouldShowFlg = false
         }
         distanceChartView.isHidden = chartsShouldShowFlg
-
+        moreShowButton.isHidden = chartsShouldShowFlg
+        
         var entries = [BarChartDataEntry]()
         var count = 0.0
 
@@ -173,3 +183,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
 }
 
+extension HomeViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "walking")
+    }
+}
