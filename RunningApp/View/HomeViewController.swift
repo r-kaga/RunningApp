@@ -102,7 +102,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
             
             let emptyView = EmptyView(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.contentViewHeight / 2))
             emptyView.center = view.center
-            view.addSubview(imageView)
+            view.addSubview(emptyView)
             
         } else {
             chartsShouldShowFlg = false
@@ -181,10 +181,4 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 //        return CGSize(width: width, height: height)
 //    }
     
-}
-
-extension HomeViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
-    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-        return UIImage(named: "walking")
-    }
 }
