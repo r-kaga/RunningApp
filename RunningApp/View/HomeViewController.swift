@@ -79,7 +79,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     }
     
     @objc func startRunning() {
-        presenter.getRouting(self, route: .startRun, routingType: .present, observer: self, selector: #selector(runDataUpdated))
+        presenter.transition(self, route: .startRun, routingType: .present, observer: self, selector: #selector(runDataUpdated))
     }
     
     @objc func runDataUpdated() {
@@ -88,7 +88,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     }
     
     @objc func moreShowRunData() {
-        presenter.getRouting(self, route: .moreRunData, routingType: .push)
+        presenter.transition(self, route: .moreRunData, routingType: .push)
     }
     
     func updateLatestChartsDate() {

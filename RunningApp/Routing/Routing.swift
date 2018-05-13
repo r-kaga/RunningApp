@@ -4,7 +4,7 @@ import UIKit
 
 /**
  * 遷移を管理したいViewControllerでRoutingProtocolを準拠する
- * eg) presenter.getRouting(self, route: .moreRunData, routingType: .push)
+ * eg) presenter.transition(self, route: .moreRunData, routingType: .push)
  */
 
 enum Routing: String {
@@ -18,12 +18,12 @@ enum RoutingType {
 }
 
 protocol RoutingProtocol {
-    func getRouting(_ view: UIViewController, route: Routing, routingType: RoutingType, observer: Any?, selector: Selector?)
+    func transition(_ view: UIViewController, route: Routing, routingType: RoutingType, observer: Any?, selector: Selector?)
 }
 
 extension RoutingProtocol {
-    
-    func getRouting(_ view: UIViewController, route: Routing, routingType: RoutingType, observer: Any? = nil, selector: Selector? = nil) {
+
+    func transition(_ view: UIViewController, route: Routing, routingType: RoutingType, observer: Any? = nil, selector: Selector? = nil) {
         let vc: UIViewController
         switch route {
         case .startRun:
@@ -39,7 +39,7 @@ extension RoutingProtocol {
             view.navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
+
     func dismissView(_ view: UIViewController) {
         view.dismiss(animated: true, completion: nil)
     }

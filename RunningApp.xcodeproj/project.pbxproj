@@ -36,6 +36,11 @@
 		E344D6FB20A7578E000ABB33 /* SettingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E344D6FA20A7578E000ABB33 /* SettingPresenter.swift */; };
 		E344D6FD20A757DD000ABB33 /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E344D6FC20A757DD000ABB33 /* SettingModel.swift */; };
 		E344D6FF20A7E082000ABB33 /* Notify+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E344D6FE20A7E082000ABB33 /* Notify+.swift */; };
+		E344D70120A7EB4C000ABB33 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E344D70020A7EB4C000ABB33 /* DetailViewController.swift */; };
+		E344D70320A7EC06000ABB33 /* DetailViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E344D70220A7EC06000ABB33 /* DetailViewPresenter.swift */; };
+		E344D70520A7EC8F000ABB33 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E344D70420A7EC8F000ABB33 /* DetailViewModel.swift */; };
+		E344D70920A80009000ABB33 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E344D70720A80009000ABB33 /* DetailTableViewCell.swift */; };
+		E344D70A20A80009000ABB33 /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E344D70820A80009000ABB33 /* DetailTableViewCell.xib */; };
 		E35580151F8B2347000CE75E /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35580141F8B2347000CE75E /* Utility.swift */; };
 		E355F1961F9F7ADD00509CA1 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355F1951F9F7ADD00509CA1 /* UIViewController+.swift */; };
 		E355F1981F9F7ED300509CA1 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E355F1971F9F7ED300509CA1 /* UIView+.swift */; };
@@ -103,6 +108,11 @@
 		E344D6FA20A7578E000ABB33 /* SettingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPresenter.swift; sourceTree = "<group>"; };
 		E344D6FC20A757DD000ABB33 /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
 		E344D6FE20A7E082000ABB33 /* Notify+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notify+.swift"; sourceTree = "<group>"; };
+		E344D70020A7EB4C000ABB33 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		E344D70220A7EC06000ABB33 /* DetailViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewPresenter.swift; sourceTree = "<group>"; };
+		E344D70420A7EC8F000ABB33 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		E344D70720A80009000ABB33 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
+		E344D70820A80009000ABB33 /* DetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTableViewCell.xib; sourceTree = "<group>"; };
 		E35580141F8B2347000CE75E /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		E355F1951F9F7ADD00509CA1 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		E355F1971F9F7ED300509CA1 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
@@ -190,6 +200,7 @@
 				E36B804120A1EE9100C6E615 /* RunManageModel.swift */,
 				E344D6E720A67DB0000ABB33 /* RunDataListModel.swift */,
 				E344D6FC20A757DD000ABB33 /* SettingModel.swift */,
+				E344D70420A7EC8F000ABB33 /* DetailViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -225,6 +236,7 @@
 		E3363D4A209892F40018B88E /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				E344D70620A7FFE2000ABB33 /* DetailTableViewCell */,
 				E3363D4B209892FA0018B88E /* RunDataInfoCollectionViewCell */,
 			);
 			path = Cell;
@@ -248,6 +260,7 @@
 				E36B803F20A1EE8200C6E615 /* RunManageViewController.swift */,
 				E344D6E320A67CE2000ABB33 /* RunDataListViewController.swift */,
 				E344D6F820A75739000ABB33 /* SettingViewController.swift */,
+				E344D70020A7EB4C000ABB33 /* DetailViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -259,6 +272,7 @@
 				E36B804320A1EEC200C6E615 /* RunManagePresenter.swift */,
 				E344D6E520A67D39000ABB33 /* RunDataPresenter.swift */,
 				E344D6FA20A7578E000ABB33 /* SettingPresenter.swift */,
+				E344D70220A7EC06000ABB33 /* DetailViewPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -304,6 +318,15 @@
 				E344D6F620A70249000ABB33 /* RunManageCardView.xib */,
 			);
 			path = RunManageCardView;
+			sourceTree = "<group>";
+		};
+		E344D70620A7FFE2000ABB33 /* DetailTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E344D70720A80009000ABB33 /* DetailTableViewCell.swift */,
+				E344D70820A80009000ABB33 /* DetailTableViewCell.xib */,
+			);
+			path = DetailTableViewCell;
 			sourceTree = "<group>";
 		};
 		E365A13B1F9255E00008D475 /* Dialog */ = {
@@ -532,6 +555,7 @@
 				E3D259A61FAAA5BF00978399 /* NoDateView.xib in Resources */,
 				E365A13D1F9256020008D475 /* CompleteDialog.xib in Resources */,
 				E3D2EBD220065DF30024BAFC /* up.mp3 in Resources */,
+				E344D70A20A80009000ABB33 /* DetailTableViewCell.xib in Resources */,
 				E344D6F720A70249000ABB33 /* RunManageCardView.xib in Resources */,
 				E3D2EBD020065DDF0024BAFC /* down.mp3 in Resources */,
 				E376318A1FBEE70C00D027E5 /* Picker.xib in Resources */,
@@ -621,6 +645,7 @@
 				E33A4F032095A3530002D92E /* HomeModel.swift in Sources */,
 				E36B804020A1EE8200C6E615 /* RunManageViewController.swift in Sources */,
 				E344D6F920A75739000ABB33 /* SettingViewController.swift in Sources */,
+				E344D70120A7EB4C000ABB33 /* DetailViewController.swift in Sources */,
 				E33A4F012095A3410002D92E /* HomeViewController.swift in Sources */,
 				E368B0E11FADC7690021985F /* Gradation.swift in Sources */,
 				E344D6E220A5FD1C000ABB33 /* BaseUIButton.swift in Sources */,
@@ -633,6 +658,7 @@
 				E32243671FDC255000477320 /* HomeCollectionViewCell.swift in Sources */,
 				E36B804220A1EE9100C6E615 /* RunManageModel.swift in Sources */,
 				E33A4F052095A3600002D92E /* HomePresenter.swift in Sources */,
+				E344D70920A80009000ABB33 /* DetailTableViewCell.swift in Sources */,
 				E365A13A1F9255C50008D475 /* CompleteDialog.swift in Sources */,
 				E3CAC82C1FAB229C00AE1B55 /* MyPageCell.swift in Sources */,
 				E3034EA41F87BFBF00FCB026 /* Const.swift in Sources */,
@@ -646,10 +672,12 @@
 				E37DDE251FAA1B2100EC61E5 /* Loading.swift in Sources */,
 				E344D6EA20A69806000ABB33 /* Routing.swift in Sources */,
 				E341882E1F794073000AB961 /* TabBarController.swift in Sources */,
+				E344D70520A7EC8F000ABB33 /* DetailViewModel.swift in Sources */,
 				E3363D4E209893200018B88E /* RunDataInfoCollectionViewCell.swift in Sources */,
 				E344D6E620A67D39000ABB33 /* RunDataPresenter.swift in Sources */,
 				E344D6FD20A757DD000ABB33 /* SettingModel.swift in Sources */,
 				E344D6E420A67CE2000ABB33 /* RunDataListViewController.swift in Sources */,
+				E344D70320A7EC06000ABB33 /* DetailViewPresenter.swift in Sources */,
 				E38F7FAB1F9AF3ED0036CEE0 /* SettingCell.swift in Sources */,
 				E33802941F852A76007EB199 /* SettingForm.swift in Sources */,
 				E380AB311F23735F0034EA8F /* AppDelegate.swift in Sources */,

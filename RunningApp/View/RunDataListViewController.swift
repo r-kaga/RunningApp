@@ -56,6 +56,10 @@ class RunDataListViewController: UIViewController, RunDataListViewProtocol {
         collectionView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 0).isActive = true
     }
     
+    @objc func reload() {
+        collectionView.reloadData()
+    }
+    
 }
 
 extension RunDataListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -73,6 +77,10 @@ extension RunDataListViewController: UICollectionViewDelegate, UICollectionViewD
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "runDataList", for: indexPath) as! RunDataInfoCollectionViewCell
         cell.setRunData(presenter.runData[indexPath.row])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter.transition(self, indexPath: indexPath.row, observer: self, selector: #selector(reload))
     }
 
 }
