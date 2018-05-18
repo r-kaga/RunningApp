@@ -14,7 +14,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     private(set) var presenter: HomePresenterProtocol!
 
     lazy private var chartViewOutlet: UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: AppSize.width - 20, height: 160))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: AppSize.width - 20, height: AppSize.height / 5))
         view.center = CGPoint(x: AppSize.width / 2, y: AppSize.statusBarAndNavigationBarHeight + view.frame.height / 2 + 10)
         view.backgroundColor = .white
         view.layer.cornerRadius = 5.0
@@ -24,7 +24,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     }()
     
     lazy private var distanceChartView: LineChartView = {
-        let chartView = LineChartView(frame: CGRect(x: 0, y: 0, width: AppSize.width - 20, height: 160))
+        let chartView = LineChartView(frame: CGRect(x: 0, y: 0, width: AppSize.width - 20, height: AppSize.height / 5))
         chartView.chartDescription?.text = ""
         chartView.backgroundColor = .white
         chartView.xAxis.enabled = false
@@ -78,7 +78,6 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         setupView()
         presenter = HomePresenter(view: self)
         updateLatestChartsDate()
-
     }
     
     @objc func startRunning() {
@@ -100,9 +99,10 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         var chartsShouldShowFlg: Bool
         if presenter.latestData.isEmpty {
             chartsShouldShowFlg = true
-            emptyView = EmptyView(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.contentViewHeight / 2))
+            emptyView = EmptyView(frame: CGRect(x: 0, y: 0, width: AppSize.width, height: AppSize.contentViewHeight / 3))
             emptyView?.center = view.center
             view.addSubview(emptyView!)
+            view.bringSubview(toFront: startRunButton)
             
         } else {
             emptyView?.removeFromSuperview()
@@ -139,22 +139,31 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         moreShowButton.topAnchor.constraint(equalTo: distanceChartView.bottomAnchor, constant: 15).isActive = true
         moreShowButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         moreShowButton.sizeToFit()
-        
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.topAnchor.constraint(equalTo: moreShowButton.bottomAnchor, constant: 0).isActive = true
-        collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
-        collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-        collectionView.heightAnchor.constraint(equalToConstant: AppSize.height / 3).isActive = true
-        
+
         startRunButton.translatesAutoresizingMaskIntoConstraints = false
         //        let ramainHeight = ((tabBarController?.tabBar.frame.minY)! - collectionView.frame.maxY) / 2
         //        let remainHeight = AppSize.height - (collectionView.frame.maxY + (tabBarController?.tabBar.frame.height)!)
         //        print(remainHeight)
         //        startRunButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: remainHeight).isActive = true
-        startRunButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 30).isActive = true
+        if UIDevice().userInterfaceIdiom == .phone {
+        }
+        
+        // iPhone X
+        if UIScreen.main.nativeBounds.height == 2436 {
+            startRunButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(50 + AppSize.tabBarHeight)).isActive = true
+        } else {
+            startRunButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(30 + AppSize.tabBarHeight)).isActive = true
+        }
         startRunButton.widthAnchor.constraint(equalToConstant: AppSize.width - 50).isActive = true
         startRunButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         startRunButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.topAnchor.constraint(equalTo: moreShowButton.bottomAnchor, constant: 0).isActive = true
+        collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: startRunButton.topAnchor, constant: -10).isActive = true
+        
     }
 
 }

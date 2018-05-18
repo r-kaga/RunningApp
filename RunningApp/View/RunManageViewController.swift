@@ -18,7 +18,7 @@ protocol RunManageViewProtocol: AVAudioPlayerDelegate, RoutingProtocol, Notify {
     var latDist: CLLocationDistance { get }
     var lonDist: CLLocationDistance { get }
     var startTimeDate: Date? { get }
-    var audioPlayer: AVAudioPlayer! { get }
+    var audioPlayer: AVAudioPlayer? { get }
     func audioPlay(url: currentSpeedType)
     var observer: Any { get }
     var selector: Selector { get }
@@ -57,7 +57,7 @@ class RunManageViewController: UIViewController, RunManageViewProtocol {
     
     weak private var timer: Timer?
 
-    var audioPlayer: AVAudioPlayer!
+    var audioPlayer: AVAudioPlayer?
 
     /* 現在地を表示するMapKitを生成 */
     private lazy var mapView: MKMapView = {
@@ -97,6 +97,7 @@ class RunManageViewController: UIViewController, RunManageViewProtocol {
     
     deinit {
         removeObserver(observer)
+        audioPlayer = nil
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -147,9 +148,9 @@ class RunManageViewController: UIViewController, RunManageViewProtocol {
         if let error = audioError {
             print("Error \(error.localizedDescription)")
         }
-        audioPlayer.delegate = self
+        audioPlayer?.delegate = self
         //        audioPlayer.prepareToPlay()
-        audioPlayer.play()
+        audioPlayer?.play()
     }
     
     
