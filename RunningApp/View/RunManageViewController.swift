@@ -374,7 +374,6 @@ extension RunManageViewController: MKMapViewDelegate {
         self.mapView.setCenter(coordinate, animated: true)
     }
     
-    
     /*
      * MapにPinをセットする
      * @param title - pinに表示するタイトル @type String

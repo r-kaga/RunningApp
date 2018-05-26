@@ -3,8 +3,8 @@
 import Foundation
 import UIKit
 
-protocol DetailViewProtocol {
-    init(_ runData: RealmDataSet)
+protocol DetailViewProtocol: Notify {
+    init(_ runData: RealmDataSet, observer: Any, selector: Selector)
 }
 
 class DetailViewController: UIViewController, DetailViewProtocol {
@@ -22,9 +22,10 @@ class DetailViewController: UIViewController, DetailViewProtocol {
         return tableView
     }()
     
-    required init(_ runData: RealmDataSet) {
+    required init(_ runData: RealmDataSet, observer: Any, selector: Selector) {
         super.init(nibName: nil, bundle: nil)
         presenter = DetailViewPresenter(view: self, runData)
+        addObserver(observer, selector: selector)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -39,6 +40,9 @@ class DetailViewController: UIViewController, DetailViewProtocol {
     
     private func setupView() {
         view.addSubview(tableView)
+        
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(presentActionSheet))
+        navigationItem.rightBarButtonItem = barButtonItem
     }
     
     private func activateConstraints() {
@@ -47,6 +51,19 @@ class DetailViewController: UIViewController, DetailViewProtocol {
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+    
+    @objc private func presentActionSheet() {
+        let sheet = UIAlertController(title: "選択してください", message: "削除してもよろしいですか?", preferredStyle: .actionSheet)
+        sheet.addAction(UIAlertAction(title: "削除", style: .destructive, handler: { _ in
+            self.presenter.deleteRunData()
+            self.notify()
+            self.navigationController?.popViewController(animated: true)
+        }))
+        sheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            
+        }))
+        present(sheet, animated: true, completion: nil)
     }
     
 }
@@ -63,22 +80,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailView", for: indexPath) as! DetailTableViewCell
-        (cell.titleTextLabel.text, cell.valueTextLabel.text) = {
-            switch indexPath.row {
-            case 0:
-                return ("距離", presenter.runData.distance)
-            case 1:
-                return ("日付", presenter.runData.date)
-            case 2:
-                return ("消費カロリー" ,presenter.runData.calorie)
-            case 3:
-                return ("時間", presenter.runData.time)
-            case 4:
-                return ("スピード", presenter.runData.speed)
-            default:
-                return ("", "")
-            }
-        }()
+        (cell.titleTextLabel.text!, cell.valueTextLabel.text!) = presenter.setupCellInfo(indexPath: indexPath.row)
         return cell
     }
     

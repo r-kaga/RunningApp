@@ -29,7 +29,7 @@ extension RoutingProtocol {
         case .startRun:
             vc = RunManageViewController(observer: observer!, selector: selector!)
         case .moreRunData:
-            vc = RunDataListViewController()
+            vc = RunDataListViewController(observer: observer!, selector: selector!)
         }
         
         switch routingType {

@@ -8,9 +8,12 @@ protocol DetailViewPresenterProtocol {
     var runData: RealmDataSet { get }
     var numberOfRowsInSection: Int { get }
     init(view: DetailViewProtocol, _ data: RealmDataSet)
+    func deleteRunData()
+    func setupCellInfo(indexPath: Int) -> (String, String)
 }
 
 class DetailViewPresenter: DetailViewPresenterProtocol {
+
     
     var view: DetailViewProtocol
     var model: DetailViewModelProtocol
@@ -26,4 +29,12 @@ class DetailViewPresenter: DetailViewPresenterProtocol {
         self.runData = data
     }
     
+    func deleteRunData() {
+        model.deleteRunData(runData: runData)
+    }
+    
+    func setupCellInfo(indexPath: Int) -> (String, String) {
+        return model.setupCellInfo(indexPath: indexPath, runData: runData)
+    }
+
 }

@@ -85,13 +85,12 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     }
     
     @objc func runDataUpdated() {
-        print("RunDataUPdated")
         collectionView.reloadData()
         updateLatestChartsDate()
     }
     
     @objc func moreShowRunData() {
-        presenter.transition(self, route: .moreRunData, routingType: .push)
+        presenter.transition(self, route: .moreRunData, routingType: .push, observer: self, selector: #selector(runDataUpdated))
     }
     
     private var emptyView: EmptyView?

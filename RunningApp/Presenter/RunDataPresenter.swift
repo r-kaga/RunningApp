@@ -23,7 +23,7 @@ class RunDataPresenter: RunDataPresenterProtocol {
     }
     
     func transition(_ view: RunDataListViewController, indexPath: Int, observer: Any, selector: Selector) {
-        let vc = DetailViewController(runData[indexPath])
+        let vc = DetailViewController(runData[indexPath], observer: observer, selector: selector)
         view.navigationController?.pushViewController(vc, animated: true)
     }
 

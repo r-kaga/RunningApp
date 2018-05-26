@@ -3,12 +3,12 @@
 import Foundation
 import UIKit
 
-protocol RunDataListViewProtocol {
-    
+protocol RunDataListViewProtocol: Notify {
+    init(observer: Any, selector: Selector)
 }
 
 class RunDataListViewController: UIViewController, RunDataListViewProtocol {
-    
+
     private(set) var presenter: RunDataPresenterProtocol!
     
     private lazy var containerView: UIView = {
@@ -32,6 +32,15 @@ class RunDataListViewController: UIViewController, RunDataListViewProtocol {
         collectionView.dataSource = self
         return collectionView
     }()
+    
+    required init(observer: Any, selector: Selector) {
+        super.init(nibName: nil, bundle: nil)
+        addObserver(observer, selector: selector)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +67,7 @@ class RunDataListViewController: UIViewController, RunDataListViewProtocol {
     
     @objc func reload() {
         collectionView.reloadData()
+        notify()
     }
     
 }
