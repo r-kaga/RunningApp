@@ -150,7 +150,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 //        } else {
 //            startRunButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(30 + AppSize.tabBarHeight)).isActive = true
 //        }
-        startRunButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 15).isActive = true
+        startRunButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 20).isActive = true
         startRunButton.widthAnchor.constraint(equalToConstant: AppSize.width - 50).isActive = true
         startRunButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         startRunButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true

@@ -19,15 +19,15 @@ class DetailViewModel: DetailViewModelProtocol {
     func setupCellInfo(indexPath: Int, runData: RealmDataSet) -> (String, String) {
         switch indexPath {
         case 0:
-            return ("距離", runData.distance)
-        case 1:
             return ("日付", runData.date)
-        case 2:
-            return ("消費カロリー" ,runData.calorie)
-        case 3:
+        case 1:
             return ("時間", runData.time)
-        case 4:
+        case 2:
+            return ("距離", runData.distance)
+        case 3:
             return ("スピード", runData.speed)
+        case 4:
+            return ("消費カロリー" ,runData.calorie)
         default:
             return ("", "")
         }
