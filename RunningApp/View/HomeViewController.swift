@@ -36,7 +36,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: AppSize.width / 2, height: AppSize.height / 3)
         layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 10.0
+//        layout.minimumLineSpacing = 10.0
 //        layout.minimumInteritemSpacing = 5.0
 //        layout.sectionInset = UIEdgeInsetsMake(0, 2.0, 0, 2.0)
         
@@ -47,8 +47,6 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.delegate = self
         collectionView.dataSource = self
-//        collectionView.emptyDataSetSource = self
-//        collectionView.emptyDataSetDelegate = self
         return collectionView
     }()
     
@@ -138,31 +136,24 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         moreShowButton.topAnchor.constraint(equalTo: distanceChartView.bottomAnchor, constant: 15).isActive = true
         moreShowButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         moreShowButton.sizeToFit()
-
-        startRunButton.translatesAutoresizingMaskIntoConstraints = false
-        //        let ramainHeight = ((tabBarController?.tabBar.frame.minY)! - collectionView.frame.maxY) / 2
-        //        let remainHeight = AppSize.height - (collectionView.frame.maxY + (tabBarController?.tabBar.frame.height)!)
-        //        print(remainHeight)
-        //        startRunButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: remainHeight).isActive = true
-        if UIDevice().userInterfaceIdiom == .phone {
-        }
         
-        // iPhone X
-        if UIScreen.main.nativeBounds.height == 2436 {
-            startRunButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(50 + AppSize.tabBarHeight)).isActive = true
-        } else {
-            startRunButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(30 + AppSize.tabBarHeight)).isActive = true
-        }
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.heightAnchor.constraint(equalToConstant: AppSize.height / 3).isActive = true
+        collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
+        collectionView.topAnchor.constraint(equalTo: moreShowButton.bottomAnchor, constant: 0).isActive = true
+    
+        startRunButton.translatesAutoresizingMaskIntoConstraints = false
+//        // iPhone X
+//        if UIScreen.main.nativeBounds.height == 2436 {
+//            startRunButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(50 + AppSize.tabBarHeight)).isActive = true
+//        } else {
+//            startRunButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(30 + AppSize.tabBarHeight)).isActive = true
+//        }
+        startRunButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 10).isActive = true
         startRunButton.widthAnchor.constraint(equalToConstant: AppSize.width - 50).isActive = true
         startRunButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         startRunButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.topAnchor.constraint(equalTo: moreShowButton.bottomAnchor, constant: 0).isActive = true
-        collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
-        collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: startRunButton.topAnchor, constant: -10).isActive = true
-        
     }
 
 }
